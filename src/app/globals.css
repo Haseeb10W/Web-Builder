@@ -14,7 +14,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: rgb(10, 10, 10);
     --foreground: #ededed;
   }
 }
@@ -23,4 +23,97 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+
+li, ul {
+  list-style: none;
+  
+}
+
+
+@keyframes dropSuccess {
+  0% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.drop-success {
+  animation: dropSuccess 0.3s ease-out;
+}
+
+.drop-zone {
+  transition: all 0.2s ease;
+}
+
+.drop-zone.active {
+  background: rgba(59, 130, 246, 0.1);
+  border: 2px dashed rgb(59, 130, 246);
+  border-radius: 4px;
+}
+
+.jodit-status-bar{
+  display: none !important;
+}
+
+
+
+/* Hide number input arrows in Chrome, Safari, Edge */
+.input-no-spinner::-webkit-inner-spin-button,
+.input-no-spinner::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Hide number input arrows in Firefox */
+.input-no-spinner {
+  -moz-appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+
+/* .dropped-selected-section  .selected-child{
+   border: 1px dashed rgb(83, 83, 83) !important; 
+} */
+
+.flexbox-fix:nth-child(3)> :not(div:first-child){
+  display:none !important;
+}
+
+
+.scroll-bar::-webkit-scrollbar {
+  width: 5px; /* For vertical scrollbar */
+  height: 5px; /* For horizontal scrollbar */
+}
+
+.scroll-bar-md::-webkit-scrollbar {
+  width: 8px; /* For vertical scrollbar */
+  height: 8px; /* For horizontal scrollbar */
+}
+
+
+/* Style the track */
+.scroll-bar::-webkit-scrollbar-track, .scroll-bar-md::-webkit-scrollbar-track {
+  background: rgb(196, 196, 196);
+  border-radius: 10px;
+}
+
+/* Style the thumb */
+.scroll-bar::-webkit-scrollbar-thumb, .scroll-bar-md::-webkit-scrollbar-thumb {
+  background: #8f8f8f;
+  border-radius: 10px;
+}
+
+/* Change the thumb color on hover */
+.scroll-bar::-webkit-scrollbar-thumb:hover, .scroll-bar-md::-webkit-scrollbar-thumb:hover {
+  background: #797979;
 }

@@ -1,0 +1,136 @@
+'use client';
+
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
+import DynamicIcons from '../DynamicIcons';
+import { useSideToggle } from '@/contexts/toggleSide';
+import { editSchema } from '@/types/editSchema';
+import { useSettingType } from '@/contexts/settingsType';
+
+interface BuilderHeaderPops {
+  dataPage? : editSchema ;
+  // openPageSettings? : Dispatch<SetStateAction<boolean>>;
+  
+  screenSize?: number;
+  updateScreenSize?: (width: number) => void;
+  bodyWidth?: number;
+  
+
+}
+
+function BuilderHeader ({dataPage, screenSize = 0, updateScreenSize, bodyWidth=0}: BuilderHeaderPops) {
+
+  const {toggleSide, setToggleSide} = useSideToggle();
+  const [screenType, setScreenType] = useState('');
+  const { setSettingType, setSettingPopUp, setOpenMedia } = useSettingType()
+
+  useEffect(()=>{
+     let typeGet;
+    if(screenSize > 960 ){
+      typeGet = 'laptop'
+    }else if(screenSize > 500 && bodyWidth >500)
+      typeGet = 'tablet'
+    else{
+      typeGet = 'mobile'
+
+    }
+    setScreenType(typeGet)
+    // console.log(typeGet)
+    
+
+  }, [screenSize])
+
+  useEffect(()=>{
+    if(bodyWidth > 960 && screenType == 'laptop'){
+      
+      if(updateScreenSize){
+        updateScreenSize(bodyWidth);
+      }
+    }
+  },[bodyWidth])
+  
+  const handleSettingPopUp = () => {
+    if (setSettingPopUp) {
+      setSettingPopUp( (prev) => !prev);
+  }
+  if(setSettingType){
+    setSettingType( dataPage?.editData ? {id: dataPage?.editData?.id, title: dataPage?.editData?.title, type: dataPage?.editData?.kind } : undefined  )
+  }
+
+
+}
+
+  const handleToggleChange = () =>{
+    setToggleSide(!toggleSide);
+  
+
+  }
+  
+
+
+  const showActiveScreen = (screen:string):boolean =>{
+    
+    if(screen == screenType){
+      return true
+    }else{
+      return false
+    }
+  }
+  return (
+    <div className={`h-10 w-full px-2 flex justify-between items-center  border-b border-b-gray-300  content-center bg-white`}
+    
+    >
+
+      {/* Left Header */}
+      <div className={'flex items-center h-full gap-2'}>
+      <span className={`cursor-pointer`} onClick={handleToggleChange} ><DynamicIcons name='togglebtn' classes={`hover:text-gray-700`} /></span>
+      {/* Title Page */}
+      <div className={`ml-2 px-3 bg-gray-200 rounded-lg cursor-default`}>
+
+      
+      <p className={`  py-0.5  max-w-40 overflow-hidden text-nowrap text-sm  `} title='Page Name'>
+        <span>{dataPage?.editData?.title}</span>
+      </p>
+      </div>
+
+      {/* Page settings */}
+      <span className={`cursor-pointer`} onClick={handleSettingPopUp} title='Edit Page Settings'>
+        <DynamicIcons name='settings' classes={`ml-auto hover:text-gray-700`} />
+
+      </span>
+      <button className="cursor-pointer p-1 bg-gray-200 px-2 text-sm rounded-lg" onClick={()=>setOpenMedia( prev => !prev)}>&times;</button>
+      </div>
+
+      {/* Center Header */}
+
+      <div className={`flex h-9`}>
+        <div className="tabs flex justify-center gap-1 text-center my-1 p-1 px-1 mx-2 bg-gray-200 rounded-lg" >
+          <li className={`p-1  py-0.5 rounded-sm cursor-pointer hover:bg-white ${showActiveScreen('laptop') && 'bg-white'}` } title="View Big Screen Mode" onClick={()=>updateScreenSize&& updateScreenSize(bodyWidth) } >
+          <DynamicIcons name='laptop' classes='h-4 w-4'></DynamicIcons >
+          </li>
+          <li className={`p-1 py-0.5 rounded-sm cursor-pointer hover:bg-white ${showActiveScreen('tablet') && 'bg-white'}`} title="View Tablet Mode" onClick={()=>updateScreenSize&& updateScreenSize(768) }>
+          <DynamicIcons name='tablet' classes='h-4 w-4 ' ></DynamicIcons >
+          </li>
+          <li className={`p-1 py-0.5 rounded-sm  cursor-pointer hover:bg-white ${showActiveScreen('mobile') && 'bg-white'}`} title="View Mobile Mode" onClick={()=>updateScreenSize && updateScreenSize(425) }>
+          <DynamicIcons name='mobile' classes='h-4 w-4'></DynamicIcons >
+          </li>
+        </div>
+
+
+
+
+
+      </div>
+
+
+
+      {/* Right Header */}
+
+      <div className="flex">
+
+      </div>
+      
+    </div>
+  )
+}
+
+export default BuilderHeader
