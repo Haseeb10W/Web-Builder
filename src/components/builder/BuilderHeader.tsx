@@ -97,7 +97,7 @@ function BuilderHeader ({dataPage, screenSize = 0, updateScreenSize, bodyWidth=0
         <DynamicIcons name='settings' classes={`ml-auto hover:text-gray-700`} />
 
       </span>
-      <button className="cursor-pointer p-1 bg-gray-200 px-2 text-sm rounded-lg" onClick={()=>setOpenMedia( prev => !prev)}>&times;</button>
+      <button className="cursor-pointer p-1 bg-gray-200 px-2 text-sm rounded-lg" onClick={()=>setOpenMedia(prev => !prev)}>&times;</button>
       </div>
 
       {/* Center Header */}

@@ -62,7 +62,7 @@ export default function SelectField({props, change, returnVal}: settingFieldProp
 
 
 
-      <div ref={clickRef} className="select-field relative min-w-18 " >
+      <div ref={clickRef} className="select-field relative min-w-22 " >
         <div className="select-field-value text-center cursor-pointer bg-gray-200/90 rounded-lg px-1.5 selection:bg-transparent " onClick={()=>setIsOpen(!isOpen)}>
           <span className={`text-[12px] `}>{selectedOption.label || 'Default'}</span>
           
@@ -71,9 +71,14 @@ export default function SelectField({props, change, returnVal}: settingFieldProp
         {
           isOpen && (
             <ul className={`absolute min-w-full  top-[103%] right-0 z-99 scroll-bar bg-white border border-gray-300  max-h-40 overflow-y-auto overflow-x-hidden`}>
-              <li 
+             
+             {
+              !props?.defaultNot && ( <li 
               className={`!text-[12px] py-0.5 px-1 text-center w-full cursor-pointer hover:bg-gray-200 ${selectedOption.value== '' && 'bg-gray-200' }`}
-              onClick={()=>handleSelectOption('', 'Default')}>Default</li>
+              onClick={()=>handleSelectOption('', 'Default')}>Default</li> ) 
+             }
+             
+              
 
 
             {

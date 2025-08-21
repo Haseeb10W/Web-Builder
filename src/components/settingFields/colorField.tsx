@@ -3,10 +3,11 @@
 import { settingFieldProps } from '@/types/settingsSchema'
 import { SketchPicker } from 'react-color';
 
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import useElementPosiiton from '@/hooks/useElementPosition';
 import { useSettingType } from '@/contexts/settingsType';
 import useDocumentClick from '@/hooks/useDocumentClick';
+import { get } from 'http';
 
 
 export default function ColorField({props, change}:settingFieldProps) {
@@ -16,11 +17,13 @@ export default function ColorField({props, change}:settingFieldProps) {
   const {dragDrop} = useSettingType()
   const clickRef = useDocumentClick(()=>setPickerOpen(false)) 
   const [colorNot, setColorNot] = useState(false)
+  const [pickerStyle,setPickerStyle] = useState<React.CSSProperties>({})
 
   // console.log(position)
 
 
   useEffect(()=>{
+  
     
     if(!props?.value ){
       // console.log('hello')
@@ -51,11 +54,30 @@ export default function ColorField({props, change}:settingFieldProps) {
     dragDrop && setPickerOpen(false)
   },[dragDrop])
 
-  const handlePickerOpen = ()=>{
+  const handlePickerOpen = useCallback(()=>{
+
+    
     getPosition()
     setPickerOpen(!pickerOpen)
+    colorPicker()
+    
+
+  }, [getPosition, position.top, pickerOpen])
+
+  const colorPicker = () =>{
+    const height = window.innerHeight - position?.top
+    // console.log(height)
+    if(height > 300){
+      setPickerStyle({top: position?.top + 25})
+
+    }
+    else{
+      setPickerStyle({bottom:`calc(100% - ${position?.top}px)`})
+    }
 
   }
+
+
 
 
   return (
@@ -86,7 +108,7 @@ export default function ColorField({props, change}:settingFieldProps) {
         pickerOpen && (
 
           <div className={`fixed  z-9999 `} style={{
-            top: `${position?.top + 25}px `, 
+            ...pickerStyle ,
             left: `${position?.left- 170}px`
           }}>
           <SketchPicker 

@@ -28,12 +28,19 @@ import {
   Trash2,
   Copy,
   Upload,
-  Video
+  Video,
+  ImagePlus,
+  Plus,
+  MoveLeft,
+  MoveRight,
+  MoveUp,
+  MoveDown
 
 } from 'lucide-react';
 
 
 import { FaTabletAlt } from "react-icons/fa";
+import { TbDiabolo } from 'react-icons/tb';
 
 
 
@@ -67,8 +74,13 @@ export const iconMap : {[key:string]: React.ElementType} ={
   copy: Copy,
   upload: Upload,
   video: Video,
-
-  
+  addimg: ImagePlus,
+  delete: Trash2,
+  add: Plus,
+  ldirection: MoveLeft,
+  rdirection: MoveRight,
+  tdirection:MoveUp,
+  ddirection: MoveDown
 }
 
 

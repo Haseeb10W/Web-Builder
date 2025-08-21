@@ -38,12 +38,21 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
     setSettingField('heading',{label: "Alignment", for : 'alignment', tabOpen: true, tabAllow: true}),
 
     // 1
-    setSettingField('textAlign',{
+    
+        setSettingField('iconField', {
         label: "Horizontal Align", 
         labelId: "text-alignment",
+        data: [
+          {name: 'left', value: 'left', title: 'Left'   },
+          {name: 'center', value: 'center', title: 'Center'   },
+           {name: 'right', value: 'right' , title: 'Right'  },
+          {name: 'justify', value: 'justify', title: 'Justify'   },
+        ],
         for : 'alignChange',
         tab: 'alignment',
-        tabOpen: true   }),
+        tabOpen: true
+
+  }),
 
   // 2
   setSettingField('iconField', {
@@ -219,6 +228,12 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
   setSettingField('background', {
         label: "Background Type",
         labelId: "text-background",
+        options: [
+      {label: 'Color', value: 'color'},
+      {label: 'Image', value: 'image'},
+      {label: 'Gradient', value: 'gradient'},
+      {label: 'video', value: 'video'},      
+  ],
         for : 'backgroundChange',
         tab: 'background',
         tabOpen: false
@@ -248,6 +263,32 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         
   }),
 
+  
+  //18
+  setSettingField('colors', {
+    label: "Border Color", 
+    labelId: "text-border-color",
+    for : 'boderColorChange',
+    tab: 'border',
+  }),
+  
+  //19
+        setSettingField('spacing', {
+        label: "Border Width",
+        labelId: "text-border-width",
+        for : 'borderWidthChange',
+        tab: 'border',
+    }
+      ),
+  //20
+  setSettingField('spacing', {
+      label: "Border Radius",
+      labelId: "text-border-radius",
+      for : 'borderRadiusChange',
+      tab: 'border',
+    
+  }
+    ),
     
     
   ],
