@@ -29,22 +29,27 @@ import {
   Copy,
   Upload,
   Video,
-<<<<<<< HEAD
+
   Play,
-  TriangleAlert
-=======
+  TriangleAlert,
+
   ImagePlus,
   Plus,
   MoveLeft,
   MoveRight,
   MoveUp,
-  MoveDown
->>>>>>> 52216e4d9ea092d4ee9985da172331fce1debb2b
+  MoveDown,
+  AlignHorizontalJustifyStart,
+  AlignHorizontalJustifyEnd,
+  AlignHorizontalJustifyCenter,
+  AlignHorizontalSpaceAround,
+  AlignHorizontalSpaceBetween
 
 } from 'lucide-react';
 
 
 import { FaTabletAlt } from "react-icons/fa";
+import { MdAlignVerticalBottom, MdAlignVerticalCenter, MdAlignVerticalTop } from 'react-icons/md';
 import { TbDiabolo } from 'react-icons/tb';
 
 
@@ -79,20 +84,25 @@ export const iconMap : {[key:string]: React.ElementType} ={
   copy: Copy,
   upload: Upload,
   video: Video,
-<<<<<<< HEAD
+
   play : Play,
   error: TriangleAlert,
 
-  
-=======
   addimg: ImagePlus,
   delete: Trash2,
   add: Plus,
   ldirection: MoveLeft,
   rdirection: MoveRight,
   tdirection:MoveUp,
-  ddirection: MoveDown
->>>>>>> 52216e4d9ea092d4ee9985da172331fce1debb2b
+  ddirection: MoveDown,
+  jstart: AlignHorizontalJustifyStart,
+  jend: AlignHorizontalJustifyEnd,
+  jcenter: AlignHorizontalJustifyCenter,
+  jspacearound :  AlignHorizontalSpaceAround,
+  jspacebetween: AlignHorizontalSpaceBetween,
+  rVStart : MdAlignVerticalTop, 
+  rVCenter : MdAlignVerticalCenter,
+  rVEnd: MdAlignVerticalBottom,
 }
 
 

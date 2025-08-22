@@ -154,7 +154,8 @@ export const setSettingField:fieldSetArgs = (field, props)=>{
         label: props?.label,
         labelId: props?.labelId,
         options : [...props?.options],
-        value: '',
+        value:props?.value ? props?.value : '',
+        defaultNot:props?.defaultNot,
         for : props?.for,
         type: 'settingField',
         tab: props?.tab || commonProps.tab,
@@ -163,6 +164,20 @@ export const setSettingField:fieldSetArgs = (field, props)=>{
       }
 
     case 'spacing':
+      return {
+        field: field,
+        props : {
+        label: props?.label,
+        labelId: props?.labelId,
+        value: '',
+        for : props?.for,
+        type: 'settingField',
+        tab: props?.tab || commonProps.tab,
+        tabOpen: props?.tabOpen ? props?.tabOpen : false
+        }
+      }
+
+    case 'halfSpace':
       return {
         field: field,
         props : {
