@@ -28,7 +28,9 @@ import {
   Trash2,
   Copy,
   Upload,
-  Video
+  Video,
+  Play,
+  TriangleAlert
 
 } from 'lucide-react';
 
@@ -67,6 +69,8 @@ export const iconMap : {[key:string]: React.ElementType} ={
   copy: Copy,
   upload: Upload,
   video: Video,
+  play : Play,
+  error: TriangleAlert,
 
   
 }
