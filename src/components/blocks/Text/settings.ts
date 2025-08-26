@@ -398,47 +398,20 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
     setSettingField('heading',{label: "Positioning", for : 'positioning', tabAllow: true}),
 
   //8
-    setSettingField('select', {
+    setSettingField('position', {
         label: "Position",
         labelId: "position",
         options: [
-          {label: 'absolute', value: 'absolute'},
-          {label: 'fixed', value: 'fixed'},
-          {label: 'relative', value: 'relative'},
-          {label: 'sticky', value: 'sticky'},
+          {label: 'Absolute', value: 'absolute'},
+          {label: 'Fixed', value: 'fixed'},
+          {label: 'Relative', value: 'relative'},
+          {label: 'Sticky', value: 'sticky'},
 
         ],
         for : 'positioningChange',
         tab : 'positioning',
+        tabOpen:true
   }),
-
-  //9
-  //     setSettingField('select', {
-  //       label: "Horizental Orientation",
-  //       labelId: "horizental-orientation",
-  //       options: [
-  //         {label: 'Right', value: 'right'},
-  //         {label: 'Left', value: 'left'},
-
-  //       ],
-  //       for : 'orientationChange',
-  //       tab : 'positioning',
-        
-  // }),
- 
-
-    //9
-  //     setSettingField('range', {
-  //       label: "Horizental Orientation",
-  //       labelId: "horizental-orientation",
-  //       value:'0',
-  //       for : 'orientationChange',
-  //       tab : 'positioning',    
-  // }),
-
-
-
-
 
   ]
   

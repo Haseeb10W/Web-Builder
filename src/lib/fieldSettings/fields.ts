@@ -193,6 +193,22 @@ export const setSettingField:fieldSetArgs = (field, props)=>{
         tabOpen: props?.tabOpen ? props?.tabOpen : false
         }
       }
+      
+    case 'position':
+      return {
+        field: field,
+        props : {
+        label: props?.label,
+        labelId: props?.labelId,
+        options : [...props?.options],
+        value:props?.value ? props?.value : '',
+        defaultNot:props?.defaultNot,
+        for : props?.for,
+        type: 'settingField',
+        tab: props?.tab || commonProps.tab,
+        tabOpen: props?.tabOpen ? props?.tabOpen : false
+        }
+      }
 
     case 'spacing':
       return {
