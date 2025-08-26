@@ -29,8 +29,7 @@ export default function MediaUploads({uploadMediaFiles, setUploadMediaFiles}:Med
     
     const files = Array.from(e.target.files)
 
-    
-
+   
     const fullFiles:any[] = [];
     files.forEach((item:any)=>{
       const url = URL.createObjectURL(item)
@@ -43,6 +42,7 @@ export default function MediaUploads({uploadMediaFiles, setUploadMediaFiles}:Med
           alternate : '',
           name : fileName,
           captions : '',
+          original: item.name,
           size : calculateSize(item.size),
           extenstion: extension,
           description: '',
@@ -105,6 +105,11 @@ export default function MediaUploads({uploadMediaFiles, setUploadMediaFiles}:Med
 
 
   }, [applyChanges]) 
+
+
+
+
+ 
 
 
 

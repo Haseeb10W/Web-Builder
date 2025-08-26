@@ -7,26 +7,23 @@ import DynamicIcons from '../DynamicIcons'
 
 export default function HeadingField({props, change}: settingFieldProps ) {
 
-  const [tabOpen, setTabOpen] = useState(false)
+  // const [tabOpen, setTabOpen] = useState(false)
 
-  useEffect(()=>{
+  // useEffect(()=>{
 
-    if(props?.tabAllow){
-      setTabOpen(props?.tabOpen)
+  //   if(props?.tabAllow){
+  //     setTabOpen(props?.tabOpen)
 
-    }
+  //   }
     
-      
-    
-
-  }, [])
+  // }, [])
   
   const handleTab = ()=>{
-    if(!props?.tabAllow) return
+    // if(!props?.tabAllow || !change) return
 
-    const tabStat = tabOpen
-    setTabOpen(!tabOpen)
-    change?.(!tabStat)
+    // const tabStat = tabOpen
+    // setTabOpen(!tabOpen)
+    change?.(props?.tabOpen ? false : true)
   }
 
 
@@ -40,7 +37,7 @@ export default function HeadingField({props, change}: settingFieldProps ) {
         <h3 className='text-base text-black'>  {props?.label} </h3>
        
        {
-        props?.tabAllow && (<DynamicIcons name="downarrow" classes={`w-5 h-5 mr-2 transform  ${tabOpen ? 'rotate-0': 'rotate-180'}`} />)
+        props?.tabAllow && (<DynamicIcons name="downarrow" classes={`w-5 h-5 mr-2 transform  ${props?.tabOpen ? 'rotate-0': 'rotate-180'}`} />)
 
        }
         

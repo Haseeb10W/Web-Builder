@@ -4,10 +4,15 @@ import React, { useEffect, useState } from "react";
 import DynamicIcons from "../DynamicIcons";
 import { useSettingType } from "@/contexts/settingsType";
 import MediaUploads from "./mediaUploads";
+import { API } from "../../../config/apiConfig";
+import ShowMedia from "./showMedia";
 
 export default function Media() {
   const [tabOpen, setTabOpen] = useState("media");
   const [uploadMediaFiles, setUploadMediaFiles ] = useState<any[] >([])
+
+  const [mediaFiles, setMediaFiles] = useState<any[]>([]);
+  const {mediaFilesApply, setMediaFilesApply}  = useSettingType()
   
   
   const {openMedia} = useSettingType()
@@ -21,6 +26,38 @@ export default function Media() {
     setTabOpen(value);
   };
 
+   useEffect(()=>{
+
+    if(tabOpen == 'media'){
+      getMediaFiles()
+    }
+
+
+  }, [tabOpen])
+
+
+
+  const getMediaFiles = async ()=>{
+    try{
+      const response = await fetch( API.media.getFiles);
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch media files');
+      }
+
+      const result = await response.json();
+      if( result.success){
+        setMediaFiles(result.data)
+        console.log(result.data)
+
+      }
+
+
+
+    }catch(err){
+
+    }
+  }
   // useEffect(()=>{
 
   //   if(openMedia == false){
@@ -34,8 +71,66 @@ export default function Media() {
 
   const handleCancelation = ()=>{
     setUploadMediaFiles([])
+
+  }
+
+  const handleUpdatation = () => {
     
-    
+    if(tabOpen  == "upload" ){
+      handleFileUploads();
+       
+
+    }
+
+  }
+
+  const handleFileUploads = () => {
+    const formData = new FormData();
+
+    uploadMediaFiles.forEach((file, index) => {
+
+      formData.append(`file-${index}`, file.fullFile);
+
+      formData.append(`properties-${index}`, JSON.stringify(file.properties));
+
+
+
+
+    });
+
+    uploadFileRequest(formData);
+
+
+
+
+
+
+  }
+
+  const uploadFileRequest = async (formData: FormData) => {
+    try{
+
+      const response = await fetch( API.media.upload, {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to upload files');
+      }
+
+      const result = await response.json();
+      if( result.success){
+        setTabOpen('media')
+        setUploadMediaFiles([])
+
+      }
+      
+      
+
+    }catch(err){
+      console.error("Error uploading files:", err);
+    }
   }
 
   
@@ -76,8 +171,11 @@ export default function Media() {
               }
               
               <button className={`inline-block text-sm py-1 px-3 rounded-sm shadow-sm text-white
-                ${uploadMediaFiles?.length ==0 ? 'bg-gray-400/70 cursor-not-allowed': 'bg-gray-500 hover:bg-gray-600 cursor-pointer '}   `}>
-              {tabOpen == 'media' && 'Save' || tabOpen && 'upload' && "Upload"}
+                ${uploadMediaFiles?.length == 0 ? 'bg-gray-400/70 cursor-not-allowed': 'bg-gray-500 hover:bg-gray-600 cursor-pointer '}   ` } disabled={uploadMediaFiles?.length == 0 }   
+                onClick={handleUpdatation}
+                
+                >
+              {tabOpen == 'media' && 'Apply' || tabOpen == 'upload' && "Upload"}
               </button>
 
             </div>
@@ -89,7 +187,11 @@ export default function Media() {
 
         {
           tabOpen == 'media' && (
-            <div className="media"></div>
+            <div className="media w-full h-full">
+
+              <ShowMedia mediaFiles={mediaFiles} setMediaFiles={setMediaFiles}/>
+
+            </div>
 
           )
 

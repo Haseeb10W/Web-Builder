@@ -8,6 +8,13 @@ export interface settingTypes{
   type : string,
 }
 
+export interface mediaApply{
+  applyType: 'single'| 'multiple',
+  type : 'image'| 'video',
+  appliedData : string[]
+
+}
+
 interface settingTypeContextTypes {
   settingType: settingTypes  | undefined;
   setSettingType: React.Dispatch<React.SetStateAction<settingTypes | undefined>>;
@@ -19,6 +26,8 @@ interface settingTypeContextTypes {
   setDragDrop: React.Dispatch<React.SetStateAction<boolean>>;
   openMedia:boolean;
   setOpenMedia: React.Dispatch<React.SetStateAction<boolean>>;
+  mediaFilesApply: mediaApply | undefined;
+  setMediaFilesApply: React.Dispatch<React.SetStateAction<mediaApply | undefined>>;
 }
 
 
@@ -35,9 +44,11 @@ export const SettingsContextProvider = ({children}: settingsContextProviderProps
   const [settingPopUp, setSettingPopUp] = useState<boolean>(false);
   const [justDroppedId, setJustDroppedId] = useState<string | null>(null);
   const [dragDrop, setDragDrop] = useState<boolean>(false);
-  const [openMedia, setOpenMedia] = useState(false)
+  const [openMedia, setOpenMedia] = useState(false);
+  const [mediaFilesApply, setMediaFilesApply] = useState<mediaApply | undefined>(undefined);
+
   return (
-    <settingTypeContext.Provider value={{settingType, setSettingType, settingPopUp, setSettingPopUp, justDroppedId, setJustDroppedId, dragDrop, setDragDrop, openMedia, setOpenMedia }}>
+    <settingTypeContext.Provider value={{settingType, setSettingType, settingPopUp, setSettingPopUp, justDroppedId, setJustDroppedId, dragDrop, setDragDrop, openMedia, setOpenMedia, mediaFilesApply, setMediaFilesApply }}>
       {children}
     </settingTypeContext.Provider>
   )

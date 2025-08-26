@@ -29,17 +29,18 @@ import {
   Copy,
   Upload,
   Video,
-<<<<<<< HEAD
+
   Play,
-  TriangleAlert
-=======
+  TriangleAlert,
   ImagePlus,
   Plus,
   MoveLeft,
   MoveRight,
   MoveUp,
   MoveDown
->>>>>>> 52216e4d9ea092d4ee9985da172331fce1debb2b
+
+
+
 
 } from 'lucide-react';
 
@@ -79,12 +80,11 @@ export const iconMap : {[key:string]: React.ElementType} ={
   copy: Copy,
   upload: Upload,
   video: Video,
-<<<<<<< HEAD
+
   play : Play,
   error: TriangleAlert,
 
-  
-=======
+
   addimg: ImagePlus,
   delete: Trash2,
   add: Plus,
@@ -92,7 +92,7 @@ export const iconMap : {[key:string]: React.ElementType} ={
   rdirection: MoveRight,
   tdirection:MoveUp,
   ddirection: MoveDown
->>>>>>> 52216e4d9ea092d4ee9985da172331fce1debb2b
+
 }
 
 

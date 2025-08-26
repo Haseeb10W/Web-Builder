@@ -23,7 +23,7 @@ export default function BuilderSideBar() {
       label : 'Layout',
       elements : [
         {type: 'flex', label: 'FlexBox' , icon: 'flex'},
-        {type: 'grid', label: 'Grid' , icon: 'grid'},
+        // {type: 'grid', label: 'Grid' , icon: 'grid'},
       ]
     },
     {
@@ -33,7 +33,7 @@ export default function BuilderSideBar() {
         {type: 'heading', label: 'Heading' , icon: 'heading'},
         {type: 'text', label: 'Text' , icon: 'text'},
         {type: 'image', label: 'Image' , icon: 'image'},
-        {type: 'button', label: 'Button' , icon: 'button'},
+        // {type: 'button', label: 'Button' , icon: 'button'},
       ]
     }
 

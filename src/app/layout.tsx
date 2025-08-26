@@ -36,16 +36,13 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-<<<<<<< HEAD
+
         className={`${geistSans.variable}
         ${geistMono.variable} antialiased`}
 
         suppressHydrationWarning={true}
-=======
-        
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-         suppressHydrationWarning={true}
->>>>>>> 52216e4d9ea092d4ee9985da172331fce1debb2b
+
+
       >
       
           <ToggleContextProvider>

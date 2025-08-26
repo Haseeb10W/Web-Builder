@@ -169,13 +169,13 @@ export default function BackgroundAll({props, change}:settingFieldProps) {
   }, [props?.tabOpen, props])
 
   const handleTypeChange = (value:any)=>{
-    console.log(value)
+    // console.log(value)
     setBgType(value)
 
   }
 
   const handleColorValue = (value:string)=>{ 
-    console.log(value);
+    // console.log(value);
     setColorProps((prev:any)=>({
         ...prev,
         value:value
@@ -183,7 +183,7 @@ export default function BackgroundAll({props, change}:settingFieldProps) {
   }
 
   const handleBgRepeat = (value:any) =>{
-    console.log(value);
+    // console.log(value);
     setBgRepeatProps((prev:any)=>({
         ...prev,
         value:value
@@ -191,14 +191,14 @@ export default function BackgroundAll({props, change}:settingFieldProps) {
   }
 
   const handleBgSize = (value:any) =>{
-    console.log(value);
+    // console.log(value);
     setBgSizeProps((prev:any)=>({
         ...prev,
         value:value
     }))
   }
  const handleBgAttachment = (value:any) =>{
-  console.log(value);
+  // console.log(value);
   setBgAttachmentProps((prev:any)=>({
       ...prev,
       value:value
@@ -206,7 +206,7 @@ export default function BackgroundAll({props, change}:settingFieldProps) {
 }
 
   const handleBgPosition = (value:any) =>{
-    console.log(value);
+    // console.log(value);
     setBgPositionProps((prev:any)=>({
         ...prev,
         value:value
@@ -214,7 +214,7 @@ export default function BackgroundAll({props, change}:settingFieldProps) {
   }
 
   const handleBgImageValue = (value:string)=>{ 
-    console.log(value);
+    // console.log(value);
     const imgValue = {...bgImageProps}
 
     imgValue.value = value;

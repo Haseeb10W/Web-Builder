@@ -7,6 +7,7 @@ import { settingFieldProps } from "@/types/settingsSchema";
 export default function Image({props, change}:settingFieldProps) {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const { setOpenMedia } = useSettingType();
+  const { mediaFilesApply, setMediaFilesApply} = useSettingType()
 
   useEffect(() => {
     setSelectedImage(props?.value || null);
@@ -17,13 +18,27 @@ export default function Image({props, change}:settingFieldProps) {
     change?.('')
   }
 
+  const handleImageSelect = () => {
+    setOpenMedia(true)
+
+    const mediaApply ={
+      applyType: 'single' as  'single'| 'multiple',
+      type : 'image' as  'image'| 'video',
+      appliedData : [],
+
+    }
+
+    setMediaFilesApply(mediaApply)
+
+  }
+
   return (
     <>
       <div className="mt-2">
         <h3 className="text-sm text-gray-600">{props?.label}</h3>
         <div className="w-full h-40 mt-2 bg-gray-200 flex items-center justify-center ">
           {selectedImage ? (
-            <div className="relative group h-full w-full cursor-pointer" onClick={()=>setOpenMedia(true)} >
+            <div className="relative group h-full w-full cursor-pointer" onClick={handleImageSelect} >
             <img
               src={selectedImage}
               alt="image"
@@ -37,7 +52,7 @@ export default function Image({props, change}:settingFieldProps) {
             </div> 
           </div>
           ) : (
-            <span onClick={() => setOpenMedia(true)}>
+            <span onClick={handleImageSelect}>
               <DynamicIcons name="addimg" classes="w-10 h-10" />
             </span>
           )}  
