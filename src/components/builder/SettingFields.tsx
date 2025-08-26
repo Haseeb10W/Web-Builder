@@ -1,6 +1,6 @@
 'use client';
 
-import { fieldMap } from '@/lib/builder/fieldMap';
+import { fieldMap } from '@/lib/maps/fieldMap';
 import React from 'react'
 
 
@@ -9,8 +9,6 @@ interface settingFieldsProps{
   name : string;
   props : {[key: string]: any};
   change: (value: string | Event) => void;
-
-
 
 }
 

@@ -17,7 +17,8 @@ export default function useBlockSchema( { type } : blockSchemaProps)  {
   const newId = uuidv4();
   
   const blockAdd : Omit<Block , 'type' | 'props' | 'children'> = {
-    id :  `${type}-${newId}`,
+    id :  `${type}-${newId}`, 
+    link:"",
     styles :  {
       textAlign : 'left',
       margin: '0px 0px 0px 0px',
@@ -54,8 +55,8 @@ export default function useBlockSchema( { type } : blockSchemaProps)  {
       borderBottomRightRadius:'',
       borderBottomLeftRadius:'',
       display:'',
-      flexDirection:'',
-      flexWrap:'',
+      flexDirection:'row',
+      flexWrap:'wrap',
       justifyContent:'',
       alignItems:'',
       gap :'',
@@ -96,7 +97,13 @@ export default function useBlockSchema( { type } : blockSchemaProps)  {
           type : 'heading',
           props : {
           text : 'Sample Heading',
-          level : 'h2'
+          level : 'h1'
+          },
+          styles: {
+            ...blockAdd.styles,
+            fontWeight: '700',
+
+
           }
 
         } as HeadingBlock

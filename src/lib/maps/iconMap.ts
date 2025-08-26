@@ -43,7 +43,9 @@ import {
   AlignHorizontalJustifyEnd,
   AlignHorizontalJustifyCenter,
   AlignHorizontalSpaceAround,
-  AlignHorizontalSpaceBetween
+  AlignHorizontalSpaceBetween,
+  ArrowRightFromLine,
+  ArrowLeftToLine
 
 } from 'lucide-react';
 
@@ -103,6 +105,8 @@ export const iconMap : {[key:string]: React.ElementType} ={
   rVStart : MdAlignVerticalTop, 
   rVCenter : MdAlignVerticalCenter,
   rVEnd: MdAlignVerticalBottom,
+  pLeft : ArrowRightFromLine,
+  pRight : ArrowLeftToLine
 }
 
 

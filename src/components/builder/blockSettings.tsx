@@ -1,7 +1,7 @@
 'use client'
 
 import { settingTypes, useSettingType } from '@/contexts/settingsType';
-import { settingFunctionMap } from '@/lib/builder/settingMaps';
+import { settingFunctionMap } from '@/lib/maps/settingMaps';
 import { editSchema } from '@/types/editSchema'
 import React, { useCallback, useEffect, useState } from 'react'
 import SettingFields from './SettingFields';

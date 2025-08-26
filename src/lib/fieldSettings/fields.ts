@@ -57,7 +57,38 @@ export const setSettingField:fieldSetArgs = (field, props)=>{
       
         }  
       }
-    
+
+    case 'textarea':
+      return {
+        field: field, 
+        props : {
+        label: props?.label, 
+        labelId: props?.labelId,
+        placeholder: props?.placeholder,
+        value: '',
+        for : props?.for,
+        type: 'settingField',
+        tab: props?.tab || commonProps.tab,
+        tabOpen: props?.tabOpen ? props?.tabOpen : false
+      
+        }  
+      }
+      
+    case 'texts':
+      return {
+        field: field, 
+        props : {
+        label: props?.label, 
+        labelId: props?.labelId,
+        placeholder: props?.placeholder,
+        value: '',
+        for : props?.for,
+        type: 'settingField',
+        tab: props?.tab || commonProps.tab,
+        tabOpen: props?.tabOpen ? props?.tabOpen : false
+        }  
+      }
+
     case 'heading':
       return {
         field: field, 

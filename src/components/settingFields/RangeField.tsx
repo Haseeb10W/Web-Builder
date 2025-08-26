@@ -8,7 +8,7 @@ export default function RangeField({ props, change }: settingFieldProps) {
 
 
   useEffect(()=>{
-    setRange(props?.value)
+    setRange(Number(props?.value))
   },[props?.value])
 
 
