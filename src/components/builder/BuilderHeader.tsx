@@ -1,6 +1,6 @@
 'use client';
 
-import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
+import React, { Dispatch, SetStateAction, useCallback, useEffect, useState } from 'react'
 import DynamicIcons from '../DynamicIcons';
 import { useSideToggle } from '@/contexts/toggleSide';
 import { editSchema } from '@/types/editSchema';
@@ -20,8 +20,8 @@ interface BuilderHeaderPops {
 function BuilderHeader ({dataPage, screenSize = 0, updateScreenSize, bodyWidth=0}: BuilderHeaderPops) {
 
   const {toggleSide, setToggleSide} = useSideToggle();
-  const [screenType, setScreenType] = useState('');
-  const { setSettingType, setSettingPopUp, setOpenMedia } = useSettingType()
+  
+  const { setSettingType, setSettingPopUp, setOpenMedia, screenType, setScreenType } = useSettingType()
 
   useEffect(()=>{
      let typeGet;
@@ -64,6 +64,21 @@ function BuilderHeader ({dataPage, screenSize = 0, updateScreenSize, bodyWidth=0
   
 
   }
+
+  useEffect(()=>{
+    if(updateScreenSize){
+      if(screenType === 'mobile'){
+      updateScreenSize(425)
+
+    }else if(screenType === 'tablet'){
+      updateScreenSize(768)
+    }else if(screenType === 'laptop'){
+      updateScreenSize(bodyWidth)
+    }
+
+    }
+    
+  },[screenType])
   
 
 
@@ -104,13 +119,13 @@ function BuilderHeader ({dataPage, screenSize = 0, updateScreenSize, bodyWidth=0
 
       <div className={`flex h-9`}>
         <div className="tabs flex justify-center gap-1 text-center my-1 p-1 px-1 mx-2 bg-gray-200 rounded-lg" >
-          <li className={`p-1  py-0.5 rounded-sm cursor-pointer hover:bg-white ${showActiveScreen('laptop') && 'bg-white'}` } title="View Big Screen Mode" onClick={()=>updateScreenSize&& updateScreenSize(bodyWidth) } >
+          <li className={`p-1  py-0.5 rounded-sm cursor-pointer hover:bg-white ${showActiveScreen('laptop') && 'bg-white'}` } title="View Big Screen Mode" onClick={()=>setScreenType('laptop') } >
           <DynamicIcons name='laptop' classes='h-4 w-4'></DynamicIcons >
           </li>
-          <li className={`p-1 py-0.5 rounded-sm cursor-pointer hover:bg-white ${showActiveScreen('tablet') && 'bg-white'}`} title="View Tablet Mode" onClick={()=>updateScreenSize&& updateScreenSize(768) }>
+          <li className={`p-1 py-0.5 rounded-sm cursor-pointer hover:bg-white ${showActiveScreen('tablet') && 'bg-white'}`} title="View Tablet Mode" onClick={()=>setScreenType('tablet') }>
           <DynamicIcons name='tablet' classes='h-4 w-4 ' ></DynamicIcons >
           </li>
-          <li className={`p-1 py-0.5 rounded-sm  cursor-pointer hover:bg-white ${showActiveScreen('mobile') && 'bg-white'}`} title="View Mobile Mode" onClick={()=>updateScreenSize && updateScreenSize(425) }>
+          <li className={`p-1 py-0.5 rounded-sm  cursor-pointer hover:bg-white ${showActiveScreen('mobile') && 'bg-white'}`} title="View Mobile Mode" onClick={()=>setScreenType('mobile') }>
           <DynamicIcons name='mobile' classes='h-4 w-4'></DynamicIcons >
           </li>
         </div>

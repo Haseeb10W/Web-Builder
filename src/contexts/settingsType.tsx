@@ -28,6 +28,9 @@ interface settingTypeContextTypes {
   setOpenMedia: React.Dispatch<React.SetStateAction<boolean>>;
   mediaFilesApply: mediaApply | undefined;
   setMediaFilesApply: React.Dispatch<React.SetStateAction<mediaApply | undefined>>;
+  screenType: string,
+  setScreenType : React.Dispatch<React.SetStateAction<string>>
+
 }
 
 
@@ -46,9 +49,9 @@ export const SettingsContextProvider = ({children}: settingsContextProviderProps
   const [dragDrop, setDragDrop] = useState<boolean>(false);
   const [openMedia, setOpenMedia] = useState(false);
   const [mediaFilesApply, setMediaFilesApply] = useState<mediaApply | undefined>(undefined);
-
+  const [screenType, setScreenType] = useState('');
   return (
-    <settingTypeContext.Provider value={{settingType, setSettingType, settingPopUp, setSettingPopUp, justDroppedId, setJustDroppedId, dragDrop, setDragDrop, openMedia, setOpenMedia, mediaFilesApply, setMediaFilesApply }}>
+    <settingTypeContext.Provider value={{settingType, setSettingType, settingPopUp, setSettingPopUp, justDroppedId, setJustDroppedId, dragDrop, setDragDrop, openMedia, setOpenMedia, mediaFilesApply, setMediaFilesApply, screenType, setScreenType  }}>
       {children}
     </settingTypeContext.Provider>
   )

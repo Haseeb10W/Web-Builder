@@ -102,6 +102,11 @@ export default function ColorField({props, change}:settingFieldProps) {
           <label htmlFor={props?.labelId} className={`text-sm text-gray-600`}>{props?.label}</label>
         )
       }
+      <select name="" id="">
+        <option value="he">Hello</option>
+        <option value="he">Hello</option>
+        <option value="he">Hello</option>
+      </select>
 
     <div ref={clickRef} className="!relative rounded-sm w-5 h-5 border border-gray-300 ml-auto">
       <div ref={ elementRef } className="color relative rounded-sm  w-full h-full mr-4 cursor-pointer" style={{backgroundColor: color}} onClick={handlePickerOpen} > 

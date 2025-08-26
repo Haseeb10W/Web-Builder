@@ -273,7 +273,7 @@ export default function SpacingField({props, change}:settingFieldProps) {
           <span className={`!text-sm `}>{unit}</span>
           {
             unitOpen && (
-              <ul className={`absolute top-[103%] left-0 w-full flex flex-col items-center bg-white border border-gray-300 `}>
+              <ul className={`absolute top-[103%] left-0 w-full flex flex-col items-center bg-white border border-gray-300 z-999 `}>
               {
                 unitRanges.map((item, index)=>(
                   <li key={index} onClick={()=>setUnit(item.value)} className={`hover:bg-gray-200 w-full text-sm p-1 ${item.value==unit && 'bg-gray-200' }`}>{item.value}</li>

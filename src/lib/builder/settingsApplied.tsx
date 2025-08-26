@@ -3,12 +3,14 @@ import { Block } from "@/types/blocksSchema"
 
 
 export const appliedSettings = (applied:string | undefined, foundBlock:Block | null, fieldValue: string | number)=>{
-
+  
 
   const isTextBlockType = (Block: Block | null)=>{
     return Block !== null && (Block.type === 'text' || Block.type === 'heading')
   }
 
+  
+  
 
   switch (applied){
     case "textChange":

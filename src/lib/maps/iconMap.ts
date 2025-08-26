@@ -29,24 +29,13 @@ import {
   Copy,
   Upload,
   Video,
-
   Play,
   TriangleAlert,
-<<<<<<< HEAD:src/lib/iconMap.ts
-=======
-
->>>>>>> origin/hamza:src/lib/maps/iconMap.ts
   ImagePlus,
   Plus,
   MoveLeft,
   MoveRight,
   MoveUp,
-<<<<<<< HEAD:src/lib/iconMap.ts
-  MoveDown
-
-
-
-=======
   MoveDown,
   AlignHorizontalJustifyStart,
   AlignHorizontalJustifyEnd,
@@ -55,7 +44,7 @@ import {
   AlignHorizontalSpaceBetween,
   ArrowRightFromLine,
   ArrowLeftToLine
->>>>>>> origin/hamza:src/lib/maps/iconMap.ts
+
 
 } from 'lucide-react';
 
@@ -96,24 +85,14 @@ export const iconMap : {[key:string]: React.ElementType} ={
   copy: Copy,
   upload: Upload,
   video: Video,
-
   play : Play,
   error: TriangleAlert,
-
-<<<<<<< HEAD:src/lib/iconMap.ts
-
-=======
->>>>>>> origin/hamza:src/lib/maps/iconMap.ts
   addimg: ImagePlus,
   delete: Trash2,
   add: Plus,
   ldirection: MoveLeft,
   rdirection: MoveRight,
   tdirection:MoveUp,
-<<<<<<< HEAD:src/lib/iconMap.ts
-  ddirection: MoveDown
-
-=======
   ddirection: MoveDown,
   jstart: AlignHorizontalJustifyStart,
   jend: AlignHorizontalJustifyEnd,
@@ -125,7 +104,7 @@ export const iconMap : {[key:string]: React.ElementType} ={
   rVEnd: MdAlignVerticalBottom,
   pLeft : ArrowRightFromLine,
   pRight : ArrowLeftToLine
->>>>>>> origin/hamza:src/lib/maps/iconMap.ts
+
 }
 
 
