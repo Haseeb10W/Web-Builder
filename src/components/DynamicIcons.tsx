@@ -1,7 +1,7 @@
 'use client';
 
 
-import { iconMap } from '@/lib/iconMap';
+import { iconMap } from '@/lib/maps/iconMap';
 import React from 'react'
 
 function DynamicIcons({name= 'text', classes= ''}) {

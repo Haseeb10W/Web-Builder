@@ -48,7 +48,7 @@ export default function TextEditor({props, change}: settingFieldProps ) {
 
   return (
     
-    <div className={`flex flex-col gap-2`}>
+    <div className={`flex flex-col gap-2 mt-2`}>
       {
         props?.label != '' && (
           <label htmlFor={props?.labelId} className={`text-sm text-gray-600`}>{props?.label}</label>

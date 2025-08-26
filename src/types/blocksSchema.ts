@@ -16,6 +16,7 @@ export type TextBlockType = 'text' | 'heading'
   props?: {[key: string]: any}
   resizable?: boolean;
   editable?: boolean;
+  link: string;
 }
 
  export interface  TextBlock extends BaseBlock {

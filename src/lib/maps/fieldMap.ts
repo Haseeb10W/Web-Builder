@@ -18,6 +18,8 @@ import dynamic from "next/dynamic";
 import IconField from "@/components/settingFields/IconField";
 import FontFamily from "@/components/settingFields/fontFamily";
 import BackgroundAll from "@/components/settingFields/backgroundAll";
+import HalfSpace from "@/components/settingFields/HalfSpace";
+import Position from "@/components/settingFields/Position";
 const TextEditor = dynamic(() => import('@/components/settingFields/textEditor'), {
   ssr: false,
   
@@ -42,6 +44,7 @@ export const fieldMap : {[key:string]: React.ElementType} = {
   heading: HeadingField,
   fontFamily: FontFamily,
   background: BackgroundAll,
-
+  halfSpace: HalfSpace,
+  position: Position
 
 }

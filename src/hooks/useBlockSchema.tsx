@@ -17,13 +17,19 @@ export default function useBlockSchema( { type } : blockSchemaProps)  {
   const newId = uuidv4();
   
   const blockAdd : Omit<Block , 'type' | 'props' | 'children'> = {
-    id :  `${type}-${newId}`,
+    id :  `${type}-${newId}`, 
+    link:"",
     styles :  {
       textAlign : 'left',
       margin: '0px 0px 0px 0px',
       padding: '5px 5px 5px 5px',
       color: '',
       backgroundColor: '',
+      backgroundImage:'',
+      backgroundPosition:'',
+      backgroundSize:'',
+      backgroundRepeat:'',
+      backgroundAttachment:'',
       fontSize: '',
       width: '',
       height: '',
@@ -36,7 +42,26 @@ export default function useBlockSchema( { type } : blockSchemaProps)  {
       textDecoration: '',
       letterSpacing: '',
       wordSpacing: '',
-      
+      borderStyle:'',
+      borderColor:'',
+      borderWidth:'',
+      borderTopWidth:'',
+      borderRightWidth:'',
+      borderBottomWidth:'',
+      borderLeftWidth:'',
+      borderRadius:'',
+      borderTopLeftRadius:'',
+      borderTopRightRadius:'',
+      borderBottomRightRadius:'',
+      borderBottomLeftRadius:'',
+      display:'',
+      flexDirection:'row',
+      flexWrap:'wrap',
+      justifyContent:'',
+      alignItems:'',
+      gap :'',
+      rowGap:'',
+      columnGap :''
 
     },
     tailWindClasses : '',
@@ -72,7 +97,13 @@ export default function useBlockSchema( { type } : blockSchemaProps)  {
           type : 'heading',
           props : {
           text : 'Sample Heading',
-          level : 'h2'
+          level : 'h1'
+          },
+          styles: {
+            ...blockAdd.styles,
+            fontWeight: '700',
+
+
           }
 
         } as HeadingBlock

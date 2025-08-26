@@ -2,7 +2,7 @@
 
 
 import React, { useState } from 'react';
-import { iconMap } from '@/lib/iconMap';
+import { iconMap } from '@/lib/maps/iconMap';
 import DynamicIcons from '../DynamicIcons';
 import { useSideToggle } from '@/contexts/toggleSide';
 import DraggableElement from './DraggableElements';

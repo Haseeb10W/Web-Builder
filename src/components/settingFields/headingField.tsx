@@ -1,7 +1,7 @@
 'use client'
 
 import { settingFieldProps } from '@/types/settingsSchema'
-import React, { useEffect, useState } from 'react'
+import React, {  useEffect, useState } from 'react'
 import DynamicIcons from '../DynamicIcons'
 
 
@@ -14,9 +14,12 @@ export default function HeadingField({props, change}: settingFieldProps ) {
   //   if(props?.tabAllow){
   //     setTabOpen(props?.tabOpen)
 
+
   //   }
     
   // }, [])
+
+
   
   const handleTab = ()=>{
     // if(!props?.tabAllow || !change) return
@@ -33,7 +36,7 @@ export default function HeadingField({props, change}: settingFieldProps ) {
     <div className={`flex flex-col mt-4  `} >
       
       
-      <div className={`flex justify-between items-center ${props?.tabAllow && 'cursor-pointer'}  `} onClick={handleTab}>
+      <div className={`flex justify-between items-center ${props?.tabAllow && 'cursor-pointer'}`} onClick={handleTab}>
         <h3 className='text-base text-black'>  {props?.label} </h3>
        
        {

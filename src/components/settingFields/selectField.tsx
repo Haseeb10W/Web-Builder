@@ -1,6 +1,5 @@
 'use client'
 
-
 import useDocumentClick from '@/hooks/useDocumentClick';
 import { settingFieldProps } from '@/types/settingsSchema'
 import React, { useEffect, useState } from 'react'

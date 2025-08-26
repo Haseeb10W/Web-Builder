@@ -1,5 +1,5 @@
 'use client';
-import { blockMap } from '@/lib/builder/blocksMap';
+import { blockMap } from '@/lib/maps/blocksMap';
 import { Block, BlockType } from '@/types/blocksSchema';
 import React from 'react'
 
