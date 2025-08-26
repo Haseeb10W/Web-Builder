@@ -39,6 +39,7 @@ import {
   MoveRight,
   MoveUp,
   MoveDown,
+
   AlignHorizontalJustifyStart,
   AlignHorizontalJustifyEnd,
   AlignHorizontalJustifyCenter,
@@ -89,6 +90,8 @@ export const iconMap : {[key:string]: React.ElementType} ={
 
   play : Play,
   error: TriangleAlert,
+
+
 
   addimg: ImagePlus,
   delete: Trash2,

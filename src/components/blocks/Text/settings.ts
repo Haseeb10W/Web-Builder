@@ -128,7 +128,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
 
   // 8
   setSettingField('select', {
-    label: "Font Weight", 
+         label: "Font Weight", 
         labelId: "text-font-weight",
         options: [
           {label: '100', value: '100'},
@@ -395,7 +395,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
 
 
   //7 :: positioning
-    setSettingField('heading',{label: "Positioning", for : 'positioning', tabAllow: true}),
+    setSettingField('heading',{label: "Positioning", for : 'positioning', tabAllow: true }),
 
   //8
     setSettingField('position', {
@@ -410,7 +410,6 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         ],
         for : 'positioningChange',
         tab : 'positioning',
-        tabOpen:true
   }),
 
   ]

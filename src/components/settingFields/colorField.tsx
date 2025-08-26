@@ -32,23 +32,35 @@ export default function ColorField({props, change}:settingFieldProps) {
       return 
 
     }
+    console.log(props?.value)
+    // if(props?.value == 'rgba(0,0,0,1)' ){
+    //   setColorNot(true)
+      
+    //   return
+
+    // }
+    // console.log(props?.value)
     setColor(props?.value)
     setColorNot(false)
 
   }, [props?.value])
 
+
+  
+
   const handleColorChange= (value:any)=>{
+    
     
     const rgbaColor = value.rgb;
     const newColor = `rgba(${rgbaColor.r},${rgbaColor.g},${rgbaColor.b},${rgbaColor.a})`;
     // console.log(newColor)
-    setColor(newColor)
+    // setColor(newColor)
 
     change?.(newColor)
 
   }
 
-  const swatches = ['red', 'blue', 'yellow']
+  const swatches = ['red', 'blue', 'yellow', 'transparent', 'none']
 
   useEffect(()=>{
     dragDrop && setPickerOpen(false)

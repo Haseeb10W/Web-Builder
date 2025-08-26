@@ -139,10 +139,10 @@ export default function Builder() {
 
     
     <div className="flex  h-screen w-full bg-gray-100">
-      <div className={`side transition-[width] duration-200 h-full overflow-hidden ${toggleSide ? 'w-0': 'w-1/5'}`} >
+      <div className={`side transition-[width] duration-200 h-full overflow-hidden ${toggleSide ? 'w-0': 'min-[1024px]:!w-1/5 min-[1000px]:relative z-999 fixed w-[270px] max-[500px]:!w-4/5 h-full top-0 left-0 border border-gray-300'}`} >
         <BuilderSideBar   />
       </div>
-      <div className={`body-left  transition-[width] duration-200 bg-amber-300 ${toggleSide ? 'w-5/5': 'w-4/5'}`}>
+      <div className={`body-left  transition-[width] duration-200 bg-amber-300 ${toggleSide ? 'w-5/5': 'min-[1024px]:w-4/5 w-5/5'}`}>
       <BuilderHeader  dataPage={pageData}    screenSize={screenSize} updateScreenSize={setScreenSize} bodyWidth={ bodyWidth } />
       <BuilderBody updateBodyWidth ={setBodyWidth} pageData={pageData} updateData={setPageData}  updateScreenSize={setScreenSize} rendererSize={screenSize} />
       

@@ -20,8 +20,7 @@ interface BuilderHeaderPops {
 function BuilderHeader ({dataPage, screenSize = 0, updateScreenSize, bodyWidth=0}: BuilderHeaderPops) {
 
   const {toggleSide, setToggleSide} = useSideToggle();
-  const [screenType, setScreenType] = useState('');
-  const { setSettingType, setSettingPopUp, setOpenMedia } = useSettingType()
+  const { setSettingType, setSettingPopUp, setOpenMedia, screenType, setScreenType} = useSettingType()
 
   useEffect(()=>{
      let typeGet;

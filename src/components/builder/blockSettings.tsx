@@ -25,7 +25,7 @@ type tabType = 'content' | 'styles' | 'settings' | null
 function BlockSettings({data, updateData}:BlockSettingProps) {
 
   const {settingType} = useSettingType()
-  const [tabOpen, setTabOpen] = useState<tabType | string | any>('content')
+  const [tabOpened, setTabOpen] = useState<tabType | string | any>('content')
   const [settingsData, setSettingsData] = useState<{[key:string]:any[]}>({})
 
 
@@ -59,7 +59,7 @@ function BlockSettings({data, updateData}:BlockSettingProps) {
 
 
 
-  },[tabOpen, settingType] )
+  },[tabOpened, settingType] )
 
 
   const handleFieldChange:handleSettingChangeArgs=useCallback((value, id , type, applied, data, updateData, setSettingsData, settingsData )=>{
@@ -72,29 +72,43 @@ function BlockSettings({data, updateData}:BlockSettingProps) {
     const isInputTextType = InputTextType.includes(type as string)
     const isCustomTextType = customTextType.includes(type as string)
 
-    if(type == 'heading'){
-      // console.log('hello heading')
-      // console.log(value)
-      // console.log(applied)
-      const settings = {...settingsData}
-      const settingFields = settings[tabOpen]?.filter((item)=>{
-        return item.props?.tab == applied
-      })
-      // console.log(settingFields)
-      settingFields.forEach(item=>{
-        item.props.tabOpen = value
-      })
+    
+     if (type === 'heading') {
+        setSettingsData && setSettingsData(prevSettingsData => {
+            const newSettings = { ...prevSettingsData };
+            const updatedFields = newSettings[tabOpened]?.map((item) => {
+                // If it's the heading we clicked, update its tabOpen state
+                if (item.field === 'heading' && item.props?.for === applied) {
+                    return {
+                        ...item,
+                        props: {
+                            ...item.props,
+                            tabOpen: value
+                        }
+                    };
+                }
+                
+              
+                if (item.props?.tab === applied) {
+                    return {
+                        ...item,
+                        props: {
+                            ...item.props,
+                            tabOpen: value
+                        }
+                    };
+                }
 
-      if(setSettingsData){
-        setSettingsData({...settings})
+                return item;
+            });
 
-      }
-
-      
-      return
-
+            if (updatedFields) {
+                newSettings[tabOpened] = updatedFields;
+            }
+            return newSettings;
+        });
+        return;
     }
-
     
 
     let fieldValue: string | number; 
@@ -117,7 +131,7 @@ function BlockSettings({data, updateData}:BlockSettingProps) {
       
       const settings = {...settingsData}
       
-      const settingField = settings[tabOpen]?.find((item)=>{
+      const settingField = settings[tabOpened]?.find((item)=>{
         return item?.field == type && item?.props?.labelId == id
       })
       
@@ -139,7 +153,7 @@ function BlockSettings({data, updateData}:BlockSettingProps) {
     
 
 
-  }, [settingsData, tabOpen, data, updateData, setSettingsData, settingType])
+  }, [settingsData, tabOpened, data, updateData, setSettingsData, settingType])
 
 
 
@@ -150,7 +164,7 @@ function BlockSettings({data, updateData}:BlockSettingProps) {
         <ul className={`flex  mx-3 my-2 bg-gray-300 rounded-3xl p-1`}>
         {
           tabs.map((item, index)=> (
-            <li key={index} onClick={item.click}  className={`text-sm  w-2/6 text-center py-1 px-2 cursor-pointer hover:bg-white [&:nth-child(1)]:rounded-l-3xl  [&:nth-child(3)]:rounded-r-3xl [&:nth-child(2)]:rounded-0 ${item.value == tabOpen ? 'bg-white': ''}  `} >{item.label}</li>
+            <li key={index} onClick={item.click}  className={`text-sm  w-2/6 text-center py-1 px-2 cursor-pointer hover:bg-white [&:nth-child(1)]:rounded-l-3xl  [&:nth-child(3)]:rounded-r-3xl [&:nth-child(2)]:rounded-0 ${item.value == tabOpened ? 'bg-white': ''}  `} >{item.label}</li>
             
           ))
 
@@ -163,7 +177,7 @@ function BlockSettings({data, updateData}:BlockSettingProps) {
 
       <div className="content-settings scroll-bar-md overflow-y-auto w-full px-3 pb-3 mt-2" style={{height: "calc(100% - 95px)"}}>
         {
-          settingsData  && tabOpen && settingsData[tabOpen]?.map((item, index)=>(
+          settingsData  && tabOpened && settingsData[tabOpened]?.map((item, index)=>(
             <SettingFields 
             key={index} 
             name={item.field} 

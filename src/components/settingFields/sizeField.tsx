@@ -37,10 +37,8 @@ export default function SizeField({props, change}:settingFieldProps) {
      
     }else {
       setSize('')
-      setUnit('px')
+      // setUnit('px')
     }
-
-
 
   }, [props?.value])
 
@@ -48,7 +46,7 @@ export default function SizeField({props, change}:settingFieldProps) {
   //   {name: "pixels", value: "px"},
   //   {name: "percent", value: "%"},
   //   {name: "Rem", value: "rem"},
-  //   {name: "Em", value: "em"},
+  //   {name: "Em", value: "e"},
   //   {name: "ViewWidth", value: "vw"},
   //   {name: "ViewHeight", value: "vh"},
     
@@ -58,10 +56,26 @@ export default function SizeField({props, change}:settingFieldProps) {
   const handleSizeChange  = (e:any)=>{
     const target = e.target as HTMLInputElement;
     const value = target.value; 
+    let size 
+   
+    if(unit == "%" || unit == "rem" || unit == "em"){
+      if(Number(value) > 100){
+        size = "100"
+      }
+      else if(Number(value) < -100){
+         size = "-100"
+      } 
+      else{
+        size = value
+      }   
+    }else{
+      size = value
+    }
 
-    const newValue = `${value}${unit}`;
+    const newValue = `${size}${unit}`;
     if(value != ''){
-      setSize(Number(value))
+
+      setSize(Number(size))
       change?.(newValue)
 
     }else{

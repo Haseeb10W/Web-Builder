@@ -11,7 +11,7 @@ import DraggableElement from './DraggableElements';
 
 export default function BuilderSideBar() {
   const [activeTab, setActiveTab] = useState('elements');
-  const {toggleSide} = useSideToggle();
+  const {toggleSide,setToggleSide} = useSideToggle();
 
   const handleComponentTabs  = (tab : string) =>{
     setActiveTab(tab);
@@ -23,7 +23,7 @@ export default function BuilderSideBar() {
       label : 'Layout',
       elements : [
         {type: 'flex', label: 'FlexBox' , icon: 'flex'},
-        {type: 'grid', label: 'Grid' , icon: 'grid'},
+        // {type: 'grid', label: 'Grid' , icon: 'grid'},
       ]
     },
     {
@@ -33,7 +33,7 @@ export default function BuilderSideBar() {
         {type: 'heading', label: 'Heading' , icon: 'heading'},
         {type: 'text', label: 'Text' , icon: 'text'},
         {type: 'image', label: 'Image' , icon: 'image'},
-        {type: 'button', label: 'Button' , icon: 'button'},
+        // {type: 'button', label: 'Button' , icon: 'button'},
       ]
     }
 
@@ -58,6 +58,12 @@ export default function BuilderSideBar() {
     );
   };
 
+    const handleToggleChange = () =>{
+    setToggleSide(!toggleSide);
+  
+
+  }
+
   return (
     <>
     
@@ -65,7 +71,8 @@ export default function BuilderSideBar() {
       
       
       <div className={`flex justify-center px-2 py-2 h-1/12 `}>
-        <h3 className="text-xl">Components</h3>
+        <h3 className="text-xl w-[80%] text-center">Components</h3>
+        <span className={`cursor-pointer min-[1024px]:hidden block ml-auto`} onClick={handleToggleChange} ><DynamicIcons name='togglebtn' classes={`hover:text-gray-700`} /></span>
         
       </div>
       {
