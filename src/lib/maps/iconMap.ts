@@ -105,8 +105,8 @@ export const iconMap : {[key:string]: React.ElementType} ={
   rVStart : MdAlignVerticalTop, 
   rVCenter : MdAlignVerticalCenter,
   rVEnd: MdAlignVerticalBottom,
-  pLeft : ArrowRightFromLine,
-  pRight : ArrowLeftToLine
+  hLeft : ArrowRightFromLine,
+  hRight : ArrowLeftToLine
 }
 
 
