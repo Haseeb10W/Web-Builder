@@ -3,6 +3,7 @@
 import useDocumentClick from '@/hooks/useDocumentClick';
 import { settingFieldProps } from '@/types/settingsSchema'
 import React, { useEffect, useState } from 'react'
+import ResponsiveComponents from './ResponsiveComponents';
 
 export default function SelectField({props, change, returnVal}: settingFieldProps) {
   const [selectedOption, setSelectedOption] = useState<{label: any, value: any}>({label: null, value: null});
@@ -53,11 +54,14 @@ export default function SelectField({props, change, returnVal}: settingFieldProp
       props?.tabOpen && (
 
      <div className={`flex mt-3 justify-between gap-2`}>
+      <div className='flex gap-x-1.5'>
       {
         props?.label != '' && (
           <label htmlFor={props?.labelId} className={`text-sm text-gray-600`}>{props?.label}</label>
         )
       }
+      <ResponsiveComponents/>
+      </div>
 
 
 

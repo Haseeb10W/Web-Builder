@@ -412,6 +412,37 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         tab : 'positioning',
   }),
 
+    //9 :: Scrolling
+    setSettingField('heading',{label: "Scrolling", for : 'scrolling', tabAllow: true }),
+    
+    //10
+        setSettingField('select', {
+        label: "Overflow-X",
+        labelId: "overflow-x",
+        options: [
+          {label: 'Hidden', value: 'hidden'},
+          {label: 'Scroll', value: 'scroll'},
+          {label: 'Auto', value: 'auto'},
+
+        ],
+        for : 'overflowChange',
+        tab : 'scrolling',
+      }),
+
+    //11
+        setSettingField('select', {
+        label: "Overflow-Y",
+        labelId: "overflow-y",
+        options: [
+          {label: 'Hidden', value: 'hidden'},
+          {label: 'Scroll', value: 'scroll'},
+          {label: 'Auto', value: 'auto'},
+
+        ],
+        for : 'overflowChange',
+        tab : 'scrolling',
+      }),
+
   ]
   
 }

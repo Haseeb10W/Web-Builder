@@ -142,11 +142,19 @@ function BlockSettings({data, updateData}:BlockSettingProps) {
 
         const newData = {...data}
         const foundBlock = findBlockOverall(newData, settingType?.id)
+        // console.log(foundBlock)
+        // console.log(settingType?.id)
+
+       
+          appliedSettings(applied, foundBlock, fieldValue)
+          setSettingsData({...settings})
+          updateData(newData)
+
         
-        appliedSettings(applied, foundBlock, fieldValue)
+        
     
-        setSettingsData({...settings})
-        updateData(newData)
+        
+        
       }
 
 

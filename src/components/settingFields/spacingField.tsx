@@ -4,6 +4,7 @@ import DynamicIcons from '@/components/DynamicIcons'
 import useDocumentClick from '@/hooks/useDocumentClick'
 import { settingFieldProps } from '@/types/settingsSchema'
 import React, { useCallback, useEffect, useState } from 'react'
+import ResponsiveComponents from './ResponsiveComponents'
 
 export default function SpacingField({props, change}:settingFieldProps) {
 
@@ -234,11 +235,16 @@ export default function SpacingField({props, change}:settingFieldProps) {
     
     <div className={`flex flex-col gap-2 w-full mt-4 `}>
       <div className={`flex gap-2 justify-between `}>
+        <div className='flex gap-x-1.5'>
       {
         props?.label != '' && (
+          <> 
           <label htmlFor={props?.labelId} className={`text-sm text-gray-600`}>{props?.label}</label>
+          </>
         )
       }
+        <ResponsiveComponents/>
+    </div>
         <div className="flex gap-1">
           {
             spaceChains.map((item,index)=> (
@@ -273,7 +279,7 @@ export default function SpacingField({props, change}:settingFieldProps) {
           <span className={`!text-sm `}>{unit}</span>
           {
             unitOpen && (
-              <ul className={`absolute top-[103%] left-0 w-full flex flex-col items-center bg-white border border-gray-300 `}>
+              <ul className={`absolute top-[103%] left-0 w-full flex flex-col items-center bg-white border border-gray-300 z-999 `}>
               {
                 unitRanges.map((item, index)=>(
                   <li key={index} onClick={()=>setUnit(item.value)} className={`hover:bg-gray-200 w-full text-sm p-1 ${item.value==unit && 'bg-gray-200' }`}>{item.value}</li>

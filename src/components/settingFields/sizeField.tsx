@@ -4,6 +4,7 @@ import DynamicIcons from '@/components/DynamicIcons'
 import useDocumentClick from '@/hooks/useDocumentClick'
 import { settingFieldProps } from '@/types/settingsSchema'
 import React, { useCallback, useEffect, useState } from 'react'
+import ResponsiveComponents from './ResponsiveComponents'
 
 export default function SizeField({props, change}:settingFieldProps) {
 
@@ -101,11 +102,14 @@ export default function SizeField({props, change}:settingFieldProps) {
     {
       props?.tabOpen && (
         <div className={`flex justify-between gap-2 w-full mt-4 `}>
+      <div className='flex gap-x-1.5'>
       {
         props?.label != '' && (
           <label htmlFor={props?.labelId} className={`text-sm text-gray-600`}>{props?.label}</label>
         )
       }
+      <ResponsiveComponents/>
+      </div>
 
 
       

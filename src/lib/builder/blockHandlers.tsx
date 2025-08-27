@@ -87,6 +87,8 @@ export const findBlock = (blocks:Block[], blockId:string):Block | null =>{
 
 
 export const findBlockOverall = (data:editSchema | undefined, blockId:string):Block | null =>{
+
+  
   if(data?.editData){
     let allData : Block[] = [];
     switch (data?.editType){
@@ -171,6 +173,19 @@ export const deleteBlockHandler = (blockId: string, data: editSchema | undefined
   
 };
 
+const deepDuplicateBlock = (block: Block): Block => {
+  const newId = `${block.type}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+  
+  const clonedBlock = JSON.parse(JSON.stringify(block)) as Block;
+  clonedBlock.id = newId;
+  
+  if ('children' in clonedBlock && clonedBlock.children) {
+    clonedBlock.children = clonedBlock.children.map(child => deepDuplicateBlock(child));
+  }
+  
+  return clonedBlock;
+};
+
 
 // Duplicate block handler
 export const duplicateBlockHandler = (blockId: string, data: editSchema | undefined, updateData: ((data: editSchema) => void) | undefined) => {
@@ -179,16 +194,17 @@ export const duplicateBlockHandler = (blockId: string, data: editSchema | undefi
   const blockToDuplicate = findBlockOverall(data, blockId);
   if (!blockToDuplicate) return;
 
-  const duplicatedBlock: Block = {
-    ...blockToDuplicate,
-    id: `${blockToDuplicate.type}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-    ...(blockToDuplicate.type === 'flex' && 'children' in blockToDuplicate && {
-      children: blockToDuplicate.children.map(child => ({
-        ...child,
-        id: `${child.type}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
-      }))
-    })
-  };
+  const duplicatedBlock: Block = deepDuplicateBlock(blockToDuplicate);
+  // {
+  //   ...blockToDuplicate,
+  //   id: `${blockToDuplicate.type}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+  //   ...(blockToDuplicate.type === 'flex' && 'children' in blockToDuplicate && {
+  //     children: blockToDuplicate.children.map(child => ({
+  //       ...child,
+  //       id: `${child.type}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
+  //     }))
+  //   })
+  // };
 
   let blocks: Block[] = [];
   switch (data.editType) {

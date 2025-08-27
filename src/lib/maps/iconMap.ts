@@ -29,7 +29,6 @@ import {
   Copy,
   Upload,
   Video,
-
   Play,
   TriangleAlert,
 
@@ -46,7 +45,8 @@ import {
   AlignHorizontalSpaceAround,
   AlignHorizontalSpaceBetween,
   ArrowRightFromLine,
-  ArrowLeftToLine
+  ArrowLeftToLine,
+  ImageOff
 
 } from 'lucide-react';
 
@@ -87,7 +87,6 @@ export const iconMap : {[key:string]: React.ElementType} ={
   copy: Copy,
   upload: Upload,
   video: Video,
-
   play : Play,
   error: TriangleAlert,
 
@@ -109,7 +108,8 @@ export const iconMap : {[key:string]: React.ElementType} ={
   rVCenter : MdAlignVerticalCenter,
   rVEnd: MdAlignVerticalBottom,
   hLeft : ArrowRightFromLine,
-  hRight : ArrowLeftToLine
+  hRight : ArrowLeftToLine,
+  moMedia : ImageOff 
 }
 
 

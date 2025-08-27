@@ -15,11 +15,9 @@ interface ToggleContextProviderProps {
 }
 
 export const ToggleContextProvider = ({ children }: ToggleContextProviderProps) => {
-  const [toggleSide, setToggle] = useState<boolean>(false);
+  const [toggleSide, setToggleSide] = useState<boolean>(false);
 
-  const setToggleSide = () => {
-    setToggle(prev => !prev);
-  };
+
 
   return (
     <ToggleContext.Provider value={{ toggleSide, setToggleSide }}>

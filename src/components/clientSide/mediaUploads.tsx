@@ -115,11 +115,11 @@ export default function MediaUploads({uploadMediaFiles, setUploadMediaFiles}:Med
 
   return (
     <>
-    <div className={`media-uploads px-10 flex items-center w-full h-full `}>
+    <div className={`media-uploads px-2 lg:px-10 flex items-center w-full h-full `}>
 
              {
                uploadMediaFiles?.length == 0 && (
-                <div className={`w-1/2 h-2/3 mx-auto border shadow-lg border-gray-200 rounded-lg ${fileDragging? 'bg-gray-300': 'bg-gray-100'}  `}
+                <div className={`min-w-[95%] min-[500px]:min-w-[450px]  min-[500px]:h-[350px] h-6/12 mx-auto border shadow-lg border-gray-200 rounded-lg ${fileDragging? 'bg-gray-300': 'bg-gray-100'}  `}
                 
                 onDragOver={(e) => {
                       e.preventDefault();
@@ -151,7 +151,7 @@ export default function MediaUploads({uploadMediaFiles, setUploadMediaFiles}:Med
                       <span className={``}>
                         <DynamicIcons name="upload" classes={`w-10 h-10`}></DynamicIcons>
                       </span>
-                      <div className={`text-xl text-gray-800 `}>
+                      <div className={`text-xl tracking-wider text-gray-800 `}>
                         Upload Media
                       </div>
                     </div>
@@ -170,7 +170,7 @@ export default function MediaUploads({uploadMediaFiles, setUploadMediaFiles}:Med
                 <div className={`w-full h-full  `}>
                   {
                     uploadMediaFiles.map((item, index)=>(
-                      <div key={index} className={`w-[11%] group relative cursor-pointer inline-block mx-2 my-2 h-32 shadow-sm border border-gray-400 rounded-sm ${editUploadOpen && fileSelected?.showUrl === item.urlMedia ? 'outline-2 outline-blue-600': ''}`} onClick={()=>handleFileEditOpen(item.urlMedia)}>
+                      <div key={index} className={` lg:!w-[11%] min-[990px]:!w-[14.5%] md:!w-[18%] min-[640px]:!w-[22%] min-[425px]:!w-[28%] !w-[44%]  group relative cursor-pointer inline-block mx-2 my-2 h-32 shadow-sm border border-gray-400 rounded-sm ${editUploadOpen && fileSelected?.showUrl === item.urlMedia ? 'outline-2 outline-blue-600': ''}`} onClick={()=>handleFileEditOpen(item.urlMedia)}>
 
 
                       {item.loading && (
