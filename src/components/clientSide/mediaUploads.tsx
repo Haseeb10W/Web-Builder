@@ -241,7 +241,7 @@ export default function MediaUploads({uploadMediaFiles, setUploadMediaFiles}:Med
           <div className={`fixed w-full bg-black/50 h-full top-0 z-99 left-0 content-center  `}>
             <div className={`relative border border-gray-600 rounded-sm max-w-md w-[90%] h-11/12 bg-white mx-auto overflow-hidden`}>
               <div className={`py-4 px-4 w-full h-full scroll-bar overflow-y-auto overflow-x-hidden`}>
-                <MediaEditForm  data={fileSelected}  updateData={setFileSelected} applyChange={applyChanges} updateChanges={setApplyChanges}  />
+                <MediaEditForm  data={fileSelected}  updateData={setFileSelected} applyChange={applyChanges} updateChanges={setApplyChanges} status="upload" />
 
               </div>
 

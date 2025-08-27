@@ -12,10 +12,10 @@ export default function Media() {
   const [uploadMediaFiles, setUploadMediaFiles ] = useState<any[] >([])
 
   const [mediaFiles, setMediaFiles] = useState<any[]>([]);
-  const {mediaFilesApply, setMediaFilesApply}  = useSettingType()
+  const { mediaFilesApply, setMediaFilesApply, setFileApplyOn}  = useSettingType()
   
   
-  const {openMedia} = useSettingType()
+  const {setOpenMedia} = useSettingType()
 
   const tabsData = [
     { label: "Media", value: "media" },
@@ -24,13 +24,16 @@ export default function Media() {
 
   const handleTabChange = (value: string) => {
     setTabOpen(value);
+
   };
 
    useEffect(()=>{
 
     if(tabOpen == 'media'){
+      setUploadMediaFiles([])
       getMediaFiles()
     }
+    
 
 
   }, [tabOpen])
@@ -48,11 +51,9 @@ export default function Media() {
       const result = await response.json();
       if( result.success){
         setMediaFiles(result.data)
-        console.log(result.data)
+        // console.log(result.data)
 
       }
-
-
 
     }catch(err){
 
@@ -70,7 +71,16 @@ export default function Media() {
   // },[openMedia])
 
   const handleCancelation = ()=>{
-    setUploadMediaFiles([])
+    if(tabOpen == "upload"){
+      setUploadMediaFiles([])
+    }
+
+    if(tabOpen == 'media' && mediaFilesApply && mediaFilesApply?.appliedData?.length > 0){
+      const fullMediaApply = {...mediaFilesApply};
+      fullMediaApply.appliedData = []
+      setMediaFilesApply(fullMediaApply)
+    }
+    
 
   }
 
@@ -79,7 +89,13 @@ export default function Media() {
     if(tabOpen  == "upload" ){
       handleFileUploads();
        
+    }
 
+    if( tabOpen == 'media' && mediaFilesApply && mediaFilesApply?.appliedData?.length > 0){
+      const fullMediaApply = {...mediaFilesApply};
+      setMediaFilesApply(fullMediaApply)
+      setFileApplyOn(true)
+      setOpenMedia(false)
     }
 
   }
@@ -126,8 +142,6 @@ export default function Media() {
 
       }
       
-      
-
     }catch(err){
       console.error("Error uploading files:", err);
     }
@@ -161,7 +175,7 @@ export default function Media() {
             <div className={`pr-6 `}>
 
               {
-                uploadMediaFiles?.length >0 && (
+                ( ( tabOpen == 'upload' && uploadMediaFiles?.length > 0) || (tabOpen == 'media' && mediaFilesApply && mediaFilesApply?.appliedData?.length > 0) ) && (
                   <button className={`inline-block text-sm py-1 px-3 rounded-sm shadow-sm text-white bg-gray-500 hover:bg-gray-600 cursor-pointer mr-2 `} onClick={handleCancelation}>
                     Cancel
                   </button>
@@ -171,7 +185,7 @@ export default function Media() {
               }
               
               <button className={`inline-block text-sm py-1 px-3 rounded-sm shadow-sm text-white
-                ${uploadMediaFiles?.length == 0 ? 'bg-gray-400/70 cursor-not-allowed': 'bg-gray-500 hover:bg-gray-600 cursor-pointer '}   ` } disabled={uploadMediaFiles?.length == 0 }   
+                ${((tabOpen == 'upload' && uploadMediaFiles?.length == 0) || ( tabOpen == 'media' && mediaFilesApply && mediaFilesApply?.appliedData.length == 0 ) ) ?  'bg-gray-400/70 cursor-not-allowed': 'bg-gray-500 hover:bg-gray-600 cursor-pointer '}   ` } disabled={ ((tabOpen == 'upload' && uploadMediaFiles?.length == 0) || ( tabOpen == 'media' && mediaFilesApply && mediaFilesApply?.appliedData.length == 0 ) ) }   
                 onClick={handleUpdatation}
                 
                 >
@@ -189,7 +203,7 @@ export default function Media() {
           tabOpen == 'media' && (
             <div className="media w-full h-full">
 
-              <ShowMedia mediaFiles={mediaFiles} setMediaFiles={setMediaFiles}/>
+              <ShowMedia mediaFiles={mediaFiles} setMediaFiles={setMediaFiles}   />
 
             </div>
 

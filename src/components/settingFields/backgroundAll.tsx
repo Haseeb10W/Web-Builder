@@ -135,7 +135,7 @@ const bgAttachment = {
 
 const bgImagePros ={
   label : "Background Image",
-  value:"/coffee.jpg",
+  value:"",
   tab:"",
   tabOpen: true
 }
@@ -222,6 +222,15 @@ export default function BackgroundAll({props, change}:settingFieldProps) {
     setBgImageProps(imgValue);
 
   }
+
+
+  useEffect(()=>{
+    
+
+  }, [])
+
+
+
   return (
     <>
 

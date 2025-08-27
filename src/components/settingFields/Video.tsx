@@ -1,9 +1,13 @@
+'use client'
+
 import React, { useState } from 'react'
 import SelectField from './selectField'
 import TextField from './TextField';
 import { placeholder } from 'jodit/esm/plugins/placeholder/placeholder';
 import DynamicIcons from '../DynamicIcons';
 import { useSettingType } from '@/contexts/settingsType';
+import { v4 as uuidv4 } from 'uuid';
+
 
 const videoTyp = {
   label:"Video Type",
@@ -51,6 +55,8 @@ export default function Video() {
   console.log(videoTyp);
   const { setOpenMedia } = useSettingType();
   const [videoUrl,setVideoUrl] = useState('');
+  const { mediaFilesApply, setMediaFilesApply} = useSettingType()
+  const [idApply, setIdApply] = useState<string>('');
 
   const handleVedioTyp = (value:any) =>{
         setVideoType((pre:any)=>({
@@ -136,6 +142,25 @@ const showYuVideo = (value:string)=>{
       //  change?.('')/
      }
 
+
+     const handleMediaAdd = () => {
+      setOpenMedia(true)
+      const id = uuidv4();
+      setIdApply(id);
+
+    const mediaApply = {
+      applyType: 'single' as  'single'| 'multiple',
+      type : 'video' as  'image'| 'video',
+      appliedData : [],
+      appliedId : id ,
+      applyOn : false
+
+    }
+
+    setMediaFilesApply(mediaApply)
+
+     }
+
   return (
     <>
     <SelectField props={videoType} change={(value:any)=>handleVedioTyp(value)}></SelectField>
@@ -153,7 +178,7 @@ const showYuVideo = (value:string)=>{
       </>
     )} 
 
-    <div className='relative group w-full h-40 mt-2 border border-gray-200 bg-gray-400' onClick={videoType?.value == "media" ? () => setOpenMedia(true): undefined}>
+    <div className='relative group w-full h-40 mt-2 border border-gray-200 bg-gray-400' >
       {(videoType?.value == "youtube" || videoType?.value === "custom") && (
         <>
             <iframe 
@@ -169,10 +194,22 @@ const showYuVideo = (value:string)=>{
 
     {videoType?.value == "media" && (
       <>
+      <video src={videoUrl || ' ' } className={`h-full w-full`}></video>
+
+      {
+        videoUrl !== '' && (
+          <span className='absolute top-0 left-0   z-99 hidden group-hover:block'>
+              <DynamicIcons name="preview" classes="w-6 h-6 !text-black bg-gray-200 p-1 cursor-pointer hover:bg-gray-300 "/>
+          </span>
+        )
+
+      }
+      
+
     <div className="absolute top-0 right-0 hidden group-hover:block cursor-pointer">
-     <span onClick={handledeleteVedio}><DynamicIcons name="delete" classes="w-6 h-6 bg-gray-200 p-1" /></span>
+     <span onClick={handledeleteVedio}><DynamicIcons name="delete" classes="w-6 h-6 bg-gray-200 p-1 hover:bg-gray-300" /></span>
     </div> 
-    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 cursor-pointer">
+    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 cursor-pointer" onClick={handleMediaAdd}>
           <span><DynamicIcons name="add" classes="w-30 h-30 !text-gray-300/30 "/></span>
     </div>
       </>

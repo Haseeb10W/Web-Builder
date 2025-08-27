@@ -39,7 +39,7 @@ export default function BuilderBody({pageData, updateData,  updateBodyWidth, upd
   const [panelPosition, setPanelPosition] = useState({ x: 0, y: 50 });
   const [activeId, setActiveId] = useState<string | null >(null);
   const [activeBlock, setActiveBlock] = useState<Block | null >(null)
-  const {settingType, setSettingType, settingPopUp, setSettingPopUp, setJustDroppedId, openMedia, setOpenMedia} = useSettingType()
+  const {settingType, setSettingType, settingPopUp, setSettingPopUp, setJustDroppedId, openMedia, setOpenMedia, setMediaFilesApply} = useSettingType()
 
   const handleBlockReorder = useCallback((newBlocks: Block[]) => {
     blockReorderOnDragging(newBlocks, pageData, updateData)
@@ -143,6 +143,10 @@ const handleSidebarDrop = useCallback((newBlock: Block, insertIndex?: number) =>
 
   },[containerDimensions])
 
+  const handleCloseMedia = ()=>{
+    setOpenMedia(false)
+    setMediaFilesApply(undefined)
+  }
   
 
 
@@ -223,7 +227,7 @@ const handleSidebarDrop = useCallback((newBlock: Block, insertIndex?: number) =>
         <div className={'fixed flex items-center z-999 top-0 left-0 bg-gray-500/40 w-full h-full'}>
           <div className={`bg-white w-[95%] relative h-[95%] m-auto rounded-sm`}>
             <Media />
-            <span className={'absolute !top-0 right-1.5 text-4xl font-bold cursor-pointer text-gray-700/80 transform hover:rotate-90 duration-200 hover:scale-110'} onClick={()=>setOpenMedia(false)}>&times;</span>
+            <span className={'absolute !top-0 right-1.5 text-4xl font-bold cursor-pointer text-gray-700/80 transform hover:rotate-90 duration-200 hover:scale-110'} onClick={handleCloseMedia}>&times;</span>
           </div>
         
         </div>

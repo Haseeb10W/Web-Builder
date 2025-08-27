@@ -18,7 +18,7 @@ export default function Section({children, id, index, onDelete, onCopy}:SectionP
   // console.log('Section props:', { id, index });
   // console.log(index)
   
-  const {justDroppedId, setJustDroppedId} = useSettingType();
+  const {justDroppedId, setJustDroppedId, setSettingPopUp} = useSettingType();
 
   const isJustDropped = justDroppedId === id;
 
@@ -55,6 +55,11 @@ export default function Section({children, id, index, onDelete, onCopy}:SectionP
       cursor: isDragging ? 'grabbing' : 'grab',
     }
  
+    const handleBlockDelete = (id:string)=>{
+      setSettingPopUp(false);
+      onDelete?.(id)
+
+    }
 
 
 
@@ -77,7 +82,7 @@ export default function Section({children, id, index, onDelete, onCopy}:SectionP
       {
       isJustDropped && ( 
         <div className={`absolute !top-[1px] right-[1px] px-2  h-5 z-999 bg-gray-300 flex gap-2 items-center `}>
-          <span className={`cursor-pointer `} onClick={()=>onDelete?.(id)}>
+          <span className={`cursor-pointer `} onClick={()=>handleBlockDelete(id)}>
             <DynamicIcons name="trash" classes={`w-3 h-3 text-black hover:text-gray-700`}  />
             
           </span>

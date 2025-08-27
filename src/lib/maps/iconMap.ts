@@ -43,7 +43,9 @@ import {
   AlignHorizontalSpaceAround,
   AlignHorizontalSpaceBetween,
   ArrowRightFromLine,
-  ArrowLeftToLine
+  ArrowLeftToLine,
+  Pencil,
+  ScanEye
 
 
 } from 'lucide-react';
@@ -103,7 +105,9 @@ export const iconMap : {[key:string]: React.ElementType} ={
   rVCenter : MdAlignVerticalCenter,
   rVEnd: MdAlignVerticalBottom,
   pLeft : ArrowRightFromLine,
-  pRight : ArrowLeftToLine
+  pRight : ArrowLeftToLine,
+  pencil : Pencil,
+  preview : ScanEye,
 
 }
 
