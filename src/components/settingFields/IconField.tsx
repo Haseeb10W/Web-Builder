@@ -3,6 +3,7 @@
 import DynamicIcons from '@/components/DynamicIcons'
 import { settingFieldProps } from '@/types/settingsSchema'
 import React, { useEffect, useState } from 'react'
+import ResponsiveComponents from './ResponsiveComponents'
 
 
 export default function IconField({props, change}: settingFieldProps ) {
@@ -37,11 +38,14 @@ export default function IconField({props, change}: settingFieldProps ) {
 
     
     <div className={`flex flex-col  gap-2 mt-2`}>
+      <div className='flex items-center gap-x-1.5'>
       {
         props?.label != '' && (
           <label htmlFor={props?.labelId} className={`text-sm text-gray-600`}>{props?.label}</label>
         )
       }
+      <ResponsiveComponents/>
+      </div>
       
       <div className="alignBlocks flex py-1 px-3 justify-between">
         {

@@ -8,6 +8,7 @@ import useElementPosiiton from '@/hooks/useElementPosition';
 import { useSettingType } from '@/contexts/settingsType';
 import useDocumentClick from '@/hooks/useDocumentClick';
 import { get } from 'http';
+import ResponsiveComponents from './ResponsiveComponents';
 
 
 export default function ColorField({props, change}:settingFieldProps) {
@@ -97,16 +98,19 @@ export default function ColorField({props, change}:settingFieldProps) {
     <>
     {props?.tabOpen && (
     <div className={`flex gap-2 mt-3 !w-[97%] `}>
+      <div className='flex gap-x-1.5'>
       {
         props?.label != '' && (
           <label htmlFor={props?.labelId} className={`text-sm text-gray-600`}>{props?.label}</label>
         )
       }
-      <select name="" id="">
+      <ResponsiveComponents/>
+      {/* <select name="" id="">
         <option value="he">Hello</option>
         <option value="he">Hello</option>
         <option value="he">Hello</option>
-      </select>
+      </select> */}
+      </div>
 
     <div ref={clickRef} className="!relative rounded-sm w-5 h-5 border border-gray-300 ml-auto">
       <div ref={ elementRef } className="color relative rounded-sm  w-full h-full mr-4 cursor-pointer" style={{backgroundColor: color}} onClick={handlePickerOpen} > 

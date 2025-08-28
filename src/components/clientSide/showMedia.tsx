@@ -108,16 +108,19 @@ export default function ShowMedia({mediaFiles, setMediaFiles}:MediaFilesProps) {
 
   return (
     <>
-      <div className={`media-uploads px-10 flex items-center w-full h-full `}>
+      <div className={`media-uploads px-2 md:px-10 flex items-center w-full h-full `}>
 
              {
                mediaFiles?.length == 0 && (
-                <div className={`w-1/2 h-2/3 mx-auto text-center content-center border shadow-lg border-gray-200 rounded-lg bg-gray-100 ` } 
+
+                <div className={`min-w-[95%] min-[500px]:min-w-[450px]  min-[500px]:h-[350px] h-6/12  mx-auto text-center content-center border shadow-lg border-gray-200 rounded-lg bg-gray-100 `}
+
                 
                 
        
                 >
-                  <h3> No Media Found</h3>
+                  <DynamicIcons name="moMedia" classes={`w-10 h-10 m-auto`}></DynamicIcons>
+                  <h3 className='text-xl tracking-wider mt-3'>No Media Found</h3>
 
                 </div>
               ) 
@@ -126,14 +129,11 @@ export default function ShowMedia({mediaFiles, setMediaFiles}:MediaFilesProps) {
 
              { 
               mediaFiles?.length >0  && (
-                <div className={`w-full h-full  `}>
+                <div className={`w-full h-full flex-wrap `}>
                   {
+
                     mediaFiles.filter(item=> (mediaFilesApply && mediaFilesApply.type == item?.type?.split('/')[0] )|| (mediaFilesApply == undefined && item?.type?.includes('/') ) ).map((item, index)=>(
-                      <div key={index} className={`w-[11%] group relative cursor-pointer inline-block mx-2 my-2 h-32 shadow-sm border border-gray-400 rounded-sm ${mediaFilesApply && showSelectedFiles(item)? 'outline-2 outline-blue-600': ''} `} onClick={(e)=>handleSelectMediaFile(e, item)}>
-
-
-                      
-                        
+                      <div key={index} className={`lg:!w-[11%] min-[990px]:!w-[14.5%] md:!w-[18%] min-[640px]:!w-[22%] min-[425px]:!w-[28%] !w-[44%] group relative cursor-pointer inline-block mx-2 my-2 h-32 shadow-sm border border-gray-400 rounded-sm ${mediaFilesApply && showSelectedFiles(item)? 'outline-2 outline-blue-600': ''} `} onClick={(e)=>handleSelectMediaFile(e, item)}>
 
                         {
                           item?.type?.startsWith('image/') && (

@@ -155,9 +155,10 @@ export default function Media() {
         className={`w-full h-full  overflow-hidden scroll-bar py-3 `}
       >
         {/* tabs & Save */}
-          <div className={`flex justify-between border-b border-gray-400/50 mx-6 `}>
+          <div className={` flex flex-col-reverse sm:flex-row sm:justify-between border-b border-gray-400/50 sm:mx-6 `}>
           {/* tabs */}
-            <ul className="tabs   flex gap-3 py-1  pl-3">
+          <div>
+            <ul className="tabs flex gap-3 py-1 pl-3">
               {tabsData.map((item, index) => (
                 <li
                   key={index}
@@ -170,9 +171,10 @@ export default function Media() {
                 </li>
               ))}
             </ul>
+          </div>  
             {/* sabe-buttons */}
 
-            <div className={`pr-6 `}>
+            <div className={`pl-6  sm:text-end sm:pr-6 `}>
 
               {
                 ( ( tabOpen == 'upload' && uploadMediaFiles?.length > 0) || (tabOpen == 'media' && mediaFilesApply && mediaFilesApply?.appliedData?.length > 0) ) && (

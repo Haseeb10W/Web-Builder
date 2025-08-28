@@ -162,11 +162,12 @@ export default function BackgroundAll({props, change}:settingFieldProps) {
   //     {label: 'video', value: 'video'},      
   // ]
 
-  useEffect(()=>{
+  // useEffect(()=>{
+  //   // console.log(props?.value)
 
-    setTabOpen(props?.tabOpen? true : false)
+    
 
-  }, [props?.tabOpen, props])
+  // }, [props?.value])
 
   const handleTypeChange = (value:any)=>{
     // console.log(value)
@@ -225,9 +226,17 @@ export default function BackgroundAll({props, change}:settingFieldProps) {
 
 
   useEffect(()=>{
-    
+    let backgroundApply : {[key: string]: any} = {};
+    if(bgType == 'color' ){
+      // console.log('hello')
+      backgroundApply.type = 'color'
+      backgroundApply.colorValue = colorProps?.value
+    }
 
-  }, [])
+
+    change?.(JSON.stringify(backgroundApply))
+
+  }, [colorProps?.value])
 
 
 
@@ -237,13 +246,13 @@ export default function BackgroundAll({props, change}:settingFieldProps) {
     <SelectField props={props} change={(value:any)=>handleTypeChange(value)}></SelectField>
     
     {
-     tabOpen && bgType == 'color' &&  (
+     props?.tabOpen && bgType == 'color' &&  (
         <ColorField  props={colorProps} change={(value:any)=>handleColorValue(value)}/>
       )
     }
     
     {
-   tabOpen && bgType == 'image' && (
+   props?.tabOpen && bgType == 'image' && (
       <>
       <Image props={bgImageProps} change={(value:any)=>handleBgImageValue(value)} />
 
@@ -266,7 +275,7 @@ export default function BackgroundAll({props, change}:settingFieldProps) {
 
 
       {
-       tabOpen && bgType == "gradient" && ( 
+       props?.tabOpen && bgType == "gradient" && ( 
         <>
         <Gradient />        
         </>
@@ -275,7 +284,7 @@ export default function BackgroundAll({props, change}:settingFieldProps) {
 
     
      {
-      tabOpen && bgType == "video" && (
+      props?.tabOpen && bgType == "video" && (
       <>
       <Video />
       </>

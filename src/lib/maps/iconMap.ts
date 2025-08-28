@@ -31,12 +31,14 @@ import {
   Video,
   Play,
   TriangleAlert,
+
   ImagePlus,
   Plus,
   MoveLeft,
   MoveRight,
   MoveUp,
   MoveDown,
+
   AlignHorizontalJustifyStart,
   AlignHorizontalJustifyEnd,
   AlignHorizontalJustifyCenter,
@@ -45,7 +47,8 @@ import {
   ArrowRightFromLine,
   ArrowLeftToLine,
   Pencil,
-  ScanEye
+  ScanEye,
+  ImageOff
 
 
 } from 'lucide-react';
@@ -108,6 +111,9 @@ export const iconMap : {[key:string]: React.ElementType} ={
   pRight : ArrowLeftToLine,
   pencil : Pencil,
   preview : ScanEye,
+  hLeft : ArrowRightFromLine,
+  hRight : ArrowLeftToLine,
+  moMedia : ImageOff 
 
 }
 

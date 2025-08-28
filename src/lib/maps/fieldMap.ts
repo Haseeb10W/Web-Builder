@@ -20,6 +20,7 @@ import FontFamily from "@/components/settingFields/fontFamily";
 import BackgroundAll from "@/components/settingFields/backgroundAll";
 import HalfSpace from "@/components/settingFields/HalfSpace";
 import Position from "@/components/settingFields/Position";
+import PseudoStatus from "@/components/settingFields/pseudoStatus";
 const TextEditor = dynamic(() => import('@/components/settingFields/textEditor'), {
   ssr: false,
   
@@ -45,6 +46,7 @@ export const fieldMap : {[key:string]: React.ElementType} = {
   fontFamily: FontFamily,
   background: BackgroundAll,
   halfSpace: HalfSpace,
-  position: Position
+  position: Position,
+  status : PseudoStatus,
 
 }

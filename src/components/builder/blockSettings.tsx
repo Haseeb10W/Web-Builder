@@ -64,10 +64,11 @@ function BlockSettings({data, updateData}:BlockSettingProps) {
 
   const handleFieldChange:handleSettingChangeArgs=useCallback((value, id , type, applied, data, updateData, setSettingsData, settingsData )=>{
     
+    // console.log(type)
     // console.log(value)
 
-    const InputTextType = ['textarea' , 'texts']
-    const customTextType = ['texteditor', 'textAlign', 'spacing', 'colors', 'size', 'iconField', 'fontFamily', 'select']
+    const InputTextType : string[] = []
+    const customTextType = ['texteditor', 'textAlign', 'spacing', 'colors', 'size', 'iconField', 'fontFamily', 'select', 'textarea' , 'texts', 'background']
 
     const isInputTextType = InputTextType.includes(type as string)
     const isCustomTextType = customTextType.includes(type as string)
@@ -109,6 +110,70 @@ function BlockSettings({data, updateData}:BlockSettingProps) {
         });
         return;
     }
+
+
+    if( type === 'status'){
+      
+      setSettingsData && setSettingsData(prevSettingsData => {
+        const newSettings = { ...prevSettingsData };
+        // console.log(applied)
+        const updatedFields = newSettings[tabOpened]?.map((item) => {
+          // If it's the heading we clicked, update its tabOpen state
+          if (item.field === 'status' && item.props?.tab === applied) {
+            // console.log('value', value)
+            return {
+              ...item,
+              props: {
+                ...item.props,
+                value: value
+              }
+            };
+          }
+
+
+          if (item.props?.tab === applied ) {
+            // console.log(item)
+            
+            if (item?.props?.statuses && item?.props?.statuses?.includes(value as string)) {
+              console.log(item)
+              return {
+                ...item,
+                props: {
+                  ...item.props,
+                  tabOpen: true
+
+
+                }
+              };
+
+            }else{
+              
+              return {
+                ...item,
+                props: {
+                  ...item.props,
+                  tabOpen: false
+
+            }
+          }
+        }
+      }
+          return item;
+        });
+
+        if (updatedFields) {
+          newSettings[tabOpened] = updatedFields;
+        }
+        // console.log(newSettings)
+        return newSettings;
+      });
+
+
+
+
+
+      return
+    }
     
 
     let fieldValue: string | number; 
@@ -122,6 +187,7 @@ function BlockSettings({data, updateData}:BlockSettingProps) {
       const target = (value as unknown as  React.ChangeEvent<HTMLInputElement>)?.target;
       fieldValue = target?.value || ''
     }else{
+      
       fieldValue =  ''
     }
 

@@ -20,8 +20,18 @@ interface BuilderHeaderPops {
 function BuilderHeader ({dataPage, screenSize = 0, updateScreenSize, bodyWidth=0}: BuilderHeaderPops) {
 
   const {toggleSide, setToggleSide} = useSideToggle();
+  const { setSettingType, setSettingPopUp, setOpenMedia, screenType, setScreenType} = useSettingType()
   
-  const { setSettingType, setSettingPopUp, setOpenMedia, screenType, setScreenType } = useSettingType()
+  useEffect(()=>{
+    console.log(dataPage)
+    // console.log(screenSize)
+    if(window.innerWidth > 1024){
+      setToggleSide(false) 
+    }
+    else{
+      setToggleSide(true)
+    }
+  },[])
 
   useEffect(()=>{
      let typeGet;
@@ -67,12 +77,26 @@ function BuilderHeader ({dataPage, screenSize = 0, updateScreenSize, bodyWidth=0
 
   useEffect(()=>{
     if(updateScreenSize){
+      const width = window.innerWidth;
       if(screenType === 'mobile'){
-      updateScreenSize(425)
+      if (width > 425){
+        updateScreenSize(425)
+
+      }else {
+        updateScreenSize(width)
+      }
+      
 
     }else if(screenType === 'tablet'){
-      updateScreenSize(768)
+      if(width > 768){
+        updateScreenSize(768)
+      }else{
+        updateScreenSize(width)
+      }
+
+      
     }else if(screenType === 'laptop'){
+      
       updateScreenSize(bodyWidth)
     }
 

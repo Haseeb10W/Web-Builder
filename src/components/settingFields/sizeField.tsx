@@ -4,6 +4,7 @@ import DynamicIcons from '@/components/DynamicIcons'
 import useDocumentClick from '@/hooks/useDocumentClick'
 import { settingFieldProps } from '@/types/settingsSchema'
 import React, { useCallback, useEffect, useState } from 'react'
+import ResponsiveComponents from './ResponsiveComponents'
 
 export default function SizeField({props, change}:settingFieldProps) {
 
@@ -37,10 +38,8 @@ export default function SizeField({props, change}:settingFieldProps) {
      
     }else {
       setSize('')
-      setUnit('px')
+      // setUnit('px')
     }
-
-
 
   }, [props?.value])
 
@@ -48,7 +47,7 @@ export default function SizeField({props, change}:settingFieldProps) {
   //   {name: "pixels", value: "px"},
   //   {name: "percent", value: "%"},
   //   {name: "Rem", value: "rem"},
-  //   {name: "Em", value: "em"},
+  //   {name: "Em", value: "e"},
   //   {name: "ViewWidth", value: "vw"},
   //   {name: "ViewHeight", value: "vh"},
     
@@ -58,10 +57,26 @@ export default function SizeField({props, change}:settingFieldProps) {
   const handleSizeChange  = (e:any)=>{
     const target = e.target as HTMLInputElement;
     const value = target.value; 
+    let size 
+   
+    if(unit == "%" || unit == "rem" || unit == "em"){
+      if(Number(value) > 100){
+        size = "100"
+      }
+      else if(Number(value) < -100){
+         size = "-100"
+      } 
+      else{
+        size = value
+      }   
+    }else{
+      size = value
+    }
 
-    const newValue = `${value}${unit}`;
+    const newValue = `${size}${unit}`;
     if(value != ''){
-      setSize(Number(value))
+
+      setSize(Number(size))
       change?.(newValue)
 
     }else{
@@ -87,11 +102,14 @@ export default function SizeField({props, change}:settingFieldProps) {
     {
       props?.tabOpen && (
         <div className={`flex justify-between gap-2 w-full mt-4 `}>
+      <div className='flex gap-x-1.5'>
       {
         props?.label != '' && (
           <label htmlFor={props?.labelId} className={`text-sm text-gray-600`}>{props?.label}</label>
         )
       }
+      <ResponsiveComponents/>
+      </div>
 
 
       

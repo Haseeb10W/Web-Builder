@@ -1,6 +1,7 @@
 import { settingTypes } from "@/contexts/settingsType"
 import { findBlock, findBlockOverall, findBlocksInContainer } from "@/lib/builder/blockHandlers"
 import { handleSettingChange } from "@/lib/builder/settingHandlers"
+import { backgroundSettingsSetter } from "@/lib/builder/settingsSetter"
 import { setSettingField } from "@/lib/fieldSettings/fields"
 import { Block } from "@/types/blocksSchema"
 import { editSchema } from "@/types/editSchema"
@@ -77,6 +78,20 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
 
   // 3: TypoGraphy
   setSettingField('heading',{label: "Typography", for : 'typography', tabAllow: true}),
+
+  // 4 : Pseudo Status 
+  setSettingField('status', { 
+    for : 'typography',
+    tab: 'typography',
+    // tabOpen: true,
+    statusOptions : [
+      {name: 'Normal', value: 'normal' },
+      {name: 'Hover', value: 'hover' },
+      {name: 'Active', value: 'active' },
+    ],
+    value: 'normal',
+
+  }),
   
   // 4
   setSettingField('colors', {
@@ -84,6 +99,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         labelId: "text-color-font",
         for : 'colorChange',
         tab: 'typography',
+        
   }),
 
 
@@ -93,6 +109,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         labelId: "text-family-font",
         for : 'fontFamilyChange',
         tab: 'typography',
+        statuses : ['normal']
   }),
   
   // 6
@@ -110,6 +127,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         ],
         for : 'fontSizeChange',
         tab: 'typography',
+        statuses : ['normal']
 
   }),
 
@@ -124,11 +142,12 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         ],
         for : 'lineHeightChange',
         tab: 'typography',
+        statuses : ['normal']
   }),
 
   // 8
   setSettingField('select', {
-    label: "Font Weight", 
+         label: "Font Weight", 
         labelId: "text-font-weight",
         options: [
           {label: '100', value: '100'},
@@ -144,6 +163,8 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         
         for : 'fontWeightChange',
         tab: 'typography',
+        statuses : ['normal'],
+        
 
   }),
 
@@ -161,6 +182,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
 
         for : 'textTransformChange',
         tab: 'typography',
+        statuses : ['normal']
   }),
   
   //10
@@ -177,6 +199,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
 
         for : 'fontStyleChange',
         tab: 'typography',
+
   }),
 
   // 11
@@ -192,6 +215,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         ],
         for : 'textDecorationChange',
         tab: 'typography',
+        statuses : ['normal']
   }),
 
   // 12
@@ -207,6 +231,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         ],
         for : 'letterSpacingChange',
         tab: 'typography',
+        statuses : ['normal']
   }),
 
   // 13
@@ -395,7 +420,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
 
 
   //7 :: positioning
-    setSettingField('heading',{label: "Positioning", for : 'positioning', tabAllow: true}),
+    setSettingField('heading',{label: "Positioning", for : 'positioning', tabAllow: true }),
 
   //8
     setSettingField('position', {
@@ -410,8 +435,38 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         ],
         for : 'positioningChange',
         tab : 'positioning',
-        tabOpen:true
   }),
+
+    //9 :: Scrolling
+    setSettingField('heading',{label: "Scrolling", for : 'scrolling', tabAllow: true }),
+    
+    //10
+        setSettingField('select', {
+        label: "Overflow-X",
+        labelId: "overflow-x",
+        options: [
+          {label: 'Hidden', value: 'hidden'},
+          {label: 'Scroll', value: 'scroll'},
+          {label: 'Auto', value: 'auto'},
+
+        ],
+        for : 'overflowChange',
+        tab : 'scrolling',
+      }),
+
+    //11
+        setSettingField('select', {
+        label: "Overflow-Y",
+        labelId: "overflow-y",
+        options: [
+          {label: 'Hidden', value: 'hidden'},
+          {label: 'Scroll', value: 'scroll'},
+          {label: 'Auto', value: 'auto'},
+
+        ],
+        for : 'overflowChange',
+        tab : 'scrolling',
+      }),
 
   ]
   
@@ -442,21 +497,21 @@ export const textSettingsSet:settingsSetArgs = (settingType, data)=> {
       settings.styles[1].props.value = findBlock?.styles?.textAlign;
       settings.styles[2].props.value = findBlock?.styles?.alignContent;
             /* Font Styles */
-      settings.styles[4].props.value = findBlock?.styles?.color;
-      settings.styles[5].props.value = findBlock?.classTracking?.fontFamilyClass;
-      settings.styles[6].props.value = findBlock?.styles?.fontSize;
-      settings.styles[7].props.value = findBlock?.styles?.lineHeight;
-      settings.styles[8].props.value = findBlock?.styles?.fontWeight;
-      settings.styles[9].props.value = findBlock?.styles?.textTransform;
-      settings.styles[10].props.value = findBlock?.styles?.fontStyle;
-      settings.styles[11].props.value = findBlock?.styles?.textDecoration;
-      settings.styles[12].props.value = findBlock?.styles?.letterSpacing;
-      settings.styles[13].props.value = findBlock?.styles?.wordSpacing;
+      settings.styles[5].props.value = findBlock?.styles?.color;
+      settings.styles[6].props.value = findBlock?.classTracking?.fontFamilyClass;
+      settings.styles[7].props.value = findBlock?.styles?.fontSize;
+      settings.styles[8].props.value = findBlock?.styles?.lineHeight;
+      settings.styles[9].props.value = findBlock?.styles?.fontWeight;
+      settings.styles[10].props.value = findBlock?.styles?.textTransform;
+      settings.styles[11].props.value = findBlock?.styles?.fontStyle;
+      settings.styles[12].props.value = findBlock?.styles?.textDecoration;
+      settings.styles[13].props.value = findBlock?.styles?.letterSpacing;
+      settings.styles[14].props.value = findBlock?.styles?.wordSpacing;
 
       
-           /* Colors */
+           /* Background */
       
-      settings.styles[14].props.value = findBlock?.styles?.backgroundColor;
+      settings.styles[16].props.value = backgroundSettingsSetter(findBlock);
       
 
       // Settings
@@ -478,3 +533,5 @@ export const textSettingsSet:settingsSetArgs = (settingType, data)=> {
 
 
 }
+
+

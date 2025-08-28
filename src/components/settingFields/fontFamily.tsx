@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import SelectField from './selectField';
 import { settingFieldProps } from '@/types/settingsSchema';
 import { customFonts, defaultFonts, googleFonts } from '@/lib/fontFamily/FontsData';
+import ResponsiveComponents from './ResponsiveComponents';
 
 
 
@@ -142,12 +143,13 @@ export default function FontFamily({props, change}: settingFieldProps) {
     <>
     
     {
+    
       props?.tabOpen && 
       <SelectField props={propsFont} change={(value:any)=>handleFontChange(value)} />
 
     }
 
-
+    
     </>
     
   )
