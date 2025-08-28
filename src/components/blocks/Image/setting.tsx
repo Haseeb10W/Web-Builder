@@ -7,24 +7,53 @@ import { editSchema } from "@/types/editSchema"
 import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
 
 
- const TextSettings:settingsSetupSchema = {
+ const ImageSettings:settingsSetupSchema = {
 
   // Content
   content : [
 
-   // 0 
-    setSettingField('heading',{label: "Content Area", for : 'texteditor', tabOpen: true, tabAllow: false}),
+    // 0 
+    setSettingField('heading',{label: "Head Settings", for : 'headsettings', tabOpen: true, tabAllow: false}),
 
     // 1
-     setSettingField('texteditor', {
-      label: "Text Editor", 
+    setSettingField('textarea', {
+      label: "Title", 
       labelId: "text-editor",
       placeholder: 'Add your Text here',
       for : 'textChange',
       tab: '',
       tabOpen: true}
     ),
+
+    // 2
+    setSettingField('texts', {
+      label: "Link", 
+      labelId: "linkHeading",
+      placeholder: 'Past your link here',
+      for : 'linkChange',
+      tab: '',
+      tabOpen: true}
+    ),
     
+   // 3
+  setSettingField('select', {
+    label: "Tags Levels", 
+    labelId: "tags-level",
+    value:"h2",
+    defaultNot:true,
+        options: [
+          {label: 'h1', value: 'h1'},
+          {label: 'h2', value: 'h2'},
+          {label: 'h3', value: 'h3'},
+          {label: 'h4', value: 'h4'},
+          {label: 'h5', value: 'h5'},
+          {label: 'h6', value: 'h6'},
+        ],
+        
+        for : 'levelChange',
+        tab: 'headsettings',
+        tabOpen: true
+  }),
 
 
   ],
@@ -42,6 +71,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
     setSettingField('heading',{label: "Alignment", for : 'alignment', tabOpen: true, tabAllow: true}),
 
     // 1
+    
         setSettingField('iconField', {
         label: "Horizontal Align", 
         labelId: "text-alignment",
@@ -128,7 +158,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
 
   // 8
   setSettingField('select', {
-         label: "Font Weight", 
+    label: "Font Weight", 
         labelId: "text-font-weight",
         options: [
           {label: '100', value: '100'},
@@ -394,56 +424,6 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
   }),
 
 
-  //7 :: positioning
-    setSettingField('heading',{label: "Positioning", for : 'positioning', tabAllow: true,  }),
-
-  //8
-    setSettingField('position', {
-        label: "Position",
-        labelId: "position",
-        options: [
-          {label: 'Absolute', value: 'absolute'},
-          {label: 'Fixed', value: 'fixed'},
-          {label: 'Relative', value: 'relative'},
-          {label: 'Sticky', value: 'sticky'},
-
-        ],
-        for : 'positioningChange',
-        tab : 'positioning',
-      
-  }),
-
-    //9 :: Scrolling
-    setSettingField('heading',{label: "OverFlow", for : 'overflow', tabAllow: true }),
-    
-    //10
-        setSettingField('select', {
-        label: "Overflow-X",
-        labelId: "overflow-x",
-        options: [
-          {label: 'Hidden', value: 'hidden'},
-          {label: 'Scroll', value: 'scroll'},
-          {label: 'Auto', value: 'auto'},
-
-        ],
-        for : 'overflowChange',
-        tab : 'overflow',
-      }),
-
-    //11
-        setSettingField('select', {
-        label: "Overflow-Y",
-        labelId: "overflow-y",
-        options: [
-          {label: 'Hidden', value: 'hidden'},
-          {label: 'Scroll', value: 'scroll'},
-          {label: 'Auto', value: 'auto'},
-
-        ],
-        for : 'overflowChange',
-        tab : 'overflow',
-      }),
-
   ]
   
 }
@@ -451,7 +431,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
 
 
 
-export const textSettingsSet:settingsSetArgs = (settingType, data)=> {
+export const ImageSettingsSet:settingsSetArgs = (settingType, data)=> {
 
   // console.log(settingType)
   const blockId = settingType?.id;
@@ -459,20 +439,20 @@ export const textSettingsSet:settingsSetArgs = (settingType, data)=> {
   const findBlock = findBlockOverall(data, blockId)
 
   if(findBlock){
-    const settings = {...TextSettings}
+    const settings = {...ImageSettings}
     // console.log(findBlock)
     
-    if(findBlock.type === 'text' ){
+    if(findBlock.type === 'image' ){
       /*+++++++++++++++++++++++ Content +++++++++++++++++++++ */
       settings.content[1].props.value =  findBlock?.props?.text;
 
 
-      /*+++++++++++++++++++++++ Styles +++++++++++++++++++++ */
+    //   /*+++++++++++++++++++++++ Styles +++++++++++++++++++++ */
 
-            /* Alignment */
+    //         /* Alignment */
       settings.styles[1].props.value = findBlock?.styles?.textAlign;
       settings.styles[2].props.value = findBlock?.styles?.alignContent;
-            /* Font Styles */
+    //         /* Font Styles */
       settings.styles[4].props.value = findBlock?.styles?.color;
       settings.styles[5].props.value = findBlock?.classTracking?.fontFamilyClass;
       settings.styles[6].props.value = findBlock?.styles?.fontSize;
@@ -485,12 +465,12 @@ export const textSettingsSet:settingsSetArgs = (settingType, data)=> {
       settings.styles[13].props.value = findBlock?.styles?.wordSpacing;
 
       
-           /* Colors */
+    //        /* Colors */
       
       settings.styles[14].props.value = findBlock?.styles?.backgroundColor;
       
 
-      // Settings
+    //   // Settings
       settings.settings[1].props.value = findBlock?.styles?.margin; 
       settings.settings[2].props.value = findBlock?.styles?.padding;
       settings.settings[3].props.value = findBlock?.styles?.width;

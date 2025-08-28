@@ -1,6 +1,6 @@
 "use client"
 import { settingFieldProps } from '@/types/settingsSchema'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import SelectField from './selectField'
 import IconField from './IconField';
 import RangeField from './RangeField';
@@ -15,6 +15,7 @@ const horizentalOrientation = {
           {label: 'Left', value: 'left'},
           {label: 'Right', value: 'right'},
         ],
+        responsive:'on',
         for :'directionChange',
         tab: '',
         tabOpen: true
@@ -41,6 +42,7 @@ const verticalOrientation = {
           {label: 'Top', value: 'top'},
           {label: 'Bottom', value: 'bottom'},
         ],
+        responsive:'on',
         for :'directionChange',
         tab: '',
         tabOpen: true
@@ -68,6 +70,7 @@ export default function Position({props,change}: settingFieldProps ) {
         setPosition(value)
     }
     
+
   const handleHorizentalChange = (value:any) =>{
     setHorizental((prev:any)=>({...prev,value:value}))
   }
@@ -91,14 +94,16 @@ export default function Position({props,change}: settingFieldProps ) {
   return (
     <>
      <SelectField props={props} change={(value:any)=>handlePositionChange(value)}/>
-      {position === "absolute" || position === "sticky" || position === "fixed" ? (
+      { props?.tabOpen && (
+           position === "absolute" || position === "sticky" || position === "fixed" ? (
         <>
          <SelectField props={horizental} change={(value:any)=>handleHorizentalChange(value)}/>
          <SizeField props={hOffset} change={(value:any)=>handleHOffset(value)}/>
          <SelectField props={vertical} change={(value:any)=>handleVerticalChange(value)}/>
         <SizeField props={vOffset} change={(value:any)=>handleVOffset(value)}/>
         </>
-      ): null}
+      ): null)
+      }
     </>
   )
 }

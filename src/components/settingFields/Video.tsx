@@ -23,7 +23,8 @@ const videoTyp = {
       label:"Media",
       value:"media"
     }
-  ]
+  ],
+  responsive:"on"
 }
 
 

@@ -60,7 +60,11 @@ export default function SelectField({props, change, returnVal}: settingFieldProp
           <label htmlFor={props?.labelId} className={`text-sm text-gray-600`}>{props?.label}</label>
         )
       }
-      <ResponsiveComponents/>
+      {
+      props?.responsive == 'on' && (
+      <ResponsiveComponents />
+        )
+      }
       </div>
 
 

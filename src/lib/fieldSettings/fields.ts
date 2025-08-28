@@ -189,6 +189,7 @@ export const setSettingField:fieldSetArgs = (field, props)=>{
         defaultNot:props?.defaultNot,
         for : props?.for,
         type: 'settingField',
+        responsive: props?.responsive ? props?.responsive : 'on',
         tab: props?.tab || commonProps.tab,
         tabOpen: props?.tabOpen ? props?.tabOpen : false
         }
@@ -205,6 +206,7 @@ export const setSettingField:fieldSetArgs = (field, props)=>{
         defaultNot:props?.defaultNot,
         for : props?.for,
         type: 'settingField',
+        responsive: props?.responsive ? props?.responsive : 'on',
         tab: props?.tab || commonProps.tab,
         tabOpen: props?.tabOpen ? props?.tabOpen : false
         }
@@ -238,15 +240,17 @@ export const setSettingField:fieldSetArgs = (field, props)=>{
         }
       }
 
-      case 'backgound':
+      case 'background':
         return {
           field: field,
           props : {
           label: props?.label,
           labelId: props?.labelId,
           value: '',
+          options : [...props?.options],
           for : props?.for,
           type: 'settingField',
+          responsive: props?.responsive ? props?.responsive : 'on',
           tab: props?.tab || commonProps.tab,
           tabOpen: props?.tabOpen ? props?.tabOpen : false
           }

@@ -32,7 +32,7 @@ export default function Heading({block, index, onDelete, onCopy}: HeadingProps) 
   
   if(!HeadBlock?.editable && !HeadBlock?.draggable){
     return (
-    <Link href={HeadBlock?.link} className={`${HeadBlock?.link !== "" ? "block":"hidden"}`}><LevelMap  block={HeadBlock} trackingClass={trackingClass} /></Link>
+    <Link href={HeadBlock?.link} className={``}><LevelMap  block={HeadBlock} trackingClass={trackingClass} /></Link>
     )
 
   }
@@ -40,7 +40,7 @@ export default function Heading({block, index, onDelete, onCopy}: HeadingProps) 
   // console.log('BlockReader block ID:', block.id); 
   return (
     <Section id={HeadBlock?.id} onDelete={(id)=>onDelete?.(id)} onCopy={(id)=>onCopy?.(id)} index={index}>
-  <Link href={HeadBlock?.link} className={``}> <LevelMap  block={HeadBlock} trackingClass={trackingClass} /></Link>
+  <Link href={HeadBlock?.link} className={``}><LevelMap  block={HeadBlock} trackingClass={trackingClass} /></Link>
     {/* <p key={HeadBlock?.id} style= {{
         ...HeadBlock?.styles
 

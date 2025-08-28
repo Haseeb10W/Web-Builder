@@ -423,6 +423,55 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
          tabOpen: true
   }),
 
+  //7 :: positioning
+    setSettingField('heading',{label: "Positioning", for : 'positioning', tabAllow: true }),
+
+  //8
+    setSettingField('position', {
+        label: "Position",
+        labelId: "position",
+        options: [
+          {label: 'Absolute', value: 'absolute'},
+          {label: 'Fixed', value: 'fixed'},
+          {label: 'Relative', value: 'relative'},
+          {label: 'Sticky', value: 'sticky'},
+
+        ],
+        for : 'positioningChange',
+        tab : 'positioning',
+  }),
+
+  //9 :: Scrolling
+    setSettingField('heading',{label: "OverFlow", for : 'overflow', tabAllow: true }),
+    
+  //10
+        setSettingField('select', {
+        label: "Overflow-X",
+        labelId: "overflow-x",
+        options: [
+          {label: 'Hidden', value: 'hidden'},
+          {label: 'Scroll', value: 'scroll'},
+          {label: 'Auto', value: 'auto'},
+
+        ],
+        for : 'overflowChange',
+        tab : 'overflow',
+      }),
+
+  //11
+        setSettingField('select', {
+        label: "Overflow-Y",
+        labelId: "overflow-y",
+        options: [
+          {label: 'Hidden', value: 'hidden'},
+          {label: 'Scroll', value: 'scroll'},
+          {label: 'Auto', value: 'auto'},
+
+        ],
+        for : 'overflowChange',
+        tab : 'overflow',
+      }),
+
 
   ]
   

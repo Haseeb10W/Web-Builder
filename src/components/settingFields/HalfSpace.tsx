@@ -17,6 +17,7 @@ export default function HalfSpace({props, change}:settingFieldProps) {
   useEffect(()=>{
     // console.log('good')
     if(props?.value){
+      seFullValue(props?.value)
       const values = props.value.split(' ');
       // console.log(values)
       const SanitizeValues = values.map((item:any)=>{

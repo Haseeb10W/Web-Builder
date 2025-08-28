@@ -42,6 +42,7 @@ const bgRepeat = {
     }
   ],
   tabOpen: true,
+  responsive: 'on'
 }
 
 const bgSize = {
@@ -62,7 +63,8 @@ const bgSize = {
       label: 'Fill',
       value: '100% 100%'
     }
-  ]
+  ],
+  responsive: 'on'
 }
 
 const bgPosition = {
@@ -107,13 +109,14 @@ const bgPosition = {
       label: 'Center Bottom',
       value: 'center bottom'
     }
-  ]
+  ],
+  responsive: 'on'
 }
 
 
 
 const bgAttachment = {
-  label: "Background Attachment",
+  label: "Effects",
   value: "",
   tabOpen: true,
   tab: "",
@@ -130,7 +133,8 @@ const bgAttachment = {
       label: 'Local',
       value: 'local'
     }
-  ]
+  ],
+  responsive: 'on'
 }
 
 const bgImagePros ={
@@ -163,6 +167,7 @@ export default function BackgroundAll({props, change}:settingFieldProps) {
   // ]
 
   useEffect(()=>{
+    console.log(props)
 
     setTabOpen(props?.tabOpen? true : false)
 
