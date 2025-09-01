@@ -20,6 +20,11 @@ import FontFamily from "@/components/settingFields/fontFamily";
 import BackgroundAll from "@/components/settingFields/backgroundAll";
 import HalfSpace from "@/components/settingFields/HalfSpace";
 import Position from "@/components/settingFields/Position";
+import PseudoStatus from "@/components/settingFields/pseudoStatus";
+import Zindex from "@/components/settingFields/Zindex";
+import IconSelectField from "@/components/settingFields/IconSelectField";
+import Transition from "@/components/settingFields/Transition";
+import Transform from "@/components/settingFields/Transform";
 const TextEditor = dynamic(() => import('@/components/settingFields/textEditor'), {
   ssr: false,
   
@@ -45,6 +50,10 @@ export const fieldMap : {[key:string]: React.ElementType} = {
   fontFamily: FontFamily,
   background: BackgroundAll,
   halfSpace: HalfSpace,
-  position: Position
-
+  position: Position,
+  status : PseudoStatus,
+  increase : Zindex,
+  iconSelect:IconSelectField,
+  transition: Transition,
+  transform : Transform
 }

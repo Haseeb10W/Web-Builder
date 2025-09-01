@@ -8,7 +8,7 @@ import ResponsiveComponents from './ResponsiveComponents'
 
 export default function SpacingField({props, change}:settingFieldProps) {
 
-  const [fullValue, seFullValue] = useState('')
+  const [fullValue, setFullValue] = useState('')
   const [spaceValues, setSpaceValues] = useState<{[key: string]: any}>({t:0 , r: 0, b: 0 , l: 0 });
   const [linkStatus, setLinkStatus] = useState({value: "all", fields: 1, width: "w-[97%]"})
   const [unit, setUnit] = useState<string>('px'); 
@@ -18,6 +18,7 @@ export default function SpacingField({props, change}:settingFieldProps) {
   useEffect(()=>{
     // console.log('good')
     if(props?.value){
+      setFullValue(props?.value)
       const values = props.value.split(' ');
       // console.log(values)
       const SanitizeValues = values.map((item:any)=>{
@@ -217,7 +218,7 @@ export default function SpacingField({props, change}:settingFieldProps) {
     const fullSpace = `${updatedSpaceValues.t}${unit} ${updatedSpaceValues.r}${unit} ${updatedSpaceValues.b}${unit} ${updatedSpaceValues.l}${unit}`;
 
 
-    seFullValue(fullSpace)
+    setFullValue(fullSpace)
     
 
 
@@ -226,6 +227,16 @@ export default function SpacingField({props, change}:settingFieldProps) {
     
 
   }, [linkStatus, unit, spaceValues])
+
+
+  const valueChange = ()=>{
+    const val = fullValue ;
+    console.log(val)
+    
+
+    change?.(val)
+
+  }
 
 
   return (
@@ -269,7 +280,7 @@ export default function SpacingField({props, change}:settingFieldProps) {
              spaceFields.slice(0, linkStatus.fields).map((item, index)=>(
             <div className={`flex flex-col content-center ${linkStatus.width} `} key={index}>
               <span className={`!text-[0.7rem] mx-auto`}>{showFieldNames(index, item.name)} </span>
-              <input type="number" onChange={(e)=> handleSpaceValueChange(e, item.name)} onBlur={()=>change?.(fullValue)} value={showValues(index , item.name)} className={`text-sm border border-gray-400 text-gray-700 outline-0 text-center rounded-sm appearance-none input-no-spinner `} />
+              <input type="number" onChange={(e)=> handleSpaceValueChange(e, item.name)} onBlur={valueChange} value={showValues(index , item.name)} className={`text-sm border border-gray-400 text-gray-700 outline-0 text-center rounded-sm appearance-none input-no-spinner `} />
             </div>
           ))
 

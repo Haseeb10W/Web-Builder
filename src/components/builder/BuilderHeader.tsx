@@ -23,8 +23,8 @@ function BuilderHeader ({dataPage, screenSize = 0, updateScreenSize, bodyWidth=0
   const { setSettingType, setSettingPopUp, setOpenMedia, screenType, setScreenType} = useSettingType()
   
   useEffect(()=>{
-    console.log(bodyWidth)
-    console.log(screenSize)
+    console.log(dataPage)
+    // console.log(screenSize)
     if(window.innerWidth > 1024){
       setToggleSide(false) 
     }

@@ -2,7 +2,7 @@ import { Block } from "@/types/blocksSchema"
 
 
 
-export const appliedSettings = (applied:string | undefined, foundBlock:Block | null, fieldValue: string | number)=>{
+export const appliedSettings = (applied:string | undefined, foundBlock:Block | null, fieldValue: string )=>{
   
 
   const isTextBlockType = (Block: Block | null)=>{
@@ -10,7 +10,7 @@ export const appliedSettings = (applied:string | undefined, foundBlock:Block | n
   }
 
   
-  
+  // console.log(applied)
 
   switch (applied){
     case "textChange":
@@ -32,10 +32,6 @@ export const appliedSettings = (applied:string | undefined, foundBlock:Block | n
     case "colorChange":
       
       settingStyleApply(isTextBlockType, foundBlock, fieldValue, 'color')
-      break;
-    case "backgroundChange":
-      settingStyleApply(isTextBlockType, foundBlock, fieldValue, 'backgroundColor')
-
       break;
     case "fontSizeChange":
       
@@ -65,15 +61,19 @@ export const appliedSettings = (applied:string | undefined, foundBlock:Block | n
       break;
     case "textTransformChange":
       settingStyleApply(isTextBlockType, foundBlock, fieldValue, 'textTransform')
+      break;
     case "fontStyleChange":
       settingStyleApply(isTextBlockType, foundBlock, fieldValue, 'fontStyle')
       break;
     case "textDecorationChange":
       settingStyleApply(isTextBlockType, foundBlock, fieldValue, 'textDecoration')
+      break;
     case "letterSpacingChange":
       settingStyleApply(isTextBlockType, foundBlock, fieldValue, 'letterSpacing')
+      break;
     case "wordSpacingChange":
       settingStyleApply(isTextBlockType, foundBlock, fieldValue, 'wordSpacing')
+      break;
     case "fontFamilyChange":
       
       if(isTextBlockType(foundBlock)) {
@@ -84,11 +84,22 @@ export const appliedSettings = (applied:string | undefined, foundBlock:Block | n
       }
       break;
 
+    case "backgroundChange":
+      console.log('hello')
+      if(isTextBlockType(foundBlock) ){
+        backgroundSettingHandle(foundBlock, fieldValue)
 
+      }
+      break;
+
+
+
+
+      // Cases End
   }
         
 
-
+// Function End
 }
 
 
@@ -104,10 +115,19 @@ const settingStyleApply = (condition:any, block:any, fieldValue:any,  property:s
 
 
 
+const backgroundSettingHandle = (foundBlock:Block, fieldValue: string )=>{
+  const backgroundData = JSON.parse(fieldValue);
+  console.log(backgroundData)
+
+  switch (backgroundData.type){
+    case 'color': 
+      foundBlock.styles = foundBlock.styles || {};
+      foundBlock.styles['backgroundColor'] =  backgroundData?.colorValue;
+      break;
+    default:
+      break
+  }
 
 
 
-// if(isTextBlockType(foundBlock) ){
-      //   foundBlock.styles = foundBlock.styles || {};
-      //   foundBlock.styles.backgroundColor = fieldValue as React.CSSProperties['backgroundColor'];
-      // }
+}

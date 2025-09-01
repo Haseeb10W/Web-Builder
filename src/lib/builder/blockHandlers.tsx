@@ -1,6 +1,6 @@
 import { Block, ContainerBlock } from "@/types/blocksSchema";
 import { editSchema } from "@/types/editSchema";
-
+import { v4 as uuidv4 } from 'uuid';
 
 export const findBlocksInContainer  = (blocks: Block[], draggedBlockId:string): Block | null => {
           for(const block of blocks){
@@ -174,7 +174,8 @@ export const deleteBlockHandler = (blockId: string, data: editSchema | undefined
 };
 
 const deepDuplicateBlock = (block: Block): Block => {
-  const newId = `${block.type}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+  const vId = uuidv4();
+  const newId = `${block.type}-${vId}`;
   
   const clonedBlock = JSON.parse(JSON.stringify(block)) as Block;
   clonedBlock.id = newId;

@@ -11,19 +11,20 @@ interface MediaEditFormProps {
   updateData: React.Dispatch<any>;
   applyChange:boolean,
   updateChanges: React.Dispatch<React.SetStateAction<boolean>>;
+  status : string,
 }
 
-export default function MediaEditForm({data, updateData, applyChange, updateChanges}: MediaEditFormProps) {
+export default function MediaEditForm({data, updateData, applyChange, updateChanges, status}: MediaEditFormProps) {
   const [contentChanged, setContentChanged] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
-  const [submitEdit, setSubmitEdit] = useState(false);
+ 
   const [error, setError] = useState<{[key:string]: any} | null>(null);
  
 
-  useEffect(()=>{
-    console.log(data)
+  // useEffect(()=>{
+  //   console.log(data)
 
-  }, [])
+  // }, [])
 
 
   const handleDataChange = (value:string, field: string  )=>{
@@ -81,7 +82,7 @@ export default function MediaEditForm({data, updateData, applyChange, updateChan
     <div className={`h-full w-full `}>
 
       <div>
-        <h3 className='text-xl'>Preview</h3>
+        <h3 className='text-xl'> Edit File</h3>
 
         <div className={`flex gap-3`}>
         <div  className={`w-[30%] h-24 group relative cursor-pointer inline-block mx-2 my-2  shadow-sm border border-gray-300/80 rounded-sm `} >
@@ -104,9 +105,21 @@ export default function MediaEditForm({data, updateData, applyChange, updateChan
           
         </div>
 
-        <ul className={`max-w-[65%] flex flex-col gap-2`}>
-          <li className='text-[14px]'>{data.name}</li>
-          <li className='text-[14px]'><strong>Size: </strong> {data.size}</li>
+        <ul className={`max-w-[65%] w-[65%] flex flex-col gap-2 py-3 flex-wrap  whitespace-normal`}>
+          <li className='text-[14px] w-full break-all break-words '>{data.name}</li>
+          {
+            status === "upload" && (<li className='text-[14px]'><strong>Size: </strong> {data.size}</li> )
+          }
+
+          {
+            status === "edit" && (
+              
+              
+              <li> <span className='text-[14px] !text-red-600 !hover:text-red-800 cursor-pointer '>Delete</span>  </li>
+              
+            )
+          }
+          
         </ul>
 
       </div>
@@ -118,6 +131,14 @@ export default function MediaEditForm({data, updateData, applyChange, updateChan
 
 
       <div className={`flex flex-col gap-3 py-4 `}>
+
+        {
+          status === "edit" && (
+            <li className={` px-1 bg-gray-300/40 w-full`}> <span className='text-[12px]  w-full break-words break-all py-1 rounded-sm'>{data.showUrl}</span>  </li>
+          )
+
+          
+        }
         {
           error?.name && (
             <span className={`flex items-center gap-2 py-2 px-3 rounded-lg bg-red-600`}>

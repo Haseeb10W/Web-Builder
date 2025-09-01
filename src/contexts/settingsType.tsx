@@ -11,7 +11,8 @@ export interface settingTypes{
 export interface mediaApply{
   applyType: 'single'| 'multiple',
   type : 'image'| 'video',
-  appliedData : string[]
+  appliedData : any[],
+  appliedId : string,
 
 }
 
@@ -29,7 +30,9 @@ interface settingTypeContextTypes {
   mediaFilesApply: mediaApply | undefined;
   setMediaFilesApply: React.Dispatch<React.SetStateAction<mediaApply | undefined>>;
   screenType: string,
-  setScreenType : React.Dispatch<React.SetStateAction<string>>
+  setScreenType : React.Dispatch<React.SetStateAction<string>>;
+  fileApplyOn : boolean;
+  setFileApplyOn : React.Dispatch<React.SetStateAction<boolean>>;
 
 }
 
@@ -50,8 +53,9 @@ export const SettingsContextProvider = ({children}: settingsContextProviderProps
   const [openMedia, setOpenMedia] = useState(false);
   const [mediaFilesApply, setMediaFilesApply] = useState<mediaApply | undefined>(undefined);
   const [screenType, setScreenType] = useState('');
+  const [fileApplyOn, setFileApplyOn] = useState(false);
   return (
-    <settingTypeContext.Provider value={{settingType, setSettingType, settingPopUp, setSettingPopUp, justDroppedId, setJustDroppedId, dragDrop, setDragDrop, openMedia, setOpenMedia, mediaFilesApply, setMediaFilesApply, screenType, setScreenType  }}>
+    <settingTypeContext.Provider value={{settingType, setSettingType, settingPopUp, setSettingPopUp, justDroppedId, setJustDroppedId, dragDrop, setDragDrop, openMedia, setOpenMedia, mediaFilesApply, setMediaFilesApply, screenType, setScreenType, fileApplyOn, setFileApplyOn  }}>
       {children}
     </settingTypeContext.Provider>
   )

@@ -1,3 +1,4 @@
+import { options } from "jodit/esm/core/helpers"
 
 
 
@@ -32,7 +33,8 @@ export const setSettingField:fieldSetArgs = (field, props)=>{
 
   const commonProps = {
     tabOpen : false,
-    tab: ''
+    tab: '',
+    statuses: ['normal', 'hover']
   }
 
   const fieldSet:setFieldScheama = {
@@ -53,9 +55,24 @@ export const setSettingField:fieldSetArgs = (field, props)=>{
         for : props?.for,
         type: 'settingField',
         tab: props?.tab || commonProps.tab,
-        tabOpen: props?.tabOpen ? props?.tabOpen : false
+        tabOpen: props?.tabOpen ? props?.tabOpen : false,
+        statuses: props?.statuses || commonProps.statuses
       
         }  
+      }
+
+    case 'status':
+      return {
+        field: field, 
+        props : {
+        statusOptions: [...props?.statusOptions],
+        value: props?.value || '',
+        for : props?.for,
+        type: 'settingField',
+        tab: props?.tab || commonProps.tab,
+        tabOpen: props?.tabOpen ? props?.tabOpen : false
+      
+        }
       }
 
     case 'textarea':
@@ -69,7 +86,8 @@ export const setSettingField:fieldSetArgs = (field, props)=>{
         for : props?.for,
         type: 'settingField',
         tab: props?.tab || commonProps.tab,
-        tabOpen: props?.tabOpen ? props?.tabOpen : false
+        tabOpen: props?.tabOpen ? props?.tabOpen : false,
+        statuses: props?.statuses || commonProps.statuses
       
         }  
       }
@@ -85,7 +103,8 @@ export const setSettingField:fieldSetArgs = (field, props)=>{
         for : props?.for,
         type: 'settingField',
         tab: props?.tab || commonProps.tab,
-        tabOpen: props?.tabOpen ? props?.tabOpen : false
+        tabOpen: props?.tabOpen ? props?.tabOpen : false,
+        statuses: props?.statuses || commonProps.statuses
         }  
       }
 
@@ -110,7 +129,8 @@ export const setSettingField:fieldSetArgs = (field, props)=>{
         for : props?.for,
         type: 'settingField',
         tab: props?.tab || commonProps.tab,
-        tabOpen: props?.tabOpen ? props?.tabOpen : false
+        tabOpen: props?.tabOpen ? props?.tabOpen : false,
+        statuses: props?.statuses || commonProps.statuses
       
         }  
 
@@ -126,7 +146,8 @@ export const setSettingField:fieldSetArgs = (field, props)=>{
         for : props?.for,
         type: 'settingField',
         tab: props?.tab || commonProps.tab,
-        tabOpen: props?.tabOpen ? props?.tabOpen : false
+        tabOpen: props?.tabOpen ? props?.tabOpen : false,
+        statuses: props?.statuses || commonProps.statuses
       
         }  
 
@@ -141,7 +162,8 @@ export const setSettingField:fieldSetArgs = (field, props)=>{
         for : props?.for,
         type: 'settingField',
         tab: props?.tab || commonProps.tab,
-        tabOpen: props?.tabOpen ? props?.tabOpen : false
+        tabOpen: props?.tabOpen ? props?.tabOpen : false,
+        statuses: props?.statuses || commonProps.statuses
       
         }  
 
@@ -157,8 +179,8 @@ export const setSettingField:fieldSetArgs = (field, props)=>{
         for : props?.for,
         type: 'settingField',
         tab: props?.tab || commonProps.tab,
-        tabOpen: props?.tabOpen ? props?.tabOpen : false
-
+        tabOpen: props?.tabOpen ? props?.tabOpen : false,
+        statuses: props?.statuses || commonProps.statuses
         }
 
       }
@@ -174,9 +196,27 @@ export const setSettingField:fieldSetArgs = (field, props)=>{
         for : props?.for,
         type: 'settingField',
         tab: props?.tab || commonProps.tab,
-        tabOpen: props?.tabOpen ? props?.tabOpen : false
+        tabOpen: props?.tabOpen ? props?.tabOpen : false,
+        statuses: props?.statuses || commonProps.statuses
         }
       }
+     
+    case 'increase':
+      return {
+        field: field,
+        props : {
+        label: props?.label,
+        labelId: props?.labelId,
+        // unitOptions : [...props?.unitOptions],
+        value: '',
+        for : props?.for,
+        type: 'settingField',
+        tab: props?.tab || commonProps.tab,
+        tabOpen: props?.tabOpen ? props?.tabOpen : false,
+        statuses: props?.statuses || commonProps.statuses
+        }
+    }
+      
 
     case 'select':
       return {
@@ -191,9 +231,65 @@ export const setSettingField:fieldSetArgs = (field, props)=>{
         type: 'settingField',
         responsive: props?.responsive ? props?.responsive : 'on',
         tab: props?.tab || commonProps.tab,
-        tabOpen: props?.tabOpen ? props?.tabOpen : false
+        tabOpen: props?.tabOpen ? props?.tabOpen : false,
+        statuses: props?.statuses || commonProps.statuses
         }
       }
+
+
+      case 'transition':
+      return {
+        field: field,
+        props : {
+        label: props?.label,
+        labelId: props?.labelId,
+        options : [...props?.options],
+        value:props?.value ? props?.value : '',
+        defaultNot:props?.defaultNot,
+        for : props?.for,
+        type: 'settingField',
+        responsive: props?.responsive ? props?.responsive : 'on',
+        tab: props?.tab || commonProps.tab,
+        tabOpen: props?.tabOpen ? props?.tabOpen : false,
+        statuses: props?.statuses || commonProps.statuses
+        }
+      }
+
+    case 'transform':
+      return {
+        field: field,
+        props : {
+        label: props?.label,
+        labelId: props?.labelId,
+        options : [...props?.options],
+        value:props?.value ? props?.value : '',
+        defaultNot:props?.defaultNot,
+        for : props?.for,
+        type: 'settingField',
+        responsive: props?.responsive ? props?.responsive : 'on',
+        tab: props?.tab || commonProps.tab,
+        tabOpen: props?.tabOpen ? props?.tabOpen : false,
+        statuses: props?.statuses || commonProps.statuses
+        }
+      }
+
+    case 'iconSelect':
+      return {
+        field: field,
+        props : {
+        label: props?.label,
+        labelId: props?.labelId,
+        options : [...props?.options],
+        value:props?.value ? props?.value : '',
+        defaultNot:props?.defaultNot,
+        for : props?.for,
+        type: 'settingField',
+        // responsive: props?.responsive ? props?.responsive : 'on',
+        tab: props?.tab || commonProps.tab,
+        tabOpen: props?.tabOpen ? props?.tabOpen : false,
+        statuses: props?.statuses || commonProps.statuses
+        }
+    }
       
     case 'position':
       return {
@@ -208,7 +304,8 @@ export const setSettingField:fieldSetArgs = (field, props)=>{
         type: 'settingField',
         responsive: props?.responsive ? props?.responsive : 'on',
         tab: props?.tab || commonProps.tab,
-        tabOpen: props?.tabOpen ? props?.tabOpen : false
+        tabOpen: props?.tabOpen ? props?.tabOpen : false,
+        statuses: props?.statuses || commonProps.statuses
         }
       }
 
@@ -222,7 +319,8 @@ export const setSettingField:fieldSetArgs = (field, props)=>{
         for : props?.for,
         type: 'settingField',
         tab: props?.tab || commonProps.tab,
-        tabOpen: props?.tabOpen ? props?.tabOpen : false
+        tabOpen: props?.tabOpen ? props?.tabOpen : false,
+        statuses: props?.statuses || commonProps.statuses
         }
       }
 
@@ -232,11 +330,16 @@ export const setSettingField:fieldSetArgs = (field, props)=>{
         props : {
         label: props?.label,
         labelId: props?.labelId,
+        unitOption:props?.unitOption,
+        unitValue:'',
+        showUnit: props?.showUnit ? props?.showUnit : true,
+        selectUnit: props?.selectUnit ? props?.selectUnit : true,
         value: '',
         for : props?.for,
         type: 'settingField',
         tab: props?.tab || commonProps.tab,
-        tabOpen: props?.tabOpen ? props?.tabOpen : false
+        tabOpen: props?.tabOpen ? props?.tabOpen : false,
+        statuses: props?.statuses || commonProps.statuses
         }
       }
 
@@ -246,13 +349,14 @@ export const setSettingField:fieldSetArgs = (field, props)=>{
           props : {
           label: props?.label,
           labelId: props?.labelId,
-          value: '',
           options : [...props?.options],
+          value: '',
           for : props?.for,
           type: 'settingField',
           responsive: props?.responsive ? props?.responsive : 'on',
           tab: props?.tab || commonProps.tab,
-          tabOpen: props?.tabOpen ? props?.tabOpen : false
+          tabOpen: props?.tabOpen ? props?.tabOpen : false,
+          statuses: props?.statuses || commonProps.statuses
           }
         }
 
