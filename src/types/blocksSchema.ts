@@ -8,6 +8,13 @@ export type TextBlockType = 'text' | 'heading'
  export interface BaseBlock { 
   id: string;
   type: string; 
+  responsiveStyles ?: {
+    baseStyle?:{[key:string]: string};
+    tablet?: {[key:string]: string};
+    desktop?: {[key:string]: string};
+    hoverStyles?: {[key:string]: string},
+  },
+  
   styles?  : React.CSSProperties;
   tailWindClasses?: string;
   customClasses?: string;

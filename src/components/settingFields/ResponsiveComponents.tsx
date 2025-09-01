@@ -16,7 +16,7 @@ export default function ResponsiveComponents() {
   const icons = [
 
     {
-      label:"laptop" ,  value:"laptop"
+      label:"desktop" ,  value:"desktop"
     },
     {
        label:"tablet" , value:"tablet"
@@ -45,7 +45,7 @@ export default function ResponsiveComponents() {
             <span
               key={index}
               onClick={() => {
-                setScreenType(device.value);
+                setScreenType(device.value as "desktop" | "tablet" | "mobile");
                 setOpen(false);
               }}
               className={`py-1 px-1 hover:bg-gray-200/90 ${device.value === screenType && "bg-gray-200/90"}`}

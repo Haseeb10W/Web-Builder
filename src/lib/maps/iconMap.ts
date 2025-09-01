@@ -71,7 +71,7 @@ export const iconMap : {[key:string]: React.ElementType} ={
   uparrow : ChevronUp,
   togglebtn: PanelLeft,
   settings : Settings,
-  laptop: Laptop,
+  desktop: Laptop,
   tablet: Tablet,
   mobile : Smartphone,
   left : AlignLeft,

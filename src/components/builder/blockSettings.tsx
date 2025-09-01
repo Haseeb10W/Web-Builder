@@ -24,7 +24,7 @@ type tabType = 'content' | 'styles' | 'settings' | null
 
 function BlockSettings({data, updateData}:BlockSettingProps) {
 
-  const {settingType} = useSettingType()
+  const {settingType, screenType} = useSettingType()
   const [tabOpened, setTabOpen] = useState<tabType | string | any>('content')
   const [settingsData, setSettingsData] = useState<{[key:string]:any[]}>({})
 
@@ -212,7 +212,7 @@ function BlockSettings({data, updateData}:BlockSettingProps) {
         // console.log(settingType?.id)
 
        
-          appliedSettings(applied, foundBlock, fieldValue)
+          appliedSettings(applied, foundBlock, fieldValue, screenType)
           setSettingsData({...settings})
           updateData(newData)
 

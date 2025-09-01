@@ -13,6 +13,28 @@ export const findBlocksInContainer  = (blocks: Block[], draggedBlockId:string): 
           return null
           };
 
+export const findAllBlocks = (blocks:Block[]): Block[] | [] =>{
+  let getBlocks: Block[] = [];
+
+  for (const block of blocks){
+
+    getBlocks.push(block)
+    
+    if('children' in block && block.children) {
+      const findBlocks = findAllBlocks(block.children)
+      getBlocks.push(...findBlocks)
+
+    }
+
+  }
+
+  return getBlocks;
+
+}
+
+
+
+
   
 export const removeBlocksInContainer = (blocks:Block[], draggedBlockId:string):Block[]=>{
               return blocks.map(block => {
@@ -238,3 +260,6 @@ export const duplicateBlockHandler = (blockId: string, data: editSchema | undefi
     }
   } as editSchema);
 };
+
+
+

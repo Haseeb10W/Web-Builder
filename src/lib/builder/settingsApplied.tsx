@@ -2,7 +2,7 @@ import { Block } from "@/types/blocksSchema"
 
 
 
-export const appliedSettings = (applied:string | undefined, foundBlock:Block | null, fieldValue: string )=>{
+export const appliedSettings = (applied:string | undefined, foundBlock:Block | null, fieldValue: string, screenType: 'desktop' | 'tablet' | 'mobile' )=>{
   
 
   const isTextBlockType = (Block: Block | null)=>{
@@ -85,7 +85,7 @@ export const appliedSettings = (applied:string | undefined, foundBlock:Block | n
       break;
 
     case "backgroundChange":
-      console.log('hello')
+      // console.log('hello')
       if(isTextBlockType(foundBlock) ){
         backgroundSettingHandle(foundBlock, fieldValue)
 
@@ -117,7 +117,7 @@ const settingStyleApply = (condition:any, block:any, fieldValue:any,  property:s
 
 const backgroundSettingHandle = (foundBlock:Block, fieldValue: string )=>{
   const backgroundData = JSON.parse(fieldValue);
-  console.log(backgroundData)
+  // console.log(backgroundData)
 
   switch (backgroundData.type){
     case 'color': 
