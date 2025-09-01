@@ -48,7 +48,23 @@ import {
   ArrowLeftToLine,
   Pencil,
   ScanEye,
-  ImageOff
+  ImageOff,
+  Rabbit,
+  MousePointer,
+  Move,
+  TextCursor,
+  Cross,
+  UnfoldHorizontal,
+  Hand,
+  MoveHorizontal,
+  MoveVertical,
+  MoveDiagonal,
+  MoveDiagonal2,
+  Ban,
+  Pointer,
+  LoaderCircle,
+  ZoomIn,
+  ZoomOut
 
 
 } from 'lucide-react';
@@ -57,7 +73,8 @@ import {
 import { FaTabletAlt } from "react-icons/fa";
 import { MdAlignVerticalBottom, MdAlignVerticalCenter, MdAlignVerticalTop } from 'react-icons/md';
 import { TbDiabolo } from 'react-icons/tb';
-
+import { TbNavigationQuestion } from "react-icons/tb";
+import { BsQuestion } from "react-icons/bs";
 
 
 export const iconMap : {[key:string]: React.ElementType} ={
@@ -113,7 +130,30 @@ export const iconMap : {[key:string]: React.ElementType} ={
   preview : ScanEye,
   hLeft : ArrowRightFromLine,
   hRight : ArrowLeftToLine,
-  moMedia : ImageOff 
+  moMedia : ImageOff ,
+  rabbit : Rabbit,
+  default: MousePointer,
+  alias:  TbNavigationQuestion,
+  allScroll : Move,
+  auto : TextCursor,
+  cell : Cross,
+  colresize : UnfoldHorizontal,
+  plus: Plus ,
+  grap:Hand,
+  eresize:MoveHorizontal,
+  help:BsQuestion,
+  nresize : MoveVertical,
+  neresize :  MoveDiagonal,
+  nwresize : MoveDiagonal2,
+  nodrop : Ban,
+  point:Pointer,
+  progress:LoaderCircle,
+  MoveDiag:MoveDiagonal2,
+  zoomin : ZoomIn,
+  zoomout : ZoomOut
+ 
+
+
 
 }
 

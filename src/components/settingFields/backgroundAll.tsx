@@ -8,6 +8,7 @@ import Image from "./Image";
 import { lang } from "jodit/esm/core/constants";
 import Gradient from "./Gradient";
 import Video from "./Video";
+import PseudoStatus from "./pseudoStatus";
 
 
 const colorpros ={
@@ -18,6 +19,17 @@ const colorpros ={
         tabOpen: true
       
         }  
+
+const pseudo ={
+    // tabOpen: true,
+    statusOptions : [
+      {name: 'Normal', value: 'normal' },
+      {name: 'Hover', value: 'hover' },
+      // {name: 'Active', value: 'active' },
+    ],
+    value: 'normal',
+    tabOpen:true,
+}
 
 const bgRepeat = {
   label:"Background Repeat",
@@ -42,6 +54,7 @@ const bgRepeat = {
     }
   ],
   tabOpen: true,
+  responsive: 'on'
 }
 
 const bgSize = {
@@ -62,7 +75,8 @@ const bgSize = {
       label: 'Fill',
       value: '100% 100%'
     }
-  ]
+  ],
+  responsive: 'on'
 }
 
 const bgPosition = {
@@ -107,13 +121,14 @@ const bgPosition = {
       label: 'Center Bottom',
       value: 'center bottom'
     }
-  ]
+  ],
+  responsive: 'on'
 }
 
 
 
 const bgAttachment = {
-  label: "Background Attachment",
+  label: "Effects",
   value: "",
   tabOpen: true,
   tab: "",
@@ -130,7 +145,8 @@ const bgAttachment = {
       label: 'Local',
       value: 'local'
     }
-  ]
+  ],
+  responsive: 'on'
 }
 
 const bgImagePros ={
@@ -140,6 +156,12 @@ const bgImagePros ={
   tabOpen: true
 }
 
+const bgImageHover ={
+  label : "Background Image",
+  value:"",
+  tab:"",
+  tabOpen: true
+}
 
 
 // /coffee.jpg
@@ -149,11 +171,16 @@ export default function BackgroundAll({props, change}:settingFieldProps) {
   const [tabOpen,setTabOpen] = useState(false)
   const [bgSizeProps, setBgSizeProps] = useState(bgSize)
   const [bgRepeatProps, setBgRepeatProps] = useState(bgRepeat)
+  const [bgHoverImage,setBgHoverImage] = useState(bgImageHover)
   const [bgType, setBgType] = useState({})
+  const [pseudoProps,setPseudoProps] = useState(pseudo)
   const [colorProps,setColorProps] = useState(colorpros)
   const [bgImageProps,setBgImageProps] = useState(bgImagePros)
   const [bgPositionProps,setBgPositionProps] = useState(bgPosition)
   const [bgAttachmentProps,setBgAttachmentProps] = useState(bgAttachment)
+
+
+  const selectImage = pseudoProps?.value == "hover" ? bgHoverImage : bgImageProps; 
 
   // const options = [
   //     {label: 'Color', value: 'color'},
@@ -214,16 +241,31 @@ export default function BackgroundAll({props, change}:settingFieldProps) {
     }))
   }
 
-  const handleBgImageValue = (value:string)=>{ 
+  // const handleBgImageValue = (value:string)=>{ 
+  //   // console.log(value);
+  //   const imgValue = {...bgImageProps}
+
+  //   imgValue.value = value;
+
+  //   setBgImageProps(imgValue);
+
+  // }
+
+
+  const handleSelectImage = (value:string)=>{
     // console.log(value);
-    const imgValue = {...bgImageProps}
-
-    imgValue.value = value;
-
-    setBgImageProps(imgValue);
-
+    if(pseudoProps?.value == "hover"){
+      setBgHoverImage((prev:any)=>({
+        ...prev,
+        value:value
+      }))
+    }else{
+      setBgImageProps((prev:any)=>({
+        ...prev,
+        value:value
+      }))
+    }
   }
-
 
   useEffect(()=>{
     let backgroundApply : {[key: string]: any} = {};
@@ -238,24 +280,39 @@ export default function BackgroundAll({props, change}:settingFieldProps) {
 
   }, [colorProps?.value])
 
+  const handlePseudoValue = (value:any) =>{
 
+     setPseudoProps((prev:any)=>({
+        ...prev,
+        value:value
+    }))
+
+  }
 
   return (
     <>
 
     <SelectField props={props} change={(value:any)=>handleTypeChange(value)}></SelectField>
     
-    {
-     props?.tabOpen && bgType == 'color' &&  (
-        <ColorField  props={colorProps} change={(value:any)=>handleColorValue(value)}/>
-      )
-    }
-    
-    {
-   props?.tabOpen && bgType == 'image' && (
-      <>
-      <Image props={bgImageProps} change={(value:any)=>handleBgImageValue(value)} />
+  {props?.tabOpen && bgType === 'color' &&  (
+  <>
+    <PseudoStatus props={pseudoProps} change={(value:any)=>handlePseudoValue(value)}/>
 
+      {
+       pseudoProps?.value == "normal" || pseudoProps?.value == "hover" ?
+       (<ColorField props={colorProps} change={(value:any)=>handleColorValue(value)}/>):
+       ''
+      }
+    
+  </>
+)}
+
+    
+    {props?.tabOpen && bgType == 'image' &&  (
+      <>
+      <PseudoStatus props={pseudoProps} change={(value:any)=>handlePseudoValue(value)}/>
+      {pseudoProps?.value == "normal" || pseudoProps?.value == "hover" ? (<>
+            <Image props={selectImage} change={(value:any)=>handleSelectImage(value)} />
       {
         bgImageProps?.value && (
           <>
@@ -267,18 +324,18 @@ export default function BackgroundAll({props, change}:settingFieldProps) {
           </>
         )
       }
-      
-
+      </>) : ''}
       </>
     )}
 
 
 
       {
-       props?.tabOpen && bgType == "gradient" && ( 
-        <>
-        <Gradient />        
-        </>
+       props?.tabOpen && bgType == "gradient" && ( <>
+      <PseudoStatus props={pseudoProps} change={(value:any)=>handlePseudoValue(value)}/>
+      
+       { pseudoProps?.value == "normal" || pseudoProps?.value == "hover" ? <Gradient /> :'' }
+       </>         
       )
       }
 

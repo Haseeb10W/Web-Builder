@@ -1,10 +1,11 @@
 "use client"
 import { settingFieldProps } from '@/types/settingsSchema'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import SelectField from './selectField'
 import IconField from './IconField';
 import RangeField from './RangeField';
 import SizeField from './sizeField';
+import PseudoStatus from './pseudoStatus';
 
 const horizentalOrientation = {
         label: "Horizental Orientation", 
@@ -15,6 +16,7 @@ const horizentalOrientation = {
           {label: 'Left', value: 'left'},
           {label: 'Right', value: 'right'},
         ],
+        responsive:'on',
         for :'directionChange',
         tab: '',
         tabOpen: true
@@ -29,7 +31,8 @@ const horiOffset = {
         ],
         for : 'widthSizeChange',
         tab: 'layout',
-        tabOpen: true
+        tabOpen: true,
+        // statuses : ['normal']
   }
 
 const verticalOrientation = {
@@ -41,6 +44,7 @@ const verticalOrientation = {
           {label: 'Top', value: 'top'},
           {label: 'Bottom', value: 'bottom'},
         ],
+        responsive:'on',
         for :'directionChange',
         tab: '',
         tabOpen: true
@@ -55,7 +59,8 @@ const verticalOrientation = {
         ],
         for : 'widthSizeChange',
         tab: 'layout',
-        tabOpen: true
+        tabOpen: true,
+       
   }
 
 export default function Position({props,change}: settingFieldProps ) {
@@ -63,11 +68,13 @@ export default function Position({props,change}: settingFieldProps ) {
   const [vertical,setVertical] = useState(verticalOrientation);
   const [hOffset,sethOffset] = useState(horiOffset);
    const [vOffset,setvOffset] = useState(vertiOffset);
+   const [pseudo,setPseudo] = useState('')
   const [position,setPosition] = useState("");
   const handlePositionChange = (value:any) =>{
         setPosition(value)
     }
     
+
   const handleHorizentalChange = (value:any) =>{
     setHorizental((prev:any)=>({...prev,value:value}))
   }
@@ -88,17 +95,26 @@ export default function Position({props,change}: settingFieldProps ) {
     }))
   }
 
+
+  // const handlePseudoChange = (value:any) =>{
+  //      setPseudo(value)
+  // }
+
+
   return (
     <>
+     {/* <PseudoStatus props={props} change={(value:any)=>handlePseudoChange(value)}/> */}
      <SelectField props={props} change={(value:any)=>handlePositionChange(value)}/>
-      {position === "absolute" || position === "sticky" || position === "fixed" ? (
+      { props?.tabOpen && (
+           position === "absolute" || position === "sticky" || position === "fixed" ? (
         <>
          <SelectField props={horizental} change={(value:any)=>handleHorizentalChange(value)}/>
          <SizeField props={hOffset} change={(value:any)=>handleHOffset(value)}/>
          <SelectField props={vertical} change={(value:any)=>handleVerticalChange(value)}/>
         <SizeField props={vOffset} change={(value:any)=>handleVOffset(value)}/>
         </>
-      ): null}
+      ): null)
+      }
     </>
   )
 }

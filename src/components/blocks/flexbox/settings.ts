@@ -46,10 +46,16 @@ const flexSettings:settingsSetupSchema = {
   setSettingField('halfSpace', {
       label: "Gap",
       labelId: "flex-grap",
+      unitOption:[
+       {name: "pixels", value: "px"},
+       {name: "percet", value: "%"},
+      ],
+      unitValue:'px',
+      showUnit:true,
+      selectUnit:false,
       for : 'flexGap',
       tab: 'flexlayout',
-      tabOpen: true
-    
+      tabOpen: true  
   }
     ),
 

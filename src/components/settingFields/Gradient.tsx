@@ -24,7 +24,8 @@ const bgGradient = {
       label: 'Conic',
       value: 'Conic'
     }
-  ]
+  ],
+  responsive:'on'
 }
 
 
@@ -38,8 +39,8 @@ const direction = {
       label: 'Degree',
       value: 'degree'
     },
-
-  ]
+  ],
+  responsive:'on'
 }
 
 const dPosition = {

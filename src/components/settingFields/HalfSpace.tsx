@@ -10,13 +10,14 @@ export default function HalfSpace({props, change}:settingFieldProps) {
   const [fullValue, seFullValue] = useState('')
   const [spaceValues, setSpaceValues] = useState<{[key: string]: any}>({tb:0 , rl: 0 });
   const [linkStatus, setLinkStatus] = useState({value: "all", fields: 1, width: "w-[97%]"})
-  const [unit, setUnit] = useState<string>('px'); 
+  const [unit, setUnit] = useState<string>(''); 
   const [unitOpen, setUnitOpen] = useState(false);
   
 
   useEffect(()=>{
     // console.log('good')
     if(props?.value){
+      seFullValue(props?.value)
       const values = props.value.split(' ');
       // console.log(values)
       const SanitizeValues = values.map((item:any)=>{
@@ -45,6 +46,11 @@ export default function HalfSpace({props, change}:settingFieldProps) {
         setSpaceValues({tb: top, rl: right})
       }
     }
+    else{
+      setUnit(props?.unitValue)
+    }
+
+    
   },[props?.value ])
 
   const refUnit = useDocumentClick(()=>{
@@ -260,13 +266,14 @@ export default function HalfSpace({props, change}:settingFieldProps) {
 
           }
         </div>
+        {props?.showUnit && (
         <div ref={refUnit} className="range-unit relative w-[12%] h-6 rounded-sm cursor-pointer  mt-auto flex items-center justify-center text-center bg-gray-200" onClick={()=>setUnitOpen(!unitOpen)}>
           <span className={`!text-sm `}>{unit}</span>
           {
-            unitOpen && (
+            unitOpen && props?.selectUnit && (
               <ul className={`absolute top-[103%] left-0 w-full flex flex-col items-center bg-white border border-gray-300 `}>
               {
-                unitRanges.map((item, index)=>(
+                props?.unitOption?.map((item:any, index:number)=>(
                   <li key={index} onClick={()=>setUnit(item.value)} className={`hover:bg-gray-200 w-full text-sm p-1 ${item.value==unit && 'bg-gray-200' }`}>{item.value}</li>
                 ))
               }
@@ -277,6 +284,7 @@ export default function HalfSpace({props, change}:settingFieldProps) {
           }
           
         </div>
+        )}
 
 
 

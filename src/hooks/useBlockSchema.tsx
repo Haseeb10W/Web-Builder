@@ -96,6 +96,8 @@ export default function useBlockSchema( { type } : blockSchemaProps)  {
         props : {
           src: '',
           alt: '',
+          width:'',
+          height:''
 
         }
         

@@ -4,16 +4,30 @@ import useDocumentClick from '@/hooks/useDocumentClick';
 import { settingFieldProps } from '@/types/settingsSchema'
 import React, { useEffect, useState } from 'react'
 import ResponsiveComponents from './ResponsiveComponents';
+import DynamicIcons from '../DynamicIcons';
 
-export default function SelectField({props, change, returnVal}: settingFieldProps) {
-  const [selectedOption, setSelectedOption] = useState<{label: any, value: any}>({label: null, value: null});
+export default function IconSelectField({props, change}: settingFieldProps) {
+  const [selectedOption, setSelectedOption] = useState<{label: any, value: any,icon:string | null }>({label: null, value: null,icon:null});
   const [isOpen, setIsOpen] = useState(false);
   const clickRef = useDocumentClick(()=>{
     setIsOpen(false)
   })
 
   useEffect(()=>{
-    if(props?.value !== selectedOption.value){
+   
+    if(props?.value == ''){
+    
+      console.log(props?.options)
+         setSelectedOption({
+          label : props?.options[0].label,
+          value: props?.options[0].value,
+          icon: props?.options[0].icon
+        })
+
+    }
+  
+    if(props?.value !== selectedOption.value && props?.value !== ''){
+    
       
       if(props?.options){
        const selectedOne =  props?.options.find((item:any)=>{
@@ -23,20 +37,23 @@ export default function SelectField({props, change, returnVal}: settingFieldProp
 
         setSelectedOption({
           label : selectedOne?.label,
-          value: selectedOne?.value
+          value: selectedOne?.value,
+          icon : selectedOne?.icons
         })
 
 
       }
+      
 
     }
+    
 
   }, [props?.value])
 
 
 
-  const handleSelectOption = (value:any, label:any)=>{
-    setSelectedOption({label:label, value:value});
+  const handleSelectOption = (value:any, label:any,icon:any)=>{
+    setSelectedOption({label:label, value:value,icon:icon});
     setIsOpen(false)
 
     change?.(value)
@@ -70,8 +87,15 @@ export default function SelectField({props, change, returnVal}: settingFieldProp
 
 
       <div ref={clickRef} className="select-field relative min-w-22 " >
-        <div className="select-field-value text-center cursor-pointer bg-gray-200/90 rounded-lg px-1.5 selection:bg-transparent " onClick={()=>setIsOpen(!isOpen)}>
-          <span className={`text-[12px] `}>{selectedOption.label || 'Default'}</span>
+        <div className="select-field-value text-center cursor-pointer bg-gray-200/90 rounded-lg pl-2 py-0.5 selection:bg-transparent " onClick={()=>setIsOpen(!isOpen)}>
+          <div className={`text-[12px] flex items-center `}> 
+            <span className='mr-2'>
+                  <DynamicIcons name={selectedOption?.icon || "rabbit"} classes='w-3 h-3'/>
+                </span>
+                <span>
+                  {selectedOption?.label}
+                </span> 
+          </div>
           
         </div>
 
@@ -79,37 +103,35 @@ export default function SelectField({props, change, returnVal}: settingFieldProp
           isOpen && (
             <ul className={`absolute min-w-full  top-[103%] right-0 z-99 scroll-bar bg-white border border-gray-300  max-h-40 overflow-y-auto overflow-x-hidden`}>
              
-             {
+             {/* {
               !props?.defaultNot && ( <li 
               className={`!text-[12px] py-0.5 px-1 text-center w-full cursor-pointer hover:bg-gray-200 ${selectedOption.value== '' && 'bg-gray-200' }`}
               onClick={()=>handleSelectOption('', 'Default')}>Default</li> ) 
-             }
+             } */}
              
               
             {
               props?.options?.map((option :any, index:number) => (
               <li key={index}
-              className={`!text-[12px] py-0.5 px-1 text-center w-full cursor-pointer hover:bg-gray-200 ${selectedOption.value== option?.value && 'bg-gray-200' }`}
-              onClick={()=>handleSelectOption(option?.value, option?.label)}>{option?.label}</li>
+              className={`!text-[12px] py-0.5 pl-2 text-center w-full cursor-pointer flex items-center   hover:bg-gray-200 ${selectedOption.value== option?.value && 'bg-gray-200' }`}
+              onClick={()=>handleSelectOption(option?.value, option?.label,option?.icon)}>
+                <span className='mr-2'>
+                  <DynamicIcons name={option?.icon || "rabbit"} classes='w-3 h-3'/>
+                </span>
+                <span>
+                  {option?.label}
+                </span>
+              </li>
               ))
             }
 
             </ul>
 
           )
-        }
-        
+        }        
 
       </div>
-      
-
-      
-     
-        
-
-      
-      
-
+          
     </div>
 
    )}

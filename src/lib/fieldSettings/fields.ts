@@ -1,3 +1,4 @@
+import { options } from "jodit/esm/core/helpers"
 
 
 
@@ -180,8 +181,6 @@ export const setSettingField:fieldSetArgs = (field, props)=>{
         tab: props?.tab || commonProps.tab,
         tabOpen: props?.tabOpen ? props?.tabOpen : false,
         statuses: props?.statuses || commonProps.statuses
-        
-
         }
 
       }
@@ -201,6 +200,23 @@ export const setSettingField:fieldSetArgs = (field, props)=>{
         statuses: props?.statuses || commonProps.statuses
         }
       }
+     
+    case 'increase':
+      return {
+        field: field,
+        props : {
+        label: props?.label,
+        labelId: props?.labelId,
+        // unitOptions : [...props?.unitOptions],
+        value: '',
+        for : props?.for,
+        type: 'settingField',
+        tab: props?.tab || commonProps.tab,
+        tabOpen: props?.tabOpen ? props?.tabOpen : false,
+        statuses: props?.statuses || commonProps.statuses
+        }
+    }
+      
 
     case 'select':
       return {
@@ -213,11 +229,67 @@ export const setSettingField:fieldSetArgs = (field, props)=>{
         defaultNot:props?.defaultNot,
         for : props?.for,
         type: 'settingField',
+        responsive: props?.responsive ? props?.responsive : 'on',
         tab: props?.tab || commonProps.tab,
         tabOpen: props?.tabOpen ? props?.tabOpen : false,
         statuses: props?.statuses || commonProps.statuses
         }
       }
+
+
+      case 'transition':
+      return {
+        field: field,
+        props : {
+        label: props?.label,
+        labelId: props?.labelId,
+        options : [...props?.options],
+        value:props?.value ? props?.value : '',
+        defaultNot:props?.defaultNot,
+        for : props?.for,
+        type: 'settingField',
+        responsive: props?.responsive ? props?.responsive : 'on',
+        tab: props?.tab || commonProps.tab,
+        tabOpen: props?.tabOpen ? props?.tabOpen : false,
+        statuses: props?.statuses || commonProps.statuses
+        }
+      }
+
+    case 'transform':
+      return {
+        field: field,
+        props : {
+        label: props?.label,
+        labelId: props?.labelId,
+        options : [...props?.options],
+        value:props?.value ? props?.value : '',
+        defaultNot:props?.defaultNot,
+        for : props?.for,
+        type: 'settingField',
+        responsive: props?.responsive ? props?.responsive : 'on',
+        tab: props?.tab || commonProps.tab,
+        tabOpen: props?.tabOpen ? props?.tabOpen : false,
+        statuses: props?.statuses || commonProps.statuses
+        }
+      }
+
+    case 'iconSelect':
+      return {
+        field: field,
+        props : {
+        label: props?.label,
+        labelId: props?.labelId,
+        options : [...props?.options],
+        value:props?.value ? props?.value : '',
+        defaultNot:props?.defaultNot,
+        for : props?.for,
+        type: 'settingField',
+        // responsive: props?.responsive ? props?.responsive : 'on',
+        tab: props?.tab || commonProps.tab,
+        tabOpen: props?.tabOpen ? props?.tabOpen : false,
+        statuses: props?.statuses || commonProps.statuses
+        }
+    }
       
     case 'position':
       return {
@@ -230,6 +302,7 @@ export const setSettingField:fieldSetArgs = (field, props)=>{
         defaultNot:props?.defaultNot,
         for : props?.for,
         type: 'settingField',
+        responsive: props?.responsive ? props?.responsive : 'on',
         tab: props?.tab || commonProps.tab,
         tabOpen: props?.tabOpen ? props?.tabOpen : false,
         statuses: props?.statuses || commonProps.statuses
@@ -257,7 +330,10 @@ export const setSettingField:fieldSetArgs = (field, props)=>{
         props : {
         label: props?.label,
         labelId: props?.labelId,
-        
+        unitOption:props?.unitOption,
+        unitValue:'',
+        showUnit: props?.showUnit ? props?.showUnit : true,
+        selectUnit: props?.selectUnit ? props?.selectUnit : true,
         value: '',
         for : props?.for,
         type: 'settingField',
@@ -277,10 +353,10 @@ export const setSettingField:fieldSetArgs = (field, props)=>{
           value: '',
           for : props?.for,
           type: 'settingField',
+          responsive: props?.responsive ? props?.responsive : 'on',
           tab: props?.tab || commonProps.tab,
           tabOpen: props?.tabOpen ? props?.tabOpen : false,
           statuses: props?.statuses || commonProps.statuses
-
           }
         }
 
