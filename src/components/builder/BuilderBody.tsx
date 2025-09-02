@@ -16,6 +16,7 @@ import { DragEndHandler } from '@/lib/builder/renderDragEndHandler';
 import BlockSettings from './blockSettings';
 import { useSettingType } from '@/contexts/settingsType';
 import Media from '../clientSide/media';
+import { useSideToggle } from '@/contexts/toggleSide';
 
 interface BuilderBodyProps {
   pageData?: editSchema;
@@ -32,6 +33,7 @@ interface BuilderBodyProps {
 export default function BuilderBody({pageData, updateData,  updateBodyWidth, updateScreenSize, rendererSize=0}: BuilderBodyProps) {
   const [containerRef, containerDimensions] = useContainerDimensions();
   const [screenRef, screenDimensions] = useContainerDimensions();
+   const {toggleSide} = useSideToggle();
 
   const [isDropAnimating, setIsDropAnimating] = useState(false);
 
@@ -152,7 +154,7 @@ const handleSidebarDrop = useCallback((newBlock: Block, insertIndex?: number) =>
 
   return (
     <>
-    <div ref={containerRef} className={`w-full  h-[calc(100%-40px)] relative overflow-hidden bg-gray-300 z-33`}>
+    <div ref={containerRef} className={`w-full h-[calc(100%-40px)] relative overflow-hidden bg-gray-300 z-33`}>
       
       <Renderer  rendererRef={screenRef} rendererWidth={rendererSize} renderData={pageData} isDropAnimating={isDropAnimating}>
         <BlockRenderer pageData={pageData} updateData={updateData} onBlockReorder={handleBlockReorder} onSidebarDrop={handleSidebarDrop}/>

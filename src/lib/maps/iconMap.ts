@@ -62,7 +62,12 @@ import {
   Pointer,
   LoaderCircle,
   ZoomIn,
-  ZoomOut
+  ZoomOut,
+  PanelRight,
+  PanelTop,
+  PanelBottom,
+  Eye,
+  Save
 
 
 } from 'lucide-react';
@@ -85,6 +90,9 @@ export const iconMap : {[key:string]: React.ElementType} ={
   downarrow : ChevronDown,
   uparrow : ChevronUp,
   togglebtn: PanelLeft,
+  togglbtn : PanelRight,
+  paneltop: PanelTop,
+  panelbottom:PanelBottom, 
   settings : Settings,
   desktop: Laptop,
   tablet: Tablet,
@@ -148,10 +156,10 @@ export const iconMap : {[key:string]: React.ElementType} ={
   progress:LoaderCircle,
   MoveDiag:MoveDiagonal2,
   zoomin : ZoomIn,
-  zoomout : ZoomOut
- 
-
-
+  zoomout : ZoomOut,
+  eye:Eye,
+  save:Save
+  
 }
 
 

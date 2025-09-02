@@ -31,7 +31,6 @@ export type TextBlockType = 'text' | 'heading'
   props : {
     text: string | TrustedHTML;
   }
-  
 }
 
  export interface HeadingBlock extends BaseBlock {
@@ -49,6 +48,7 @@ export type TextBlockType = 'text' | 'heading'
   props : {
     src: string;
     alt?: string;
+    link?: string;
     width?: string;
     height?: string;
   }
@@ -58,8 +58,9 @@ export type TextBlockType = 'text' | 'heading'
   type: 'button';
   props : {
     text: string;
-    link : string;
+    link: string;
     target : '_self' | '_blank';
+    icon : string | null
 
   }
 }

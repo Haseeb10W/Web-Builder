@@ -55,7 +55,7 @@ function BlockSettings({data, updateData}:BlockSettingProps) {
   
 
   useEffect(()=>{
-
+    console.log(data)
     if(settingType ){
       // console.log(data)
       const settings = settingFunctionMap[settingType.type ](settingType, data, screenType )  
