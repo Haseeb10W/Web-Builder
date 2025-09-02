@@ -1,8 +1,9 @@
 import { Block } from "@/types/blocksSchema"
+import { styleApplyToElements } from "./settingsSetter"
 
 
 
-export const appliedSettings = (applied:string | undefined, foundBlock:Block | null, fieldValue: string, screenType: 'desktop' | 'tablet' | 'mobile' )=>{
+export const appliedSettings = (applied:string | undefined, foundBlock:Block | null, fieldValue: string, screenType: 'desktop' | 'tablet' | 'mobile', settingField: any, styleFields: string[] )=>{
   
 
   const isTextBlockType = (Block: Block | null)=>{
@@ -12,92 +13,31 @@ export const appliedSettings = (applied:string | undefined, foundBlock:Block | n
   
   // console.log(applied)
 
-  switch (applied){
-    case "textChange":
-      if(isTextBlockType(foundBlock)) {
+  if(applied == "textChange"){
+    if(isTextBlockType(foundBlock)) {
             foundBlock.props.text = fieldValue
+            settingField.props.value = fieldValue
       }
-      break;
-    case "alignChange":
-      settingStyleApply(isTextBlockType, foundBlock, fieldValue, 'textAlign')
-      break;
-    case "marginChange":
-      
-      settingStyleApply(isTextBlockType, foundBlock, fieldValue, 'margin')
-      break;
-    case "paddingChange":
-      
-      settingStyleApply(isTextBlockType, foundBlock, fieldValue, 'padding')
-      break;
-    case "colorChange":
-      
-      settingStyleApply(isTextBlockType, foundBlock, fieldValue, 'color')
-      break;
-    case "fontSizeChange":
-      
-      settingStyleApply(isTextBlockType, foundBlock, fieldValue, 'fontSize')
-      break;
+  }else if(styleFields.includes(applied as string)){
     
-    case "widthSizeChange":
-      settingStyleApply(isTextBlockType, foundBlock, fieldValue, 'width')
-      break;
-    case "maxWidthSizeChange":
-      settingStyleApply(isTextBlockType, foundBlock, fieldValue, 'maxWidth')
-      break;
-    case "heightSizeChange":
-      settingStyleApply(isTextBlockType, foundBlock, fieldValue, 'height')
-      break;
-    case "maxHeightSizeChange":
-      settingStyleApply(isTextBlockType, foundBlock, fieldValue, 'maxHeight')
-      break;
-    case "vAlignChange":
-      settingStyleApply(isTextBlockType, foundBlock, fieldValue, 'alignContent')
-      break;
-    case "lineHeightChange":
-      settingStyleApply(isTextBlockType, foundBlock, fieldValue, 'lineHeight')
-      break
-    case "fontWeightChange":
-      settingStyleApply(isTextBlockType, foundBlock, fieldValue, 'fontWeight')
-      break;
-    case "textTransformChange":
-      settingStyleApply(isTextBlockType, foundBlock, fieldValue, 'textTransform')
-      break;
-    case "fontStyleChange":
-      settingStyleApply(isTextBlockType, foundBlock, fieldValue, 'fontStyle')
-      break;
-    case "textDecorationChange":
-      settingStyleApply(isTextBlockType, foundBlock, fieldValue, 'textDecoration')
-      break;
-    case "letterSpacingChange":
-      settingStyleApply(isTextBlockType, foundBlock, fieldValue, 'letterSpacing')
-      break;
-    case "wordSpacingChange":
-      settingStyleApply(isTextBlockType, foundBlock, fieldValue, 'wordSpacing')
-      break;
-    case "fontFamilyChange":
-      
-      if(isTextBlockType(foundBlock)) {
+    styleApplyToElements(screenType, settingField,  foundBlock, fieldValue, applied as string)
+  }else if(applied == "fontFamilyChange"){
+    if(isTextBlockType(foundBlock)) {
         foundBlock.classTracking = {
           ...foundBlock.classTracking,
           fontFamilyClass: fieldValue
         };
       }
-      break;
 
-    case "backgroundChange":
-      // console.log('hello')
-      if(isTextBlockType(foundBlock) ){
+  }else if( applied == "backgroundChange"){
+    if(isTextBlockType(foundBlock) ){
         backgroundSettingHandle(foundBlock, fieldValue)
 
       }
-      break;
 
-
-
-
-      // Cases End
   }
-        
+
+
 
 // Function End
 }

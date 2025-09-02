@@ -9,7 +9,7 @@ export interface settingsSetArgs{
   (
     settingType:settingTypes,
      data: editSchema | undefined,
-     setSettingsData: React.Dispatch<React.SetStateAction<{}>>
+     screenType: "desktop" | "tablet" | "mobile"
   ) : void
 }
 
@@ -37,29 +37,21 @@ export interface settingFieldProps {
   returnVal?: String;
 }
 
+export type settingContiner = {
+  field : string,
+    props : {
+      [key: string]: any
+    }
+
+}
 
 export interface settingsSetupSchema {
   
-  content : {
-    field : string,
-    props : {
-      [key: string]: any
-    }
-    }[],
+  content : settingContiner[],
   
-  styles : {
-    field : string,
-    props : {
-      [key: string]: any
-    }
-    }[],
+  styles : settingContiner[],
   
-  settings : {
-    field : string,
-    props : {
-      [key: string]: any
-    }
-    }[],
+  settings :settingContiner[],
   
 
   

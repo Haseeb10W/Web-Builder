@@ -50,7 +50,7 @@ export default function Text({block, index, onDelete, onCopy}: TextProps) {
         ...textBlock?.styles
 
       }}
-      className = {` block-${textBlock?.id} ${textBlock?.tailWindClasses} ${textBlock?.customClasses} cursor-default selected-child ${trackingClass}`}
+      className = {` block-editor-${textBlock?.id} ${textBlock?.tailWindClasses} ${textBlock?.customClasses} cursor-default selected-child ${trackingClass}`}
       dangerouslySetInnerHTML={{__html:textBlock && textBlock?.props?.text }}
 
     ></p>

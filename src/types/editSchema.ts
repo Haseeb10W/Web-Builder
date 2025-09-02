@@ -23,7 +23,9 @@ export interface SiteData {
   image?: string;
   styling: {
     [key: string]: string;
-  }
+  },
+  editable : boolean;
+  
 
 }
 
@@ -35,7 +37,8 @@ export interface SiteData {
   content: Block[];
   styling: {
     [key: string]: string;
-  }
+  },
+  editable : boolean;
 }
 
  interface footerSchema {
@@ -46,7 +49,8 @@ export interface SiteData {
   content: Block[];
   styling: {
     [key: string]: string;
-  }
+  },
+  editable : boolean;
 }
 
 
@@ -58,7 +62,8 @@ export interface SiteData {
   content: Block[];
   styling: {
     [key: string]: string;
-  }
+  },
+  editable : boolean;
 }
 
 type ContentSchema = pageSchema | headerSchema | footerSchema | postSchema;

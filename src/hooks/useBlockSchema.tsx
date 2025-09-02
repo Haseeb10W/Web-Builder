@@ -55,6 +55,20 @@ export default function useBlockSchema( { type } : blockSchemaProps)  {
              ...blockAdd.responsiveStyles,
              baseStyle : {
               ...blockAdd?.responsiveStyles?.baseStyle,
+              'text-align': 'center'
+              
+             },
+             tablet : {
+              ...blockAdd?.responsiveStyles?.tablet,
+              'text-align': 'left'
+
+             },
+             desktop: {
+              ...blockAdd?.responsiveStyles?.desktop,
+              'text-align': 'justify'
+             },
+             hoverStyles : {
+              ...blockAdd?.responsiveStyles?.hoverStyles,
               
              }
 

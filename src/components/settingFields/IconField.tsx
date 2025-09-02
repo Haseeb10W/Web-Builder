@@ -11,23 +11,25 @@ export default function IconField({props, change}: settingFieldProps ) {
   const [data, setData] = useState([])
 
   useEffect(()=>{
-    setAlignValue(props?.value)
+    // console.log(props?.value)
+
+    // console.log(props?.currentStatus)
     
 
   }, [props?.value])
 
   const handleValueChange =(value:string)=>{
-    setAlignValue(value)
     
-    change?.(value)
+    const currentValue = {
+      status : props?.currentStatus,
+      value : value
+    }
+    const finalValue = JSON.stringify(currentValue)
+    change?.(finalValue)
 
   }
 
-  useEffect(()=>{
-    setData(props?.data)
-
-
-  }, [])
+  
 
 
 
@@ -49,9 +51,9 @@ export default function IconField({props, change}: settingFieldProps ) {
       
       <div className="alignBlocks flex py-1 px-3 justify-between">
         {
-         data && data?.map((item:any, index:number)=>(
-            <span className={`p-2  rounded-sm ${alignValue == item?.value && 'bg-gray-200/30'}`} key={index} onClick={()=>handleValueChange(item?.value)} title={item?.title}>
-              <DynamicIcons name={item?.name} classes={` h-4 w-4 hover:text-black cursor-pointer ${alignValue == item?.value ? 'text-black': 'text-black/60'} `}></DynamicIcons>
+         props?.data && props?.data?.map((item:any, index:number)=>(
+            <span className={`p-2  rounded-sm ${props?.value == item?.value && 'bg-gray-200/30'}`} key={index} onClick={()=>handleValueChange(item?.value)} title={item?.title}>
+              <DynamicIcons name={item?.name} classes={` h-4 w-4 hover:text-black cursor-pointer ${props?.value == item?.value ? 'text-black': 'text-black/60'} `}></DynamicIcons>
             </span>
 
           ))

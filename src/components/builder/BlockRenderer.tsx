@@ -8,7 +8,8 @@ import { DndContext, DragEndEvent, DragOverEvent, DragStartEvent, useDndMonitor 
 import useBlockSchema from '@/hooks/useBlockSchema';
 import { customDropzoneCollisionDetection } from '@/lib/builder/customCollisionDetection';
 import { deleteBlockHandler, duplicateBlockHandler, findAllBlocks, findBlockOverall } from '@/lib/builder/blockHandlers';
-import { loadAllStyles } from '@/lib/builder/renderHandling';
+import { loadAllStyles, loadStyleForEditor } from '@/lib/builder/renderHandling';
+import { useSettingType } from '@/contexts/settingsType';
 
 interface BlockRendererProps {
   pageData?: editSchema;
@@ -19,6 +20,7 @@ interface BlockRendererProps {
 
 export default function BlockRenderer({pageData, updateData, onBlockReorder, onSidebarDrop}: BlockRendererProps) {
   // console.log(pageData)
+  const {screenType} = useSettingType()
 
   
 
@@ -53,9 +55,9 @@ export default function BlockRenderer({pageData, updateData, onBlockReorder, onS
   
 
     useEffect(()=>{
-      loadAllStyles(pageData);
+      loadStyleForEditor(pageData, screenType);
 
-    }, [pageData])
+    }, [pageData, screenType])
 
 
   

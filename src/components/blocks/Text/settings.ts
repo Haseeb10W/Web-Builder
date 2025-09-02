@@ -1,7 +1,7 @@
 import { settingTypes } from "@/contexts/settingsType"
 import { findBlock, findBlockOverall, findBlocksInContainer } from "@/lib/builder/blockHandlers"
 import { handleSettingChange } from "@/lib/builder/settingHandlers"
-import { backgroundSettingsSetter } from "@/lib/builder/settingsSetter"
+import { backgroundSettingsSetter, getValueForFields, getValueOnStatusChange, styleApplyToFields } from "@/lib/builder/settingsSetter"
 import { setSettingField } from "@/lib/fieldSettings/fields"
 import { Block } from "@/types/blocksSchema"
 import { editSchema } from "@/types/editSchema"
@@ -23,7 +23,8 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
       placeholder: 'Add your Text here',
       for : 'textChange',
       tab: '',
-      tabOpen: true}
+      tabOpen: true
+    }
     ),
     
 
@@ -41,8 +42,21 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
 
     // 0 :: Alignment
     setSettingField('heading',{label: "Alignment", for : 'alignment', tabOpen: true, tabAllow: true}),
+    // 1 : Pseudo Status 
+    setSettingField('status', { 
+      for : 'alignment',
+      tab: 'alignment',
+      tabOpen: true,
+      statusOptions : [
+        {name: 'Normal', value: 'normal' },
+        {name: 'Hover', value: 'hover' },
+        // {name: 'Active', value: 'active' },
+      ],
+      
 
-    // 1
+    }),
+
+    // 2
         setSettingField('iconField', {
         label: "Horizontal Align", 
         labelId: "text-alignment",
@@ -52,13 +66,14 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
            {name: 'right', value: 'right' , title: 'Right'  },
           {name: 'justify', value: 'justify', title: 'Justify'   },
         ],
-        for : 'alignChange',
+        for : 'text-align',
         tab: 'alignment',
-        tabOpen: true
+        tabOpen: true,
+        
 
   }),
 
-  // 2
+  // 3
   setSettingField('iconField', {
         label: "Vertical Align", 
         labelId: "text-alignment-vertical",
@@ -69,40 +84,41 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
           {name: 'vSpaceAround', value: 'space-around', title:  "Space Around" },
           {name: 'vSpaceBetween', value: 'space-between', title: "Space Between"  },
         ],
-        for : 'vAlignChange',
+        for : 'align-content',
         tab: 'alignment',
-        tabOpen: true
+        tabOpen: true,
+        
 
   }),
   
 
-  // 3: TypoGraphy
+  // 4: TypoGraphy
   setSettingField('heading',{label: "Typography", for : 'typography', tabAllow: true}),
 
-  // 4 : Pseudo Status 
+  // 5 : Pseudo Status 
   setSettingField('status', { 
     for : 'typography',
     tab: 'typography',
     // tabOpen: true,
     statusOptions : [
-      {name: 'Normal', value: 'normal' },
+      {name: 'Normal', value:'normal' },
       {name: 'Hover', value: 'hover' },
       // {name: 'Active', value: 'active' },
     ],
-    value: 'normal',
+    // value: 'normal',
 
   }),
   
-  // 5
+  // 6
   setSettingField('colors', {
         label: "Text Color", 
         labelId: "text-color-font",
-        for : 'colorChange',
+        for : 'color',
         tab: 'typography',      
   }),
 
 
-  // 6
+  // 7
   setSettingField('fontFamily', {
         label: "Font Family", 
         labelId: "text-family-font",
@@ -124,7 +140,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
           {name: "ViewHeight", value: "vh"},
 
         ],
-        for : 'fontSizeChange',
+        for : 'font-size',
         tab: 'typography',
        
 
@@ -139,14 +155,14 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
           {name: "percent", value: "%"},
           {name: "Rem", value: "rem"},
         ],
-        for : 'lineHeightChange',
+        for : 'line-height',
         tab: 'typography',
         statuses : ['normal']
   }),
 
   // 9
   setSettingField('select', {
-         label: "Font Weight", 
+        label: "Font Weight", 
         labelId: "text-font-weight",
         options: [
           {label: '100', value: '100'},
@@ -160,7 +176,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
           {label: '900', value: '900'},
         ],
         
-        for : 'fontWeightChange',
+        for : 'font-weight',
         tab: 'typography',
         
         
@@ -179,7 +195,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
           {label: 'Capitalize', value: 'capitalize'},
         ],
 
-        for : 'textTransformChange',
+        for : 'text-transform',
         tab: 'typography',
         statuses : ['normal']
   }),
@@ -196,7 +212,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
 
         ],
 
-        for : 'fontStyleChange',
+        for : 'font-style',
         tab: 'typography',
 
   }),
@@ -212,7 +228,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
           {label: 'Over / Under', value: 'underline overline'},
 
         ],
-        for : 'textDecorationChange',
+        for : 'text-decoration',
         tab: 'typography',
         statuses : ['normal']
   }),
@@ -228,7 +244,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
           {name: "ViewWidth", value: "vw"},
           {name: "ViewHeight", value: "vh"},
         ],
-        for : 'letterSpacingChange',
+        for : 'letter-spacing',
         tab: 'typography',
         
   }),
@@ -244,7 +260,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
           {name: "ViewWidth", value: "vw"},
           {name: "ViewHeight", value: "vh"},
         ],
-        for : 'wordSpacingChange',
+        for : 'word-spacing',
         tab: 'typography',
   }),
 
@@ -300,7 +316,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
           {label: 'Inset', value: 'Inset'},
           {label: 'Outset', value: 'outset'},
         ],
-        for : 'borderStyleChange',
+        for : 'border-style',
         tab : 'border',
         
   }),
@@ -310,7 +326,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
   setSettingField('colors', {
     label: "Border Color", 
     labelId: "text-border-color",
-    for : 'boderColorChange',
+    for : 'boder-color',
     tab: 'border',
   }),
   
@@ -318,7 +334,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         setSettingField('spacing', {
         label: "Border Width",
         labelId: "text-border-width",
-        for : 'borderWidthChange',
+        for : 'border-width',
         tab: 'border',
     }
       ),
@@ -326,7 +342,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
   setSettingField('spacing', {
       label: "Border Radius",
       labelId: "text-border-radius",
-      for : 'borderRadiusChange',
+      for : 'border-radius',
       tab: 'border',
     
   }
@@ -358,7 +374,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
     setSettingField('spacing', {
       label: "Margin",
       labelId: "text-margin-spacing",
-      for : 'marginChange',
+      for : 'margin',
       tab: 'layout',
       tabOpen: true
   }
@@ -368,7 +384,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
    setSettingField('spacing', {
       label: "Padding",
       labelId: "text-padding-spacing",
-      for : 'paddingChange',
+      for : 'padding',
       tab: 'layout',
       tabOpen: true
   }),
@@ -387,7 +403,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
           {name: "ViewHeight", value: "vh"},
 
         ],
-        for : 'widthSizeChange',
+        for : 'width',
         tab: 'layout',
          tabOpen: true
   }),
@@ -406,7 +422,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
           {name: "ViewHeight", value: "vh"},
 
         ],
-        for : 'maxWidthSizeChange',
+        for : 'max-width',
         tab: 'layout',
         tabOpen: true,
   }),
@@ -424,7 +440,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
           {name: "ViewHeight", value: "vh"},
 
         ],
-        for : 'heightSizeChange',
+        for : 'height',
         tab: 'layout',
          tabOpen: true
   }),
@@ -441,7 +457,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
           {name: "ViewWidth", value: "vw"},
           {name: "ViewHeight", value: "vh"},
         ],
-        for : 'maxHeightSizeChange',
+        for : 'max-height',
         tab: 'layout',
          tabOpen: true
   }),
@@ -509,7 +525,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
           {label: 'Auto', value: 'auto'},
 
         ],
-        for : 'overflowChange',
+        for : 'overflow-x',
         tab : 'overflow',
       }),
 
@@ -523,7 +539,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
           {label: 'Auto', value: 'auto'},
 
         ],
-        for : 'overflowChange',
+        for : 'overflow-y',
         tab : 'overflow',
       }),
 
@@ -535,7 +551,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         label: "Zindex", 
         labelId: "z-index",
         value:'',
-        for : 'other',
+        for : 'z-index',
         tab: 'other',
        }),
 
@@ -580,7 +596,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
           {label: 'Zoom in', value: 'zoom-in',icon:"zoomin"},
           {label: 'Zoom Out', value: 'zoom-out',icon:"zoomout"},
         ],
-        for : 'other',
+        for : 'cursor',
         tab : 'other',
         
   }),
@@ -613,7 +629,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
 
 
 
-export const textSettingsSet:settingsSetArgs = (settingType, data)=> {
+export const textSettingsSet:settingsSetArgs = (settingType, data, screenType)=> {
 
   // console.log(settingType)
   const blockId = settingType?.id;
@@ -632,12 +648,15 @@ export const textSettingsSet:settingsSetArgs = (settingType, data)=> {
       /*+++++++++++++++++++++++ Styles +++++++++++++++++++++ */
 
             /* Alignment */
-      settings.styles[1].props.value = findBlock?.styles?.textAlign;
-      settings.styles[2].props.value = findBlock?.styles?.alignContent;
+      settings.styles[2].props.value = getValueForFields(findBlock, screenType, settings.styles[2].props.currentStatus || 'normal', "text-align" ) 
+      settings.styles[3].props.value =  getValueForFields(findBlock, screenType, settings.styles[3].props.currentStatus || 'normal', "align-content") 
+      
+  
             /* Font Styles */
-      settings.styles[5].props.value = findBlock?.styles?.color;
-      settings.styles[6].props.value = findBlock?.classTracking?.fontFamilyClass;
-      settings.styles[7].props.value = findBlock?.styles?.fontSize;
+      settings.styles[6].props.value = getValueForFields(findBlock, screenType, settings.styles[6].props.currentStatus || 'normal', "color");
+      
+      settings.styles[7].props.value = findBlock?.classTracking?.fontFamilyClass;
+      // settings.styles[7].props.value = findBlock?.styles?.fontSize;
       settings.styles[8].props.value = findBlock?.styles?.lineHeight;
       settings.styles[9].props.value = findBlock?.styles?.fontWeight;
       settings.styles[10].props.value = findBlock?.styles?.textTransform;

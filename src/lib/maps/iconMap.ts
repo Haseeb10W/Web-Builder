@@ -31,14 +31,12 @@ import {
   Video,
   Play,
   TriangleAlert,
-
   ImagePlus,
   Plus,
   MoveLeft,
   MoveRight,
   MoveUp,
   MoveDown,
-
   AlignHorizontalJustifyStart,
   AlignHorizontalJustifyEnd,
   AlignHorizontalJustifyCenter,
@@ -152,7 +150,6 @@ export const iconMap : {[key:string]: React.ElementType} ={
   zoomin : ZoomIn,
   zoomout : ZoomOut
  
-
 
 
 }

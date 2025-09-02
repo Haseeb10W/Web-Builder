@@ -16,7 +16,8 @@ export const siteData :SiteData = {
       styling : {
         backgroundColor: "#ffffff",
         
-      }
+      },
+      editable : true,
     },
     
     
