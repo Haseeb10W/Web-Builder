@@ -3,6 +3,7 @@ import { pageSettingsSet } from "../layoutSettings/page";
 import { flexSettingsSet } from "@/components/blocks/flexbox/settings";
 import { HeadSettingsSet } from "@/components/blocks/heading/settings";
 import { ImageSettingsSet } from "@/components/blocks/Image/setting";
+import { buttonSettingsSet } from "@/components/blocks/button/setting";
 
 
 
@@ -15,5 +16,6 @@ export const settingFunctionMap : {[key:string]: any}= {
   page : pageSettingsSet,
   flex : flexSettingsSet,
   heading : HeadSettingsSet,
-  image : ImageSettingsSet
+  image : ImageSettingsSet,
+  button : buttonSettingsSet
 }

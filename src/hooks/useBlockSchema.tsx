@@ -116,6 +116,7 @@ export default function useBlockSchema( { type } : blockSchemaProps)  {
             text : 'Click Me',
             link : '',
             target : '_self',
+             icon: null
           }
           
         } as ButtonBlock

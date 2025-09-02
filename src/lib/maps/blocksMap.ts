@@ -1,3 +1,4 @@
+import Button from "@/components/blocks/button";
 import FlexBox from "@/components/blocks/flexbox";
 import Heading from "@/components/blocks/heading";
 import Image from "@/components/blocks/Image";
@@ -9,6 +10,6 @@ export const blockMap :{[key:string]: ElementType}= {
   text : Text,
   flex : FlexBox,
   heading: Heading,
-  image:Image
-
+  image:Image,
+  button:Button
 }

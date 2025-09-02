@@ -23,14 +23,8 @@ function BuilderHeader ({dataPage, screenSize = 0, updateScreenSize, bodyWidth=0
   const { setSettingType, setSettingPopUp, setOpenMedia, screenType, setScreenType} = useSettingType()
   
   useEffect(()=>{
-    console.log(dataPage)
-    // console.log(screenSize)
-    if(window.innerWidth > 1024){
-      setToggleSide(false) 
-    }
-    else{
-      setToggleSide(true)
-    }
+  
+  
   },[])
 
   useEffect(()=>{
@@ -114,6 +108,25 @@ function BuilderHeader ({dataPage, screenSize = 0, updateScreenSize, bodyWidth=0
       return false
     }
   }
+  
+  const showToggleIcon = useCallback(() =>{
+    let icon
+    if(!toggleSide && window.innerWidth >= 1000){
+      icon = "togglebtn"
+      
+    }
+    else if(toggleSide && window.innerWidth >= 1000){
+      icon = "togglbtn"
+    }
+    else if(!toggleSide && window.innerWidth <1000){
+      icon = "panelbottom"
+    }
+    else{
+      icon = "paneltop"
+    }
+    return icon
+  } ,[toggleSide] )
+
   return (
     <div className={`h-10 w-full px-2 flex justify-between items-center  border-b border-b-gray-300  content-center bg-white`}
     
@@ -121,7 +134,8 @@ function BuilderHeader ({dataPage, screenSize = 0, updateScreenSize, bodyWidth=0
 
       {/* Left Header */}
       <div className={'flex items-center h-full gap-2'}>
-      <span className={`cursor-pointer`} onClick={handleToggleChange} ><DynamicIcons name='togglebtn' classes={`hover:text-gray-700`} /></span>
+      <span className={`cursor-pointer`} onClick={handleToggleChange} >
+        <DynamicIcons name={showToggleIcon()} classes={`hover:text-gray-700`} /></span>
       {/* Title Page */}
       <div className={`ml-2 px-3 bg-gray-200 rounded-lg cursor-default`}>
 
@@ -164,8 +178,14 @@ function BuilderHeader ({dataPage, screenSize = 0, updateScreenSize, bodyWidth=0
 
       {/* Right Header */}
 
-      <div className="flex">
-
+      <div className="flex gap-2">
+      <div className='flex items-center px-2 py-1 rounded-sm cursor-pointer bg-gray-200 hover:bg-gray-300' title='Preview'>
+         <DynamicIcons name='eye' classes='h-5 w-5 ' /> 
+      </div>
+      <div className='flex items-center gap-1 px-3 py-1 rounded-sm cursor-pointer bg-gray-200 hover:bg-gray-300'>
+        <DynamicIcons name='save' classes='h-5 w-5 ' />
+        <span className='text-sm min-[660px]:inline hidden'>Published</span>
+      </div>
       </div>
       
     </div>
