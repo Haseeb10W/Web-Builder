@@ -13,7 +13,7 @@ export interface SiteData {
   
 }
 
- interface pageSchema {
+export interface pageSchema {
   kind : 'page';
   title: string;
   slug : string;
@@ -23,8 +23,9 @@ export interface SiteData {
   image?: string;
   styling: {
     [key: string]: string;
-  }
-
+  },
+  editable : boolean;
+  
 }
 
  interface headerSchema {
@@ -35,7 +36,8 @@ export interface SiteData {
   content: Block[];
   styling: {
     [key: string]: string;
-  }
+  },
+  editable : boolean;
 }
 
  interface footerSchema {
@@ -46,7 +48,8 @@ export interface SiteData {
   content: Block[];
   styling: {
     [key: string]: string;
-  }
+  },
+  editable : boolean;
 }
 
 
@@ -58,10 +61,11 @@ export interface SiteData {
   content: Block[];
   styling: {
     [key: string]: string;
-  }
+  },
+  editable : boolean;
 }
 
-type ContentSchema = pageSchema | headerSchema | footerSchema | postSchema;
+export type ContentSchema = pageSchema | headerSchema | footerSchema | postSchema;
 
  type editContentSchema <k extends ContentSchema['kind']> = {
   editType : k,

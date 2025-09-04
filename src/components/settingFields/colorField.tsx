@@ -33,7 +33,7 @@ export default function ColorField({props, change}:settingFieldProps) {
       return 
 
     }
-    console.log(props?.value)
+    // console.log(props?.value)
     // if(props?.value == 'rgba(0,0,0,1)' ){
     //   setColorNot(true)
       
@@ -57,7 +57,13 @@ export default function ColorField({props, change}:settingFieldProps) {
     // console.log(newColor)
     // setColor(newColor)
 
-    change?.(newColor)
+    const currentValue = {
+      status : props?.currentStatus,
+      value : newColor
+    }
+    const finalValue = JSON.stringify(currentValue)
+
+    change?.(finalValue)
 
   }
 

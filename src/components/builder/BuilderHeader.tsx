@@ -22,29 +22,26 @@ function BuilderHeader ({dataPage, screenSize = 0, updateScreenSize, bodyWidth=0
   const {toggleSide, setToggleSide} = useSideToggle();
   const { setSettingType, setSettingPopUp, setOpenMedia, screenType, setScreenType} = useSettingType()
   
-  useEffect(()=>{
-  
-  
-  },[])
 
   useEffect(()=>{
-     let typeGet;
-    if(screenSize > 960 ){
-      typeGet = 'laptop'
-    }else if(screenSize > 500 && bodyWidth >500)
-      typeGet = 'tablet'
-    else{
-      typeGet = 'mobile'
+    // let typeGet: 'desktop' | 'tablet' | 'mobile' ;
+    // if(screenSize > 960 || window.innerWidth > 960 ){
+    //   typeGet = 'desktop'
+    // }else if( window.innerWidth >500)
+    //   typeGet = 'tablet'
+    // else{
+    //   typeGet = 'mobile'
 
-    }
-    setScreenType(typeGet)
-    // console.log(typeGet)
+    // }
+    // setScreenType(typeGet)
+    setScreenType('desktop')
+    
     
 
-  }, [screenSize])
+  }, [])
 
   useEffect(()=>{
-    if(bodyWidth > 960 && screenType == 'laptop'){
+    if(bodyWidth > 960 && screenType == 'desktop'){
       
       if(updateScreenSize){
         updateScreenSize(bodyWidth);
@@ -89,7 +86,7 @@ function BuilderHeader ({dataPage, screenSize = 0, updateScreenSize, bodyWidth=0
       }
 
       
-    }else if(screenType === 'laptop'){
+    }else if(screenType === 'desktop'){
       
       updateScreenSize(bodyWidth)
     }
@@ -157,8 +154,8 @@ function BuilderHeader ({dataPage, screenSize = 0, updateScreenSize, bodyWidth=0
 
       <div className={`flex h-9`}>
         <div className="tabs flex justify-center gap-1 text-center my-1 p-1 px-1 mx-2 bg-gray-200 rounded-lg" >
-          <li className={`p-1  py-0.5 rounded-sm cursor-pointer hover:bg-white ${showActiveScreen('laptop') && 'bg-white'}` } title="View Big Screen Mode" onClick={()=>setScreenType('laptop') } >
-          <DynamicIcons name='laptop' classes='h-4 w-4'></DynamicIcons >
+          <li className={`p-1  py-0.5 rounded-sm cursor-pointer hover:bg-white ${showActiveScreen('desktop') && 'bg-white'}` } title="View Big Screen Mode" onClick={()=>setScreenType('desktop') } >
+          <DynamicIcons name='desktop' classes='h-4 w-4'></DynamicIcons >
           </li>
           <li className={`p-1 py-0.5 rounded-sm cursor-pointer hover:bg-white ${showActiveScreen('tablet') && 'bg-white'}`} title="View Tablet Mode" onClick={()=>setScreenType('tablet') }>
           <DynamicIcons name='tablet' classes='h-4 w-4 ' ></DynamicIcons >

@@ -8,6 +8,7 @@ import SettingFields from './SettingFields';
 import {  handleSettingChangeArgs } from '@/types/settingsSchema';
 import { findBlockOverall } from '@/lib/builder/blockHandlers';
 import { appliedSettings } from '@/lib/builder/settingsApplied';
+import { getValueOnStatusChange } from '@/lib/builder/settingsSetter';
 
 interface BlockSettingProps {
   data: editSchema | undefined ;
@@ -22,9 +23,15 @@ interface BlockSettingProps {
 type tabType = 'content' | 'styles' | 'settings' | null
 
 
+const styleFields = ["text-align", "align-content", "color", "font-size", "line-height", "font-weight", "text-transform", 
+  "font-style", "text-decoration", "letter-spacing", "word-spacing", "border-style" , "boder-color", "border-width", "border-radius",
+  "margin", "padding", "width", "max-width", "height", "max-height", "overflow-x", "overflow-y", "z-index", "cursor"
+]
+
+
 function BlockSettings({data, updateData}:BlockSettingProps) {
 
-  const {settingType} = useSettingType()
+  const {settingType, screenType} = useSettingType()
   const [tabOpened, setTabOpen] = useState<tabType | string | any>('content')
   const [settingsData, setSettingsData] = useState<{[key:string]:any[]}>({})
 
@@ -44,33 +51,32 @@ function BlockSettings({data, updateData}:BlockSettingProps) {
   ]
 
 
+
   
 
   useEffect(()=>{
 
-    if(settingType){
-      // console.log(settingType.title);
-       const settings = settingFunctionMap[settingType.type ](settingType, data )  
+    if(settingType ){
+      // console.log(data)
+      const settings = settingFunctionMap[settingType.type ](settingType, data, screenType )  
        setSettingsData(settings)
 
     }
 
-    
 
 
-
-  },[tabOpened, settingType] )
+  },[tabOpened, settingType, screenType] )
 
 
   const handleFieldChange:handleSettingChangeArgs=useCallback((value, id , type, applied, data, updateData, setSettingsData, settingsData )=>{
     
     // console.log(type)
     // console.log(value)
+    // console.log(id);
 
-    const InputTextType : string[] = []
+    
     const customTextType = ['texteditor', 'textAlign', 'spacing', 'colors', 'size', 'iconField', 'fontFamily', 'select', 'textarea' , 'texts', 'background']
 
-    const isInputTextType = InputTextType.includes(type as string)
     const isCustomTextType = customTextType.includes(type as string)
 
     
@@ -91,11 +97,14 @@ function BlockSettings({data, updateData}:BlockSettingProps) {
                 
               
                 if (item.props?.tab === applied) {
+                  
+                  
                     return {
                         ...item,
                         props: {
                             ...item.props,
-                            tabOpen: value
+                            tabOpen: value,
+                            
                         }
                     };
                 }
@@ -112,6 +121,9 @@ function BlockSettings({data, updateData}:BlockSettingProps) {
     }
 
 
+    
+
+
     if( type === 'status'){
       
       setSettingsData && setSettingsData(prevSettingsData => {
@@ -125,7 +137,8 @@ function BlockSettings({data, updateData}:BlockSettingProps) {
               ...item,
               props: {
                 ...item.props,
-                value: value
+                value: value,
+                
               }
             };
           }
@@ -135,13 +148,15 @@ function BlockSettings({data, updateData}:BlockSettingProps) {
             // console.log(item)
             
             if (item?.props?.statuses && item?.props?.statuses?.includes(value as string)) {
-              console.log(item)
+              // console.log(item)
+              
               return {
                 ...item,
                 props: {
                   ...item.props,
-                  tabOpen: true
-
+                  tabOpen: true,
+                  currentStatus: value,
+                  value : getValueOnStatusChange(styleFields, settingType?.id as string, data, value as string, screenType, item.props.for as string )  
 
                 }
               };
@@ -152,8 +167,8 @@ function BlockSettings({data, updateData}:BlockSettingProps) {
                 ...item,
                 props: {
                   ...item.props,
-                  tabOpen: false
-
+                  tabOpen: false,
+                  
             }
           }
         }
@@ -169,9 +184,6 @@ function BlockSettings({data, updateData}:BlockSettingProps) {
       });
 
 
-
-
-
       return
     }
     
@@ -180,12 +192,10 @@ function BlockSettings({data, updateData}:BlockSettingProps) {
 
 
     if(isCustomTextType){
+      
       fieldValue = value as string
       // console.log('customText')
 
-    }else if(isInputTextType ){
-      const target = (value as unknown as  React.ChangeEvent<HTMLInputElement>)?.target;
-      fieldValue = target?.value || ''
     }else{
       
       fieldValue =  ''
@@ -204,7 +214,7 @@ function BlockSettings({data, updateData}:BlockSettingProps) {
       
 
       if(settingField && setSettingsData && data && updateData && settingType){
-        settingField.props.value = fieldValue
+        // settingField.props.value = fieldValue
 
         const newData = {...data}
         const foundBlock = findBlockOverall(newData, settingType?.id)
@@ -212,9 +222,11 @@ function BlockSettings({data, updateData}:BlockSettingProps) {
         // console.log(settingType?.id)
 
        
-          appliedSettings(applied, foundBlock, fieldValue)
+          appliedSettings(applied, foundBlock, fieldValue, screenType, settingField, styleFields)
           setSettingsData({...settings})
           updateData(newData)
+
+          // console.log(newData)
 
         
         

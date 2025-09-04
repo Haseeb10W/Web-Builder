@@ -3,7 +3,7 @@
 import React, { createContext, useContext, useState } from "react"
 
 export interface settingTypes{
-   id: string,
+  id: string,
   title: string,
   type : string,
 }
@@ -29,8 +29,8 @@ interface settingTypeContextTypes {
   setOpenMedia: React.Dispatch<React.SetStateAction<boolean>>;
   mediaFilesApply: mediaApply | undefined;
   setMediaFilesApply: React.Dispatch<React.SetStateAction<mediaApply | undefined>>;
-  screenType: string,
-  setScreenType : React.Dispatch<React.SetStateAction<string>>;
+  screenType: 'desktop' | 'tablet' | 'mobile' ;
+  setScreenType : React.Dispatch<React.SetStateAction<'desktop' | 'tablet' | 'mobile' >>;
   fileApplyOn : boolean;
   setFileApplyOn : React.Dispatch<React.SetStateAction<boolean>>;
 
@@ -52,7 +52,7 @@ export const SettingsContextProvider = ({children}: settingsContextProviderProps
   const [dragDrop, setDragDrop] = useState<boolean>(false);
   const [openMedia, setOpenMedia] = useState(false);
   const [mediaFilesApply, setMediaFilesApply] = useState<mediaApply | undefined>(undefined);
-  const [screenType, setScreenType] = useState('');
+  const [screenType, setScreenType] = useState<'desktop' | 'tablet' | 'mobile' >('desktop');
   const [fileApplyOn, setFileApplyOn] = useState(false);
   return (
     <settingTypeContext.Provider value={{settingType, setSettingType, settingPopUp, setSettingPopUp, justDroppedId, setJustDroppedId, dragDrop, setDragDrop, openMedia, setOpenMedia, mediaFilesApply, setMediaFilesApply, screenType, setScreenType, fileApplyOn, setFileApplyOn  }}>

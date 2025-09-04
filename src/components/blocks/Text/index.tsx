@@ -34,7 +34,7 @@ export default function Text({block, index, onDelete, onCopy}: TextProps) {
         ...textBlock?.styles
 
       }}
-      className = {`flex-child ${textBlock?.tailWindClasses} ${textBlock?.customClasses} ${trackingClass}`}
+      className = {`flex-child block-${textBlock?.id} ${textBlock?.tailWindClasses} ${textBlock?.customClasses} ${trackingClass}`}
       dangerouslySetInnerHTML={{__html:textBlock && textBlock?.props?.text }}
 
     >
@@ -50,7 +50,7 @@ export default function Text({block, index, onDelete, onCopy}: TextProps) {
         ...textBlock?.styles
 
       }}
-      className = {`${textBlock?.tailWindClasses} ${textBlock?.customClasses} cursor-default selected-child ${trackingClass}`}
+      className = {` block-editor-${textBlock?.id} ${textBlock?.tailWindClasses} ${textBlock?.customClasses} cursor-default selected-child ${trackingClass}`}
       dangerouslySetInnerHTML={{__html:textBlock && textBlock?.props?.text }}
 
     ></p>

@@ -58,7 +58,7 @@ export default function FlexBox({block, index, onDelete, onCopy}:FlexProps) {
 
         
       }}
-      className={`${flexBlock?.tailWindClasses} ${flexBlock?.customClasses} relative [&>*:not(.drop-zone)]:flex-[0_0_30%] [&>*:not(.drop-zone):not(:last-child)]:mr-[10px]`}>
+      className={`block-${flexBlock?.id} ${flexBlock?.tailWindClasses} ${flexBlock?.customClasses} relative [&>*:not(.drop-zone)]:flex-[0_0_30%] [&>*:not(.drop-zone):not(:last-child)]:mr-[10px]`}>
         
         <SortableContext items={children.map(child => child.id)} strategy={strategy}>
           {

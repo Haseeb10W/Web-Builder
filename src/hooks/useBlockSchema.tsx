@@ -19,51 +19,14 @@ export default function useBlockSchema( { type } : blockSchemaProps)  {
   const blockAdd : Omit<Block , 'type' | 'props' | 'children'> = {
     id :  `${type}-${newId}`, 
     link:"",
-    styles :  {
-      textAlign : 'left',
-      margin: '0px 0px 0px 0px',
-      padding: '5px 5px 5px 5px',
-      color: '',
-      backgroundColor: '',
-      backgroundImage:'',
-      backgroundPosition:'',
-      backgroundSize:'',
-      backgroundRepeat:'',
-      backgroundAttachment:'',
-      fontSize: '',
-      width: '',
-      height: '',
-      maxWidth: '',
-      maxHeight: '',
-      alignContent: 'start',
-      lineHeight: '',
-      fontWeight: '',
-      fontStyle: '',
-      textDecoration: '',
-      letterSpacing: '',
-      wordSpacing: '',
-      borderStyle:'',
-      borderColor:'',
-      borderWidth:'',
-      borderTopWidth:'',
-      borderRightWidth:'',
-      borderBottomWidth:'',
-      borderLeftWidth:'',
-      borderRadius:'',
-      borderTopLeftRadius:'',
-      borderTopRightRadius:'',
-      borderBottomRightRadius:'',
-      borderBottomLeftRadius:'',
-      display:'',
-      flexDirection:'row',
-      flexWrap:'wrap',
-      justifyContent:'',
-      alignItems:'',
-      gap :'',
-      rowGap:'',
-      columnGap :''
-
+    styles :  {},
+    responsiveStyles : {
+      baseStyle : {},
+      tablet : {},
+      desktop : {},
+      hoverStyles: {},
     },
+    
     tailWindClasses : '',
     customClasses : '',
     classTracking: {
@@ -87,7 +50,29 @@ export default function useBlockSchema( { type } : blockSchemaProps)  {
           props : {
             text : `Your Text `
 
-          }
+          },
+          responsiveStyles : {
+             ...blockAdd.responsiveStyles,
+             baseStyle : {
+              ...blockAdd?.responsiveStyles?.baseStyle,
+              'text-align': 'center'
+              
+             },
+             tablet : {
+              ...blockAdd?.responsiveStyles?.tablet,
+              'text-align': 'left'
+
+             },
+             desktop: {
+              ...blockAdd?.responsiveStyles?.desktop,
+              'text-align': 'justify'
+             },
+             hoverStyles : {
+              ...blockAdd?.responsiveStyles?.hoverStyles,
+              
+             }
+
+          },
           
         } as TextBlock;
 
@@ -102,7 +87,6 @@ export default function useBlockSchema( { type } : blockSchemaProps)  {
           styles: {
             ...blockAdd.styles,
             fontWeight: '700',
-
 
           }
 

@@ -6,7 +6,7 @@ import React, { useEffect, useState } from "react";
 export default function PseudoStatus({ props, change }: settingFieldProps) {
 
   useEffect(()=>{
-    console.log(props)
+    // console.log(props)
   }
   ,[])
  

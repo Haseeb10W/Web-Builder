@@ -5,7 +5,7 @@ import { settingFieldProps } from '@/types/settingsSchema'
 import React, { useState } from 'react'
 import ResponsiveComponents from './ResponsiveComponents'
 
-export default function Zindex({props, change}:settingFieldProps) {
+export default function UnitLessSize({props, change}:settingFieldProps) {
 
 
   

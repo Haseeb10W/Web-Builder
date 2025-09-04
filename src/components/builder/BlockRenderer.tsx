@@ -7,7 +7,9 @@ import DropZone from './DropZone';
 import { DndContext, DragEndEvent, DragOverEvent, DragStartEvent, useDndMonitor } from '@dnd-kit/core';
 import useBlockSchema from '@/hooks/useBlockSchema';
 import { customDropzoneCollisionDetection } from '@/lib/builder/customCollisionDetection';
-import { deleteBlockHandler, duplicateBlockHandler, findBlockOverall } from '@/lib/builder/blockHandlers';
+import { deleteBlockHandler, duplicateBlockHandler, findAllBlocks, findBlockOverall } from '@/lib/builder/blockHandlers';
+import { loadAllStyles, loadStyleForEditor } from '@/lib/builder/renderHandling';
+import { useSettingType } from '@/contexts/settingsType';
 
 interface BlockRendererProps {
   pageData?: editSchema;
@@ -18,6 +20,10 @@ interface BlockRendererProps {
 
 export default function BlockRenderer({pageData, updateData, onBlockReorder, onSidebarDrop}: BlockRendererProps) {
   // console.log(pageData)
+  const {screenType} = useSettingType()
+
+  
+
   if(!pageData?.editData) return [];
   let blocks : Block[] = [];
   
@@ -35,7 +41,7 @@ export default function BlockRenderer({pageData, updateData, onBlockReorder, onS
   const handleBlockDelete = (id:string)=>{
     // console.log('delete')
     // console.log(id)
-    const block = findBlockOverall(pageData, id);
+    // const block = findBlockOverall(pageData, id);
     // console.log(block)
     deleteBlockHandler(id, pageData, updateData)
 
@@ -47,6 +53,12 @@ export default function BlockRenderer({pageData, updateData, onBlockReorder, onS
     duplicateBlockHandler(id, pageData, updateData);
 };
   
+
+    useEffect(()=>{
+      loadStyleForEditor(pageData, screenType);
+
+    }, [pageData, screenType])
+
 
   
 

@@ -31,14 +31,12 @@ import {
   Video,
   Play,
   TriangleAlert,
-
   ImagePlus,
   Plus,
   MoveLeft,
   MoveRight,
   MoveUp,
   MoveDown,
-
   AlignHorizontalJustifyStart,
   AlignHorizontalJustifyEnd,
   AlignHorizontalJustifyCenter,
@@ -96,7 +94,7 @@ export const iconMap : {[key:string]: React.ElementType} ={
   paneltop: PanelTop,
   panelbottom:PanelBottom, 
   settings : Settings,
-  laptop: Laptop,
+  desktop: Laptop,
   tablet: Tablet,
   mobile : Smartphone,
   left : AlignLeft,
@@ -162,6 +160,7 @@ export const iconMap : {[key:string]: React.ElementType} ={
   eye:Eye,
   save:Save
   
+
 }
 
 
