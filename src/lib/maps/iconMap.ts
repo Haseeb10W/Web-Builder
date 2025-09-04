@@ -67,7 +67,9 @@ import {
   PanelTop,
   PanelBottom,
   Eye,
-  Save
+  Save,
+  PanelBottomOpen,
+  PanelBottomClose
 
 
 } from 'lucide-react';
@@ -158,8 +160,10 @@ export const iconMap : {[key:string]: React.ElementType} ={
   zoomin : ZoomIn,
   zoomout : ZoomOut,
   eye:Eye,
-  save:Save
-  
+  save:Save,
+  panelbottomOpen: PanelBottomOpen,
+  panelbottomClose: PanelBottomClose
+
 }
 
 

@@ -3,6 +3,7 @@
 import DynamicIcons from '@/components/DynamicIcons'
 import { settingFieldProps } from '@/types/settingsSchema'
 import React, { useEffect, useState } from 'react'
+import ResponsiveComponents from './ResponsiveComponents'
 
 
 export default function TextAlign({props, change}: settingFieldProps ) {
@@ -38,11 +39,14 @@ export default function TextAlign({props, change}: settingFieldProps ) {
       props?.tabOpen && (
     
     <div className={`flex flex-col mt-2 gap-2`}>
+      <div className='flex items-center gap-x-1.5'>
       {
         props?.label != '' && (
           <label htmlFor={props?.labelId} className={`text-sm text-gray-600`}>{props?.label}</label>
         )
       }
+      { props?.responsive == 'on' && ( <ResponsiveComponents /> )   }
+      </div>
       
       <div className="alignBlocks flex py-1 px-3 justify-between">
         {

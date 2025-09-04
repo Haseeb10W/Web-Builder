@@ -5,6 +5,7 @@ import { useSettingType } from "@/contexts/settingsType";
 import { settingFieldProps } from "@/types/settingsSchema";
 import { v4 as uuidv4 } from 'uuid';
 import { mediaUrl } from "../../../config/apiConfig";
+import ResponsiveComponents from "./ResponsiveComponents";
 
 export default function Image({props, change}:settingFieldProps) {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -69,7 +70,13 @@ export default function Image({props, change}:settingFieldProps) {
   return (
     <>
       <div className="mt-2">
+
+        <div className='flex gap-x-1.5'>
         <h3 className="text-sm text-gray-600">{props?.label}</h3>
+        { props?.responsive == 'on' && ( <ResponsiveComponents /> )   }
+        </div>
+
+        
         <div className="w-full h-40 mt-2 bg-gray-200 flex items-center justify-center ">
           {selectedImage ? (
             <div className="relative group h-full w-full cursor-pointer" onClick={handleImageSelect} >

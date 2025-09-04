@@ -29,7 +29,7 @@ export interface SiteData {
 
 }
 
- interface headerSchema {
+ export interface headerSchema {
   kind: 'header';
   title : string;
   slug : string;
@@ -38,10 +38,11 @@ export interface SiteData {
   styling: {
     [key: string]: string;
   },
+  active : boolean;
   editable : boolean;
 }
 
- interface footerSchema {
+export interface footerSchema {
   kind: 'footer';
   title : string;
   slug : string;
@@ -50,6 +51,7 @@ export interface SiteData {
   styling: {
     [key: string]: string;
   },
+  active : boolean;
   editable : boolean;
 }
 
@@ -66,7 +68,7 @@ export interface SiteData {
   editable : boolean;
 }
 
-type ContentSchema = pageSchema | headerSchema | footerSchema | postSchema;
+export type ContentSchema = pageSchema | headerSchema | footerSchema | postSchema;
 
  type editContentSchema <k extends ContentSchema['kind']> = {
   editType : k,
@@ -74,6 +76,8 @@ type ContentSchema = pageSchema | headerSchema | footerSchema | postSchema;
 }
 
 export type allEditSchema = editContentSchema<'page'> | editContentSchema<'header'> | editContentSchema<'footer'> | editContentSchema<'post'>;
+
+export type renderSchema = editContentSchema<'page'> | editContentSchema<'post'> ;
 
 export type editSchema = allEditSchema | null;
 

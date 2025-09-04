@@ -22,6 +22,7 @@ export default function IconField({props, change}: settingFieldProps ) {
     
     const currentValue = {
       status : props?.currentStatus,
+      responsive : props?.responsive || 'on',
       value : value
     }
     const finalValue = JSON.stringify(currentValue)
@@ -46,7 +47,7 @@ export default function IconField({props, change}: settingFieldProps ) {
           <label htmlFor={props?.labelId} className={`text-sm text-gray-600`}>{props?.label}</label>
         )
       }
-      <ResponsiveComponents/>
+      { props?.responsive == 'on' && ( <ResponsiveComponents /> )   }
       </div>
       
       <div className="alignBlocks flex py-1 px-3 justify-between">

@@ -4,18 +4,36 @@ import { settingContiner, settingsSetupSchema } from "@/types/settingsSchema";
 import { findBlockOverall } from "./blockHandlers";
 
 
-export const backgroundSettingsSetter = (findBlock:Block)=>{
+export const backgroundSettingsSetter = (findBlock:Block, screenType: "desktop" | "tablet" | "mobile", status:string )=>{
 
-  const backgroundColor = findBlock?.styles?.backgroundColor;
-  const backgroundImage = findBlock?.styles?.backgroundImage;
-  const backgroundPosition = findBlock?.styles?.backgroundPosition;
-  const backgroundSize = findBlock?.styles?.backgroundSize;
-  const backgroundRepeat = findBlock?.styles?.backgroundRepeat;
-  const backgroundAttachment = findBlock?.styles?.backgroundAttachment;
 
+  
+
+  const allValues = {
+    
+    backgroundColor : getValueForFields(findBlock, screenType, status, 'background-color'),
+    backgroundImage : getValueForFields(findBlock, screenType, status, 'background-image'),
+    backgroundPosition : getValueForFields(findBlock, screenType, status, 'background-position'),
+    backgroundSize : getValueForFields(findBlock, screenType, status, 'background-size'),
+    backgroundRepeat: getValueForFields(findBlock, screenType, status, 'background-repeat'),
+    backgroundAttachment: getValueForFields(findBlock, screenType, status, 'background-attachment'),
+    backgroundGradient : getValueForFields(findBlock, screenType, status, 'background')
+    
+  }
+
+
+  const fullValue = JSON.stringify(allValues) 
+  return fullValue;
 
 
 }
+
+
+
+
+
+
+
 
 
 export const getValueOnStatusChange = (styleFields: string[], settingId:string, data: editSchema | undefined, statusValue:string, screenType: "desktop" | "tablet" | "mobile", field: string)=>{
@@ -99,57 +117,5 @@ export const styleApplyToFields = (settings:settingsSetupSchema, block:Block, sc
 
 } 
 
-
-export const styleApplyToElements = (screen: 'desktop' | 'tablet' | 'mobile', settingField: any, block:Block | null, fieldValue: string, style:string)=>{
-
-  if(!block) return;  
-
-  const fullValue = JSON.parse(fieldValue);
-
-  const status = fullValue.status;
-  const value = fullValue.value;
-
-  settingField.props.value = value
-
-  switch (status){
-    case "normal":
-      if(screen === 'desktop'){
-        block.responsiveStyles = block.responsiveStyles || {}
-        block.responsiveStyles.baseStyle = block.responsiveStyles.baseStyle || {} 
-        block.responsiveStyles.desktop = block.responsiveStyles.desktop || {} 
-
-        if(block.responsiveStyles.desktop[style]  && block.responsiveStyles.desktop[style] !== ''){
-          block.responsiveStyles.desktop[style] = value
-        }else{
-          block.responsiveStyles.baseStyle[style] = value;
-
-        }
-        
-      }else if(screen === 'mobile'){
-        block.responsiveStyles = block.responsiveStyles || {}
-        block.responsiveStyles.baseStyle = block.responsiveStyles.baseStyle || {} 
-        block.responsiveStyles.desktop = block.responsiveStyles.desktop || {} 
-        block.responsiveStyles.baseStyle[style] = value
-        block.responsiveStyles.desktop[style] = value
-
-      }else if(screen === 'tablet'){
-        block.responsiveStyles = block.responsiveStyles || {}
-        block.responsiveStyles.tablet = block.responsiveStyles.tablet || {} 
-         
-        block.responsiveStyles.tablet[style] = value
-        
-
-      }
-      break;
-    case "hover":
-      block.responsiveStyles = block.responsiveStyles || {}
-      block.responsiveStyles.hoverStyles = block.responsiveStyles.hoverStyles || {} 
-      block.responsiveStyles.hoverStyles[style] = value
-  }
-
-  
-  
-
-}
 
 

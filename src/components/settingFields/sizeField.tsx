@@ -23,7 +23,7 @@ export default function SizeField({props, change}:settingFieldProps) {
       // console.log(props?.value)
       const value = props?.value.trim()
       // console.log(value)
-      const units = ['px', '%', 'rem', 'em', 'vw', 'vh'];
+      const units = ['px', '%', 'rem', 'em', 'vw', 'vh', 'deg'];
       const unit = units.find((unit)=> value.includes(unit))
       // console.log(unit)
       const size = Number(value.replace(unit, ''))
@@ -74,24 +74,46 @@ export default function SizeField({props, change}:settingFieldProps) {
     }
 
     const newValue = `${size}${unit}`;
+
+    const fullValue = {
+      status : props?.currentStatus,
+      value : ''
+    }
+
+
+
     if(value != ''){
 
       setSize(Number(size))
-      change?.(newValue)
+      fullValue.value = newValue;
+      
 
     }else{
       setSize('')
-      change?.('')
+      fullValue.value = '';
+
+      
     }
     
+    change?.(JSON.stringify(fullValue))
     
   }
 
   const handleUnitChange = useCallback((value:string)=>{
 
     const newValue = `${size}${value}`
-    change?.(newValue)
+    
     setUnit(value)
+
+    const fullValue = {
+      status : props?.currentStatus,
+      responsive : props?.responsive || 'on',
+      value : newValue
+    }
+
+    change?.(JSON.stringify(fullValue))
+
+
 
   }, [unit])
   
@@ -108,7 +130,8 @@ export default function SizeField({props, change}:settingFieldProps) {
           <label htmlFor={props?.labelId} className={`text-sm text-gray-600`}>{props?.label}</label>
         )
       }
-      <ResponsiveComponents/>
+      { props?.responsive == 'on' && ( <ResponsiveComponents /> )   }
+      
       </div>
 
 

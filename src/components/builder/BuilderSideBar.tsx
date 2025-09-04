@@ -67,12 +67,12 @@ export default function BuilderSideBar() {
 
   return (
     <>
-  <div className={`w-full h-full  min-[1000px]:pb-5 bg-white relative`}>
+  <div className={`w-full h-full  min-[1000px]:pb-5  bg-white relative ${toggleSide ? 'pb-0 m-0 bg-gray-500 ': ''}`}>
       
       
-    <div className={`flex justify-center px-2 py-2 h-1/12 z-10`}>
-        <h3 className="min-[1000px]:text-xl min-[1000px]:z-99 min-[1000px]:w-[80%] text-sm font-bold min-[1000px]:top-0 min-[1000px]:border-0 min-[1000px]:relative border border-gray-300 bg-white absolute -top-7 py-1 pb-2 px-3  text-center rounded-lg -z-2 " onClick={()=>{ window.innerWidth <= 1000 &&  handleToggleChange() }}>Components</h3>
-        <span className={`cursor-pointer min-[1024px]:hidden  min-[1000px]:block hidden ml-auto`} onClick={handleToggleChange} ><DynamicIcons name='togglebtn' classes={`hover:text-gray-700`} /></span>
+    <div className={`flex justify-center  z-10 ${toggleSide ? 'py-0 h-0 ': 'px-2 pt-2 h-1/12'}`}>
+        <h3 className={`min-[1000px]:text-xl min-[1000px]:z-99 min-[1000px]:w-[80%] text-sm font-bold min-[1000px]:top-0 min-[1000px]:border-0 min-[1000px]:relative min-[1000px]:cursor-default cursor-pointer border border-gray-300 bg-white absolute py-1  px-3  text-center  -z-2 ${toggleSide ? ' bottom-0  z-999 rounded-t-lg pb-1': '-top-7 rounded-lg pb-2'} `} onClick={()=>{ window.innerWidth <= 1000 &&  handleToggleChange() }}>Components</h3>
+        
        
       </div>
       {
@@ -86,16 +86,16 @@ export default function BuilderSideBar() {
           activeTab == 'elements' && (
             <div className="flex min-[1000px]:mt-2 px-4  min-[1000px]:h-[calc(100%-40px)]  min-[1000px]:overflow-y-auto overflow-x-auto overflow-y-hidden">
               
-              <ul className='flex gap-2 min-[1000px]:flex-col'>
+              <ul className='flex gap-2 min-[1000px]:flex-col min-[1000px]:w-full '>
                 {
                   elementsData.map((category, index) => (
-                    <li key={index} className="min-w-[100px]" title={category.label}>
+                    <li key={index} className=" min-[1000px]:min-w-full  min-w-[100px] " title={category.label}>
                       <div className={`flex justify-between items-center cursor-pointer pt-2 `} onClick={() => {window.innerWidth >= 1000 && handleToggleElements(category.value)}  }>
                         <h4 className="text-sm font-semibold my-2">{category.label}</h4>
-                        <DynamicIcons name={checkToggleStatus(category.value)? 'downarrow': 'uparrow'} classes= "w-4 h-4 min-[1000px]:block hidden " />
+                        <DynamicIcons name={checkToggleStatus(category.value) ? 'downarrow': 'uparrow'} classes= "w-4 h-4 min-[1000px]:block hidden " />
                       </div>
                       {checkToggleStatus(category.value) &&
-                      <ul className="flex min-[1000px]:flex-wrap gap-2 min-w-[1000px]:gap-4 mt-2">
+                      <ul className="flex min-[1000px]:flex-wrap flex-nowrap gap-2 min-w-[1000px]:gap-4 mt-2">
                         {
                           
                           category.elements.map((element, idx) => (          

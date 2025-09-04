@@ -139,10 +139,10 @@ export default function Builder() {
 
     
     <div className="flex min-[1000px]:flex-row flex-col-reverse h-screen w-full bg-gray-100">
-      <div className={`side  transition-[width] duration-200 min-[1000px]:h-full min-[1000px]:overflow-hidden ${toggleSide ? 'min-[1000px]:w-0 min-[1000px]:block hidden ': 'min-[1024px]:!w-1/5  min-[1000px]:w-[270px] z-999 w-full h-[200px] top-0 left-0 border border-gray-300'}`} >
+      <div className={`side  transition-[width] duration-200 min-[1000px]:h-full min-[1000px]:overflow-hidden ${toggleSide ? 'min-[1000px]:w-0 min-[1000px]:h-screen h-0  ': 'min-[1024px]:!w-1/5  min-[1000px]:w-[270px] z-999 w-full h-[200px] min-[1000px]:border-r border-y border-gray-300'}`} >
         <BuilderSideBar   />
       </div>
-      <div className={`body-left  min-[1000px]:h-full transition-[width] duration-200 bg-amber-300 ${toggleSide ? 'w-5/5 h-[calc(100%-0px)]': 'min-[1024px]:w-4/5 w-5/5  h-[calc(100%-170px)]'}`}>
+      <div className={`body-left  min-[1000px]:h-full transition-[width] duration-200  ${toggleSide  ? 'w-5/5 h-full ': 'min-[1024px]:w-4/5 w-5/5  h-[calc(100%-170px)]'}`}>
       <BuilderHeader  dataPage={pageData}    screenSize={screenSize} updateScreenSize={setScreenSize} bodyWidth={ bodyWidth } />
       <BuilderBody updateBodyWidth ={setBodyWidth} pageData={pageData} updateData={setPageData}  updateScreenSize={setScreenSize} rendererSize={screenSize} />
     

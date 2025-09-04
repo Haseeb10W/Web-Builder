@@ -59,6 +59,7 @@ export default function ColorField({props, change}:settingFieldProps) {
 
     const currentValue = {
       status : props?.currentStatus,
+      responsive : props?.responsive || 'on',
       value : newColor
     }
     const finalValue = JSON.stringify(currentValue)
@@ -110,12 +111,7 @@ export default function ColorField({props, change}:settingFieldProps) {
           <label htmlFor={props?.labelId} className={`text-sm text-gray-600`}>{props?.label}</label>
         )
       }
-      <ResponsiveComponents/>
-      {/* <select name="" id="">
-        <option value="he">Hello</option>
-        <option value="he">Hello</option>
-        <option value="he">Hello</option>
-      </select> */}
+      { props?.responsive == 'on' && ( <ResponsiveComponents /> )   }
       </div>
 
     <div ref={clickRef} className="!relative rounded-sm w-5 h-5 border border-gray-300 ml-auto">

@@ -55,7 +55,7 @@ function BlockSettings({data, updateData}:BlockSettingProps) {
   
 
   useEffect(()=>{
-    console.log(data)
+    // console.log(data)
     if(settingType ){
       // console.log(data)
       const settings = settingFunctionMap[settingType.type ](settingType, data, screenType )  
@@ -70,12 +70,10 @@ function BlockSettings({data, updateData}:BlockSettingProps) {
 
   const handleFieldChange:handleSettingChangeArgs=useCallback((value, id , type, applied, data, updateData, setSettingsData, settingsData )=>{
     
-    // console.log(type)
-    // console.log(value)
-    // console.log(id);
+    
 
     
-    const customTextType = ['texteditor', 'textAlign', 'spacing', 'colors', 'size', 'iconField', 'fontFamily', 'select', 'textarea' , 'texts', 'background']
+    const customTextType = ['texteditor', 'textAlign', 'spacing', 'colors', 'size', 'iconField', 'fontFamily', 'select', 'textarea' , 'texts', 'background', 'increase', 'number']
 
     const isCustomTextType = customTextType.includes(type as string)
 

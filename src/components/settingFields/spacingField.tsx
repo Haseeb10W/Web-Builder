@@ -231,10 +231,15 @@ export default function SpacingField({props, change}:settingFieldProps) {
 
   const valueChange = ()=>{
     const val = fullValue ;
-    console.log(val)
+    // console.log(val)
+    const newValue = {
+      status : props?.currentStatus,
+      responsive : props?.responsive || 'on',
+      value : val
+    }
     
 
-    change?.(val)
+    change?.(JSON.stringify(newValue))
 
   }
 
@@ -254,8 +259,9 @@ export default function SpacingField({props, change}:settingFieldProps) {
           </>
         )
       }
-        <ResponsiveComponents/>
-    </div>
+      { props?.responsive == 'on' && ( <ResponsiveComponents /> )   }
+
+        </div>
         <div className="flex gap-1">
           {
             spaceChains.map((item,index)=> (
