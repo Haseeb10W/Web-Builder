@@ -61,7 +61,6 @@ export type TextBlockType = 'text' | 'heading'
     link: string;
     target : '_self' | '_blank';
     icon : string | null
-
   }
 }
 

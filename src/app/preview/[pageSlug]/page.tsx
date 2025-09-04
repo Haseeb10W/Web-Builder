@@ -6,6 +6,7 @@
 
 import BlockReader from '@/components/BlockReader';
 import { useSideToggle } from '@/contexts/toggleSide';
+import { demoData } from '@/data/DemoTemplate';
 import { loadAllStyles } from '@/lib/builder/renderHandling';
 import { Block } from '@/types/blocksSchema';
 import { editSchema, footerSchema, headerSchema, renderSchema } from '@/types/editSchema';
@@ -54,6 +55,25 @@ export default function PreviewRenderer() {
       }
 
       
+
+    }
+    else{
+      const demo = demoData
+      const dataPage = demo.content?.map((item)=>{
+
+        return {
+          ...item,
+          draggable : false,
+          resizable: false,
+          editable: false
+
+        }
+        
+      }) 
+
+      if(dataPage){
+        fullContent.push(...dataPage)
+      }
 
     }
 

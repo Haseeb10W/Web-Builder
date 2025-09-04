@@ -74,7 +74,7 @@ export default function Transition({ props, change }: settingFieldProps) {
   };
 
   return (
-    <>
+    <React.Fragment key="id">
       <SelectField
         props={props}
         change={(value: any) => handleTransitionChange(value)}
@@ -103,6 +103,6 @@ export default function Transition({ props, change }: settingFieldProps) {
           />
         </>
       )}
-    </>
+    </React.Fragment>
   );
 }

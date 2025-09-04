@@ -11,16 +11,15 @@ export const siteData :SiteData = {
       slug: "home",
       title: "Home",
       description: "Welcome to our homepage",
-      content: [],
+      content: [
+        
+      ],
       image: "",
       styling : {
         backgroundColor: "#ffffff",
         
       },
       editable : true,
-    },
-    
-    
-    
+    }, 
   ]
 }

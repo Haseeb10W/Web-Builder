@@ -17,14 +17,14 @@ export default function Image({block, index, onDelete, onCopy}:ImageProps) {
 
       if(!ImageBlock?.editable && !ImageBlock?.draggable){
     return (
-     <Link href={ImageBlock?.link} ><img
+     <img 
         src={ImageBlock?.props.src || "/placeholder.png"}
         alt={ImageBlock?.props.alt || "Image"}
         width={ImageBlock?.props.width || 400}
         height={ImageBlock?.props.height || 500}
-        className={`${ImageBlock?.tailWindClasses} ${ImageBlock?.customClasses}`}
+        className={` block-${ImageBlock?.id}   ${ImageBlock?.customClasses} ${ImageBlock?.tailWindClasses} rounded-lg`}
       />
-      </Link>
+      
        )
 
   }
@@ -38,7 +38,7 @@ export default function Image({block, index, onDelete, onCopy}:ImageProps) {
         alt={ImageBlock?.props.alt || "Image"}
         width={ImageBlock?.props.width || 400}
         height={ImageBlock?.props.height || 500}
-        className={`${ImageBlock?.tailWindClasses} ${ImageBlock?.customClasses}`}
+        className={`block-${ImageBlock?.id}  ${ImageBlock?.tailWindClasses} ${ImageBlock?.customClasses}`}
       /></Link> 
       </div>
             ):(

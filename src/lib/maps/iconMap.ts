@@ -159,10 +159,11 @@ export const iconMap : {[key:string]: React.ElementType} ={
   MoveDiag:MoveDiagonal2,
   zoomin : ZoomIn,
   zoomout : ZoomOut,
-  eye:Eye,
+  eye:Eye,  
   save:Save,
   panelbottomOpen: PanelBottomOpen,
   panelbottomClose: PanelBottomClose
+
 
 }
 

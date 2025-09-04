@@ -13,7 +13,7 @@ export interface SiteData {
   
 }
 
- interface pageSchema {
+export interface pageSchema {
   kind : 'page';
   title: string;
   slug : string;
@@ -26,7 +26,6 @@ export interface SiteData {
   },
   editable : boolean;
   
-
 }
 
  export interface headerSchema {
