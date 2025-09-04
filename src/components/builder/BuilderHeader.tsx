@@ -3,8 +3,11 @@
 import React, { Dispatch, SetStateAction, useCallback, useEffect, useState } from 'react'
 import DynamicIcons from '../DynamicIcons';
 import { useSideToggle } from '@/contexts/toggleSide';
-import { editSchema } from '@/types/editSchema';
+import { editSchema, renderSchema } from '@/types/editSchema';
 import { useSettingType } from '@/contexts/settingsType';
+import Link from 'next/link';
+import { Router } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 interface BuilderHeaderPops {
   dataPage? : editSchema ;
@@ -19,8 +22,11 @@ interface BuilderHeaderPops {
 
 function BuilderHeader ({dataPage, screenSize = 0, updateScreenSize, bodyWidth=0}: BuilderHeaderPops) {
 
-  const {toggleSide, setToggleSide} = useSideToggle();
+  const {toggleSide, setToggleSide, setPreviewData} = useSideToggle();
   const { setSettingType, setSettingPopUp, setOpenMedia, screenType, setScreenType} = useSettingType()
+  const router = useRouter();
+
+
   
 
   useEffect(()=>{
@@ -109,20 +115,38 @@ function BuilderHeader ({dataPage, screenSize = 0, updateScreenSize, bodyWidth=0
   const showToggleIcon = useCallback(() =>{
     let icon
     if(!toggleSide && window.innerWidth >= 1000){
-      icon = "togglebtn"
+      icon = "togglbtn"
       
     }
     else if(toggleSide && window.innerWidth >= 1000){
-      icon = "togglbtn"
+      icon = "togglebtn"
     }
     else if(!toggleSide && window.innerWidth <1000){
-      icon = "panelbottom"
+      icon = "panelbottomClose"
     }
     else{
-      icon = "paneltop"
+      icon = "panelbottomOpen"
     }
     return icon
   } ,[toggleSide] )
+
+
+
+  const goToPreview = ()=>{
+
+    const data = dataPage;
+    console.log(data)
+
+    const dataSlug = data?.editData?.slug
+
+    if(data){
+      setPreviewData(data.editData);
+
+    }
+    
+    router.push(`/preview/${dataSlug}`)
+
+  }
 
   return (
     <div className={`h-10 w-full px-2 flex justify-between items-center  border-b border-b-gray-300  content-center bg-white`}
@@ -176,9 +200,13 @@ function BuilderHeader ({dataPage, screenSize = 0, updateScreenSize, bodyWidth=0
       {/* Right Header */}
 
       <div className="flex gap-2">
-      <div className='flex items-center px-2 py-1 rounded-sm cursor-pointer bg-gray-200 hover:bg-gray-300' title='Preview'>
+
+        
+      <div onClick={goToPreview} className='flex items-center px-2 py-1 rounded-sm cursor-pointer bg-gray-200 hover:bg-gray-300' title='Preview'>
+
          <DynamicIcons name='eye' classes='h-5 w-5 ' /> 
       </div>
+      
       <div className='flex items-center gap-1 px-3 py-1 rounded-sm cursor-pointer bg-gray-200 hover:bg-gray-300'>
         <DynamicIcons name='save' classes='h-5 w-5 ' />
         <span className='text-sm min-[660px]:inline hidden'>Published</span>

@@ -17,14 +17,14 @@ export default function Image({block, index, onDelete, onCopy}:ImageProps) {
 
       if(!ImageBlock?.editable && !ImageBlock?.draggable){
     return (
-     <Link href={ImageBlock?.link} ><img
+     <img 
         src={ImageBlock?.props.src || "/placeholder.png"}
         alt={ImageBlock?.props.alt || "Image"}
         width={ImageBlock?.props.width || 400}
         height={ImageBlock?.props.height || 500}
-        className={`${ImageBlock?.tailWindClasses} ${ImageBlock?.customClasses}`}
+        className={` block-${ImageBlock?.id}   ${ImageBlock?.customClasses} ${ImageBlock?.tailWindClasses} rounded-lg`}
       />
-      </Link>
+      
        )
 
   }
@@ -32,7 +32,7 @@ export default function Image({block, index, onDelete, onCopy}:ImageProps) {
     <>
     <Section id={ImageBlock?.id} onDelete={(id)=>onDelete?.(id)} onCopy={(id)=>onCopy?.(id)} index={index}>
         {ImageBlock.props.src ? (
-    <div className='flex justify-center '>    
+    <div className='flex justify-center'>    
         <Link href={ImageBlock?.link} ><img
         src={ImageBlock?.props.src || "/placeholder.png"}
         alt={ImageBlock?.props.alt || "Image"}

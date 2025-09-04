@@ -2,6 +2,7 @@
 
 import { settingFieldProps } from "@/types/settingsSchema";
 import React, { useEffect, useState } from "react";
+import ResponsiveComponents from "./ResponsiveComponents";
 
 export default function RangeField({ props, change }: settingFieldProps) {
   const [range, setRange] = useState(0);
@@ -12,13 +13,23 @@ export default function RangeField({ props, change }: settingFieldProps) {
   },[props?.value])
 
 
-  useEffect(() => {
-    change?.(range);
-  }, []);
+  // useEffect(() => {
+
+  //   change?.(range);
+
+  // }, []);
 
   const changeRange = (value:number) =>{
    setRange(value)
-   change?.(String(value))
+
+   const fullValue ={
+    status : props?.currentStatus,
+    responsive : props?.responsive || 'on',
+    value : String(value)
+   }
+
+   change?.(JSON.stringify(fullValue))
+
   }
 
 
@@ -27,10 +38,12 @@ export default function RangeField({ props, change }: settingFieldProps) {
     <>
     {props?.tabOpen && (
       <div className="mt-2">
+        <div className='flex items-center gap-x-1.5'>
         {props?.label && (
           <h3  className="text-sm text-gray-600">{props?.label}</h3>
         )}
-        <h3></h3>
+        { props?.responsive == 'on' && ( <ResponsiveComponents /> )   }
+        </div>
         <div className="flex items-center mt-2 gap-2">
           <div className="w-[90%]">
             <input

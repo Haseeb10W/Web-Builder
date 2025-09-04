@@ -36,7 +36,7 @@ export default function FlexBox({block, index, onDelete, onCopy}:FlexProps) {
         flexWrap : "wrap",
         ...flexBlock?.styles
       }}
-      className={`${flexBlock?.tailWindClasses} ${flexBlock?.customClasses}`}>
+      className={`block-${flexBlock?.id} ${flexBlock?.tailWindClasses} ${flexBlock?.customClasses}`}>
         {children.map((child, idx) => (
           <BlockReader key={child.id} props={child} index={idx} />
         ))}

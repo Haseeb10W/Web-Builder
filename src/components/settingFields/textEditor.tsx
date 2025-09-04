@@ -3,6 +3,7 @@
 import { settingFieldProps } from '@/types/settingsSchema';
 import JoditEditor from 'jodit-react';
 import React, { useEffect, useMemo, useRef } from 'react'
+import ResponsiveComponents from './ResponsiveComponents';
 
 
 
@@ -49,11 +50,14 @@ export default function TextEditor({props, change}: settingFieldProps ) {
   return (
     
     <div className={`flex flex-col gap-2 mt-2`}>
+      <div className='flex gap-x-1.5'>
       {
         props?.label != '' && (
           <label htmlFor={props?.labelId} className={`text-sm text-gray-600`}>{props?.label}</label>
         )
       }
+      { props?.responsive == 'on' && ( <ResponsiveComponents /> )   }
+      </div>
       <JoditEditor
       ref={editorRef}
       value={props?.value}

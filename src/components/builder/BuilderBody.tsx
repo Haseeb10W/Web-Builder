@@ -185,7 +185,7 @@ const handleSidebarDrop = useCallback((newBlock: Block, insertIndex?: number) =>
   }}
     maxHeight={containerDimensions.height -20} maxWidth={containerDimensions.width > 800 ? 500 : containerDimensions.width - 40} initialWidth={300} initialHeight={450}
       classes ={` z-99 bg-white rounded-lg border border-gray-200 shadow-lg`}
-      >
+    >
 
       <span
               ref={dragHandleRef} 

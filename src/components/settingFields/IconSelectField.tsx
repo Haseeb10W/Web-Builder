@@ -17,7 +17,7 @@ export default function IconSelectField({props, change}: settingFieldProps) {
    
     if(props?.value == ''){
     
-      console.log(props?.options)
+      // console.log(props?.options)
          setSelectedOption({
           label : props?.options[0].label,
           value: props?.options[0].value,
@@ -56,7 +56,13 @@ export default function IconSelectField({props, change}: settingFieldProps) {
     setSelectedOption({label:label, value:value,icon:icon});
     setIsOpen(false)
 
-    change?.(value)
+    const fullValue = {
+      status : props?.currentStatus,
+      responsive : props?.responsive || 'on',
+      value : value
+    }
+
+    change?.(fullValue)
 
   }
 
@@ -77,11 +83,7 @@ export default function IconSelectField({props, change}: settingFieldProps) {
           <label htmlFor={props?.labelId} className={`text-sm text-gray-600`}>{props?.label}</label>
         )
       }
-      {
-      props?.responsive == 'on' && (
-      <ResponsiveComponents />
-        )
-      }
+      { props?.responsive == 'on' && ( <ResponsiveComponents /> )   }
       </div>
 
 

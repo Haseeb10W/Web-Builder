@@ -1,5 +1,6 @@
 import { Block } from "@/types/blocksSchema"
-import { styleApplyToElements } from "./settingsSetter"
+import { styleAppliedToCommonElements } from "./applyStyleFunctions"
+
 
 
 
@@ -20,7 +21,7 @@ export const appliedSettings = (applied:string | undefined, foundBlock:Block | n
       }
   }else if(styleFields.includes(applied as string)){
     
-    styleApplyToElements(screenType, settingField,  foundBlock, fieldValue, applied as string)
+    styleAppliedToCommonElements(screenType, settingField,  foundBlock, fieldValue, applied as string)
   }else if(applied == "fontFamilyChange"){
     if(isTextBlockType(foundBlock)) {
         foundBlock.classTracking = {

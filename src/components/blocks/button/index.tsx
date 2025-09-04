@@ -19,14 +19,14 @@ export default function Button({block, index, onDelete, onCopy}:ButtonProps) {
           if(!ButtonBlock?.editable && !ButtonBlock?.draggable){
     return (
      <Link href={ButtonBlock?.props?.link || " "} target={ButtonBlock?.props?.target || "_self"}>
-        <button>
+        <div className={`flex block-${ButtonBlock?.id} ${ButtonBlock?.tailWindClasses} ${ButtonBlock?.customClasses}`}>
             {
                 ButtonBlock?.props?.icon && (
                    <DynamicIcons name={ButtonBlock?.props?.icon} classes={`h-5 w-5`}/>
                 )
             }
            <span>{ButtonBlock?.props?.text}</span>
-        </button>
+        </div>
       </Link>
        )
 
@@ -36,7 +36,7 @@ export default function Button({block, index, onDelete, onCopy}:ButtonProps) {
     <>
      <Section id={ButtonBlock?.id} onDelete={(id)=>onDelete?.(id)} onCopy={(id)=>onCopy?.(id)} index={index}>
              
-             <Link href={ButtonBlock?.props?.link || ''} target={ButtonBlock?.props?.target || "_self"}>
+         <Link href={ButtonBlock?.props?.link || ''} target={ButtonBlock?.props?.target || "_self"}>
         <div className={`flex block-${ButtonBlock?.id} ${ButtonBlock?.tailWindClasses} ${ButtonBlock?.customClasses}`}>
             {
                 ButtonBlock?.props?.icon && (

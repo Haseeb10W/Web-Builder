@@ -10,7 +10,10 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
 
  const TextSettings:settingsSetupSchema = {
 
-  // Content
+  
+  /*+++++++++++++++++++++++++++++++++++++++  
+                  Content
+  ++++++++++++++++++++++++++++++++++++++++*/
   content : [
 
    // 0 
@@ -56,7 +59,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
 
     }),
 
-    // 2
+    // 2 : 
         setSettingField('iconField', {
         label: "Horizontal Align", 
         labelId: "text-alignment",
@@ -124,12 +127,12 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         labelId: "text-family-font",
         for : 'fontFamilyChange',
         tab: 'typography',
+        responsive: "off",
         statuses : ['normal']
   }),
   
-  // 7
-  setSettingField('size', {
-    label: "Font Size", 
+  // 8
+  setSettingField('size', { label: "Font Size", 
         labelId: "text-size-font",
         unitOptions: [
           {name: "pixels", value: "px"},
@@ -146,9 +149,8 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
 
   }),
 
-  // 8
-  setSettingField('size', {
-    label: "Line Height", 
+  // 9
+  setSettingField('size', { label: "Line Height", 
         labelId: "text-line-height",
         unitOptions: [
           {name: "pixels", value: "px"},
@@ -160,9 +162,8 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         statuses : ['normal']
   }),
 
-  // 9
-  setSettingField('select', {
-        label: "Font Weight", 
+  // 10
+  setSettingField('select', { label: "Font Weight", 
         labelId: "text-font-weight",
         options: [
           {label: '100', value: '100'},
@@ -184,10 +185,9 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
   }),
 
 
-  // 10
+  // 11
 
-  setSettingField('select', {
-    label: "Text Transform",
+  setSettingField('select', { label: "Text Transform",
         labelId: "text-transform-text",
         options: [
           {label: 'Uppercase', value: 'uppercase'},
@@ -200,10 +200,9 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         statuses : ['normal']
   }),
   
-  //11
+  //12
 
-  setSettingField('select', {
-      label: "Font Style",
+  setSettingField('select', { label: "Font Style",
         labelId: "text-font-style",
         options: [
           {label: 'Normal', value: 'normal'},
@@ -217,9 +216,8 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
 
   }),
 
-  // 12
-  setSettingField('select', {
-      label: "Text Decoration",
+  // 13
+  setSettingField('select', { label: "Text Decoration",
         labelId: "text-decoration",
         options: [
           {label: 'Overline', value: 'overline'},
@@ -233,9 +231,8 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         statuses : ['normal']
   }),
 
-  // 13
-  setSettingField('size', {
-    label: "Letter Spacing", 
+  // 14
+  setSettingField('size', { label: "Letter Spacing", 
         labelId: "text-letter-spacing",
         unitOptions: [
           {name: "pixels", value: "px"},
@@ -249,9 +246,8 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         
   }),
 
-  // 14
-  setSettingField('size', {
-    label: "Word Spacing", 
+  // 15
+  setSettingField('size', { label: "Word Spacing", 
         labelId: "text-word-spacing",
         unitOptions: [
           {name: "pixels", value: "px"},
@@ -264,10 +260,23 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         tab: 'typography',
   }),
 
-  // 15  :background
+  // 16  :background
   setSettingField('heading', {label: "Background", for : 'background', tabAllow: true}),
 
-  // 16
+  // 17 : Pseudo Status 
+    setSettingField('status', { 
+      for : 'background',
+      tab: 'background',
+      statusOptions : [
+        {name: 'Normal', value: 'normal' },
+        {name: 'Hover', value: 'hover' },
+        // {name: 'Active', value: 'active' },
+      ],
+      
+
+    }),
+
+  // 18
   setSettingField('background', {
         label: "Background Type",
         labelId: "text-background",
@@ -275,7 +284,6 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
       {label: 'Color', value: 'color'},
       {label: 'Image', value: 'image'},
       {label: 'Gradient', value: 'gradient'},
-      {label: 'video', value: 'video'},      
   ],
         for : 'backgroundChange',
         tab: 'background',
@@ -284,10 +292,10 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
     
 
   
-  // 17
+  // 18 : Border
   setSettingField('heading', {label: "Border", for : 'border', tabAllow: true}),
 
- // 18 : Pseudo Status 
+ // 19 : Pseudo Status 
   setSettingField('status', { 
     for : 'border',
     tab: 'border',
@@ -301,7 +309,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
 
   }),
 
-  // 19
+  // 20
   setSettingField('select', {
         label: "Border Style",
         labelId: "text-border-style",
@@ -322,7 +330,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
   }),
 
   
-  //20
+  //21
   setSettingField('colors', {
     label: "Border Color", 
     labelId: "text-border-color",
@@ -330,7 +338,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
     tab: 'border',
   }),
   
-  //21
+  //22
         setSettingField('spacing', {
         label: "Border Width",
         labelId: "text-border-width",
@@ -338,7 +346,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         tab: 'border',
     }
       ),
-  //22
+  //23
   setSettingField('spacing', {
       label: "Border Radius",
       labelId: "text-border-radius",
@@ -351,7 +359,11 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
     
   ],
 
-  // Settings
+
+   /*+++++++++++++++++++++++++++++++++++++++  
+                  Settings
+  ++++++++++++++++++++++++++++++++++++++++*/
+  
   settings: [
     // 0 :: Layout
     setSettingField('heading',{label: "Layout", for : 'layout', tabAllow: true, tabOpen: true}),
@@ -516,7 +528,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
     setSettingField('heading',{label: "OverFlow", for : 'overflow', tabAllow: true }),
     
     //13
-        setSettingField('select', {
+      setSettingField('select', {
         label: "Overflow-X",
         labelId: "overflow-x",
         options: [
@@ -530,7 +542,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
       }),
 
     //14
-        setSettingField('select', {
+      setSettingField('select', {
         label: "Overflow-Y",
         labelId: "overflow-y",
         options: [
@@ -547,9 +559,9 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
        setSettingField('heading',{label: "Other", for : 'other', tabAllow: true }),
 
       //16
-      setSettingField('increase', {
+      setSettingField('number', {
         label: "Zindex", 
-        labelId: "z-index",
+        labelId: "z-index-text",
         value:'',
         for : 'z-index',
         tab: 'other',
@@ -656,19 +668,29 @@ export const textSettingsSet:settingsSetArgs = (settingType, data, screenType)=>
       settings.styles[6].props.value = getValueForFields(findBlock, screenType, settings.styles[6].props.currentStatus || 'normal', "color");
       
       settings.styles[7].props.value = findBlock?.classTracking?.fontFamilyClass;
-      // settings.styles[7].props.value = findBlock?.styles?.fontSize;
-      settings.styles[8].props.value = findBlock?.styles?.lineHeight;
-      settings.styles[9].props.value = findBlock?.styles?.fontWeight;
-      settings.styles[10].props.value = findBlock?.styles?.textTransform;
-      settings.styles[11].props.value = findBlock?.styles?.fontStyle;
-      settings.styles[12].props.value = findBlock?.styles?.textDecoration;
-      settings.styles[13].props.value = findBlock?.styles?.letterSpacing;
-      settings.styles[14].props.value = findBlock?.styles?.wordSpacing;
+      settings.styles[8].props.value = getValueForFields(findBlock, screenType, settings.styles[8].props.currentStatus || 'normal', "font-size");
+      settings.styles[9].props.value = getValueForFields(findBlock, screenType, settings.styles[9].props.currentStatus || 'normal', "line-height");
+      
+      settings.styles[10].props.value = getValueForFields(findBlock, screenType, settings.styles[10].props.currentStatus || 'normal', "font-weight");
+
+      settings.styles[11].props.value = getValueForFields(findBlock, screenType, settings.styles[11].props.currentStatus || 'normal', "text-transform");
+
+      settings.styles[12].props.value = getValueForFields(findBlock, screenType, settings.styles[12].props.currentStatus || 'normal', "font-style");
+
+      settings.styles[13].props.value = getValueForFields(findBlock, screenType, settings.styles[13].props.currentStatus || 'normal', "text-decoration");
+
+      settings.styles[14].props.value = getValueForFields(findBlock, screenType, settings.styles[14].props.currentStatus || 'normal', "letter-spacing");
+
+      settings.styles[15].props.value = getValueForFields(findBlock, screenType, settings.styles[15].props.currentStatus || 'normal', "word-spacing");
+      
+      // settings.styles[14].props.value = findBlock?.styles?.wordSpacing;
 
       
            /* Background */
       
-      settings.styles[16].props.value = backgroundSettingsSetter(findBlock);
+      settings.styles[18].props.value = backgroundSettingsSetter(findBlock, screenType, settings.styles[18].props.currentStatus || 'normal');
+
+      
       
 
       // Settings

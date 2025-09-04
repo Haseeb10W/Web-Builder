@@ -1,11 +1,7 @@
 
 
 import ColorField from "@/components/settingFields/colorField";
-import DateTimeField from "@/components/settingFields/DateTimeField";
 import HeadingField from "@/components/settingFields/headingField";
-import ImageFile from "@/components/settingFields/imageFile";
-
-import NumberField from "@/components/settingFields/NumberField";
 import RangeField from "@/components/settingFields/RangeField";
 import SelectField from "@/components/settingFields/selectField";
 import SizeField from "@/components/settingFields/sizeField";
@@ -24,7 +20,8 @@ import PseudoStatus from "@/components/settingFields/pseudoStatus";
 import IconSelectField from "@/components/settingFields/IconSelectField";
 import Transition from "@/components/settingFields/Transition";
 import Transform from "@/components/settingFields/Transform";
-import UnitLessSize from "@/components/settingFields/unitlessSize";
+import NumberField from "@/components/settingFields/NumberField";
+
 const TextEditor = dynamic(() => import('@/components/settingFields/textEditor'), {
   ssr: false,
   
@@ -36,11 +33,8 @@ export const fieldMap : {[key:string]: React.ElementType} = {
   textarea : TextArea,
   texteditor: TextEditor,
   texts : TextField,
-  number : NumberField,
   colors : ColorField,
-  date : DateTimeField,
   range : RangeField,
-  image : ImageFile,
   textAlign: TextAlign,
   spacing: SpacingField,
   select: SelectField,
@@ -52,7 +46,7 @@ export const fieldMap : {[key:string]: React.ElementType} = {
   halfSpace: HalfSpace,
   position: Position,
   status : PseudoStatus,
-  increase : UnitLessSize,
+  number : NumberField ,
   iconSelect:IconSelectField,
   transition: Transition,
   transform : Transform

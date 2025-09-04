@@ -28,7 +28,7 @@ export interface pageSchema {
   
 }
 
- interface headerSchema {
+ export interface headerSchema {
   kind: 'header';
   title : string;
   slug : string;
@@ -37,10 +37,11 @@ export interface pageSchema {
   styling: {
     [key: string]: string;
   },
+  active : boolean;
   editable : boolean;
 }
 
- interface footerSchema {
+export interface footerSchema {
   kind: 'footer';
   title : string;
   slug : string;
@@ -49,6 +50,7 @@ export interface pageSchema {
   styling: {
     [key: string]: string;
   },
+  active : boolean;
   editable : boolean;
 }
 
@@ -73,6 +75,8 @@ export type ContentSchema = pageSchema | headerSchema | footerSchema | postSchem
 }
 
 export type allEditSchema = editContentSchema<'page'> | editContentSchema<'header'> | editContentSchema<'footer'> | editContentSchema<'post'>;
+
+export type renderSchema = editContentSchema<'page'> | editContentSchema<'post'> ;
 
 export type editSchema = allEditSchema | null;
 

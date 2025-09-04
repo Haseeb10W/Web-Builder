@@ -3,10 +3,9 @@ import { allEditSchema } from "@/types/editSchema";
 import { findAllBlocks } from "./blockHandlers";
 
 
-export const loadAllStyles = (pageData:allEditSchema)=>{
-  const allData  = pageData?.editData;
+export const loadAllStyles = (stylePrefix:string  , pageContent:Block[])=>{
       // console.log(allData);
-      const currentEdit = pageData?.editType;
+      const currentEdit = stylePrefix;
       const styleName = `${currentEdit}-styles`
 
       let styleTag = document.getElementById(styleName);
@@ -24,9 +23,8 @@ export const loadAllStyles = (pageData:allEditSchema)=>{
      let desktopCSS = '';
      let hoverCSS = '';
 
-     if(pageData?.editData?.content){
-      allBlocks = findAllBlocks(pageData?.editData?.content)
-
+     if(pageContent){
+      allBlocks = findAllBlocks(pageContent)
      }
 
     // console.log(allBlocks);

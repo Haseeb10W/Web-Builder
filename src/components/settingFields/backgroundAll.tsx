@@ -16,7 +16,10 @@ const colorpros ={
         // labelId: "bgcolor-text",
         value: '',
         tab: '',
-        tabOpen: true
+        tabOpen: true,
+        currentStatus : 'normal',
+        statuses : ['normal', 'hover'],
+        responsive: 'on',
       
         }  
 
@@ -29,6 +32,8 @@ const pseudo ={
     ],
     value: 'normal',
     tabOpen:true,
+    currentStatus : 'normal',
+    statuses : ['normal', 'hover']
 }
 
 const bgRepeat = {
@@ -54,7 +59,9 @@ const bgRepeat = {
     }
   ],
   tabOpen: true,
-  responsive: 'on'
+  responsive: 'on',
+  currentStatus : 'normal',
+  statuses : ['normal', 'hover']
 }
 
 const bgSize = {
@@ -182,32 +189,41 @@ export default function BackgroundAll({props, change}:settingFieldProps) {
 
   const selectImage = pseudoProps?.value == "hover" ? bgHoverImage : bgImageProps; 
 
-  // const options = [
-  //     {label: 'Color', value: 'color'},
-  //     {label: 'Image', value: 'image'},
-  //     {label: 'Gradient', value: 'gradient'},
-  //     {label: 'video', value: 'video'},      
-  // ]
+ 
+  useEffect(()=>{
+    
+    const allValues = JSON.parse(props?.value)
+    // console.log(allValues); 
 
-  // useEffect(()=>{
-  //   // console.log(props?.value)
+    if(allValues.backgroundColor  && allValues.backgroundColor !== ""){
+
+      setBgType('color')
+    }else if(allValues.backgroundImage && allValues.backgroundImage !== ""){
+      setBgType('image')
+    }else if(allValues.background && allValues.background !== ""){
+      setBgType('gradient')
+    }else{
+      setBgType("")
+    }
 
     
 
-  // }, [props?.value])
+  }, [props?.value])
 
   const handleTypeChange = (value:any)=>{
-    // console.log(value)
-    setBgType(value)
+    const fullValue = JSON.parse(value);
+    const typebg = fullValue.value
+    setBgType(typebg)
 
   }
 
   const handleColorValue = (value:string)=>{ 
-    // console.log(value);
+    console.log(value);
     setColorProps((prev:any)=>({
         ...prev,
         value:value
     }))
+    console.log(colorProps)
   }
 
   const handleBgRepeat = (value:any) =>{
@@ -268,15 +284,40 @@ export default function BackgroundAll({props, change}:settingFieldProps) {
   }
 
   useEffect(()=>{
-    let backgroundApply : {[key: string]: any} = {};
+    let fullValue : {[key: string]: any} = {
+      backgroundValues : {
+      'background-color': '',
+      'background-image': '',
+      'background-repeat': '',
+      'background-size': '',
+      'background-position': '',
+      'background-attachment': '',
+      'background': '',
+      'background-hover': ''
+
+      },
+      
+       status : props?.currentStatus,
+       responsive : props?.responsive || 'on',
+
+    };
+    
+
     if(bgType == 'color' ){
-      // console.log('hello')
-      backgroundApply.type = 'color'
-      backgroundApply.colorValue = colorProps?.value
+      
+      fullValue['background-color'] = JSON.parse(colorProps?.value).value
+      fullValue.responsive = JSON.parse(colorProps?.value).responsive
+      
+    }else if(bgType == 'image'){
+      
     }
 
 
-    change?.(JSON.stringify(backgroundApply))
+
+    
+
+
+    change?.(JSON.stringify(fullValue))
 
   }, [colorProps?.value])
 
@@ -296,7 +337,7 @@ export default function BackgroundAll({props, change}:settingFieldProps) {
     
   {props?.tabOpen && bgType === 'color' &&  (
   <>
-    <PseudoStatus props={pseudoProps} change={(value:any)=>handlePseudoValue(value)}/>
+    
 
       {
        pseudoProps?.value == "normal" || pseudoProps?.value == "hover" ?

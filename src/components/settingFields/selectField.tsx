@@ -39,7 +39,13 @@ export default function SelectField({props, change, returnVal}: settingFieldProp
     setSelectedOption({label:label, value:value});
     setIsOpen(false)
 
-    change?.(value)
+    const fullValue = {
+      status : props?.currentStatus,
+      responsive : props?.responsive || 'on',
+      value : value
+    }
+
+    change?.(JSON.stringify(fullValue))
 
   }
 

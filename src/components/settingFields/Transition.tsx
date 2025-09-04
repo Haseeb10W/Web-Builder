@@ -3,8 +3,9 @@
 import React, { useState } from "react";
 import SelectField from "./selectField";
 import { settingFieldProps } from "@/types/settingsSchema";
-import Zindex from "./unitlessSize";
 import TextField from "./TextField";
+import NumberField from "./NumberField";
+
 
 const TDely = {
   label: "Transition Delay",
@@ -88,11 +89,11 @@ export default function Transition({ props, change }: settingFieldProps) {
               />
             </>
           )}
-          <Zindex
+          <NumberField
             props={transitionDelay}
             change={(value: any) => handleTransitionDelay(value)}
           />
-          <Zindex
+          <NumberField
             props={transitionDuration}
             change={(value: any) => handleTransitionDuration(value)}
           />

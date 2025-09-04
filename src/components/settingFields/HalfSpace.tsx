@@ -4,6 +4,7 @@ import DynamicIcons from '@/components/DynamicIcons'
 import useDocumentClick from '@/hooks/useDocumentClick'
 import { settingFieldProps } from '@/types/settingsSchema'
 import React, { useCallback, useEffect, useState } from 'react'
+import ResponsiveComponents from './ResponsiveComponents'
 
 export default function HalfSpace({props, change}:settingFieldProps) {
 
@@ -16,7 +17,7 @@ export default function HalfSpace({props, change}:settingFieldProps) {
 
   useEffect(()=>{
     // console.log('good')
-    if(props?.value){
+    if(props?.value && props?.value !==''){
       seFullValue(props?.value)
       const values = props.value.split(' ');
       // console.log(values)
@@ -47,6 +48,7 @@ export default function HalfSpace({props, change}:settingFieldProps) {
       }
     }
     else{
+      
       setUnit(props?.unitValue)
     }
 
@@ -219,6 +221,23 @@ export default function HalfSpace({props, change}:settingFieldProps) {
   }, [linkStatus, unit, spaceValues])
 
 
+
+  const valueChange = ()=>{
+    const val = fullValue ;
+    // console.log(val)
+    const newValue = {
+      status : props?.currentStatus,
+      responsive : props?.responsive || 'on',
+      value : val
+    }
+    
+    
+
+    change?.(JSON.stringify(newValue))
+
+  }
+
+
   return (
     <>
     {
@@ -226,11 +245,15 @@ export default function HalfSpace({props, change}:settingFieldProps) {
     
     <div className={`flex flex-col gap-2 w-full mt-4 `}>
       <div className={`flex gap-2 justify-between `}>
+
+        <div className='flex gap-x-1.5'>
       {
         props?.label != '' && (
           <label htmlFor={props?.labelId} className={`text-sm text-gray-600`}>{props?.label}</label>
         )
       }
+      { props?.responsive == 'on' && ( <ResponsiveComponents /> )   }
+        </div>
         <div className="flex gap-1">
           {
             spaceChains.map((item,index)=>   linkStatus.fields == item.fields &&
@@ -260,7 +283,7 @@ export default function HalfSpace({props, change}:settingFieldProps) {
              spaceFields.slice(0, linkStatus.fields).map((item, index)=>(
             <div className={`flex flex-col content-center ${linkStatus.width} `} key={index}>
               <span className={`!text-[0.7rem] mx-auto`}>{showFieldNames(index, item.name)} </span>
-              <input type="number" onChange={(e)=> handleSpaceValueChange(e, item.name)} onBlur={()=>change?.(fullValue)} value={showValues(index , item.name)} className={`text-sm border border-gray-400 text-gray-700 outline-0 text-center rounded-sm appearance-none input-no-spinner `} />
+              <input type="number" onChange={(e)=> handleSpaceValueChange(e, item.name)} onBlur={valueChange} value={showValues(index , item.name)} className={`text-sm border border-gray-400 text-gray-700 outline-0 text-center rounded-sm appearance-none input-no-spinner `} />
             </div>
           ))
 
@@ -268,7 +291,7 @@ export default function HalfSpace({props, change}:settingFieldProps) {
         </div>
         {props?.showUnit && (
         <div ref={refUnit} className="range-unit relative w-[12%] h-6 rounded-sm cursor-pointer  mt-auto flex items-center justify-center text-center bg-gray-200" onClick={()=>setUnitOpen(!unitOpen)}>
-          <span className={`!text-sm `}>{unit}</span>
+          <span className={`!text-sm `}>{unit }</span>
           {
             unitOpen && props?.selectUnit && (
               <ul className={`absolute top-[103%] left-0 w-full flex flex-col items-center bg-white border border-gray-300 `}>
