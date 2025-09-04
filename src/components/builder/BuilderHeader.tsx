@@ -146,6 +146,8 @@ function BuilderHeader ({dataPage, screenSize = 0, updateScreenSize, bodyWidth=0
     
     router.push(`/preview/${dataSlug}`)
 
+    // window.open(`/preview/${dataSlug}`, '_blank')
+
   }
 
   return (

@@ -5,6 +5,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "../styles/resizeable.css";
 import { ToggleContextProvider } from "@/contexts/toggleSide";
+import { Provider } from "react-redux";
+import {store}  from "@/redux/store" 
+import ReduxProvider from "./ReduxProvider";
 
 
 
@@ -44,7 +47,8 @@ export default function RootLayout({
 
 
       >
-      
+
+        <ReduxProvider >
           <ToggleContextProvider>
            
           
@@ -52,6 +56,8 @@ export default function RootLayout({
         
           
           </ToggleContextProvider>
+
+          </ReduxProvider>
         
       </body>
     </html>
