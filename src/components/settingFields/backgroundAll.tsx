@@ -191,7 +191,9 @@ export default function BackgroundAll({props, change}:settingFieldProps) {
 
  
   useEffect(()=>{
-    
+    if(props?.value){
+
+  
     const allValues = JSON.parse(props?.value)
     // console.log(allValues); 
 
@@ -206,7 +208,7 @@ export default function BackgroundAll({props, change}:settingFieldProps) {
       setBgType("")
     }
 
-    
+  }
 
   }, [props?.value])
 

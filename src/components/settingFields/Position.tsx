@@ -111,7 +111,7 @@ export default function Position({props,change}: settingFieldProps ) {
          <SelectField props={horizental} change={(value:any)=>handleHorizentalChange(value)}/>
          <SizeField props={hOffset} change={(value:any)=>handleHOffset(value)}/>
          <SelectField props={vertical} change={(value:any)=>handleVerticalChange(value)}/>
-        <SizeField props={vOffset} change={(value:any)=>handleVOffset(value)}/>
+         <SizeField props={vOffset} change={(value:any)=>handleVOffset(value)}/>
         </>
       ): null)
       }

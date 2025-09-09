@@ -69,7 +69,8 @@ import {
   Eye,
   Save,
   PanelBottomOpen,
-  PanelBottomClose
+  PanelBottomClose,
+  Volleyball
 
 
 } from 'lucide-react';
@@ -162,7 +163,8 @@ export const iconMap : {[key:string]: React.ElementType} ={
   eye:Eye,  
   save:Save,
   panelbottomOpen: PanelBottomOpen,
-  panelbottomClose: PanelBottomClose
+  panelbottomClose: PanelBottomClose,
+  icon: Volleyball
 
 
 }

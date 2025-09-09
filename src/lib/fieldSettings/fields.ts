@@ -349,6 +349,45 @@ export const setSettingField:fieldSetArgs = (field, props)=>{
         }
       }
 
+      case 'imageSection':
+      return {
+        field: field,
+        props : {
+        label: props?.label,
+        labelId: props?.labelId,
+        value:props?.value ? props?.value : '',
+        defaultNot:props?.defaultNot,
+        for : props?.for,
+        type: 'settingField',
+        responsive: props?.responsive ? props?.responsive : 'on',
+        tab: props?.tab || commonProps.tab,
+        tabOpen: props?.tabOpen ? props?.tabOpen : false,
+        statuses: props?.statuses || commonProps.statuses,
+        currentStatus: props?.currentStatus || commonProps.currentStatus,
+        fieldStyle: props?.fieldStyle || '', 
+        }
+      }
+
+
+    case 'linkField':
+      return {
+        field: field,
+        props : {
+        label: props?.label,
+        labelId: props?.labelId,
+        value:props?.value ? props?.value : '',
+        defaultNot:props?.defaultNot,
+        for : props?.for,
+        type: 'settingField',
+        responsive: props?.responsive ? props?.responsive : 'on',
+        tab: props?.tab || commonProps.tab,
+        tabOpen: props?.tabOpen ? props?.tabOpen : false,
+        statuses: props?.statuses || commonProps.statuses,
+        currentStatus: props?.currentStatus || commonProps.currentStatus,
+        fieldStyle: props?.fieldStyle || '', 
+        }
+      }
+
     case 'spacing':
       return {
         field: field,

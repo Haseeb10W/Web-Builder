@@ -322,6 +322,33 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
     
   }
     ),
+
+
+  // 21
+  setSettingField('heading', {label: "Box Shadow", for : 'boxshadow', tabAllow: true}),
+
+  // 22 : Pseudo Status 
+    setSettingField('status', { 
+      for : 'boxshadow',
+      tab: 'boxshadow',
+      statusOptions : [
+        {name: 'Normal', value: 'normal' },
+        {name: 'Hover', value: 'hover' }, 
+      ],
+    }),
+
+
+  // 23 
+  setSettingField('boxShadow', {
+        label: "BoxShadow",
+        labelId: "box-shadow",
+        for : 'boxshadow',
+        tab : 'boxshadow',
+        value:'',  
+        responsive: 'off',
+        defaultNot:true  
+      
+  }), 
     
     
   ],

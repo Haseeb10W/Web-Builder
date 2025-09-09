@@ -28,6 +28,7 @@ export default function Image({props, change}:settingFieldProps) {
 
   useEffect(() => {
 
+  console.log("fileApplyOn",fileApplyOn);
     if (fileApplyOn == true && mediaFilesApply && mediaFilesApply.appliedId == idApply  && mediaFilesApply.appliedData.length > 0) {
       const appliedImage = mediaFilesApply.appliedData[0].imagePath;
       // setSelectedImage(appliedImage);
@@ -62,7 +63,8 @@ export default function Image({props, change}:settingFieldProps) {
     }
 
     setMediaFilesApply(mediaApply)
-    setFileApplyOn
+    // setFileApplyOn(true) 
+    
     
 
   }

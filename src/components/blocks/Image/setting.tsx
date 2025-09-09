@@ -5,6 +5,8 @@ import { setSettingField } from "@/lib/fieldSettings/fields"
 import { Block } from "@/types/blocksSchema"
 import { editSchema } from "@/types/editSchema"
 import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
+import { table } from "console"
+import { validate } from "uuid"
 
 
  const ImageSettings:settingsSetupSchema = {
@@ -13,48 +15,31 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
   content : [
 
     // 0 
-    setSettingField('heading',{label: "Head Settings", for : 'headsettings', tabOpen: true, tabAllow: false}),
+    setSettingField('heading',{label: "Image Settings", for : 'imagesettings', tabOpen: true, tabAllow: false}),
 
     // 1
-    setSettingField('textarea', {
-      label: "Title", 
-      labelId: "text-editor",
-      placeholder: 'Add your Text here',
-      for : 'textChange',
+    setSettingField('imageSection', {
+      label: "Image", 
+      value:"",
+      for : 'imagesettings',
       tab: '',
-      tabOpen: true}
+      tabOpen: true
+    }
     ),
 
-    // 2
-    setSettingField('texts', {
-      label: "Link", 
-      labelId: "linkHeading",
-      placeholder: 'Past your link here',
-      for : 'linkChange',
-      tab: '',
-      tabOpen: true}
-    ),
-    
-   // 3
-  setSettingField('select', {
-    label: "Tags Levels", 
-    labelId: "tags-level",
-    value:"h2",
-    defaultNot:true,
-        options: [
-          {label: 'h1', value: 'h1'},
-          {label: 'h2', value: 'h2'},
-          {label: 'h3', value: 'h3'},
-          {label: 'h4', value: 'h4'},
-          {label: 'h5', value: 'h5'},
-          {label: 'h6', value: 'h6'},
-        ],
-        
-        for : 'levelChange',
-        tab: 'headsettings',
-        tabOpen: true
+    // 3 
+    setSettingField('heading',{label: "Advanced", for : 'advanced',  tabAllow: true}),
+
+    // 4
+  setSettingField('linkField', {
+        label: "Image Link",
+        labelId: "image-link",
+        for : 'advanced',
+        tab : 'advanced',
+        value:'off',
+        responsive: 'off',
+        defaultNot:true      
   }),
-
 
   ],
 
@@ -104,179 +89,9 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
 
   }),
   
-
-  // 3: TypoGraphy
-  setSettingField('heading',{label: "Typography", for : 'typography', tabAllow: true}),
-  
-  // 4
-  setSettingField('colors', {
-        label: "Text Color", 
-        labelId: "text-color-font",
-        for : 'colorChange',
-        tab: 'typography',
-  }),
-
-
-  // 5
-  setSettingField('fontFamily', {
-        label: "Font Family", 
-        labelId: "text-family-font",
-        for : 'fontFamilyChange',
-        tab: 'typography',
-  }),
-  
-  // 6
-  setSettingField('size', {
-    label: "Font Size", 
-        labelId: "text-size-font",
-        unitOptions: [
-          {name: "pixels", value: "px"},
-          {name: "percent", value: "%"},
-          {name: "Rem", value: "rem"},
-          {name: "Em", value: "em"},
-          {name: "ViewWidth", value: "vw"},
-          {name: "ViewHeight", value: "vh"},
-
-        ],
-        for : 'fontSizeChange',
-        tab: 'typography',
-
-  }),
-
-  // 7
-  setSettingField('size', {
-    label: "Line Height", 
-        labelId: "text-line-height",
-        unitOptions: [
-          {name: "pixels", value: "px"},
-          {name: "percent", value: "%"},
-          {name: "Rem", value: "rem"},
-        ],
-        for : 'lineHeightChange',
-        tab: 'typography',
-  }),
-
-  // 8
-  setSettingField('select', {
-    label: "Font Weight", 
-        labelId: "text-font-weight",
-        options: [
-          {label: '100', value: '100'},
-          {label: '200', value: '200'},
-          {label: '300', value: '300'},
-          {label: '400', value: '400'},
-          {label: '500', value: '500'},
-          {label: '600', value: '600'},
-          {label: '700', value: '700'},
-          {label: '800', value: '800'},
-          {label: '900', value: '900'},
-        ],
-        
-        for : 'fontWeightChange',
-        tab: 'typography',
-
-  }),
-
-
-  // 9
-
-  setSettingField('select', {
-    label: "Text Transform",
-        labelId: "text-transform-text",
-        options: [
-          {label: 'Uppercase', value: 'uppercase'},
-          {label: 'Lowercase', value: 'lowercase'},
-          {label: 'Capitalize', value: 'capitalize'},
-        ],
-
-        for : 'textTransformChange',
-        tab: 'typography',
-  }),
-  
-  //10
-
-  setSettingField('select', {
-      label: "Font Style",
-        labelId: "text-font-style",
-        options: [
-          {label: 'Normal', value: 'normal'},
-          {label: 'Italic', value: 'italic'},
-          {label: 'Oblique', value: 'oblique'},
-
-        ],
-
-        for : 'fontStyleChange',
-        tab: 'typography',
-  }),
-
-  // 11
-  setSettingField('select', {
-      label: "Text Decoration",
-        labelId: "text-decoration",
-        options: [
-          {label: 'Overline', value: 'overline'},
-          {label: 'Underline', value: 'underline'},
-          {label: 'Line Through', value: 'line-through'},
-          {label: 'Over / Under', value: 'underline overline'},
-
-        ],
-        for : 'textDecorationChange',
-        tab: 'typography',
-  }),
-
-  // 12
-  setSettingField('size', {
-    label: "Letter Spacing", 
-        labelId: "text-letter-spacing",
-        unitOptions: [
-          {name: "pixels", value: "px"},
-          {name: "Rem", value: "rem"},
-          {name: "Em", value: "em"},
-          {name: "ViewWidth", value: "vw"},
-          {name: "ViewHeight", value: "vh"},
-        ],
-        for : 'letterSpacingChange',
-        tab: 'typography',
-  }),
-
-  // 13
-  setSettingField('size', {
-    label: "Word Spacing", 
-        labelId: "text-word-spacing",
-        unitOptions: [
-          {name: "pixels", value: "px"},
-          {name: "Rem", value: "rem"},
-          {name: "Em", value: "em"},
-          {name: "ViewWidth", value: "vw"},
-          {name: "ViewHeight", value: "vh"},
-        ],
-        for : 'wordSpacingChange',
-        tab: 'typography',
-  }),
-
-  // 14
-  setSettingField('heading', {label: "Background", for : 'background', tabAllow: true}),
-
-  // 15
-  setSettingField('background', {
-        label: "Background Type",
-        labelId: "text-background",
-        options: [
-      {label: 'Color', value: 'color'},
-      {label: 'Image', value: 'image'},
-      {label: 'Gradient', value: 'gradient'},
-      {label: 'video', value: 'video'},      
-  ],
-        for : 'backgroundChange',
-        tab: 'background',
-        tabOpen: false
-  }),
-    
-
-  
-  // 16
+  // 3
   setSettingField('heading', {label: "Border", for : 'border', tabAllow: true}),
-  // 17
+  // 4
   setSettingField('select', {
         label: "Border Style",
         labelId: "text-border-style",
@@ -297,7 +112,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
   }),
 
   
-  //18
+  //5
   setSettingField('colors', {
     label: "Border Color", 
     labelId: "text-border-color",
@@ -305,7 +120,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
     tab: 'border',
   }),
   
-  //19
+  //6
         setSettingField('spacing', {
         label: "Border Width",
         labelId: "text-border-width",
@@ -313,7 +128,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         tab: 'border',
     }
       ),
-  //20
+  //7
   setSettingField('spacing', {
       label: "Border Radius",
       labelId: "text-border-radius",
@@ -322,7 +137,32 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
     
   }
     ),
-    
+
+  // 8
+  setSettingField('heading', {label: "Box Shadow", for : 'boxshadow', tabAllow: true}),
+
+  // 9 : Pseudo Status 
+    setSettingField('status', { 
+      for : 'boxshadow',
+      tab: 'boxshadow',
+      statusOptions : [
+        {name: 'Normal', value: 'normal' },
+        {name: 'Hover', value: 'hover' }, 
+      ],
+    }),
+
+
+  // 10 
+  setSettingField('boxShadow', {
+        label: "BoxShadow",
+        labelId: "box-shadow",
+        for : 'boxshadow',
+        tab : 'boxshadow',
+        value:'',  
+        responsive: 'off',
+        defaultNot:true  
+        // statuses : ['normal']       
+  }),  
     
   ],
 
@@ -342,16 +182,6 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
     ),
 
   // 2
-   setSettingField('spacing', {
-      label: "Padding",
-      labelId: "text-padding-spacing",
-      for : 'paddingChange',
-      tab: 'layout',
-      tabOpen: true
-  }),
-
-
-  // 3
   setSettingField('size', {
         label: "Width", 
         labelId: "text-size-width",
@@ -366,11 +196,28 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         ],
         for : 'widthSizeChange',
         tab: 'layout',
-         tabOpen: true
+        tabOpen: true
   }),
+   
+    // 3
+  setSettingField('size', {
+        label: "Min Width", 
+        labelId: "text-max-width",
+        unitOptions: [
+          {name: "pixels", value: "px"},
+          {name: "percent", value: "%"},
+          {name: "Rem", value: "rem"},
+          {name: "Em", value: "em"},
+          {name: "ViewWidth", value: "vw"},
+          {name: "ViewHeight", value: "vh"},
 
+        ],
+        for : 'minWidthSizeChange',
+        tab: 'layout',
+        tabOpen: true
+  }),
   
-  // 4
+  // 5
   setSettingField('size', {
         label: "Max Width", 
         labelId: "text-max-width",
@@ -388,7 +235,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
          tabOpen: true
   }),
  
-  // 5
+  // 6
   setSettingField('size', {
         label: "Height", 
         labelId: "text-size-height",
@@ -405,8 +252,25 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         tab: 'layout',
          tabOpen: true
   }),
+
+    // 7
+  setSettingField('size', {
+        label: "Min Height", 
+        labelId: "text-max-height",
+        unitOptions: [
+          {name: "pixels", value: "px"},
+          {name: "percent", value: "%"},
+          {name: "Rem", value: "rem"},
+          {name: "Em", value: "em"},
+          {name: "ViewWidth", value: "vw"},
+          {name: "ViewHeight", value: "vh"},
+        ],
+        for : 'minHeightSizeChange',
+        tab: 'layout',
+         tabOpen: true
+  }),
   
-  // 6
+  // 8
   setSettingField('size', {
         label: "Max Height", 
         labelId: "text-max-height",
@@ -450,33 +314,7 @@ export const ImageSettingsSet:settingsSetArgs = (settingType, data)=> {
     //   /*+++++++++++++++++++++++ Styles +++++++++++++++++++++ */
 
     //         /* Alignment */
-      settings.styles[1].props.value = findBlock?.styles?.textAlign;
-      settings.styles[2].props.value = findBlock?.styles?.alignContent;
-    //         /* Font Styles */
-      settings.styles[4].props.value = findBlock?.styles?.color;
-      settings.styles[5].props.value = findBlock?.classTracking?.fontFamilyClass;
-      settings.styles[6].props.value = findBlock?.styles?.fontSize;
-      settings.styles[7].props.value = findBlock?.styles?.lineHeight;
-      settings.styles[8].props.value = findBlock?.styles?.fontWeight;
-      settings.styles[9].props.value = findBlock?.styles?.textTransform;
-      settings.styles[10].props.value = findBlock?.styles?.fontStyle;
-      settings.styles[11].props.value = findBlock?.styles?.textDecoration;
-      settings.styles[12].props.value = findBlock?.styles?.letterSpacing;
-      settings.styles[13].props.value = findBlock?.styles?.wordSpacing;
-
-      
-    //        /* Colors */
-      
-      settings.styles[14].props.value = findBlock?.styles?.backgroundColor;
-      
-
-    //   // Settings
-      settings.settings[1].props.value = findBlock?.styles?.margin; 
-      settings.settings[2].props.value = findBlock?.styles?.padding;
-      settings.settings[3].props.value = findBlock?.styles?.width;
-      settings.settings[4].props.value = findBlock?.styles?.maxWidth;
-      settings.settings[5].props.value = findBlock?.styles?.height;
-      settings.settings[6].props.value = findBlock?.styles?.maxHeight;
+   
       
     }
 

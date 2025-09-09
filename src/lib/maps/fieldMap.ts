@@ -21,6 +21,9 @@ import IconSelectField from "@/components/settingFields/IconSelectField";
 import Transition from "@/components/settingFields/Transition";
 import Transform from "@/components/settingFields/Transform";
 import NumberField from "@/components/settingFields/NumberField";
+import ImageSection from "@/components/settingFields/ImageSection";
+import LinkField from "@/components/settingFields/LinkField";
+import BoxShadow from "@/components/settingFields/BoxShadow";
 
 const TextEditor = dynamic(() => import('@/components/settingFields/textEditor'), {
   ssr: false,
@@ -49,5 +52,8 @@ export const fieldMap : {[key:string]: React.ElementType} = {
   number : NumberField ,
   iconSelect:IconSelectField,
   transition: Transition,
-  transform : Transform
+  transform : Transform,
+  imageSection: ImageSection,
+  linkField: LinkField,
+  boxShadow: BoxShadow,
 }
