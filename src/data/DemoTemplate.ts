@@ -9,7 +9,7 @@ export const demoData :pageSchema  = {
       title: "Home",
       description: "Welcome to our homepage",
       content: [
-         { id: 'text-1',
+         { id: 'text-145j9u923',
           type: 'text',
           responsiveStyles: {
             baseStyle:{"color": "black"},
@@ -31,10 +31,10 @@ export const demoData :pageSchema  = {
           text: "Blogging Website",
            }},
 
-           { id: 'image-2',
+           { id: 'image-2nohqwy28',
           type: 'image',
           responsiveStyles: {
-            baseStyle:{"border-radius":"2%"},
+            baseStyle:{"border-radius":"10px"},
             tablet: {},
             desktop: {},
             hoverStyles: {},
@@ -42,7 +42,7 @@ export const demoData :pageSchema  = {
           styles  : {
             
           },
-          tailWindClasses: "text-xl font-bold px-4 w-[90%] m-auto ml-[5%] h-[400px]",
+          tailWindClasses: "text-xl font-bold  w-[90%] m-auto ml-[5%] h-[400px]",
           customClasses: "my-custom-class",
           classTracking: {},
           draggable: false,
@@ -50,14 +50,14 @@ export const demoData :pageSchema  = {
           editable: false,
           link: "/home",
           props : {
-          src: "http://172.16.7.127:6200/media/coffee2.jpg",
+          src: "http://localhost:6200/media/coffee2.jpg",
           alt: "img",
           link: "",
           width: "",
           height: "",
          }},
 
-          { id: 'heading-3',
+          { id: 'heading-3dnh3q9y98',
           type: 'heading',
           responsiveStyles: {
             baseStyle:{"": ""},
@@ -80,7 +80,7 @@ export const demoData :pageSchema  = {
           level: 'h1',
           }},
 
-        { id: 'text-1',
+        { id: 'text-1hewh9y8322y0',
           type: 'text',
           responsiveStyles: {
             baseStyle:{"color": "black"},
@@ -102,7 +102,7 @@ export const demoData :pageSchema  = {
           text: "It’s no secret that the digital industry is booming. From exciting startups to global brands, companies are reaching out to digital agencies, responding to the new possibilities available. However, the industry is fast becoming overcrowded, heaving with agencies offering similar services — on the surface, at least. Producing creative, fresh projects is the key to standing out. Unique side projects are the best place to innovate, but balancing commercially and creatively lucrative work is tricky. So, this article looks at …",
            }},
 
-        { id: 'button-5',
+        { id: 'button-5nsdfjuhw998',
           type: 'button',
           responsiveStyles: {
             baseStyle:{},
@@ -113,7 +113,7 @@ export const demoData :pageSchema  = {
           styles  : {
 
           },
-          tailWindClasses: "text-base p-2 flex justify-center ml-[6%] border border-black w-[10%] rounded-sm capitalize font-semibold my-2 hover:bg-black hover:text-white",
+          tailWindClasses: "text-base p-2 fdelex justify-center ml-[6%] border borr-black w-[90px] rounded-sm capitalize font-semibold my-2 hover:bg-black hover:text-white",
           customClasses: "my-custom-class",
           classTracking: {},
           draggable: false,
@@ -128,7 +128,7 @@ export const demoData :pageSchema  = {
         }},
 
 
-        { id: 'flex-6',
+        { id: 'flex-6bndsiugr2398u',
           type: 'flex',
           responsiveStyles: {
             baseStyle:{},
@@ -149,7 +149,7 @@ export const demoData :pageSchema  = {
            children:[
 
         // flex one
-         { id: 'flex-7',
+         { id: 'flex-7hbdhsuhyr32',
           type: 'flex',
           responsiveStyles: {
             baseStyle:{},
@@ -169,7 +169,7 @@ export const demoData :pageSchema  = {
           link: "/home",
            children:[
         
-        { id: 'image-1',
+        { id: 'image-1fuhr98yq43u',
           type: 'image',
           responsiveStyles: {
             baseStyle:{"color": "red"},
@@ -188,14 +188,14 @@ export const demoData :pageSchema  = {
           editable: false,
           link: "/home",
           props : {
-          src: "http://172.16.7.127:6200/media/dress3.jpg",
+          src: "http://localhost:6200/media/dress3.jpg",
           alt: "img",
           link: "",
           width: "",
           height: "",
         }},
 
-        { id: 'heading-2',
+        { id: 'heading-2fniuhr2g9t2ndsoi',
           type: 'heading',
           responsiveStyles: {
             baseStyle:{"color": "red"},
@@ -218,7 +218,7 @@ export const demoData :pageSchema  = {
           level: 'h1',
         }},
               
-        { id: 'text-3',
+        { id: 'text-3hrh398y9hir',
           type: 'text',
           responsiveStyles: {
             baseStyle:{},
@@ -240,7 +240,7 @@ export const demoData :pageSchema  = {
           text: "It’s no secret that the digital industry is booming. From exciting startups to global brands, companies are reaching out to digital agencies, responding to the new possibilities available. However, the industry is fast becoming overcrowded, heaving with agencies offering similar services — on the surface, at least. Producing creative, fresh projects is the key to standing out. Unique side projects are the best place to innovate, but balancing commercially and creatively lucrative work is tricky. So, this article looks at …",
         }},
 
-        { id: 'button-4',
+        { id: 'button-4nwreoh9324y9',
           type: 'button',
           responsiveStyles: {
             baseStyle:{},
@@ -272,7 +272,7 @@ export const demoData :pageSchema  = {
          //end flex one
 
        //flex two
-          { id: 'flex-8',
+          { id: 'flex-8y398y9hohq98w',
           type: 'flex',
           responsiveStyles: {
             baseStyle:{},
@@ -291,7 +291,7 @@ export const demoData :pageSchema  = {
           editable: false,
           link: "/home",
            children:[
-        { id: 'image-1',
+        { id: 'image-1hi3h498yerhih9',
           type: 'image',
           responsiveStyles: {
             baseStyle:{"color": "red"},
@@ -310,14 +310,14 @@ export const demoData :pageSchema  = {
           editable: false,
           link: "/home",
           props : {
-          src: "http://172.16.7.127:6200/media/dress2.jpg",
+          src: "http://localhost:6200/media/dress2.jpg",
           alt: "img",
           link: "",
           width: "",
           height: "",
         }},
 
-        { id: 'heading-2',
+        { id: 'heading-2y398yndfshnf',
           type: 'heading',
           responsiveStyles: {
             baseStyle:{"color": "red"},
@@ -340,7 +340,7 @@ export const demoData :pageSchema  = {
           level: 'h1',
         }},
               
-        { id: 'text-3',
+        { id: 'text-3hu9833y982u',
           type: 'text',
           responsiveStyles: {
             baseStyle:{},
@@ -362,7 +362,7 @@ export const demoData :pageSchema  = {
           text: "It’s no secret that the digital industry is booming. From exciting startups to global brands, companies are reaching out to digital agencies, responding to the new possibilities available. However, the industry is fast becoming overcrowded, heaving with agencies offering similar services — on the surface, at least. Producing creative, fresh projects is the key to standing out. Unique side projects are the best place to innovate, but balancing commercially and creatively lucrative work is tricky. So, this article looks at …",
         }},
 
-        { id: 'button-4',
+        { id: 'button-4hwopi87237',
           type: 'button',
           responsiveStyles: {
             baseStyle:{},

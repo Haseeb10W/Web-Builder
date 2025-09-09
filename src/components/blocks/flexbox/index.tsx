@@ -15,6 +15,9 @@ interface FlexProps{
 }
 
 export default function FlexBox({block, index, onDelete, onCopy}:FlexProps) {
+
+  
+
   if(block.type !== 'flex') return null;
   const flexBlock = block as ContainerBlock;
   const {children = [], props} = flexBlock;
@@ -44,13 +47,34 @@ export default function FlexBox({block, index, onDelete, onCopy}:FlexProps) {
 
     )
   }
+
+
+  const flexStyles = {
+    styling : {
+      ...flexBlock?.styles,
+        display: 'flex',
+        flexDirection,
+        gap : '0px',
+        flexWrap : 'wrap',
+        justifyContent : 'flex-start',
+        minHeight: children.length === 0 ? '100px' : '150px',
+        border: children.length === 0 ? '2px dashed #ccc' : 'none',
+
+    },
+
+    classes : `flex-initial relative   block-editor-${flexBlock?.id} ${flexBlock?.tailWindClasses} ${flexBlock?.customClasses} `
+
+  }
+
+
+
   return (
-    <Section id={flexBlock.id} index={index} onDelete={(id)=>onDelete?.(id)} onCopy={onCopy}>
-      <div style={{
+    <Section id={flexBlock.id} index={index} onDelete={(id)=>onDelete?.(id)} onCopy={onCopy} allStyles={flexStyles}>
+      {/* <div style={{
         ...flexBlock?.styles,
         display: 'flex',
         flexDirection,
-        // gap,
+        gap,
         flexWrap : 'wrap',
         justifyContent : 'flex-start',
         minHeight: children.length === 0 ? '100px' : '300',
@@ -58,7 +82,7 @@ export default function FlexBox({block, index, onDelete, onCopy}:FlexProps) {
 
         
       }}
-      className={`block-${flexBlock?.id} ${flexBlock?.tailWindClasses} ${flexBlock?.customClasses} relative [&>*:not(.drop-zone)]:flex-[0_0_30%] [&>*:not(.drop-zone):not(:last-child)]:mr-[10px]`}>
+      className={`relative   block-editor-${flexBlock?.id} ${flexBlock?.tailWindClasses} ${flexBlock?.customClasses} `}> */}
         
         <SortableContext items={children.map(child => child.id)} strategy={strategy}>
           {
@@ -90,7 +114,7 @@ export default function FlexBox({block, index, onDelete, onCopy}:FlexProps) {
         </SortableContext>
 
         
-      </div>
+      {/* </div> */}
     </Section>
   )
 }

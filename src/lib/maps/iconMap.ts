@@ -80,6 +80,7 @@ import { MdAlignVerticalBottom, MdAlignVerticalCenter, MdAlignVerticalTop } from
 import { TbDiabolo } from 'react-icons/tb';
 import { TbNavigationQuestion } from "react-icons/tb";
 import { BsQuestion } from "react-icons/bs";
+import { ImInsertTemplate } from 'react-icons/im';
 
 
 export const iconMap : {[key:string]: React.ElementType} ={
@@ -162,7 +163,8 @@ export const iconMap : {[key:string]: React.ElementType} ={
   eye:Eye,  
   save:Save,
   panelbottomOpen: PanelBottomOpen,
-  panelbottomClose: PanelBottomClose
+  panelbottomClose: PanelBottomClose,
+  template: ImInsertTemplate
 
 
 }

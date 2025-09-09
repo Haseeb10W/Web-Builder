@@ -1,5 +1,5 @@
 import { Block } from "@/types/blocksSchema"
-import { styleAppliedToCommonElements } from "./applyStyleFunctions"
+import { styleAppliedToBackground, styleAppliedToCommonElements } from "./applyStyleFunctions"
 
 
 
@@ -31,10 +31,8 @@ export const appliedSettings = (applied:string | undefined, foundBlock:Block | n
       }
 
   }else if( applied == "backgroundChange"){
-    if(isTextBlockType(foundBlock) ){
-        backgroundSettingHandle(foundBlock, fieldValue)
-
-      }
+    // console.log(fieldValue)
+    styleAppliedToBackground(screenType, settingField, foundBlock, fieldValue)
 
   }
 

@@ -11,10 +11,11 @@ interface SectionProps{
   index: number;
   onDelete?: (id:string)=>void;
   onCopy?: (id:string)=>void;
+  allStyles?: {[key:string]: any};
 
 }
 
-export default function Section({children, id, index, onDelete, onCopy}:SectionProps) {
+export default function Section({children, id, index, onDelete, onCopy, allStyles}:SectionProps) {
   // console.log('Section props:', { id, index });
   // console.log(index)
   
@@ -53,6 +54,7 @@ export default function Section({children, id, index, onDelete, onCopy}:SectionP
       opacity: isDragging ? 0.5 : 1,
       zIndex : isDragging ? 1000 : 2,
       cursor: isDragging ? 'grabbing' : 'grab',
+      ...allStyles?.styling
     }
  
     const handleBlockDelete = (id:string)=>{
@@ -66,7 +68,7 @@ export default function Section({children, id, index, onDelete, onCopy}:SectionP
   return (
     <>
 
-    <div  ref={setNodeRef} style={style} className={` flex-child group relative hover:border hover:border-blue-600/60  ${isJustDropped && 'dropped-selected-section'} section-editor`   } >
+    <div  ref={setNodeRef} style={style} className={` flex-child group relative hover:border hover:border-blue-600/60  ${isJustDropped && 'dropped-selected-section'} section-editor ${allStyles?.classes}   `   } >
       
 
       {children}

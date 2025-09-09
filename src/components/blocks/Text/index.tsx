@@ -43,14 +43,24 @@ export default function Text({block, index, onDelete, onCopy}: TextProps) {
 
   }
 
+  const textStyles = {
+    styling : {
+      ...textBlock?.styles
+
+    },
+
+    classes : ` block-editor-${textBlock?.id} ${textBlock?.tailWindClasses} ${textBlock?.customClasses} cursor-default selected-child ${trackingClass} `
+
+  }
+
   // console.log('BlockReader block ID:', block.id); 
   return (
-    <Section id={textBlock?.id} onDelete={(id)=>onDelete?.(id)} onCopy={(id)=>onCopy?.(id)} index={index}>
+    <Section id={textBlock?.id} onDelete={(id)=>onDelete?.(id)} onCopy={(id)=>onCopy?.(id)} index={index} allStyles={textStyles}>
     <p key={textBlock?.id} style= {{
         ...textBlock?.styles
 
       }}
-      className = {` block-editor-${textBlock?.id} ${textBlock?.tailWindClasses} ${textBlock?.customClasses} cursor-default selected-child ${trackingClass}`}
+      className = {`  ${trackingClass}`}
       dangerouslySetInnerHTML={{__html:textBlock && textBlock?.props?.text }}
 
     ></p>

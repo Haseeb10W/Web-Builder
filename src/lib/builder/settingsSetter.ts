@@ -6,9 +6,7 @@ import { findBlockOverall } from "./blockHandlers";
 
 export const backgroundSettingsSetter = (findBlock:Block, screenType: "desktop" | "tablet" | "mobile", status:string )=>{
 
-
-  
-
+  // console.log(screenType, status)
   const allValues = {
     
     backgroundColor : getValueForFields(findBlock, screenType, status, 'background-color'),
@@ -21,6 +19,7 @@ export const backgroundSettingsSetter = (findBlock:Block, screenType: "desktop" 
     
   }
 
+  // console.log(allValues)
 
   const fullValue = JSON.stringify(allValues) 
   return fullValue;
@@ -40,6 +39,7 @@ export const getValueOnStatusChange = (styleFields: string[], settingId:string, 
 
    
    const findBlock = findBlockOverall(data, settingId);
+   
    let findValue: string = ''
 
    if(findBlock){
@@ -50,6 +50,8 @@ export const getValueOnStatusChange = (styleFields: string[], settingId:string, 
 
     }else if(field == "fontFamilyChange"){
       findValue = findBlock?.classTracking?.fontFamilyClass;
+    }else if(field == "backgroundChange"){
+      findValue = backgroundSettingsSetter(findBlock, screenType, statusValue)
     }
 
 
@@ -66,6 +68,7 @@ export const getValueOnStatusChange = (styleFields: string[], settingId:string, 
 
 export const getValueForFields = (block:Block, screen: "desktop" | "tablet" | "mobile", status:string, field: string )=>{
 
+  
   let styleValue:string = ''; 
 
   switch (status){

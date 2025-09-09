@@ -15,7 +15,7 @@ import dynamic from 'next/dynamic';
 import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 
-const ClientDndContext = dynamic(() => import('@/components/ClientDndContext'), {
+const ClientDndContext = dynamic(() => import('@/components/settingFields/ClientDndContext'), {
   ssr: false, 
   // loading: () => <p>Loading drag-and-drop features...</p>, // Optional: A loading state
 });

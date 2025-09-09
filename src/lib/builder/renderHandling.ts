@@ -208,7 +208,7 @@ export const loadAllStyles = (stylePrefix:string  , pageContent:Block[])=>{
       if(hoverStyle){
 
         hoverCSS += `
-          .section-editor:hover ${uniqueClass}{
+          ${uniqueClass}:hover {
               ${Object.entries(hoverStyle).filter(([key,value])=> value !== '').map(([key,value])=>`${key}: ${value};`).join('\n')}
           }
         `

@@ -649,7 +649,7 @@ export const buttonSettingsSet:settingsSetArgs = (settingType, data)=> {
       
            /* Background */
       
-      settings.styles[16].props.value = backgroundSettingsSetter(findBlock);
+      // settings.styles[16].props.value = backgroundSettingsSetter(findBlock);
       
 
       // Settings

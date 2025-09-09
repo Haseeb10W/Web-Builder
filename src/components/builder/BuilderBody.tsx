@@ -151,7 +151,7 @@ const handleSidebarDrop = useCallback((newBlock: Block, insertIndex?: number) =>
   }
 
   useEffect(()=>{
-  console.log(pageData)
+  // console.log(pageData)
   },[pageData])
   
 

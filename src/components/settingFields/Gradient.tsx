@@ -5,6 +5,7 @@ import IconField from './IconField';
 import { title } from 'process';
 import ColorField from './colorField';
 import RangeField from './RangeField';
+import { settingFieldProps } from '@/types/settingsSchema';
 const bgGradient = {
   label : "Gradient type",
   value: "linear",
@@ -201,7 +202,7 @@ const radialPostion = {
 
   ]
 }
-export default function Gradient() {
+export default function Gradient({props, change}:settingFieldProps) {
       const [bgGradientProps, setBgGradientProps] = useState(bgGradient)
       const [colorOneProps, setColorOneProps] = useState(colorOne)
       const [colorTwoProps, setColorTwoProps] = useState(colorTwo)
@@ -323,8 +324,8 @@ if (bgGradientProps.value === "Conic" && colorOneProps.value && colorTwoProps.va
   return (
     <>
     <div>
-    <h3 className="text-sm text-gray-600">Gradient</h3>
-    <div className='w-full h-16 border border-gray-200 mt-2' style={{background: gradientStyle}}></div>
+    <h3 className="text-sm text-gray-600">props?.label</h3>
+    <div className='w-full h-16 border border-gray-200 mt-2' style={{background: props?.value}}></div>
     </div>
     <SelectField props={bgGradientProps} change={(value:any)=>handleGradient(value)}></SelectField>
     {

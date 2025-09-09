@@ -8,6 +8,8 @@ import { useSettingType } from '@/contexts/settingsType';
 import Link from 'next/link';
 import { Router } from 'next/router';
 import { useRouter } from 'next/navigation';
+import { useAppDispatch } from '@/hooks/reduxRoot';
+import { updateData } from '@/redux/preview/previewDataSlice';
 
 interface BuilderHeaderPops {
   dataPage? : editSchema ;
@@ -25,6 +27,8 @@ function BuilderHeader ({dataPage, screenSize = 0, updateScreenSize, bodyWidth=0
   const {toggleSide, setToggleSide, setPreviewData} = useSideToggle();
   const { setSettingType, setSettingPopUp, setOpenMedia, screenType, setScreenType} = useSettingType()
   const router = useRouter();
+  const dispatchPreview = useAppDispatch();
+
 
 
   
@@ -141,6 +145,7 @@ function BuilderHeader ({dataPage, screenSize = 0, updateScreenSize, bodyWidth=0
 
     if(data){
       setPreviewData(data.editData);
+      // dispatchPreview(updateData(data.editData))
 
     }
     
