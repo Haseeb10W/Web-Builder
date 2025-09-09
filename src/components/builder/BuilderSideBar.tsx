@@ -23,7 +23,7 @@ export default function BuilderSideBar() {
       label : 'Layout',
       elements : [
         {type: 'flex', label: 'FlexBox' , icon: 'flex'},
-        // {type: 'grid', label: 'Grid' , icon: 'grid'},
+        
 
       ]
     },
@@ -36,9 +36,14 @@ export default function BuilderSideBar() {
         {type: 'image', label: 'Image' , icon: 'image'},
         {type: 'button', label: 'Button' , icon: 'button'},
         {type: 'icon', label: 'Icon' , icon: 'icon'},
+        {type: 'list', label: 'Icon List' , icon: 'list'},
       ]
     }
 
+  ]
+
+  const templateElement = [
+    {type: 'template', label: 'Template 1' , icon: 'template'},
   ]
 
   const toogleElementsData = [
@@ -115,9 +120,31 @@ export default function BuilderSideBar() {
             </div>
           ) 
         }
+
+        {
+          activeTab == "templates"  &&  (
+
+            <div className="flex min-[1000px]:mt-2 px-4  min-[1000px]:h-[calc(100%-40px)]  min-[1000px]:overflow-y-auto overflow-x-auto overflow-y-hidden">
+
+              <ul className='flex gap-2 min-[1000px]:flex-col min-[1000px]:w-full '>
+
+                  < DraggableElement element={templateElement[0]} index={2} />
+
+              </ul>
+
+
+
+
+            </div>
+            
+          )
+        }
       </div>
       
       ) }
+      
+
+      
     </div>
     </>
   )

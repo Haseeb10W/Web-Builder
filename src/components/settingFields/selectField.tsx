@@ -5,7 +5,7 @@ import { settingFieldProps } from '@/types/settingsSchema'
 import React, { useEffect, useState } from 'react'
 import ResponsiveComponents from './ResponsiveComponents';
 
-export default function SelectField({props, change, returnVal}: settingFieldProps) {
+export default function SelectField({props, change}: settingFieldProps) {
   const [selectedOption, setSelectedOption] = useState<{label: any, value: any}>({label: null, value: null});
   const [isOpen, setIsOpen] = useState(false);
   const clickRef = useDocumentClick(()=>{
@@ -13,6 +13,7 @@ export default function SelectField({props, change, returnVal}: settingFieldProp
   })
 
   useEffect(()=>{
+    // console.log(props)
     if(props?.value !== selectedOption.value){
       
       if(props?.options){

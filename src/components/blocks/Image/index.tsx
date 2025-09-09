@@ -28,19 +28,33 @@ export default function Image({block, index, onDelete, onCopy}:ImageProps) {
        )
 
   }
+
+
+  const imageStyles = {
+    styling : {
+      ...ImageBlock?.props,
+
+      width:`${ImageBlock?.props?.width || 400}`,
+      height:`${ImageBlock?.props?.height || 500}`,
+
+    },
+    classes : `block-editor-${ImageBlock?.id} overflow-hidden ${ImageBlock?.tailWindClasses} ${ImageBlock?.customClasses}`
+  }
+
+
+
   return (
     <>
-    <Section id={ImageBlock?.id} onDelete={(id)=>onDelete?.(id)} onCopy={(id)=>onCopy?.(id)} index={index}>
+    <Section id={ImageBlock?.id} onDelete={(id)=>onDelete?.(id)} onCopy={(id)=>onCopy?.(id)} index={index} allStyles={imageStyles}>
         {ImageBlock.props.src ? (
-    <div className='flex justify-center'>    
-        <Link href={ImageBlock?.link} ><img
+    <img
         src={ImageBlock?.props.src || "/placeholder.png"}
         alt={ImageBlock?.props.alt || "Image"}
-        width={ImageBlock?.props.width || 400}
-        height={ImageBlock?.props.height || 500}
-        className={`block-${ImageBlock?.id}  ${ImageBlock?.tailWindClasses} ${ImageBlock?.customClasses}`}
-      /></Link> 
-      </div>
+        
+        
+         
+        className={`object-fill w-full h-full`}
+      />
             ):(
                 <div className="w-full h-[200px] bg-gray-200 flex items-center justify-center">
                     <DynamicIcons name="moMedia" classes={`w-10 h-10 text-gray-800`} />

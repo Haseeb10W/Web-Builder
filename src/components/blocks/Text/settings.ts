@@ -1,10 +1,9 @@
 import { settingTypes } from "@/contexts/settingsType"
-import { findBlock, findBlockOverall, findBlocksInContainer } from "@/lib/builder/blockHandlers"
+import { findBlock, findBlockOverall} from "@/lib/builder/blockHandlers"
 import { handleSettingChange } from "@/lib/builder/settingHandlers"
-import { backgroundSettingsSetter, getValueForFields, getValueOnStatusChange, styleApplyToFields } from "@/lib/builder/settingsSetter"
+import { backgroundSettingsSetter, getValueForFields } from "@/lib/builder/settingsSetter"
 import { setSettingField } from "@/lib/fieldSettings/fields"
-import { Block } from "@/types/blocksSchema"
-import { editSchema } from "@/types/editSchema"
+
 import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
 
 
@@ -683,7 +682,7 @@ export const textSettingsSet:settingsSetArgs = (settingType, data, screenType)=>
   // console.log(settingType)
   const blockId = settingType?.id;
 
-  const findBlock = findBlockOverall(data, blockId)
+  const findBlock = findBlockOverall(data, blockId);
 
   if(findBlock){
     const settings = {...TextSettings}

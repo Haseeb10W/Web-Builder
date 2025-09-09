@@ -1,5 +1,4 @@
 import { settingTypes } from "@/contexts/settingsType"
-import { editSchema } from "@/types/editSchema"
 import { Active } from "@dnd-kit/core"
 import { Dispatch, SetStateAction } from "react"
 import { getFirstWord } from "../stringFunctions"

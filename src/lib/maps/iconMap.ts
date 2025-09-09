@@ -70,7 +70,9 @@ import {
   Save,
   PanelBottomOpen,
   PanelBottomClose,
-  Volleyball
+  Star,
+  List,
+  
 
 
 } from 'lucide-react';
@@ -81,6 +83,7 @@ import { MdAlignVerticalBottom, MdAlignVerticalCenter, MdAlignVerticalTop } from
 import { TbDiabolo } from 'react-icons/tb';
 import { TbNavigationQuestion } from "react-icons/tb";
 import { BsQuestion } from "react-icons/bs";
+import { ImInsertTemplate } from 'react-icons/im';
 
 
 export const iconMap : {[key:string]: React.ElementType} ={
@@ -164,7 +167,10 @@ export const iconMap : {[key:string]: React.ElementType} ={
   save:Save,
   panelbottomOpen: PanelBottomOpen,
   panelbottomClose: PanelBottomClose,
-  icon: Volleyball
+  icon: Star,
+  template: ImInsertTemplate,
+  list : List
+
 
 
 }

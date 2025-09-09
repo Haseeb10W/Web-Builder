@@ -32,7 +32,7 @@ export const  Renderer = forwardRef<HTMLDivElement, RendererProps>(({ header, ch
 
   return (
     
-    <div ref={rendererRef } className={`renderer-container  bg-white h-full mx-auto border-l border-r  border-gray-200 shadow-lg overflow-y-auto `} style={{ width: rendererWidth ? `${rendererWidth}px` : '100%' }}>
+    <div ref={rendererRef } className={`renderer-container  bg-white h-full mx-auto border-l border-r  border-gray-200 shadow-lg overflow-y-auto overflow-x-hidden`} style={{ width: rendererWidth ? `${rendererWidth}px` : '100%' }}>
       {/* <div className={`pb-10`}> */}
       
       {header && <div className="renderer-header">{header}</div>}

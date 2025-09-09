@@ -262,4 +262,82 @@ export const duplicateBlockHandler = (blockId: string, data: editSchema | undefi
 };
 
 
+export const makeBlockEditChangeable = (blocks:Block[], edit: string, pageData:editSchema | undefined)=>{
 
+  return blocks.map((block: any)=>{
+    // console.log(block)
+
+    let updateBlock  = {...block}
+
+    const findBlock = findBlockOverall(pageData, updateBlock.id);
+
+
+    
+
+    if(edit == 'editor' && findBlock){
+
+      const vId = uuidv4;
+      const newId = `${updateBlock.type}-${vId}`;
+
+
+      updateBlock = {...updateBlock, draggable: true, resizable: true, editable: true, id: newId}
+
+    }
+    else if(edit == 'editor' ){
+
+      updateBlock = {...updateBlock, draggable: true, resizable: true, editable: true}
+
+    }
+    
+    else {
+      updateBlock =  {...updateBlock, draggable: false, resizable: false, editable: false}
+    }
+
+    if ('children' in updateBlock && updateBlock.children) {
+        updateBlock.children =  makeBlockEditChangeable(updateBlock.children, edit, pageData);
+      }
+
+    return updateBlock
+
+
+  })
+
+  
+
+}
+
+
+
+export const findBlockParentContainer = (blockId: string, blocks:Block[]) : Block | null =>{
+  
+  if (!blocks) return null;
+
+  for(let block of blocks){
+    console.log(block)
+    if(block.id === blockId){
+      return block;
+    }
+
+
+     if('children' in block && block.children){
+      // console.log('children')
+      const foundChild = findBlockParentContainer(blockId, block.children);
+      if(foundChild) return foundChild
+     }
+
+
+  }
+
+  return null;
+  
+      
+      
+
+
+
+
+
+
+  
+
+}

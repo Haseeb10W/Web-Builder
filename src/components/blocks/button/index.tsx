@@ -15,36 +15,47 @@ interface ButtonProps{
 export default function Button({block, index, onDelete, onCopy}:ButtonProps) {
     if(block.type !== 'button') return null;
     const ButtonBlock = block as ButtonBlock;
-   console.log(ButtonBlock)
+  //  console.log(ButtonBlock)
           if(!ButtonBlock?.editable && !ButtonBlock?.draggable){
     return (
-     <Link href={ButtonBlock?.props?.link || " "} target={ButtonBlock?.props?.target || "_self"}>
-        <div className={`flex block-${ButtonBlock?.id} ${ButtonBlock?.tailWindClasses} ${ButtonBlock?.customClasses}`}>
+     <Link href={ButtonBlock?.props?.link || " "} target={ButtonBlock?.props?.target || "_self"} className={`flex block-${ButtonBlock?.id} ${ButtonBlock?.tailWindClasses} ${ButtonBlock?.customClasses}`} style={{...ButtonBlock?.styles}}>
+        
             {
                 ButtonBlock?.props?.icon && (
                    <DynamicIcons name={ButtonBlock?.props?.icon} classes={`h-5 w-5`}/>
                 )
             }
            <span>{ButtonBlock?.props?.text}</span>
-        </div>
+        
       </Link>
        )
 
   }
 
+  const buttonStyles = {
+    styling : {
+      ...ButtonBlock?.styles,
+       
+
+    },
+
+    classes : `flex block-editor-${ButtonBlock?.id} ${ButtonBlock?.tailWindClasses} ${ButtonBlock?.customClasses} `
+
+  }
+
   return (
     <>
-     <Section id={ButtonBlock?.id} onDelete={(id)=>onDelete?.(id)} onCopy={(id)=>onCopy?.(id)} index={index}>
+     <Section id={ButtonBlock?.id} onDelete={(id)=>onDelete?.(id)} onCopy={(id)=>onCopy?.(id)} index={index} allStyles={buttonStyles}>
              
-         <Link href={ButtonBlock?.props?.link || ''} target={ButtonBlock?.props?.target || "_self"}>
-        <div className={`flex block-${ButtonBlock?.id} ${ButtonBlock?.tailWindClasses} ${ButtonBlock?.customClasses}`}>
+         <Link href={ButtonBlock?.props?.link || ''} target={ButtonBlock?.props?.target || "_self"}  >
+        
             {
                 ButtonBlock?.props?.icon && (
                    <DynamicIcons name={ButtonBlock?.props?.icon}  classes={`h-5 w-5`}/>
                 )
             }
            <span>{ButtonBlock?.props?.text || 'Button'} </span>
-        </div>
+        
       </Link>
      
          </Section>

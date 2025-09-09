@@ -1,14 +1,12 @@
-import { Block, BlockType, ContainerType } from '@/types/blocksSchema';
+import { Block } from '@/types/blocksSchema';
 import { editSchema } from '@/types/editSchema'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect} from 'react'
 import BlockReader from '../BlockReader';
-import { arrayMove, SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
+import {  SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import DropZone from './DropZone';
-import { DndContext, DragEndEvent, DragOverEvent, DragStartEvent, useDndMonitor } from '@dnd-kit/core';
-import useBlockSchema from '@/hooks/useBlockSchema';
-import { customDropzoneCollisionDetection } from '@/lib/builder/customCollisionDetection';
-import { deleteBlockHandler, duplicateBlockHandler, findAllBlocks, findBlockOverall } from '@/lib/builder/blockHandlers';
-import { loadAllStyles, loadStyleForEditor } from '@/lib/builder/renderHandling';
+
+import { deleteBlockHandler, duplicateBlockHandler } from '@/lib/builder/blockHandlers';
+import {  loadStyleForEditor } from '@/lib/builder/renderHandling';
 import { useSettingType } from '@/contexts/settingsType';
 
 interface BlockRendererProps {

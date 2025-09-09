@@ -13,17 +13,17 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
   // Content
   content : [
 
-   // 0 
-    setSettingField('heading',{label: "Content Area", for : 'texteditor', tabOpen: true, tabAllow: false}),
+    // 0 
+    setSettingField('heading',{label: "Image Settings", for : 'imagesettings', tabOpen: true, tabAllow: false}),
 
     // 1
-     setSettingField('texteditor', {
-      label: "Text Editor", 
-      labelId: "text-editor",
-      placeholder: 'Add your Text here',
-      for : 'textChange',
+    setSettingField('imageSection', {
+      label: "Icons", 
+      value:"",
+      for : 'imagesettings',
       tab: '',
-      tabOpen: true}
+      tabOpen: true
+    }
     ),
     
   // 2 

@@ -19,6 +19,36 @@ export const styleAppliedToCommonElements = (screen: 'desktop' | 'tablet' | 'mob
 }
 
 
+export const styleAppliedToBackground = (screen: 'desktop' | 'tablet' | 'mobile', settingField: any, block:Block | null, 
+  fieldValue : string) =>{
+    if(!block) return ;
+    
+    const allBackgroundProperties = JSON.parse(fieldValue);
+
+    const status = allBackgroundProperties.status;
+    const bgValues = allBackgroundProperties.backgroundValues;
+    const responsive = allBackgroundProperties.responsive;
+
+    const setValues = {
+          backgroundColor : bgValues['background-color'],
+          backgroundImage : bgValues['background-image'],
+          backgroundPosition : bgValues['background-position'],
+          backgroundSize : bgValues['background-size'],
+          backgroundRepeat: bgValues['background-repeat'],
+          backgroundAttachment: bgValues['background-attachment'],
+          backgroundGradient : bgValues['background']
+    }
+    settingField.props.value = JSON.stringify(setValues)
+    
+
+    Object.entries(bgValues).forEach( ([style, value]: [string, any]) =>{
+      styleApplyToElements(screen, block, value, style, responsive, status)
+
+    })
+
+}
+
+
 export const styleApplyToElements = (screen: 'desktop' | 'tablet' | 'mobile', block:Block , value: string, style:string, responsive:string, status:string)=>{
 
 
@@ -60,7 +90,7 @@ export const styleApplyToElements = (screen: 'desktop' | 'tablet' | 'mobile', bl
 
          }
        }else{
-         block.responsiveStyles = block.responsiveStyles || {}
+          block.responsiveStyles = block.responsiveStyles || {}
           block.responsiveStyles.baseStyle = block.responsiveStyles.baseStyle || {} 
 
           deleteOrSetProperty(block.responsiveStyles.baseStyle, style, value)

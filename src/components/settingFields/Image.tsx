@@ -17,8 +17,13 @@ export default function Image({props, change}:settingFieldProps) {
 
   useEffect(() => {
     if(props?.value !== ''){
-      const fullPath = filePath + props?.value;
-      setSelectedImage(fullPath);
+
+      const fullUrl = props?.value?.split('url(')[1]?.split(')')[0];
+
+
+      // console.log(fullUrl)
+      // const fullPath = filePath + props?.value;
+      setSelectedImage(fullUrl);
     }else{
       setSelectedImage( null);
     }
@@ -31,8 +36,18 @@ export default function Image({props, change}:settingFieldProps) {
   console.log("fileApplyOn",fileApplyOn);
     if (fileApplyOn == true && mediaFilesApply && mediaFilesApply.appliedId == idApply  && mediaFilesApply.appliedData.length > 0) {
       const appliedImage = mediaFilesApply.appliedData[0].imagePath;
-      // setSelectedImage(appliedImage);
-      change?.(appliedImage);
+      const selectedImg = filePath  + appliedImage
+
+      const fullValue = {
+        status : props?.currentStatus,
+        responsive : props?.responsive || 'on',
+        value : `url(${selectedImg})`
+      }
+
+
+      // setSelectedImage(selectedImg);
+      // console.log(selectedImg)
+      change?.(JSON.stringify(fullValue));
       
       
       setMediaFilesApply(undefined);
@@ -43,8 +58,14 @@ export default function Image({props, change}:settingFieldProps) {
   const handledelete = (e: React.MouseEvent<HTMLSpanElement>) =>{
     // console.log()
     e.stopPropagation();
-    // setSelectedImage(null);
-    change?.('')
+    setSelectedImage(null);
+
+    const fullValue = {
+        status : props?.currentStatus,
+        responsive : props?.responsive || 'on',
+        value : ``
+      }
+    change?.(fullValue)
   }
 
   const handleImageSelect = () => {
@@ -63,8 +84,7 @@ export default function Image({props, change}:settingFieldProps) {
     }
 
     setMediaFilesApply(mediaApply)
-    // setFileApplyOn(true) 
-    
+    setFileApplyOn(false)
     
 
   }

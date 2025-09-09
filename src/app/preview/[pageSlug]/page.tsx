@@ -7,6 +7,8 @@
 import BlockReader from '@/components/BlockReader';
 import { useSideToggle } from '@/contexts/toggleSide';
 import { demoData } from '@/data/DemoTemplate';
+import { useAppSelector } from '@/hooks/reduxRoot';
+import { makeBlockEditChangeable } from '@/lib/builder/blockHandlers';
 import { loadAllStyles } from '@/lib/builder/renderHandling';
 import { Block } from '@/types/blocksSchema';
 import { editSchema, footerSchema, headerSchema, renderSchema } from '@/types/editSchema';
@@ -22,7 +24,9 @@ export default function PreviewRenderer() {
   const [activeFooter, setActiveFooter] = useState<footerSchema | null>(null);
   const [renderData, setRenderData] = useState<Block[]>([])
 
-  const {previewData} = useSideToggle()
+  // const {previewData} = useSideToggle()
+
+  const previewData = useAppSelector((state)=>state.previewData.value)
   
 
 
@@ -38,17 +42,8 @@ export default function PreviewRenderer() {
 
     if(previewData){
 
-      const dataPage = previewData.content?.map((item)=>{
-
-        return {
-          ...item,
-          draggable : false,
-          resizable: false,
-          editable: false
-
-        }
-        
-      }) 
+      const dataPage = makeBlockEditChangeable(previewData.content, 'reader', undefined);
+      
 
       if(dataPage){
         fullContent.push(...dataPage)
@@ -57,25 +52,7 @@ export default function PreviewRenderer() {
       
 
     }
-    else{
-      const demo = demoData
-      const dataPage = demo.content?.map((item)=>{
-
-        return {
-          ...item,
-          draggable : false,
-          resizable: false,
-          editable: false
-
-        }
-        
-      }) 
-
-      if(dataPage){
-        fullContent.push(...dataPage)
-      }
-
-    }
+    
 
 
     if(activeFooter){
