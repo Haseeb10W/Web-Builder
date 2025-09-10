@@ -18,7 +18,8 @@ export default function Image({props, change}:settingFieldProps) {
   useEffect(() => {
     if(props?.value !== ''){
 
-      const fullUrl = props?.value.split('url(')[1].split(')')[0];
+      const fullUrl = props?.value?.split('url(')[1]?.split(')')[0];
+
 
       // console.log(fullUrl)
       // const fullPath = filePath + props?.value;
@@ -32,6 +33,7 @@ export default function Image({props, change}:settingFieldProps) {
 
   useEffect(() => {
 
+  console.log("fileApplyOn",fileApplyOn);
     if (fileApplyOn == true && mediaFilesApply && mediaFilesApply.appliedId == idApply  && mediaFilesApply.appliedData.length > 0) {
       const appliedImage = mediaFilesApply.appliedData[0].imagePath;
       const selectedImg = filePath  + appliedImage

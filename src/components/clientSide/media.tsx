@@ -6,6 +6,8 @@ import { useSettingType } from "@/contexts/settingsType";
 import MediaUploads from "./mediaUploads";
 import { API } from "../../../config/apiConfig";
 import ShowMedia from "./showMedia";
+import { iconMap } from "@/lib/maps/iconMap";
+
 
 export default function Media() {
   const [tabOpen, setTabOpen] = useState("media");
@@ -14,12 +16,15 @@ export default function Media() {
   const [mediaFiles, setMediaFiles] = useState<any[]>([]);
   const { mediaFilesApply, setMediaFilesApply, setFileApplyOn}  = useSettingType()
   
+  const icon = iconMap;
+  console.log("icon", icon)
   
   const {setOpenMedia} = useSettingType()
 
   const tabsData = [
     { label: "Media", value: "media" },
     { label: "Upload Media", value: "upload" },
+    { label: "Icons", value: "icons" },
   ];
 
   const handleTabChange = (value: string) => {
@@ -191,7 +196,7 @@ export default function Media() {
                 onClick={handleUpdatation}
                 
                 >
-              {tabOpen == 'media' && 'Apply' || tabOpen == 'upload' && "Upload"}
+              {tabOpen == 'media' && 'Apply' || tabOpen == 'upload' && "Upload" || tabOpen == 'icons' && "Select" }
               </button>
 
             </div>
@@ -223,10 +228,19 @@ export default function Media() {
 
           )
         }
-         
 
 
-
+        {  tabOpen == 'icons' && (
+          <>
+        <div className="grid grid-cols-20 px-5">
+         {Object.keys(icon).map((key) => {
+           return (
+             <DynamicIcons key={key} name={key} classes="w-5 h-5 m-2" />
+           );
+         })}
+          </div>
+          </>
+        )}
         
         </div>
       </div>

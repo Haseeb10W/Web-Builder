@@ -1,4 +1,4 @@
-import { ContentSchema, pageSchema, SiteData } from "@/types/editSchema";
+import { ContentSchema, headerSchema, pageSchema, SiteData } from "@/types/editSchema";
 import { Radius } from "lucide-react";
 
 export const demoData :pageSchema  = {
@@ -404,4 +404,20 @@ export const demoData :pageSchema  = {
   },
   editable : false,
 }
+
+export const headData :headerSchema = {
+      kind: 'header',
+      title : 'Home',
+      slug : 'home',
+      id : '12',
+      content: [],
+      styling: {
+        
+      },
+      active : false,
+      editable : true,
+  
+}
+
+
 

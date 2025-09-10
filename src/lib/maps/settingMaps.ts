@@ -4,6 +4,7 @@ import { flexSettingsSet } from "@/components/blocks/flexbox/settings";
 import { HeadSettingsSet } from "@/components/blocks/heading/settings";
 import { ImageSettingsSet } from "@/components/blocks/Image/setting";
 import { buttonSettingsSet } from "@/components/blocks/button/setting";
+import { iconSettingsSet } from "@/components/blocks/icons/setting";
 
 
 
@@ -17,5 +18,7 @@ export const settingFunctionMap : {[key:string]: any}= {
   flex : flexSettingsSet,
   heading : HeadSettingsSet,
   image : ImageSettingsSet,
-  button : buttonSettingsSet
+  button : buttonSettingsSet,
+  icon : iconSettingsSet,
+
 }

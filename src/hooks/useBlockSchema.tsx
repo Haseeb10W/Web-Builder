@@ -1,7 +1,7 @@
 'use client';
 
 
-import { Block, BlockType, ButtonBlock, Container, ContainerBlock, ContainerType, HeadingBlock, ImageBlock, TextBlock } from '@/types/blocksSchema';
+import { Block, BlockType, ButtonBlock, Container, ContainerBlock, ContainerType, HeadingBlock, IconBlock, ImageBlock, TextBlock } from '@/types/blocksSchema';
 import React, { useState } from 'react';
 
 import { v4 as uuidv4 } from 'uuid';
@@ -104,6 +104,16 @@ export default function useBlockSchema( { type } : blockSchemaProps)  {
           }
           
         } as ButtonBlock
+      case 'icon' : 
+      return  {
+          ...blockAdd,
+          type : 'icon',
+          props : {
+          link : '',
+          icon: null
+          }
+
+      } as IconBlock
       case 'image' : 
       return  {
         ...blockAdd,

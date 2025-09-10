@@ -56,10 +56,7 @@ export default function Text({block, index, onDelete, onCopy}: TextProps) {
   // console.log('BlockReader block ID:', block.id); 
   return (
     <Section id={textBlock?.id} onDelete={(id)=>onDelete?.(id)} onCopy={(id)=>onCopy?.(id)} index={index} allStyles={textStyles}>
-    <p key={textBlock?.id} style= {{
-        ...textBlock?.styles
-
-      }}
+    <p key={textBlock?.id} 
       className = {`  ${trackingClass}`}
       dangerouslySetInnerHTML={{__html:textBlock && textBlock?.props?.text }}
 

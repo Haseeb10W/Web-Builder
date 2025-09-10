@@ -28,6 +28,20 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
       tabOpen: true
     }
     ),
+
+  // 2
+  setSettingField('heading',{label: "Advanced", for : 'advanced',  tabAllow: true}),
+
+  // 3
+  setSettingField('linkField', {
+        label: "Text Link",
+        labelId: "text-link",
+        for : 'advanced',
+        tab : 'advanced',
+        value:'off',
+        responsive: 'off',
+        defaultNot:true      
+  }),
     
 
 
@@ -354,7 +368,30 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
     
   }
     ),
+
+  // 24
+  setSettingField('heading', {label: "Box Shadow", for : 'boxshadow', tabAllow: true}),
+
+  // 25 : Pseudo Status 
+    setSettingField('status', { 
+      for : 'boxshadow',
+      tab: 'boxshadow',
+      statusOptions : [
+        {name: 'Normal', value: 'normal' },
+        {name: 'Hover', value: 'hover' }, 
+      ],
+    }),
     
+  // 26 
+  setSettingField('boxShadow', {
+        label: "BoxShadow",
+        labelId: "box-shadow",
+        for : 'boxshadow',
+        tab : 'boxshadow',
+        value:'',  
+        responsive: 'off',
+        defaultNot:true        
+  }), 
     
   ],
 

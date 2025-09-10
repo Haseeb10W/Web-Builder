@@ -26,6 +26,19 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
       tabOpen: true}
     ),
     
+  // 2 
+  setSettingField('heading',{label: "Advanced", for : 'advanced',  tabAllow: true}),
+
+  // 3
+  setSettingField('linkField', {
+        label: "Button Link",
+        labelId: "text-link",
+        for : 'advanced',
+        tab : 'advanced',
+        value:'off',
+        responsive: 'off',
+        defaultNot:true   
+  }),
 
 
   ],
@@ -257,9 +270,9 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         labelId: "text-background",
         options: [
       {label: 'Color', value: 'color'},
-      {label: 'Image', value: 'image'},
+      // {label: 'Image', value: 'image'},
       {label: 'Gradient', value: 'gradient'},
-      {label: 'video', value: 'video'},      
+      // {label: 'video', value: 'video'},      
   ],
         for : 'backgroundChange',
         tab: 'background',
@@ -330,7 +343,32 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
       tab: 'border',
     
   }
-    ),
+  ),
+  // 23
+  setSettingField('heading', {label: "Box Shadow", for : 'boxshadow', tabAllow: true}),
+
+  // 24 : Pseudo Status 
+    setSettingField('status', { 
+      for : 'boxshadow',
+      tab: 'boxshadow',
+      statusOptions : [
+        {name: 'Normal', value: 'normal' },
+        {name: 'Hover', value: 'hover' }, 
+      ],
+    }),
+
+
+  // 25 
+  setSettingField('boxShadow', {
+        label: "BoxShadow",
+        labelId: "box-shadow",
+        for : 'boxshadow',
+        tab : 'boxshadow',
+        value:'',  
+        responsive: 'off',
+        defaultNot:true  
+      
+  }), 
     
     
   ],
@@ -496,42 +534,11 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         
   }),
 
-    //12 :: Scrolling
-    setSettingField('heading',{label: "OverFlow", for : 'overflow', tabAllow: true }),
-    
-    //13
-        setSettingField('select', {
-        label: "Overflow-X",
-        labelId: "overflow-x",
-        options: [
-          {label: 'Hidden', value: 'hidden'},
-          {label: 'Scroll', value: 'scroll'},
-          {label: 'Auto', value: 'auto'},
-
-        ],
-        for : 'overflowChange',
-        tab : 'overflow',
-      }),
-
-    //14
-        setSettingField('select', {
-        label: "Overflow-Y",
-        labelId: "overflow-y",
-        options: [
-          {label: 'Hidden', value: 'hidden'},
-          {label: 'Scroll', value: 'scroll'},
-          {label: 'Auto', value: 'auto'},
-
-        ],
-        for : 'overflowChange',
-        tab : 'overflow',
-      }),
-
-      //15 :: Other
+      //12 :: Other
        setSettingField('heading',{label: "Other", for : 'other', tabAllow: true }),
 
-      //16
-      setSettingField('increase', {
+      //13
+      setSettingField('number', {
         label: "Zindex", 
         labelId: "z-index",
         value:'',
@@ -540,7 +547,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
        }),
 
 
-      //17
+      //14
       setSettingField('iconSelect', {
         label: "Cursor Pointer",
         labelId: "cursor-pointer-style",
@@ -585,7 +592,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         
   }),
 
-  // 18
+  // 15
   setSettingField('transition', {
         label: "Apply Transition",
         labelId: "apply-transition",

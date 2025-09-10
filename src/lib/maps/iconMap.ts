@@ -69,7 +69,10 @@ import {
   Eye,
   Save,
   PanelBottomOpen,
-  PanelBottomClose
+  PanelBottomClose,
+  Star,
+  List,
+  
 
 
 } from 'lucide-react';
@@ -164,7 +167,10 @@ export const iconMap : {[key:string]: React.ElementType} ={
   save:Save,
   panelbottomOpen: PanelBottomOpen,
   panelbottomClose: PanelBottomClose,
-  template: ImInsertTemplate
+  icon: Star,
+  template: ImInsertTemplate,
+  list : List
+
 
 
 }
