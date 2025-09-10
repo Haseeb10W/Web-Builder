@@ -214,6 +214,7 @@ export default function Gradient({props, change}:settingFieldProps) {
       const [radialPostionProps, setRadialPostionProps] = useState(radialPostion)
       const [conicAngle,setConicAngle] = useState(degree)
       const [gradientStyle, setGradientStyle] = useState('');
+      const [gradientValueFull, setGradientValueFull] = useState<{type: string, direction: string, colorOne:string, colorTwo:string, position: string}>()
 
 // const gradientStyle:any = {};
 
@@ -246,17 +247,22 @@ if (bgGradientProps.value === "Conic" && colorOneProps.value && colorTwoProps.va
 
 
 
+  //  const makeGradientValue
+
 
     const handleGradient = (value:any) =>{
-        console.log(value);
+        // console.log(value);
+        const gradientType = JSON.parse(value).value
+        
         setBgGradientProps((prev:any)=>({
             ...prev,
-            value:value
+            value:gradientType
         }))
         
     }
    
     const handleDirection = (value:any) =>{
+      console.log(value)
       setBgDirectionProps((prev:any)=>({
           ...prev,
           value:value
@@ -324,7 +330,7 @@ if (bgGradientProps.value === "Conic" && colorOneProps.value && colorTwoProps.va
   return (
     <>
     <div>
-    <h3 className="text-sm text-gray-600">props?.label</h3>
+    <h3 className="text-sm text-gray-600">{props?.label}</h3>
     <div className='w-full h-16 border border-gray-200 mt-2' style={{background: props?.value}}></div>
     </div>
     <SelectField props={bgGradientProps} change={(value:any)=>handleGradient(value)}></SelectField>

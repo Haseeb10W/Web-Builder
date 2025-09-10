@@ -7,8 +7,7 @@ import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useStat
 interface ToogleContextType {
   toggleSide: boolean;
   setToggleSide: (value: boolean) => void;
-  previewData : ContentSchema | null;
-  setPreviewData: Dispatch<SetStateAction<ContentSchema | null>>;
+  
 }
 
 const ToggleContext = createContext<ToogleContextType | undefined>(undefined);
@@ -19,11 +18,11 @@ interface ToggleContextProviderProps {
 
 export const ToggleContextProvider = ({ children }: ToggleContextProviderProps) => {
   const [toggleSide, setToggleSide] = useState<boolean>(false);
-  const [previewData, setPreviewData] = useState<ContentSchema | null>(null);
+  // const [previewData, setPreviewData] = useState<ContentSchema | null>(null);
 
 
   return (
-    <ToggleContext.Provider value={{ toggleSide, setToggleSide, previewData, setPreviewData }}>
+    <ToggleContext.Provider value={{ toggleSide, setToggleSide }}>
       {children}
     </ToggleContext.Provider>
   );

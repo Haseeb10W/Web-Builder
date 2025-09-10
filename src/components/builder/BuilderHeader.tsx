@@ -24,7 +24,7 @@ interface BuilderHeaderPops {
 
 function BuilderHeader ({dataPage, screenSize = 0, updateScreenSize, bodyWidth=0}: BuilderHeaderPops) {
 
-  const {toggleSide, setToggleSide, setPreviewData} = useSideToggle();
+  const {toggleSide, setToggleSide} = useSideToggle();
   const { setSettingType, setSettingPopUp, setOpenMedia, screenType, setScreenType} = useSettingType()
   const router = useRouter();
   const dispatchPreview = useAppDispatch();
@@ -139,19 +139,22 @@ function BuilderHeader ({dataPage, screenSize = 0, updateScreenSize, bodyWidth=0
   const goToPreview = ()=>{
 
     const data = dataPage;
-    console.log(data)
+    // console.log(data)
 
     const dataSlug = data?.editData?.slug
 
-    if(data){
-      setPreviewData(data.editData);
+    if(data?.editData){
+      // setPreviewData(data.editData);
       // dispatchPreview(updateData(data.editData))
+      localStorage.setItem('preview', JSON.stringify(data.editData));
 
     }
     
-    router.push(`/preview/${dataSlug}`)
+    // router.push(`/preview/${dataSlug}`)
+    
+    
 
-    // window.open(`/preview/${dataSlug}`, '_blank')
+    window.open(`/preview/${dataSlug}`, '_blank')
 
   }
 

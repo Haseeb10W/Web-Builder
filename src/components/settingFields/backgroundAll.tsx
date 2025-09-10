@@ -11,6 +11,7 @@ import Video from "./Video";
 import PseudoStatus from "./pseudoStatus";
 
 
+
 const colorpros ={
         label: "Background Color", 
         // labelId: "bgcolor-text",
@@ -154,7 +155,7 @@ const bgImagePros ={
 
 
 const bggradientProps ={
-  label : "Background Image",
+  label : "Gradient",
   value:"",
   tab:"",
   tabOpen: true, 
@@ -176,6 +177,7 @@ export default function BackgroundAll({props, change}:settingFieldProps) {
   const [bgImageProps,setBgImageProps] = useState(bgImagePros)
   const [bgPositionProps,setBgPositionProps] = useState(bgPosition)
   const [bgAttachmentProps,setBgAttachmentProps] = useState(bgAttachment)
+  const [bgGradient, setBgGradient] = useState(bggradientProps)
   
 
 
@@ -209,7 +211,7 @@ export default function BackgroundAll({props, change}:settingFieldProps) {
     }else if(allValues.background && allValues.background !== ""){
       setAllBackground(allValues, 'gradient')
       
-      
+    
     }
 
     }
@@ -225,6 +227,7 @@ export default function BackgroundAll({props, change}:settingFieldProps) {
       setBgSizeProps({...bgSizeProps, value: allValues.backgroundSize})
       setBgPositionProps({...bgPositionProps, value: allValues.backgroundPosition})
       setBgAttachmentProps({...bgAttachmentProps, value: allValues.backgroundAttachment})
+      setBgGradient({...bggradientProps, value: allValues.background})
       // setBgAttachmentProps({...bgAttachmentProps, value: allValues.backgroundAttachment})
   }
 
@@ -462,6 +465,40 @@ export default function BackgroundAll({props, change}:settingFieldProps) {
   }
 
 
+  const handleBgGradient = (value:any)=>{
+
+    if(bgType?.value == 'gradient'){
+
+      // console.log(value)
+
+      const gradientValue = JSON.parse(value).value
+      // console.log(colorValue)
+      const responsivness = JSON.parse(value).responsive
+
+
+      const fullValue = {
+      backgroundValues : {
+      'background-color': '',
+      'background-image': '',
+      'background-repeat': '',
+      'background-size':  '',
+      'background-position':  '',
+      'background-attachment':  '',
+      'background': gradientValue,
+      
+
+      },
+       status : props?.currentStatus,
+       responsive : responsivness || 'on',
+
+
+      }
+      change?.(JSON.stringify(fullValue))
+
+    }
+
+  }
+
 
 
 
@@ -503,7 +540,8 @@ export default function BackgroundAll({props, change}:settingFieldProps) {
 
 
       {
-       props?.tabOpen && bgType?.value == "gradient" && (  <Gradient />  
+       props?.tabOpen && bgType?.value == "gradient" && (  
+       <Gradient props={bgGradient} change={(value:any)=>handleBgGradient(value)}/>  
             
       )
       }

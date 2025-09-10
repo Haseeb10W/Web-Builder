@@ -26,13 +26,22 @@ export default function PreviewRenderer() {
 
   // const {previewData} = useSideToggle()
 
-  const previewData = useAppSelector((state)=>state.previewData.value)
+  // const previewData = useAppSelector((state)=>state.previewData.value)
   
 
 
 
   useEffect(()=>{
 
+    const getPreviewData  = localStorage.getItem('preview')
+
+    let previewData ;
+    if(!getPreviewData){
+      previewData = null
+    } else{
+      previewData = JSON.parse(getPreviewData)
+    }
+    
     const fullContent:Block[] = [];
 
     if(activeHeader){
