@@ -36,7 +36,7 @@ export const styleAppliedToBackground = (screen: 'desktop' | 'tablet' | 'mobile'
           backgroundSize : bgValues['background-size'],
           backgroundRepeat: bgValues['background-repeat'],
           backgroundAttachment: bgValues['background-attachment'],
-          backgroundGradient : bgValues['background']
+          background : bgValues['background']
     }
     settingField.props.value = JSON.stringify(setValues)
     

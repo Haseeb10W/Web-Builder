@@ -13,6 +13,7 @@ export default function SpacingField({props, change}:settingFieldProps) {
   const [linkStatus, setLinkStatus] = useState({value: "all", fields: 1, width: "w-[97%]"})
   const [unit, setUnit] = useState<string>('px'); 
   const [unitOpen, setUnitOpen] = useState(false);
+  const [valueSent, setValueSent] = useState(0)
   
 
   useEffect(()=>{
@@ -64,6 +65,10 @@ export default function SpacingField({props, change}:settingFieldProps) {
 
   const handleLinkChange = (value:string, field: number, width: string)=>{
     setLinkStatus({value: value, fields: field, width: width})
+    setSpaceValues({t:0 , r: 0, b: 0 , l: 0 })
+    setFullValue('')
+    setValueSent(prev => prev + 1)
+    
   }
 
 
@@ -220,6 +225,7 @@ export default function SpacingField({props, change}:settingFieldProps) {
 
     setFullValue(fullSpace)
     
+    
 
 
     
@@ -228,8 +234,32 @@ export default function SpacingField({props, change}:settingFieldProps) {
 
   }, [linkStatus, unit, spaceValues])
 
+  const handleUnitChange =(value: any)=>{
+    setUnit(value)
+    setSpaceValues({t:0 , r: 0, b: 0 , l: 0 })
+    setFullValue('')
+    setValueSent(prev => prev + 1)
 
-  const valueChange = ()=>{
+  }
+
+  const valueChange =()=>{
+    // const val = fullValue ;
+    // // console.log(val)
+    // const newValue = {
+    //   status : props?.currentStatus,
+    //   responsive : props?.responsive || 'on',
+    //   value : val
+    // }
+    
+
+    // change?.(JSON.stringify(newValue))
+    setValueSent(pre=> pre + 1)
+
+  }
+
+
+  useEffect(()=>{
+    if(valueSent > 0){
     const val = fullValue ;
     // console.log(val)
     const newValue = {
@@ -237,11 +267,13 @@ export default function SpacingField({props, change}:settingFieldProps) {
       responsive : props?.responsive || 'on',
       value : val
     }
-    
+
 
     change?.(JSON.stringify(newValue))
+    }
+  }, [ valueSent  ])
+ 
 
-  }
 
 
   return (
@@ -299,7 +331,7 @@ export default function SpacingField({props, change}:settingFieldProps) {
               <ul className={`absolute top-[103%] left-0 w-full flex flex-col items-center bg-white border border-gray-300 z-999 `}>
               {
                 unitRanges.map((item, index)=>(
-                  <li key={index} onClick={()=>setUnit(item.value)} className={`hover:bg-gray-200 w-full text-sm p-1 ${item.value==unit && 'bg-gray-200' }`}>{item.value}</li>
+                  <li key={index} onClick={()=>handleUnitChange(item.value)} className={`hover:bg-gray-200 w-full text-sm p-1 ${item.value==unit && 'bg-gray-200' }`}>{item.value}</li>
                 ))
               }
               </ul>

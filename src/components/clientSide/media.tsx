@@ -17,7 +17,7 @@ export default function Media() {
   const { mediaFilesApply, setMediaFilesApply, setFileApplyOn}  = useSettingType()
   
   const icon = iconMap;
-  console.log("icon", icon)
+  // console.log("icon", icon)
   
   const {setOpenMedia} = useSettingType()
 
@@ -232,10 +232,10 @@ export default function Media() {
 
         {  tabOpen == 'icons' && (
           <>
-        <div className="grid grid-cols-20 px-5">
+        <div className="grid grid-cols-15 px-5">
          {Object.keys(icon).map((key) => {
            return (
-             <DynamicIcons key={key} name={key} classes="w-5 h-5 m-2" />
+             <DynamicIcons key={key} name={key} classes="w-6 h-6 m-2 hover:text-gray-500 cursor-pointer " />
            );
          })}
           </div>

@@ -14,7 +14,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
                   Content
   ++++++++++++++++++++++++++++++++++++++++*/
   content : [
-
+    /* +++++++++++++++++  Content Text +++++++++++++++++++++++*/
    // 0 
     setSettingField('heading',{label: "Content Area", for : 'texteditor', tabOpen: true, tabAllow: false}),
 
@@ -57,6 +57,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
   styles : [
 
     // 0 :: Alignment
+    /* +++++++++++++++++  Alignment  +++++++++++++++++++++++*/
     setSettingField('heading',{label: "Alignment", for : 'alignment', tabOpen: true, tabAllow: true}),
     // 1 : Pseudo Status 
     setSettingField('status', { 
@@ -109,6 +110,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
   
 
   // 4: TypoGraphy
+  /* +++++++++++++++++  TypoGraphy  +++++++++++++++++++++++*/
   setSettingField('heading',{label: "Typography", for : 'typography', tabAllow: true}),
 
   // 5 : Pseudo Status 
@@ -273,7 +275,8 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         tab: 'typography',
   }),
 
-  // 16  :background
+  // 16  :
+   /* +++++++++++++++++ background  +++++++++++++++++++++++*/
   setSettingField('heading', {label: "Background", for : 'background', tabAllow: true}),
 
   // 17 : Pseudo Status 
@@ -305,10 +308,11 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
     
 
   
-  // 18 : Border
+  // 19 : Border
+  /* +++++++++++++++++  Border  +++++++++++++++++++++++*/
   setSettingField('heading', {label: "Border", for : 'border', tabAllow: true}),
 
- // 19 : Pseudo Status 
+ // 20 : Pseudo Status 
   setSettingField('status', { 
     for : 'border',
     tab: 'border',
@@ -322,12 +326,12 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
 
   }),
 
-  // 20
+  // 21
   setSettingField('select', {
         label: "Border Style",
         labelId: "text-border-style",
         options: [
-          {label: 'None', value: 'none'},
+          // {label: 'None', value: 'none'},
           {label: 'Solid', value: 'solid'},
           {label: 'Dashed', value: 'dashed'},
           {label: 'Dotted', value: 'dotted'},
@@ -343,15 +347,15 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
   }),
 
   
-  //21
+  //22
   setSettingField('colors', {
     label: "Border Color", 
     labelId: "text-border-color",
-    for : 'boder-color',
+    for : 'border-color',
     tab: 'border',
   }),
   
-  //22
+  //23
         setSettingField('spacing', {
         label: "Border Width",
         labelId: "text-border-width",
@@ -359,7 +363,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         tab: 'border',
     }
       ),
-  //23
+  //24
   setSettingField('spacing', {
       label: "Border Radius",
       labelId: "text-border-radius",
@@ -369,28 +373,33 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
   }
     ),
 
-  // 24
+
+
+  // 25
+
+  /* +++++++++++++++++  Box Shadow +++++++++++++++++++++++*/
+
   setSettingField('heading', {label: "Box Shadow", for : 'boxshadow', tabAllow: true}),
 
-  // 25 : Pseudo Status 
+  // 26 : Pseudo Status 
     setSettingField('status', { 
       for : 'boxshadow',
       tab: 'boxshadow',
+      value: 'normal',
       statusOptions : [
         {name: 'Normal', value: 'normal' },
         {name: 'Hover', value: 'hover' }, 
       ],
     }),
     
-  // 26 
+  // 27 
   setSettingField('boxShadow', {
-        label: "BoxShadow",
-        labelId: "box-shadow",
-        for : 'boxshadow',
+        label: "Box Shadow",
+        labelId: "box-shadow-text",
+        for : 'box-shadow',
         tab : 'boxshadow',
         value:'',  
-        responsive: 'off',
-        defaultNot:true        
+        responsive: 'on',
   }), 
     
   ],
@@ -400,8 +409,10 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
                   Settings
   ++++++++++++++++++++++++++++++++++++++++*/
   
+  
   settings: [
-    // 0 :: Layout
+    // 0 ::
+    /* +++++++++++++++++  Layout +++++++++++++++++++++++*/
     setSettingField('heading',{label: "Layout", for : 'layout', tabAllow: true, tabOpen: true}),
 
     // 1 : Pseudo Status 
@@ -418,7 +429,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
 
   }),
     
-    // 2
+    // 2 : Margin
     setSettingField('spacing', {
       label: "Margin",
       labelId: "text-margin-spacing",
@@ -428,7 +439,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
   }
     ),
 
-  // 3
+  // 3 : Padding
    setSettingField('spacing', {
       label: "Padding",
       labelId: "text-padding-spacing",
@@ -438,7 +449,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
   }),
 
 
-  // 4
+  // 4 : width
   setSettingField('size', {
         label: "Width", 
         labelId: "text-size-width",
@@ -456,8 +467,26 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
          tabOpen: true
   }),
 
+  // 5 : min Width
+ setSettingField('size', {
+        label: "Min Width", 
+        labelId: "text-max-width",
+        unitOptions: [
+          {name: "pixels", value: "px"},
+          {name: "percent", value: "%"},
+          {name: "Rem", value: "rem"},
+          {name: "Em", value: "em"},
+          {name: "ViewWidth", value: "vw"},
+          {name: "ViewHeight", value: "vh"},
+
+        ],
+        for : 'min-width',
+        tab: 'layout',
+        tabOpen: true
+  }),
+
   
-  // 5
+  // 6 : Max Width
   setSettingField('size', {
         label: "Max Width", 
         labelId: "text-max-width",
@@ -475,7 +504,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         tabOpen: true,
   }),
  
-  // 6
+  // 7: Height
   setSettingField('size', {
         label: "Height", 
         labelId: "text-size-height",
@@ -493,7 +522,25 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
          tabOpen: true
   }),
   
-  // 7
+// 8: Height
+  setSettingField('size', {
+          label: "Min Height", 
+          labelId: "text-max-height",
+          unitOptions: [
+            {name: "pixels", value: "px"},
+            {name: "percent", value: "%"},
+            {name: "Rem", value: "rem"},
+            {name: "Em", value: "em"},
+            {name: "ViewWidth", value: "vw"},
+            {name: "ViewHeight", value: "vh"},
+          ],
+          for : 'min-height',
+          tab: 'layout',
+           tabOpen: true
+    }),
+
+
+  // 9 : Max Height
   setSettingField('size', {
         label: "Max Height", 
         labelId: "text-max-height",
@@ -726,16 +773,29 @@ export const textSettingsSet:settingsSetArgs = (settingType, data, screenType)=>
       
       settings.styles[18].props.value = backgroundSettingsSetter(findBlock, screenType, settings.styles[18].props.currentStatus || 'normal');
 
-      
-      
+          /* Border */
+      settings.styles[21].props.value = getValueForFields(findBlock, screenType, settings.styles[21].props.currentStatus || 'normal', "border-style");
+      settings.styles[22].props.value = getValueForFields(findBlock, screenType, settings.styles[22].props.currentStatus || 'normal', "border-color");
+      settings.styles[23].props.value = getValueForFields(findBlock, screenType, settings.styles[23].props.currentStatus || 'normal', "border-width");
+      settings.styles[24].props.value = getValueForFields(findBlock, screenType, settings.styles[24].props.currentStatus || 'normal', "border-radius");
 
-      // Settings
-      settings.settings[2].props.value = findBlock?.styles?.margin; 
-      settings.settings[3].props.value = findBlock?.styles?.padding;
-      settings.settings[4].props.value = findBlock?.styles?.width;
-      settings.settings[5].props.value = findBlock?.styles?.maxWidth;
-      settings.settings[6].props.value = findBlock?.styles?.height;
-      settings.settings[7].props.value = findBlock?.styles?.maxHeight;
+      /* Box Shadow */
+      settings.styles[27].props.value = getValueForFields(findBlock, screenType, settings.styles[27].props.currentStatus || 'normal', "box-shadow");
+      
+      
+      
+      /*+++++++++++++++++++++++ Styles +++++++++++++++++++++ */
+      
+      settings.settings[2].props.value = getValueForFields(findBlock, screenType, settings.settings[2].props.currentStatus || 'normal', "margin");
+      settings.settings[3].props.value = getValueForFields(findBlock, screenType, settings.settings[3].props.currentStatus || 'normal', "padding");
+      settings.settings[4].props.value = getValueForFields(findBlock, screenType, settings.settings[4].props.currentStatus || 'normal', "width");
+      settings.settings[5].props.value = getValueForFields(findBlock, screenType, settings.settings[5].props.currentStatus || 'normal', "min-width");
+      settings.settings[6].props.value = getValueForFields(findBlock, screenType, settings.settings[6].props.currentStatus || 'normal', "max-width");
+      settings.settings[7].props.value = getValueForFields(findBlock, screenType, settings.settings[7].props.currentStatus || 'normal', "height");
+      settings.settings[8].props.value = getValueForFields(findBlock, screenType, settings.settings[8].props.currentStatus || 'normal', "min-height");
+      settings.settings[9].props.value = getValueForFields(findBlock, screenType, settings.settings[9].props.currentStatus || 'normal', "max-height");
+    
+      
       
     }
 

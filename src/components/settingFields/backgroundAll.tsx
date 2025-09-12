@@ -191,6 +191,7 @@ export default function BackgroundAll({props, change}:settingFieldProps) {
  
   useEffect(()=>{
     
+    
     if(props ){
        setBgType({...props, value: ''})
 

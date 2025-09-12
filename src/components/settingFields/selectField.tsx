@@ -14,7 +14,7 @@ export default function SelectField({props, change}: settingFieldProps) {
 
   useEffect(()=>{
     // console.log(props)
-    if(props?.value !== selectedOption.value){
+    if(props?.value ){
       
       if(props?.options){
        const selectedOne =  props?.options.find((item:any)=>{
@@ -37,7 +37,7 @@ export default function SelectField({props, change}: settingFieldProps) {
 
 
   const handleSelectOption = (value:any, label:any)=>{
-    setSelectedOption({label:label, value:value});
+    // setSelectedOption({label:label, value:value});
     setIsOpen(false)
 
     const fullValue = {
@@ -78,7 +78,7 @@ export default function SelectField({props, change}: settingFieldProps) {
 
       <div ref={clickRef} className="select-field relative min-w-22 " >
         <div className="select-field-value text-center cursor-pointer bg-gray-200/90 rounded-lg px-1.5 selection:bg-transparent " onClick={()=>setIsOpen(!isOpen)}>
-          <span className={`text-[12px] `}>{selectedOption.label || 'Default'}</span>
+          <span className={`text-[12px] `}>{selectedOption.label ? selectedOption.label : props?.defaultNot ? props?.options[0].label : 'Default'}</span>
           
         </div>
 
