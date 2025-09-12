@@ -1,6 +1,7 @@
 'use client';
 
 
+import { textBlockSchema } from '@/components/blocks/Text/blockSchema';
 import { Block, BlockType, ButtonBlock, Container, ContainerBlock, ContainerType, HeadingBlock, IconBlock, ImageBlock, TextBlock } from '@/types/blocksSchema';
 import React, { useState } from 'react';
 
@@ -44,43 +45,29 @@ export default function useBlockSchema( { type } : blockSchemaProps)  {
   
     switch (type) {
       case 'text' : 
-        return  {
-          ...blockAdd,
-          type : 'text',
-          props : {
-            text : `Your Text `
-
-          },
-          responsiveStyles : {
-             ...blockAdd.responsiveStyles,
-             baseStyle : {
-              ...blockAdd?.responsiveStyles?.baseStyle,
-              'text-align': 'center'
-              
-             },
-             tablet : {
-              ...blockAdd?.responsiveStyles?.tablet,
-              'text-align': 'left'
-
-             },
-             desktop: {
-              ...blockAdd?.responsiveStyles?.desktop,
-              'text-align': 'justify'
-             },
-             hoverStyles : {
-              ...blockAdd?.responsiveStyles?.hoverStyles,
-              
-             }
-
-          },
-          
-        } as TextBlock;
+        return  textBlockSchema(blockAdd)
 
       case 'heading' :
         return {
           ...blockAdd,
           type : 'heading',
           props : {
+          childStyleClasses : ['imageClass', 'liClass'],
+          childStyles : {
+            imageClass: {
+              responsiveStyles : {
+                    baseStyle : {},
+                    tablet : {},
+                    desktop : {},
+                    hoverStyles: {},
+               },
+            },
+            liClass : {
+              responsiveStyles : {
+                
+              }
+            }
+          },
           text : 'Sample Heading',
           level : 'h1'
           },

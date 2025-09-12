@@ -53,7 +53,7 @@ export default function Image({block, index, onDelete, onCopy}:ImageProps) {
         
         
          
-        className={`object-fill w-full h-full`}
+        className={`object-fill w-full h-full imageClass`}
       />
             ):(
                 <div className="w-full h-[200px] bg-gray-200 flex items-center justify-center">
