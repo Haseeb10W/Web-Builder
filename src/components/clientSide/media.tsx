@@ -15,7 +15,6 @@ export default function Media() {
 
   const [mediaFiles, setMediaFiles] = useState<any[]>([]);
   const { mediaFilesApply, setMediaFilesApply, setFileApplyOn}  = useSettingType()
-  
 
   
   const {setOpenMedia} = useSettingType()
@@ -232,6 +231,7 @@ export default function Media() {
         {  tabOpen == 'icons' && (
           <>
             <MediaIcon />
+
           </>
         )}
         

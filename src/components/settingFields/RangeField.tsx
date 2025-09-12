@@ -9,7 +9,14 @@ export default function RangeField({ props, change }: settingFieldProps) {
 
 
   useEffect(()=>{
-    setRange(Number(props?.value))
+    if(props?.value){
+      setRange(Number(props?.value) || 0)
+
+    }else{
+      setRange(Number(props?.defaultVal) || 0)
+    }
+    
+    
   },[props?.value])
 
 

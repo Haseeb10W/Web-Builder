@@ -15,7 +15,7 @@ export const backgroundSettingsSetter = (findBlock:Block, screenType: "desktop" 
     backgroundSize : getValueForFields(findBlock, screenType, status, 'background-size'),
     backgroundRepeat: getValueForFields(findBlock, screenType, status, 'background-repeat'),
     backgroundAttachment: getValueForFields(findBlock, screenType, status, 'background-attachment'),
-    backgroundGradient : getValueForFields(findBlock, screenType, status, 'background')
+    background : getValueForFields(findBlock, screenType, status, 'background')
     
   }
 

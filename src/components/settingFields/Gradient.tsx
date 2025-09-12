@@ -23,7 +23,7 @@ const bgGradient = {
     },
     {
       label: 'Conic',
-      value: 'Conic'
+      value: 'conic'
     }
   ],
   responsive:'on'
@@ -73,14 +73,22 @@ const dPosition = {
   tabOpen: true
 }
 
-const colorOne = {
+const ColorOne = {
   label:"Color1",
   tab:"",
   tabOpen: true,
   value:""
 }
-const colorTwo = {
+const ColorTwo = {
   label:"Color2",
+  tab:"",
+  tabOpen: true,
+  value:""
+}
+
+
+const ColorThree = {
+  label:"Color3",
   tab:"",
   tabOpen: true,
   value:""
@@ -90,12 +98,12 @@ const degree = {
   label: "Angle",
   tab: "",
   tabOpen: true,
-  value: 0,
+  value: '',
   minVal: 0,
   maxVal: 360
 }
 
-const radialSize = {
+const RadialSize = {
   label: "Radial Size",
   tab: "",
   value:"",
@@ -137,7 +145,7 @@ const shape = {
   ]
 }
 
-const radialPostion = {
+const RadialPostion = {
   label:"Position",
   tab:"",
   tabOpen:true,
@@ -204,127 +212,391 @@ const radialPostion = {
 }
 export default function Gradient({props, change}:settingFieldProps) {
       const [bgGradientProps, setBgGradientProps] = useState(bgGradient)
-      const [colorOneProps, setColorOneProps] = useState(colorOne)
-      const [colorTwoProps, setColorTwoProps] = useState(colorTwo)
+      const [colorOneProps, setColorOneProps] = useState(ColorOne)
+      const [colorTwoProps, setColorTwoProps] = useState(ColorTwo)
+      const [colorThreeProps, setColorThreeProps] = useState(ColorThree)
       const [bgDirectionProps, setBgDirectionProps] = useState(direction)
       const [bgPositionProps, setBgPositionProps] = useState(dPosition)
       const [degreeProps, setDegreeProps] = useState(degree)
-      const [SizeRadialProps, setSizeRadialProps] = useState(radialSize)
+      const [SizeRadialProps, setSizeRadialProps] = useState(RadialSize)
       const [shapeProps, setShapeProps] = useState(shape)
-      const [radialPostionProps, setRadialPostionProps] = useState(radialPostion)
+      const [radialPostionProps, setRadialPostionProps] = useState(RadialPostion)
       const [conicAngle,setConicAngle] = useState(degree)
       const [gradientStyle, setGradientStyle] = useState('');
+      const [sendGradient, setSendGradient] = useState(0);
+      const [gradientValueFull, setGradientValueFull] = useState<{
+        type: string,
+        direction: string,
+        colorOne:string, 
+        colorTwo:string, 
+        colorThree : string
+        position: string, 
+        directionDegree: string, 
+        conicAngle: string,
+        radialSize: string,
+        shape: string,
+        radialPostion: string
+    
+        }>({type: 'linear', direction: '', colorOne:'', colorTwo:'',colorThree: '', position: '', directionDegree: '', conicAngle: '', radialSize: '', shape: '', radialPostion: '' })
 
-// const gradientStyle:any = {};
+
+        useEffect(()=>{
+
+          if(props?.value){
+
+            const gradientValue = props?.value;
+
+            const gradientType = gradientValue.split('-gradient(')[0];
+            const gradientInner = gradientValue.split('-gradient(')[1].replace(/[)]/g, '').trim().split(',')[0]
+            let regex =  /rgba\(.*?\)/g 
+            let rgbaValues = gradientValue?.split('-gradient(')[1].match(regex)
+            // console.log(rgbaValues);
+            let gradientLinerDirection = '';
+            let linearDirectionDegree  = '';
+            let linearPosition = '';
+            let radialSize = '';
+            let conicAngle = '';
+            let radialShape = '';
+            let radialPosition = '';
+            let colorOne = '';
+            let colorTwo = '';
+            let colorThree = '';
+
+
+            if(rgbaValues && rgbaValues.length >= 1 ){
+
+            if(gradientType == 'linear' || gradientType == 'radial'){
+              
+              if( rgbaValues.length >= 2){
+                colorOne = rgbaValues[rgbaValues?.length - 2]
+                colorTwo = rgbaValues[rgbaValues?.length - 1]
+
+              }else{
+                colorOne = rgbaValues[rgbaValues?.length - 1]
+              }
+              
+
+            }else if(gradientType == 'conic'){
+              if(rgbaValues.length >=3){
+              colorOne = rgbaValues[rgbaValues?.length - 3]
+              colorTwo = rgbaValues[rgbaValues?.length - 2]
+              colorThree = rgbaValues[rgbaValues?.length - 1]
+              }else if(rgbaValues.length >=2){
+                colorOne = rgbaValues[rgbaValues?.length - 2]
+                colorTwo = rgbaValues[rgbaValues?.length - 1]
+
+                }else{
+                  colorOne = rgbaValues[rgbaValues?.length - 1]
+                }
+              
+            }
+
+            }
+            
+            
+            if(gradientType == 'linear'){
+               linearDirectionDegree = gradientValue.split('-gradient(')[1].split('deg')[0]
+              //  console.log("linearDirection", linearDirectionDegree)
+              if(linearDirectionDegree.includes('to')){
+                gradientLinerDirection = ""
+                linearPosition = gradientInner.trim()
+                
+                
+              }else{
+                gradientLinerDirection = "degree"
+                
+                
+
+              }
+            }else if( gradientType == 'radial'){
+
+              if(gradientInner.includes('circle')){
+                radialShape = 'circle'
+              }else {
+                radialShape = 'ellipse'
+              }
+
+              if(gradientInner.includes('at')){
+                radialSize = gradientInner.split(radialShape)[1].trim().split('at')[0].trim()
+                radialPosition = `at ` + gradientInner.split('at')[1].trim()
+
+              }else{
+                radialSize = gradientInner.split(radialShape)[1].trim()
+                radialPosition = ''
+              }
+
+
+            }else if(gradientType === 'conic'){
+
+              conicAngle = gradientValue.split('conic-gradient(from ')[1].split('deg')[0] || ''
+            }
+
+            setGradientValueFull({
+              type: gradientType,
+              direction: gradientLinerDirection,
+              colorOne: colorOne, 
+              colorTwo: colorTwo, 
+              colorThree: colorThree,
+              position: linearPosition, 
+              directionDegree: linearDirectionDegree, 
+              conicAngle: conicAngle,
+              radialSize: radialSize,
+              shape: radialShape,
+              radialPostion: radialPosition
+
+            })
+
+            setBgGradientProps({...bgGradient, value: gradientType})
+            setBgDirectionProps({...direction, value: gradientLinerDirection || ""})
+            setColorOneProps({...ColorOne, value: colorOne })
+            setColorTwoProps({...ColorTwo, value: colorTwo })
+            setBgPositionProps({...dPosition, value: linearPosition })
+            setDegreeProps({...degree, value: linearDirectionDegree })
+            setConicAngle({...degree, value: conicAngle })
+            setSizeRadialProps({...RadialSize, value: radialSize})
+            setShapeProps({...shape, value: radialShape})
+            setRadialPostionProps({...RadialPostion, value: radialPosition})
+            setColorThreeProps({...ColorThree, value: colorThree  })
+
+
+
+          }else{
+            setGradientValueFull({
+              type: 'linear',
+              direction: '',
+              colorOne: '', 
+              colorTwo: '', 
+              colorThree: '',
+              position: '', 
+              directionDegree: '', 
+              conicAngle: '',
+              radialSize: '',
+              shape: '',
+              radialPostion: ''
+
+            })
+            setBgGradientProps(bgGradient)
+            setBgDirectionProps(direction)
+            setColorOneProps(ColorOne)
+            setColorTwoProps(ColorTwo )
+            setBgPositionProps(dPosition)
+            setDegreeProps(degree)
+            setConicAngle(degree)
+            setSizeRadialProps(RadialSize)
+            setShapeProps(shape)
+            setRadialPostionProps(RadialPostion)
+            setColorThreeProps(ColorThree)
+          }
+
+          
+
+
+
+
+
+        }, [props?.value])
+
+
+
+
+
+
+
+
 
    const updateGradientStyle = () =>{
-    if (bgGradientProps.value === "linear" && colorOneProps.value && colorTwoProps.value) {
-  if (bgDirectionProps.value === "degree") {
-    const gradientString = `linear-gradient(${degreeProps.value}deg, ${colorOneProps.value}, ${colorTwoProps.value})`;
-    setGradientStyle(gradientString);
-  } else {
-    const gradientString = `linear-gradient(${bgPositionProps.value || "to right"}, ${colorOneProps.value}, ${colorTwoProps.value})`;
-    setGradientStyle(gradientString);
-  }
-}
 
-if (bgGradientProps.value === "radial" && colorOneProps.value && colorTwoProps.value) {
- const gradientString = `radial-gradient(${shapeProps.value || "circle"} ${SizeRadialProps.value || ""} ${radialPostionProps?.value || ""}, ${colorOneProps.value}, ${colorTwoProps.value})`;
- setGradientStyle(gradientString);
-}
+    let gradientStyleString = ``;
 
-if (bgGradientProps.value === "Conic" && colorOneProps.value && colorTwoProps.value) {
-  const gradientString = `conic-gradient(from ${conicAngle.value}deg, ${colorOneProps.value}, ${colorTwoProps.value})`;
-  setGradientStyle(gradientString);
-}
+   
+
+
+    if (gradientValueFull.type === "linear") {
+
+
+          if (gradientValueFull.direction === "degree") {
+              gradientStyleString = `linear-gradient(${gradientValueFull.directionDegree}deg, ${gradientValueFull.colorOne}, ${gradientValueFull.colorTwo})`;
+                
+          } else {
+              gradientStyleString = `linear-gradient(${gradientValueFull.position || "to right"}, ${gradientValueFull.colorOne}, ${gradientValueFull.colorTwo})`;
+                
+          }
+    }
+
+    if (gradientValueFull.type === "radial" ) {
+         gradientStyleString = `radial-gradient(${gradientValueFull.shape || "ellipse"} ${gradientValueFull.radialSize || ""} ${gradientValueFull.radialPostion || ""}, ${gradientValueFull.colorOne}, ${gradientValueFull.colorTwo})`;
+ 
+    }
+
+    if (gradientValueFull.type === "conic" ) {
+      gradientStyleString = `conic-gradient(from ${gradientValueFull.conicAngle}deg, ${gradientValueFull.colorOne}, ${gradientValueFull.colorTwo}, ${gradientValueFull.colorThree})`;
+
+    }
+
+
+    return gradientStyleString
    }
 
    useEffect(()=>{
-      updateGradientStyle();
-   },[bgGradientProps.value, colorOneProps.value, colorTwoProps.value, bgDirectionProps.value, bgPositionProps.value, degreeProps.value, SizeRadialProps.value, shapeProps.value, radialPostionProps.value, conicAngle.value])
+
+      if(sendGradient ==  0 ) return ;
+
+      const gradientValue  = updateGradientStyle();
+      // console.log(gradientValue)
+      // setGradientStyle(gradientValue)
+
+      const sentValue = {
+        status : props?.cuttentStatus || 'normal',
+        value : gradientValue,
+        responsive : props?.responsive || 'on'
+      }
+      change?.(JSON.stringify(sentValue))
 
 
 
+
+
+   },[sendGradient])
+
+
+
+
+  //  const makeGradientValue
 
 
     const handleGradient = (value:any) =>{
-        console.log(value);
-        setBgGradientProps((prev:any)=>({
-            ...prev,
-            value:value
-        }))
+        // console.log(value);
+        const gradientType = JSON.parse(value).value ;
+
+        setGradientValueFull(prev=> ({...prev, type: gradientType }))
+        setSendGradient(prev => prev + 1 )
+        // setBgGradientProps((prev:any)=>({
+        //     ...prev,
+        //     value:gradientType
+        // }))
         
     }
    
     const handleDirection = (value:any) =>{
+      // console.log(value)
+      const directionValue = JSON.parse(value).value ;
+      setGradientValueFull(prev=> ({...prev, direction: directionValue }))
+      // setSendGradient(prev => prev + 1 )
+
       setBgDirectionProps((prev:any)=>({
           ...prev,
-          value:value
+          value:directionValue
       }))
 
     }
 
 
     const handleColorOne = (value:any) =>{
-      setColorOneProps((prev:any)=>({
-          ...prev,
-          value:value
-      }))
+      const color1Value = JSON.parse(value).value ;
+      setGradientValueFull(prev=> ({...prev, colorOne: color1Value }))
+      setSendGradient(prev => prev + 1 )
+
+      // setColorOneProps((prev:any)=>({
+      //     ...prev,
+      //     value:color1Value
+      // }))
     }
 
    const handleColorTwo = (value:any) =>{
-      setColorTwoProps((prev:any)=>({
-          ...prev,
-          value:value
-      }))
+    const color2Value = JSON.parse(value).value ;
+      setGradientValueFull(prev=> ({...prev, colorTwo: color2Value }))
+      setSendGradient(prev => prev + 1 )
+
+      // setColorTwoProps((prev:any)=>({
+      //     ...prev,
+      //     value:color2Value
+      // }))
+   }
+
+   const handleColorThree = (value:any)=>{
+    const color3Value = JSON.parse(value).value ;
+      setGradientValueFull(prev=> ({...prev, colorThree: color3Value }))
+      setSendGradient(prev => prev + 1 )
    }
   
    const handlePosition = (value:any) =>{
-    setBgPositionProps((prev:any)=>({
-        ...prev,
-        value:value
-    }))
+    const positionValue = JSON.parse(value).value ;
+      setGradientValueFull(prev=> ({...prev,position: positionValue}))
+      setSendGradient(prev => prev + 1 )
+
+    // setBgPositionProps((prev:any)=>({
+    //     ...prev,
+    //     value:positionValue
+    // }))
    }
 
    const handleDegree = (value:any) =>{
+    // console.log(value)
+    const degreeValue = JSON.parse(value).value ;
+      setGradientValueFull(prev=> ({...prev, directionDegree: degreeValue }))
+      setSendGradient(prev => prev + 1 )
+
     
-      setDegreeProps((prev:any)=>({
-          ...prev,
-          value:value
-      }))
+      // setDegreeProps((prev:any)=>({
+      //     ...prev,
+      //     value:degreeValue
+      // }))
   }
 
+  // For Radial
   const handleRadialSize = (value:any) =>{
-    setSizeRadialProps((prev:any)=>({
-        ...prev,
-        value:value
-    }))
+    // console.log(value)
+    const radSizeValue = JSON.parse(value).value ;
+    setGradientValueFull(prev=> ({...prev, radialSize: radSizeValue }))
+    setSendGradient(prev => prev + 1 )
+
+    // setSizeRadialProps((prev:any)=>({
+    //     ...prev,
+    //     value:radSizeValue
+    // }))
   }
 
   const handleRadialShape = (value:any) =>{
-    setShapeProps((prev:any)=>({
-        ...prev,
-        value:value
-    }))
+    // console.log(value)
+    const radShapeValue = JSON.parse(value).value ;
+    setGradientValueFull(prev=> ({...prev, shape: radShapeValue }))
+    setSendGradient(prev => prev + 1 )
+
+    // setShapeProps((prev:any)=>({
+    //     ...prev,
+    //     value:radShapeValue
+    // }))
   }
 
   const handleRadialPosition = (value:any) =>{
-    setRadialPostionProps((prev:any)=>({
-        ...prev,
-        value:value
-    }))
+    // console.log(value)
+    const radPositionValue = JSON.parse(value).value ;
+    setGradientValueFull(prev=> ({...prev, radialPostion: radPositionValue }))
+    setSendGradient(prev => prev + 1 )
+    
+    // setRadialPostionProps((prev:any)=>({
+    //     ...prev,
+    //     value:radPositionValue
+    // }))
   }
 
   const handleConicAngle = (value:any) =>{
-    setConicAngle((prev:any)=>({
-        ...prev,
-        value:value
-    }))
+    const conAngleValue = JSON.parse(value).value ;
+    setGradientValueFull(prev=> ({...prev, conicAngle: conAngleValue }))
+    setSendGradient(prev => prev + 1 )
+
+    // setConicAngle((prev:any)=>({
+    //     ...prev,
+    //     value:conAngleValue
+    // }))
   }
+
+
+
   return (
     <>
     <div>
-    <h3 className="text-sm text-gray-600">props?.label</h3>
+    <h3 className="text-sm text-gray-600">{props?.label}</h3>
     <div className='w-full h-16 border border-gray-200 mt-2' style={{background: props?.value}}></div>
     </div>
     <SelectField props={bgGradientProps} change={(value:any)=>handleGradient(value)}></SelectField>
@@ -360,7 +632,7 @@ if (bgGradientProps.value === "Conic" && colorOneProps.value && colorTwoProps.va
     }
 
     {
-      bgGradientProps?.value === 'Conic' && (
+      bgGradientProps?.value === 'conic' && (
         <>
           <RangeField props={conicAngle} change={(value:any)=>handleConicAngle(value)}/>
         </>
@@ -368,6 +640,11 @@ if (bgGradientProps.value === "Conic" && colorOneProps.value && colorTwoProps.va
     }
     <ColorField  props={colorOneProps} change={(value:any)=>handleColorOne(value)}/>
     <ColorField  props={colorTwoProps} change={(value:any)=>handleColorTwo(value)}/>
+    {
+      bgGradientProps?.value === 'conic' && (
+        <ColorField  props={colorThreeProps} change={(value:any)=>handleColorThree(value)}/>
+      )
+    }
     </>
   )
 }

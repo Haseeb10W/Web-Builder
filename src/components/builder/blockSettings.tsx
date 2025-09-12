@@ -24,8 +24,7 @@ type tabType = 'content' | 'styles' | 'settings' | null
 
 
 const styleFields = ["text-align", "align-content", "color", "font-size", "line-height", "font-weight", "text-transform", 
-  "font-style", "text-decoration", "letter-spacing", "word-spacing", "border-style" , "boder-color", "border-width", "border-radius",
-  "margin", "padding", "width", "max-width", "height", "max-height", "overflow-x", "overflow-y", "z-index", "cursor"
+  "font-style", "text-decoration", "letter-spacing", "word-spacing", "border-style" , "border-color", "border-width", "border-radius", "box-shadow", "margin", "padding", "width","min-width", "max-width", "height","min-height", "max-height", "overflow-x", "overflow-y", "z-index", "cursor"
 ]
 
 
@@ -73,7 +72,7 @@ function BlockSettings({data, updateData}:BlockSettingProps) {
     
 
     
-    const customTextType = ['texteditor', 'textAlign', 'spacing', 'colors', 'size', 'iconField', 'fontFamily', 'select', 'textarea' , 'texts', 'background', 'increase', 'number']
+    const customTextType = ['texteditor', 'textAlign', 'spacing', 'colors', 'size', 'iconField', 'fontFamily', 'select', 'textarea' , 'texts', 'background', 'increase', 'number', 'boxShadow']
 
     const isCustomTextType = customTextType.includes(type as string)
 

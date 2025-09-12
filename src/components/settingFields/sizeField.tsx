@@ -10,7 +10,7 @@ export default function SizeField({props, change}:settingFieldProps) {
 
   const [unitOpen, setUnitOpen] = useState(false)
   const [unit, setUnit] = useState('px');
-  const [size, setSize] = useState<number | string>(0);
+  const [size, setSize] = useState<string>('');
   const [fullValue, setFullValue] = useState('')
 
   
@@ -24,21 +24,24 @@ export default function SizeField({props, change}:settingFieldProps) {
       const value = props?.value.trim()
       // console.log(value)
       const units = ['px', '%', 'rem', 'em', 'vw', 'vh', 'deg'];
-      const unit = units.find((unit)=> value.includes(unit))
+      const foundUnit = units.find((unit)=> value.includes(unit))
       // console.log(unit)
-      const size = Number(value.replace(unit, ''))
-      // console.log(size)
-      setSize(size)
-      if(unit){
-         setUnit(unit);
+
+      let valueSize;
+      if(foundUnit){
+        valueSize = value.replace(foundUnit, '')
+        setUnit(foundUnit)
       }else{
+        valueSize = value;
         setUnit('px')
       }
-      
+      // console.log(size)
+      setSize(valueSize)
+
      
     }else {
       setSize('')
-      // setUnit('px')
+      setUnit('px')
     }
 
   }, [props?.value])
@@ -57,61 +60,77 @@ export default function SizeField({props, change}:settingFieldProps) {
   const handleSizeChange  = (e:any)=>{
     const target = e.target as HTMLInputElement;
     const value = target.value; 
-    let size 
+    let sizeValue 
    
+    if (value === '' || value === '-') {
+    setSize(value);
+    return;
+    }
     if(unit == "%" || unit == "rem" || unit == "em"){
       if(Number(value) > 100){
-        size = "100"
+        sizeValue = "100"
       }
       else if(Number(value) < -100){
-         size = "-100"
+         sizeValue  = "-100"
       } 
       else{
-        size = value
+        sizeValue  = value
       }   
     }else{
-      size = value
+      sizeValue  = value
     }
 
-    const newValue = `${size}${unit}`;
-
-    const fullValue = {
-      status : props?.currentStatus,
-      value : ''
-    }
-
+    // const newValue = `${size}${unit}`;
 
 
     if(value != ''){
 
-      setSize(Number(size))
-      fullValue.value = newValue;
-      
+      setSize(sizeValue)
+      // fullValue.value = newValue;
 
     }else{
       setSize('')
+
+      
+    }
+
+    
+    
+    
+  }
+
+
+  const handleSizeSent = ()=>{
+    const newValue = `${size}${unit}`;
+
+    const fullValue = {
+      status : props?.currentStatus,
+      value : '',
+      responsive : props?.responsive || 'on'
+    }
+
+
+
+    if(size != ''){
+      fullValue.value = newValue;
+
+    }else{
       fullValue.value = '';
 
       
     }
-    
     change?.(JSON.stringify(fullValue))
-    
+
   }
+
+
 
   const handleUnitChange = useCallback((value:string)=>{
 
-    const newValue = `${size}${value}`
     
     setUnit(value)
 
-    const fullValue = {
-      status : props?.currentStatus,
-      responsive : props?.responsive || 'on',
-      value : newValue
-    }
-
-    change?.(JSON.stringify(fullValue))
+    handleSizeSent()
 
 
 
@@ -138,10 +157,10 @@ export default function SizeField({props, change}:settingFieldProps) {
       
       <div  className="select-field relative flex  gap-2 items-center" >
 
-        <input type="number" name="textSize" value={size} id={props?.labelId} className={`input-no-spinner h-5.5 appearance-none max-w-16 border text-center border-gray-400 outline-0 rounded-sm text-[12px]` } onChange={handleSizeChange}  />
+        <input type="number" name="textSize" value={size} id={props?.labelId} className={`input-no-spinner h-5.5 appearance-none max-w-16 border text-center border-gray-400 outline-0 rounded-sm text-[12px]` } onChange={handleSizeChange} onBlur={handleSizeSent}  />
 
 
-        <div ref={refUnit} className="range-unit relative min-w-8 h-6 rounded-sm cursor-pointer  mt-auto flex items-center justify-center text-center bg-gray-200" onClick={()=>setUnitOpen(!unitOpen)}>
+        <div ref={refUnit} className={`range-unit relative min-w-8 h-6 rounded-sm ${!props?.optionNotShow && 'cursor-pointer'}   mt-auto flex items-center justify-center text-center bg-gray-200`} onClick={ ()=> {!props?.optionNotShow && setUnitOpen(!unitOpen)}}>
           <span className={`!text-sm `}>{unit}</span>
           {
             unitOpen && (

@@ -18,9 +18,8 @@ export default function Image({props, change}:settingFieldProps) {
   useEffect(() => {
     if(props?.value !== ''){
 
-      const fullUrl = props?.value?.split('url(')[1]?.split(')')[0];
-
-
+    const fullUrl = props?.value?.split('url(')[1]?.split(')')[0];
+    
       // console.log(fullUrl)
       // const fullPath = filePath + props?.value;
       setSelectedImage(fullUrl);
