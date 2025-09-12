@@ -12,7 +12,8 @@ interface DynamicIconsProps{
 
 function DynamicIcons({name= 'text', classes= '', styles}:DynamicIconsProps) {
 
-  const Icon = iconMap[name] || iconMap['text']; 
+  const Icon = iconMap[name] || iconMap['text'];
+ 
 
   return (
     <Icon className={classes} style={styles} />

@@ -22,7 +22,7 @@ export default function BuilderSideBar() {
       value : 'layout',
       label : 'Layout',
       elements : [
-        {type: 'flex', label: 'FlexBox' , icon: 'flex'},
+        {type: 'flex', label: 'FlexBox' , icon: 'panelTop'},
         
 
       ]
@@ -34,8 +34,8 @@ export default function BuilderSideBar() {
         {type: 'heading', label: 'Heading' , icon: 'heading'},
         {type: 'text', label: 'Text' , icon: 'text'},
         {type: 'image', label: 'Image' , icon: 'image'},
-        {type: 'button', label: 'Button' , icon: 'button'},
-        {type: 'icon', label: 'Icon' , icon: 'icon'},
+        {type: 'button', label: 'Button' , icon: 'mouseClick'},
+        {type: 'icon', label: 'Icon' , icon: 'star'},
         {type: 'list', label: 'Icon List' , icon: 'list'},
       ]
     }

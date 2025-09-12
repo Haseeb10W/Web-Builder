@@ -1,7 +1,7 @@
 
 import React from "react";
 
-export type BlockType = 'text' | 'image' | 'button' | 'heading' | 'icon';
+export type BlockType = 'text' | 'image' | 'button' | 'heading' | 'icon' | 'iconlist';
 export type ContainerType = 'flex' | 'grid';
 export type TextBlockType = 'text' | 'heading'
 
@@ -64,13 +64,26 @@ export type TextBlockType = 'text' | 'heading'
   }
 }
 
- export interface IconBlock extends BaseBlock {
+export interface IconBlock extends BaseBlock {
   type: 'icon';
   props : {
     link: string;
     icon : string | null
   }
 }
+
+export interface IconListBlock extends BaseBlock {
+  type: 'iconlist';
+  props: {
+    items: {
+      icon: string | null;
+      text: string;
+      link?: string;
+      target?: '_self' | '_blank';
+    }[];
+  };
+}
+
 
 export interface  ContainerBlock extends BaseBlock{
   type: 'flex' | 'grid' ;
@@ -83,7 +96,7 @@ export interface  ContainerBlock extends BaseBlock{
   
 }
 
-export type Block = TextBlock | ImageBlock | ButtonBlock | HeadingBlock | ContainerBlock | IconBlock;
+export type Block = TextBlock | ImageBlock | ButtonBlock | HeadingBlock | ContainerBlock | IconBlock | IconListBlock;
 
 export type Container = ContainerBlock;
 

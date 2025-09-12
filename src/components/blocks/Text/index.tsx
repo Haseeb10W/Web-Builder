@@ -16,7 +16,6 @@ interface TextProps {
 export default function Text({block, index, onDelete, onCopy}: TextProps) {
 
   const trackingClass = useClassTracking(block)
-  // console.log(block)
 
   if(block.type !== 'text'){
     return null;

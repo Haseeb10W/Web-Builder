@@ -1,3 +1,5 @@
+'use client'
+
 import Section from '@/components/builder/Section';
 import DynamicIcons from '@/components/DynamicIcons';
 import useClassTracking from '@/hooks/useClassTrack';

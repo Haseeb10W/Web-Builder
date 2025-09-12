@@ -1,7 +1,7 @@
 'use client';
 
 
-import { Block, BlockType, ButtonBlock, Container, ContainerBlock, ContainerType, HeadingBlock, IconBlock, ImageBlock, TextBlock } from '@/types/blocksSchema';
+import { Block, BlockType, ButtonBlock, Container, ContainerBlock, ContainerType, HeadingBlock, IconBlock, IconListBlock, ImageBlock, TextBlock } from '@/types/blocksSchema';
 import React, { useState } from 'react';
 
 import { v4 as uuidv4 } from 'uuid';
@@ -114,6 +114,24 @@ export default function useBlockSchema( { type } : blockSchemaProps)  {
           }
 
       } as IconBlock
+
+     case 'iconlist':
+     return {
+    ...blockAdd,
+    type: 'iconlist',
+    props: {
+      // classes = {
+      //   iconsStyle = '',
+      //   textStyle = '',
+
+      // },
+      items: [
+        { icon: null, text: "List item 1", link: "", target: "_self" },
+        { icon: null, text: "List item 2", link: "", target: "_self" },
+      ],
+    },
+    } as IconListBlock; 
+
       case 'image' : 
       return  {
         ...blockAdd,
@@ -125,7 +143,6 @@ export default function useBlockSchema( { type } : blockSchemaProps)  {
           height:''
 
         }
-        
       } as ImageBlock
       case 'flex' : 
         return {

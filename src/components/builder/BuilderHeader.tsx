@@ -119,11 +119,11 @@ function BuilderHeader ({dataPage, screenSize = 0, updateScreenSize, bodyWidth=0
   const showToggleIcon = useCallback(() =>{
     let icon
     if(!toggleSide && window.innerWidth >= 1000){
-      icon = "togglbtn"
+      icon = "panelRight"
       
     }
     else if(toggleSide && window.innerWidth >= 1000){
-      icon = "togglebtn"
+      icon = "panelLeft"
     }
     else if(!toggleSide && window.innerWidth <1000){
       icon = "panelbottomClose"
@@ -186,13 +186,13 @@ function BuilderHeader ({dataPage, screenSize = 0, updateScreenSize, bodyWidth=0
       <div className={`flex h-9`}>
         <div className="tabs flex justify-center gap-1 text-center my-1 p-1 px-1 mx-2 bg-gray-200 rounded-lg" >
           <li className={`p-1  py-0.5 rounded-sm cursor-pointer hover:bg-white ${showActiveScreen('desktop') && 'bg-white'}` } title="View Big Screen Mode" onClick={()=>setScreenType('desktop') } >
-          <DynamicIcons name='desktop' classes='h-4 w-4'></DynamicIcons >
+          <DynamicIcons name='laptop' classes='h-4 w-4'></DynamicIcons >
           </li>
           <li className={`p-1 py-0.5 rounded-sm cursor-pointer hover:bg-white ${showActiveScreen('tablet') && 'bg-white'}`} title="View Tablet Mode" onClick={()=>setScreenType('tablet') }>
           <DynamicIcons name='tablet' classes='h-4 w-4 ' ></DynamicIcons >
           </li>
           <li className={`p-1 py-0.5 rounded-sm  cursor-pointer hover:bg-white ${showActiveScreen('mobile') && 'bg-white'}`} title="View Mobile Mode" onClick={()=>setScreenType('mobile') }>
-          <DynamicIcons name='mobile' classes='h-4 w-4'></DynamicIcons >
+          <DynamicIcons name='smartphone' classes='h-4 w-4'></DynamicIcons >
           </li>
         </div>
 
@@ -211,7 +211,7 @@ function BuilderHeader ({dataPage, screenSize = 0, updateScreenSize, bodyWidth=0
         
       <div onClick={goToPreview} className='flex items-center px-2 py-1 rounded-sm cursor-pointer bg-gray-200 hover:bg-gray-300' title='Preview'>
 
-         <DynamicIcons name='eye' classes='h-5 w-5 ' /> 
+         <DynamicIcons name='scanEye' classes='h-5 w-5 ' /> 
       </div>
       
       <div className='flex items-center gap-1 px-3 py-1 rounded-sm cursor-pointer bg-gray-200 hover:bg-gray-300'>
