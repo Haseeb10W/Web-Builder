@@ -1,9 +1,10 @@
 'use client';
 
 import React, { useEffect, useState } from 'react'
-import { Block, TextBlock} from '@/types/blocksSchema';
+import { Block} from '@/types/blocksSchema';
 import Section from '@/components/builder/Section';
 import useClassTracking from '@/hooks/useClassTrack';
+import { TextBlock } from './blockSchema';
 
 interface TextProps {
   block : Block,

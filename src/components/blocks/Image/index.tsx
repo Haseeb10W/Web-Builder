@@ -1,9 +1,10 @@
 'use client'
 import Section from '@/components/builder/Section';
 import DynamicIcons from '@/components/DynamicIcons';
-import { Block, ImageBlock } from '@/types/blocksSchema';
+import { Block } from '@/types/blocksSchema';
 import Link from 'next/link';
 import React from 'react'
+import { ImageBlock } from './blockSchema';
 
 interface ImageProps{
   block: Block;
@@ -53,7 +54,7 @@ export default function Image({block, index, onDelete, onCopy}:ImageProps) {
         
         
          
-        className={`object-fill w-full h-full`}
+        className={`object-fill w-full h-full imageClass`}
       />
             ):(
                 <div className="w-full h-[200px] bg-gray-200 flex items-center justify-center">

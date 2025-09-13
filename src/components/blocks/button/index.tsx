@@ -1,9 +1,10 @@
 'use client'
 import Section from '@/components/builder/Section';
 import DynamicIcons from '@/components/DynamicIcons';
-import { Block, ButtonBlock } from '@/types/blocksSchema';
+import { Block } from '@/types/blocksSchema';
 import Link from 'next/link';
 import React from 'react'
+import { ButtonBlock } from './blockSchema';
 
 
 interface ButtonProps{

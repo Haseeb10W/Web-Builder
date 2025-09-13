@@ -1,11 +1,12 @@
 'use client';
 
 import React, { useEffect, useState } from 'react'
-import { Block, HeadingBlock} from '@/types/blocksSchema';
+import { Block} from '@/types/blocksSchema';
 import Section from '@/components/builder/Section';
 import useClassTracking from '@/hooks/useClassTrack';
 import LevelMap from '@/lib/maps/levelmap';
 import Link from 'next/link';
+import { HeadingBlock } from './blockSchema';
 
 
 interface HeadingProps {

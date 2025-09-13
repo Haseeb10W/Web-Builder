@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import SelectField from "./selectField";
 import { settingFieldProps } from "@/types/settingsSchema";
 import TextField from "./TextField";
-import NumberField from "./NumberField";
+import NumberField from "@/components/settingFields/NumberField";
 
 
 const TDely = {

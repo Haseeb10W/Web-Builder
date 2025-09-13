@@ -1,14 +1,20 @@
 'use client';
 
 
-import { Block, BlockType, ButtonBlock, Container, ContainerBlock, ContainerType, HeadingBlock, IconBlock, IconListBlock, ImageBlock, TextBlock } from '@/types/blocksSchema';
+import { buttonBlockSchema } from '@/components/blocks/button/blockSchema';
+import { flexBlockSchema } from '@/components/blocks/flexbox/blockSchema';
+import { headingBlockSchema } from '@/components/blocks/heading/blockSchema';
+import { iconListSchema } from '@/components/blocks/iconlist/blockSchema';
+import { iconBlockSchema } from '@/components/blocks/icons/blockSchems';
+import { imageBlockSchema } from '@/components/blocks/Image/blockSchema';
+import { textBlockSchema } from '@/components/blocks/Text/blockSchema';
+import { Block, BlockType,  Container, ContainerBlock, ContainerType} from '@/types/blocksSchema';
 import React, { useState } from 'react';
 
 import { v4 as uuidv4 } from 'uuid';
 
 interface blockSchemaProps {
   type : BlockType | ContainerType,
-
 }
 
 
@@ -44,116 +50,24 @@ export default function useBlockSchema( { type } : blockSchemaProps)  {
   
     switch (type) {
       case 'text' : 
-        return  {
-          ...blockAdd,
-          type : 'text',
-          props : {
-            text : `Your Text `
-
-          },
-          responsiveStyles : {
-             ...blockAdd.responsiveStyles,
-             baseStyle : {
-              ...blockAdd?.responsiveStyles?.baseStyle,
-              'text-align': 'center'
-              
-             },
-             tablet : {
-              ...blockAdd?.responsiveStyles?.tablet,
-              'text-align': 'left'
-
-             },
-             desktop: {
-              ...blockAdd?.responsiveStyles?.desktop,
-              'text-align': 'justify'
-             },
-             hoverStyles : {
-              ...blockAdd?.responsiveStyles?.hoverStyles,
-              
-             }
-
-          },
-          
-        } as TextBlock;
+        return  textBlockSchema(blockAdd)
 
       case 'heading' :
-        return {
-          ...blockAdd,
-          type : 'heading',
-          props : {
-          text : 'Sample Heading',
-          level : 'h1'
-          },
-          styles: {
-            ...blockAdd.styles,
-            fontWeight: '700',
-
-          }
-
-        } as HeadingBlock
+        return headingBlockSchema(blockAdd)
       
       case 'button' : 
-        return  {
-          ...blockAdd,
-          type : 'button',
-          props : {
-            text : 'Click Me',
-            link : '',
-            target : '_self',
-             icon: null
-          }
-          
-        } as ButtonBlock
+        return buttonBlockSchema(blockAdd)
       case 'icon' : 
-      return  {
-          ...blockAdd,
-          type : 'icon',
-          props : {
-          link : '',
-          icon: null
-          }
-
-      } as IconBlock
+      return iconBlockSchema(blockAdd)
 
      case 'iconlist':
-     return {
-    ...blockAdd,
-    type: 'iconlist',
-    props: {
-      // classes = {
-      //   iconsStyle = '',
-      //   textStyle = '',
-
-      // },
-      items: [
-        { icon: null, text: "List item 1", link: "", target: "_self" },
-        { icon: null, text: "List item 2", link: "", target: "_self" },
-      ],
-    },
-    } as IconListBlock; 
+     return  iconListSchema(blockAdd)
 
       case 'image' : 
-      return  {
-        ...blockAdd,
-        type : 'image',
-        props : {
-          src: '',
-          alt: '',
-          width:'',
-          height:''
-
-        }
-      } as ImageBlock
+      return imageBlockSchema(blockAdd)
+      
       case 'flex' : 
-        return {
-          ...blockAdd,
-          type : 'flex',
-          children : [],
-          props : {
-            direction : 'row',
-            gap : '10px',
-          }
-        } as ContainerBlock
+        return flexBlockSchema(blockAdd)
       
       case 'grid' : 
         return {

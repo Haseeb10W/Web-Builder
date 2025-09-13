@@ -3,8 +3,9 @@
 import Section from '@/components/builder/Section';
 import DynamicIcons from '@/components/DynamicIcons';
 import useClassTracking from '@/hooks/useClassTrack';
-import { Block, IconBlock } from '@/types/blocksSchema';
+import { Block} from '@/types/blocksSchema';
 import React from 'react'
+import { IconBlock } from './blockSchems';
 
 interface IconProps{
   block: Block;

@@ -1,9 +1,10 @@
 'useclient'
 
 import DynamicIcons from '@/components/DynamicIcons';
-import { Block, IconListBlock } from '@/types/blocksSchema';
+import { Block } from '@/types/blocksSchema';
 import Link from 'next/link';
 import React from 'react'
+import { IconListBlock } from './blockSchema';
 
 interface IconListProps {
   block : Block,

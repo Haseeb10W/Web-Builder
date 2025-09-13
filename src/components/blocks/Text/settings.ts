@@ -59,6 +59,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
     // 0 :: Alignment
     /* +++++++++++++++++  Alignment  +++++++++++++++++++++++*/
     setSettingField('heading',{label: "Alignment", for : 'alignment', tabOpen: true, tabAllow: true}),
+    
     // 1 : Pseudo Status 
     setSettingField('status', { 
       for : 'alignment',
