@@ -20,7 +20,7 @@ import PseudoStatus from "@/components/settingFields/pseudoStatus";
 import IconSelectField from "@/components/settingFields/IconSelectField";
 import Transition from "@/components/settingFields/Transition";
 import Transform from "@/components/settingFields/Transform";
-import NumberField from "@/components/settingFields/NumberField";
+import NumberField from "@/components/settingFields/numberField";
 import ImageSection from "@/components/settingFields/ImageSection";
 import LinkField from "@/components/settingFields/LinkField";
 import BoxShadow from "@/components/settingFields/BoxShadow";

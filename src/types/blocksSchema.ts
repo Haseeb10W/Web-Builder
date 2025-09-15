@@ -1,4 +1,5 @@
 
+import { TextBlock } from "@/components/blocks/Text/blockSchema";
 import React from "react";
 
 export type BlockType = 'text' | 'image' | 'button' | 'heading' | 'icon';
@@ -26,12 +27,7 @@ export type TextBlockType = 'text' | 'heading'
   link: string;
 }
 
- export interface  TextBlock extends BaseBlock {
-  type: 'text';
-  props : {
-    text: string | TrustedHTML;
-  }
-}
+
 
  export interface HeadingBlock extends BaseBlock {
   type: 'heading';

@@ -4,7 +4,8 @@ import React, { useState } from "react";
 import SelectField from "./selectField";
 import { settingFieldProps } from "@/types/settingsSchema";
 import TextField from "./TextField";
-import NumberField from "./NumberField";
+import NumberField from "@/components/settingFields/numberField";
+
 
 
 const TDely = {
@@ -44,9 +45,9 @@ const custumFeild = {
   tabOpen: true,
 };
 export default function Transition({ props, change }: settingFieldProps) {
-  console.log(props);
+  // console.log(props);
   const [transition, setTransition] = useState("");
-  console.log(transition);
+  // console.log(transition);
   const [transitionDelay, setTransitionDelay] = useState(TDely);
   const [transitionDuration, setTransitionDurstion] = useState(TDuration);
   const [TimmingEffect, setTimmingEffect] = useState(TEffects);

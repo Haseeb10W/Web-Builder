@@ -1,5 +1,5 @@
 import { Block } from "@/types/blocksSchema"
-import { styleAppliedToBackground, styleAppliedToCommonElements } from "./applyStyleFunctions"
+import { styleAppliedToBackground, styleAppliedToCommonElements, styleAppliedToPosition } from "./applyStyleFunctions"
 
 
 
@@ -34,6 +34,9 @@ export const appliedSettings = (applied:string | undefined, foundBlock:Block | n
     // console.log(fieldValue)
     styleAppliedToBackground(screenType, settingField, foundBlock, fieldValue)
 
+  }else if(applied == "positionChange"){
+    console.log('position', fieldValue)
+    styleAppliedToPosition(screenType, settingField, foundBlock, fieldValue)
   }
 
 

@@ -1,7 +1,7 @@
 import { settingTypes } from "@/contexts/settingsType"
 import { findBlock, findBlockOverall} from "@/lib/builder/blockHandlers"
 import { handleSettingChange } from "@/lib/builder/settingHandlers"
-import { backgroundSettingsSetter, getValueForFields } from "@/lib/builder/settingsSetter"
+import { backgroundSettingsSetter, getValueForFields, positionSettingsSetter } from "@/lib/builder/settingsSetter"
 import { setSettingField } from "@/lib/fieldSettings/fields"
 
 import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
@@ -558,10 +558,11 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
   }),
 
 
-  //8 :: positioning
+  //10 :: positioning
+  /* +++++++++++++++++  Positioning +++++++++++++++++++++++*/
     setSettingField('heading',{label: "Positioning", for : 'positioning', tabAllow: true,  }),
 
-  // 9 : Pseudo Status 
+  // 11 : Pseudo Status 
    setSettingField('status', { 
     for : 'positioning',
     tab: 'positioning',
@@ -574,10 +575,10 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
 
   }),
 
-  //10
+  //12 : position
     setSettingField('position', {
         label: "Position",
-        labelId: "position",
+        labelId: "position-text",
         options: [
           {label: 'Absolute', value: 'absolute'},
           {label: 'Fixed', value: 'fixed'},
@@ -585,13 +586,13 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
           {label: 'Sticky', value: 'sticky'},
 
         ],
-        for : 'positioningChange',
+        for : 'positionChange',
         tab : 'positioning',
         // statuses : ['normal']
       
   }),
 
-  //11
+  //13 : Transform 
     setSettingField('transform', {
         label: "Transform Effect",
         labelId: "transform-effect",
@@ -784,7 +785,7 @@ export const textSettingsSet:settingsSetArgs = (settingType, data, screenType)=>
       
       
       
-      /*+++++++++++++++++++++++ Styles +++++++++++++++++++++ */
+      /*+++++++++++++++++++++++ Settings +++++++++++++++++++++ */
       
       settings.settings[2].props.value = getValueForFields(findBlock, screenType, settings.settings[2].props.currentStatus || 'normal', "margin");
       settings.settings[3].props.value = getValueForFields(findBlock, screenType, settings.settings[3].props.currentStatus || 'normal', "padding");
@@ -795,7 +796,8 @@ export const textSettingsSet:settingsSetArgs = (settingType, data, screenType)=>
       settings.settings[8].props.value = getValueForFields(findBlock, screenType, settings.settings[8].props.currentStatus || 'normal', "min-height");
       settings.settings[9].props.value = getValueForFields(findBlock, screenType, settings.settings[9].props.currentStatus || 'normal', "max-height");
     
-      
+      // Position
+      settings.settings[12].props.value = positionSettingsSetter(findBlock, screenType, settings.settings[12].props.currentStatus || 'normal')
       
     }
 

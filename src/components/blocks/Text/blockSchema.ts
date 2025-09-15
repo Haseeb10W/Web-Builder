@@ -1,5 +1,15 @@
-import { TextBlock } from "@/types/blocksSchema";
+import { BaseBlock } from "@/types/blocksSchema";
 
+
+
+
+
+ export interface  TextBlock extends BaseBlock {
+  type: 'text';
+  props : {
+    text: string | TrustedHTML;
+  }
+}
 
 export const textBlockSchema = (blockAdd: any)=>{
   return { ...blockAdd,
@@ -33,5 +43,6 @@ export const textBlockSchema = (blockAdd: any)=>{
             
           } as TextBlock;
 }
+
 
 

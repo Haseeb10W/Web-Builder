@@ -1,8 +1,10 @@
 "use client"
 import { settingFieldProps } from '@/types/settingsSchema'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import SelectField from './selectField'
 import HalfSpace from './HalfSpace'
+import RangeField from './RangeField'
+import { convertCommaToStrVal, convertStrToCommaVal } from '@/lib/stringFunctions'
 
 const translat = {
       label: "Translate",
@@ -19,11 +21,12 @@ const translat = {
 }
 
 const rotat = {
-      label: "Rotate",
-      unitValue:'deg',
-      showUnit:true,
-      selectUnit:false,
+      label: "Rotate (deg)",
+      minVal: -360,
+      maxVal: 360,
+      value: '',
       tabOpen: true  
+
 }
 
 const scal = {
@@ -31,44 +34,130 @@ const scal = {
       unitValue:'',
       showUnit:false,
       selectUnit:false,
-    tabOpen: true  
+        tabOpen: true  
 }
 
-export default function Transform({props,change}: settingFieldProps) {
-     console.log(props)
-    const [transform,setTransform] = useState('')
-    const [translate,setTranslate] = useState(translat)
-    const [rotate,setRotate] = useState(rotat)
-    const [scale,setScale] = useState(scal)
+export default function Transform({props, change}: settingFieldProps) {
+    //  console.log(props)
+    const [transform, setTransform] = useState<{[key:string]: any}>({...props, value: ''})
+    const [translate, setTranslate] = useState(translat)
+    const [rotate, setRotate] = useState(rotat)
+    const [scale, setScale] = useState(scal);
+    const [sentTransform, setSentTransform] = useState(0)
+    const [transformValue, setTransformValue] = useState<{
+        rotateVal: string,
+        translateVal: string,
+        scaleVal: string,
+        transformVal: "on" | 'off'
+    }>({
+        rotateVal: '',
+        translateVal: '',
+        scaleVal: '',
+        transformVal: 'off'
+    })
+
+
+    useEffect(()=>{
+        
+
+        if(props?.value){
+            setTransform({...props, value: props?.value})
+        }else{
+            setTransform({...props, value: ''})
+        }
+
+        
+
+    }, [props?.value, props])
+
+
+
+    useEffect(()=>{
+
+        if(sentTransform > 0 ){
+
+
+            let transformValueNow = ``;
+            if(transformValue.transformVal == "on"){
+
+                if( transformValue.rotateVal && transformValue.rotateVal !== ''){
+                    transformValueNow +=  `rotate(${transformValue.rotateVal}deg)`
+
+                }
+
+                // if(transformValue.translateVal && t)
+                
+            }
+            
+
+
+
+
+
+
+
+
+
+
+        }
+
+    },[sentTransform])
+
+
     const handleTransformChange = (value:any) =>{
-        setTransform(value)
+        
+
+        setTransformValue(prev=> ({...prev, transformVal : JSON.parse(value).value}))
+        setSentTransform(prev=> prev + 1)
+        
+        // setTransform(prev=> ({...prev, value: JSON.parse(value).value}))
     }
 
     const handleTranslateChange = (value:any) =>{
-     setTranslate((prev:any)=>({...prev,
-        value: value
-     }))
+
+        const transVal = JSON.parse(value).value
+        const commaVal = convertStrToCommaVal(transVal)
+        
+
+        setTransformValue(prev=> ({...prev, translateVal : commaVal}))
+        setSentTransform(prev=> prev + 1)
+        // console.log(JSON.parse(value).value)
+
+    //  setTranslate((prev:any)=>({...prev,
+    //     value: JSON.parse(value).value
+    //  }))
     }
      
     const handlRotateChange = (value:any) =>{
-       setRotate((prev:any)=>({...prev,
-        value:value
-       }))
+        setTransformValue(prev=> ({...prev, rotateVal : JSON.parse(value).value}))
+        setSentTransform(prev=> prev + 1)
+
+    //    setRotate((prev:any)=>({...prev,
+    //     value: JSON.parse(value).value
+    //    }))
     }
 
     const handleScaleChange = (value:any) =>{
-        setScale((prev:any)=>({...prev,
-            value:value
-        }))
+        const sclVal = JSON.parse(value).value
+        const commaVal = convertStrToCommaVal(sclVal)
+
+        setTransformValue(prev=> ({...prev, scaleVal : commaVal}))
+        setSentTransform(prev=> prev + 1)
+        // console.log(JSON.parse(value).value)
+
+        // setScale((prev:any)=>({...prev,
+        //     value: JSON.parse(value).value
+        // }))
     }
 
   return (
     <>
-       <SelectField props={props} change={(value:any)=>handleTransformChange(value)}/>
-        {props?.tabOpen && transform == "on" && (
+       <SelectField props={transform} change={(value:any)=>handleTransformChange(value)}/>
+        {props?.tabOpen && transformValue.transformVal == "on" && (
             <>
             <HalfSpace props={translate} change={(value:any)=>handleTranslateChange(value)}/>
-            <HalfSpace props={rotate} change={(value:any)=>handlRotateChange(value)}/>
+            <RangeField props={rotate} change={(value:any)=>handlRotateChange(value)} />
+            
             <HalfSpace props={scale} change={(value:any)=>handleScaleChange(value)}/>
             </>
         )}

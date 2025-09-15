@@ -1,9 +1,8 @@
-'use client';
 
 
 import { textBlockSchema } from '@/components/blocks/Text/blockSchema';
-import { Block, BlockType, ButtonBlock, Container, ContainerBlock, ContainerType, HeadingBlock, IconBlock, ImageBlock, TextBlock } from '@/types/blocksSchema';
-import React, { useState } from 'react';
+import { Block, BlockType, ButtonBlock, Container, ContainerBlock, ContainerType, HeadingBlock, IconBlock, ImageBlock } from '@/types/blocksSchema';
+
 
 import { v4 as uuidv4 } from 'uuid';
 
@@ -52,22 +51,6 @@ export default function useBlockSchema( { type } : blockSchemaProps)  {
           ...blockAdd,
           type : 'heading',
           props : {
-          childStyleClasses : ['imageClass', 'liClass'],
-          childStyles : {
-            imageClass: {
-              responsiveStyles : {
-                    baseStyle : {},
-                    tablet : {},
-                    desktop : {},
-                    hoverStyles: {},
-               },
-            },
-            liClass : {
-              responsiveStyles : {
-                
-              }
-            }
-          },
           text : 'Sample Heading',
           level : 'h1'
           },
