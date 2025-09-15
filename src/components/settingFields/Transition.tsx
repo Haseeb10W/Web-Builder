@@ -7,6 +7,7 @@ import TextField from "./TextField";
 import NumberField from "@/components/settingFields/NumberField";
 
 
+
 const TDely = {
   label: "Transition Delay",
   labelId: "transition-delay",
@@ -44,9 +45,9 @@ const custumFeild = {
   tabOpen: true,
 };
 export default function Transition({ props, change }: settingFieldProps) {
-  console.log(props);
+  // console.log(props);
   const [transition, setTransition] = useState("");
-  console.log(transition);
+  // console.log(transition);
   const [transitionDelay, setTransitionDelay] = useState(TDely);
   const [transitionDuration, setTransitionDurstion] = useState(TDuration);
   const [TimmingEffect, setTimmingEffect] = useState(TEffects);

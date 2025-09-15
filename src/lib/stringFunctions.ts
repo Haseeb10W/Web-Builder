@@ -60,3 +60,16 @@ export const calculateSize = (value:number)=>{
   return size;
 
 }
+
+
+export const convertStrToCommaVal = (str:string)=>{
+  let commaVal = str.trim();
+  commaVal = commaVal.replace(/\s/g, ',');
+  return commaVal;
+}
+
+export const convertCommaToStrVal = (str:string)=>{
+  let commaVal = str.trim();
+  commaVal = commaVal.replace(/,/g, ' ');
+  return commaVal;
+}

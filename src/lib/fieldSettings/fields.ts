@@ -88,6 +88,7 @@ export const setSettingField:fieldSetArgs = (field, props)=>{
         labelId: props?.labelId,
         placeholder: props?.placeholder,
         value: props?.value || '',
+        row : props?.row || 4,
         for : props?.for,
         type: 'settingField',
         responsive: props?.responsive || 'on',
@@ -460,10 +461,45 @@ export const setSettingField:fieldSetArgs = (field, props)=>{
           tab: props?.tab || commonProps.tab,
           tabOpen: props?.tabOpen ? props?.tabOpen : false,
           statuses: props?.statuses || commonProps.statuses,
-          currentStatus: props?.currentStatus || commonProps.currentStatus,
-           
+          currentStatus: props?.currentStatus || commonProps.currentStatus, 
           }
         }
+
+        case 'boxShadow':
+        return {
+          field: field,
+          props : {
+          label: props?.label,
+          labelId: props?.labelId,
+          value: props?.value || '',
+          for : props?.for,
+          type: 'settingField',
+          responsive: props?.responsive ? props?.responsive : 'on',
+          tab: props?.tab || commonProps.tab,
+          tabOpen: props?.tabOpen ? props?.tabOpen : false,
+          statuses: props?.statuses || commonProps.statuses,
+          currentStatus: props?.currentStatus || commonProps.currentStatus, 
+          }
+        }
+
+    case 'textClasses':
+      return {
+        field: field, 
+        props : {
+        label: props?.label, 
+        labelId: props?.labelId,
+        placeholder: props?.placeholder,
+        value: props?.value || '',
+        for : props?.for,
+        type: 'settingField',
+        tab: props?.tab || commonProps.tab,
+        responsive: props?.responsive || 'on',
+        tabOpen: props?.tabOpen ? props?.tabOpen : false,
+        statuses: props?.statuses || commonProps.statuses,
+        currentStatus: props?.currentStatus || commonProps.currentStatus,
+        
+        }  
+      }
 
       
 

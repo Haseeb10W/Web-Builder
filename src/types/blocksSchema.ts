@@ -33,6 +33,47 @@ export type TextBlockType = 'text' | 'heading'
   link: string;
 }
 
+
+
+//  export interface HeadingBlock extends BaseBlock {
+//   type: 'heading';
+//   props : {
+//     text: string;
+//     level: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+//   }
+// }
+
+
+
+//  export interface ImageBlock extends BaseBlock {
+//   type: 'image';
+//   props : {
+//     src: string;
+//     alt?: string;
+//     link?: string;
+//     width?: string;
+//     height?: string;
+//   }
+// }
+
+//  export interface ButtonBlock extends BaseBlock {
+//   type: 'button';
+//   props : {
+//     text: string;
+//     link: string;
+//     target : '_self' | '_blank';
+//     icon : string | null
+//   }
+// }
+
+//  export interface IconBlock extends BaseBlock {
+//   type: 'icon';
+//   props : {
+//     link: string;
+//     icon : string | null
+//   }
+// }
+
 export interface  ContainerBlock extends BaseBlock{
   type: 'flex' | 'grid' ;
   children: Block[];

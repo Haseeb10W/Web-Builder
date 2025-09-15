@@ -29,6 +29,29 @@ export const backgroundSettingsSetter = (findBlock:Block, screenType: "desktop" 
 
 
 
+export const positionSettingsSetter = (findBlock:Block, screenType: "desktop" | "tablet" | "mobile", status:string )=>{
+
+  // console.log(screenType, status)
+  const allValues = {
+    
+    position: getValueForFields(findBlock, screenType, status, 'position'),
+    top : getValueForFields(findBlock, screenType, status, 'top'),
+    bottom : getValueForFields(findBlock, screenType, status, 'bottom'),
+    left : getValueForFields(findBlock, screenType, status, 'left'),
+    right: getValueForFields(findBlock, screenType, status, 'right'),
+    
+    
+  }
+
+  // console.log(allValues)
+
+  const fullValue = JSON.stringify(allValues) 
+  return fullValue;
+
+
+}
+
+
 
 
 

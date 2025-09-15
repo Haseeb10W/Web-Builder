@@ -1,10 +1,11 @@
 import { settingTypes } from "@/contexts/settingsType"
 import { findBlock, findBlockOverall} from "@/lib/builder/blockHandlers"
 import { handleSettingChange } from "@/lib/builder/settingHandlers"
-import { backgroundSettingsSetter, getValueForFields } from "@/lib/builder/settingsSetter"
+import { backgroundSettingsSetter, getValueForFields, positionSettingsSetter } from "@/lib/builder/settingsSetter"
 import { setSettingField } from "@/lib/fieldSettings/fields"
 
 import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
+import { placeholder } from "jodit/esm/plugins/placeholder/placeholder"
 
 
  const TextSettings:settingsSetupSchema = {
@@ -560,10 +561,11 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
   }),
 
 
-  //8 :: positioning
+  //10 :: positioning
+  /* +++++++++++++++++  Positioning +++++++++++++++++++++++*/
     setSettingField('heading',{label: "Positioning", for : 'positioning', tabAllow: true,  }),
 
-  // 9 : Pseudo Status 
+  // 11 : Pseudo Status 
    setSettingField('status', { 
     for : 'positioning',
     tab: 'positioning',
@@ -576,10 +578,10 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
 
   }),
 
-  //10
+  //12 : position
     setSettingField('position', {
         label: "Position",
-        labelId: "position",
+        labelId: "position-text",
         options: [
           {label: 'Absolute', value: 'absolute'},
           {label: 'Fixed', value: 'fixed'},
@@ -587,13 +589,13 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
           {label: 'Sticky', value: 'sticky'},
 
         ],
-        for : 'positioningChange',
+        for : 'positionChange',
         tab : 'positioning',
         // statuses : ['normal']
       
   }),
 
-  //11
+  //13 : Transform 
     setSettingField('transform', {
         label: "Transform Effect",
         labelId: "transform-effect",
@@ -609,10 +611,10 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         
   }),
 
-    //12 :: Scrolling
+    //14 :: Scrolling
     setSettingField('heading',{label: "OverFlow", for : 'overflow', tabAllow: true }),
     
-    //13
+    //15
       setSettingField('select', {
         label: "Overflow-X",
         labelId: "overflow-x",
@@ -626,7 +628,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         tab : 'overflow',
       }),
 
-    //14
+    //16
       setSettingField('select', {
         label: "Overflow-Y",
         labelId: "overflow-y",
@@ -640,10 +642,33 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         tab : 'overflow',
       }),
 
-      //15 :: Other
+      //17 :: Other
        setSettingField('heading',{label: "Other", for : 'other', tabAllow: true }),
+      
+      //18
+      setSettingField('textClasses', {
+        label: "CSS Classes", 
+        labelId: "class-text",
+        placeholder: "Enter the CSS classes",
+        value:'',
+        for : '',
+        tab: 'other',
+        responsive:"off"
+       }),
+      
+       //19
+        setSettingField('textClasses', {
+        label: "CSS ID", 
+        labelId: "class-text",
+        placeholder: "Enter the CSS ID",
+        value:'',
+        for : '',
+        tab: 'other',
+        responsive:"off"
+       }),
 
-      //16
+
+      //20
       setSettingField('number', {
         label: "Zindex", 
         labelId: "z-index-text",
@@ -653,7 +678,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
        }),
 
 
-      //17
+      //21
       setSettingField('iconSelect', {
         label: "Cursor Pointer",
         labelId: "cursor-pointer-style",
@@ -698,7 +723,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         
   }),
 
-  // 18
+  // 22
   setSettingField('transition', {
         label: "Apply Transition",
         labelId: "apply-transition",
@@ -717,6 +742,35 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         for : 'other',
         tab : 'other',        
   }),
+
+  //23 :: Other
+  setSettingField('heading',{label: "Custom", for : 'custom', tabAllow: true }),
+
+  //24
+      setSettingField('textarea', {
+      label: "Tailwind Classes", 
+      labelId: "tailwind-classes",
+      placeholder: 'Add your tailwind classes here',
+      row: 1,
+      for : 'tailwindChange',
+      tab: 'custom',
+      responsive:'off'
+    }
+    ),
+
+  //25
+
+      setSettingField('textarea', {
+      label: "CSS Classes", 
+      labelId: "css-classes",
+      placeholder: 'Add your CSS classes here',
+      row: 6,
+      for : 'cssChange',
+      tab: 'custom',
+      responsive:'off'
+    }
+    ),
+
       
 
   ]
@@ -786,7 +840,7 @@ export const textSettingsSet:settingsSetArgs = (settingType, data, screenType)=>
       
       
       
-      /*+++++++++++++++++++++++ Styles +++++++++++++++++++++ */
+      /*+++++++++++++++++++++++ Settings +++++++++++++++++++++ */
       
       settings.settings[2].props.value = getValueForFields(findBlock, screenType, settings.settings[2].props.currentStatus || 'normal', "margin");
       settings.settings[3].props.value = getValueForFields(findBlock, screenType, settings.settings[3].props.currentStatus || 'normal', "padding");
@@ -797,7 +851,8 @@ export const textSettingsSet:settingsSetArgs = (settingType, data, screenType)=>
       settings.settings[8].props.value = getValueForFields(findBlock, screenType, settings.settings[8].props.currentStatus || 'normal', "min-height");
       settings.settings[9].props.value = getValueForFields(findBlock, screenType, settings.settings[9].props.currentStatus || 'normal', "max-height");
     
-      
+      // Position
+      settings.settings[12].props.value = positionSettingsSetter(findBlock, screenType, settings.settings[12].props.currentStatus || 'normal')
       
     }
 

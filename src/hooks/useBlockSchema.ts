@@ -1,4 +1,3 @@
-'use client';
 
 
 import { buttonBlockSchema } from '@/components/blocks/button/blockSchema';
@@ -8,8 +7,9 @@ import { iconListSchema } from '@/components/blocks/iconlist/blockSchema';
 import { iconBlockSchema } from '@/components/blocks/icons/blockSchems';
 import { imageBlockSchema } from '@/components/blocks/Image/blockSchema';
 import { textBlockSchema } from '@/components/blocks/Text/blockSchema';
-import { Block, BlockType,  Container, ContainerBlock, ContainerType} from '@/types/blocksSchema';
-import React, { useState } from 'react';
+
+import { Block, BlockType, ContainerBlock, ContainerType} from '@/types/blocksSchema';
+
 
 import { v4 as uuidv4 } from 'uuid';
 
@@ -53,7 +53,9 @@ export default function useBlockSchema( { type } : blockSchemaProps)  {
         return  textBlockSchema(blockAdd)
 
       case 'heading' :
+
         return headingBlockSchema(blockAdd)
+
       
       case 'button' : 
         return buttonBlockSchema(blockAdd)

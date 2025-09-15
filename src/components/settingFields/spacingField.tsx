@@ -173,7 +173,7 @@ export default function SpacingField({props, change}:settingFieldProps) {
     if(!e?.target.value){
       newValue = ''
     }else{
-      newValue = parseInt(e.target.value)
+      newValue = e.target.value
     }
 
     

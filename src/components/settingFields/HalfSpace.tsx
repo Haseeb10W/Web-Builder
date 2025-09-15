@@ -8,21 +8,22 @@ import ResponsiveComponents from './ResponsiveComponents'
 
 export default function HalfSpace({props, change}:settingFieldProps) {
 
-  const [fullValue, seFullValue] = useState('')
+  const [fullValue, setFullValue] = useState('')
   const [spaceValues, setSpaceValues] = useState<{[key: string]: any}>({tb:0 , rl: 0 });
   const [linkStatus, setLinkStatus] = useState({value: "all", fields: 1, width: "w-[97%]"})
   const [unit, setUnit] = useState<string>(''); 
   const [unitOpen, setUnitOpen] = useState(false);
+  const [valueSent, setValueSent] = useState(0)
   
 
   useEffect(()=>{
     // console.log('good')
-    if(props?.value && props?.value !==''){
-      seFullValue(props?.value)
+    if(props?.value && props?.value !=='' && props?.showUnit){
+      setFullValue(props?.value)
       const values = props.value.split(' ');
       // console.log(values)
       const SanitizeValues = values.map((item:any)=>{
-        const units = ['px', '%'];
+        const units = ['px', '%', 'deg', 'vw', 'rem', 'vh', 'em'];
         const unit = units.find((unit)=> item.includes(unit))
         // console.log(unit)
         const value = item.replace(unit, '')
@@ -46,6 +47,21 @@ export default function HalfSpace({props, change}:settingFieldProps) {
         setLinkStatus({value: 'none', fields: 4, width: "w-[23%]"})
         setSpaceValues({tb: top, rl: right})
       }
+    }else if(props?.value && props?.value !=='' && props?.showUnit){
+      setUnit(props?.unitValue)
+      const values = props.value.split(' ');
+      const top = values[0];
+      const right = values[1];
+    
+      
+      if(top == right ){
+        setLinkStatus({value: 'all', fields: 1, width: "w-[97%]"})
+        setSpaceValues({tb: top, rl: right})
+      }else if(top !== right){
+        setLinkStatus({value: 'half', fields: 2, width: "w-[48%]"})
+        setSpaceValues({tb: top, rl: right})
+      }
+
     }
     else{
       
@@ -67,6 +83,9 @@ export default function HalfSpace({props, change}:settingFieldProps) {
 
 
   const handleLinkChange = (value:string, field: number, width: string)=>{
+
+    
+    
     const currentField = field
     let nextField ;
     switch(currentField){
@@ -86,6 +105,9 @@ export default function HalfSpace({props, change}:settingFieldProps) {
 
     if(space){
         setLinkStatus({value: space.value, fields: space.fields, width: space.width})
+        setSpaceValues({tb:0 , rl: 0 })
+        setFullValue('')
+        setValueSent(prev => prev + 1)
 
     }
     
@@ -114,15 +136,15 @@ export default function HalfSpace({props, change}:settingFieldProps) {
     switch(chain){
       case 'all':
         if(field == "field1"){
-          spaceField = 'All (Top / Right / Bottom / Left) '
+          spaceField = 'All (X-Axis / Y-Axis) '
         }
         break
       case 'half':
         if(field == "field1"){
-          spaceField = "Top / Bottom"
+          spaceField = "X-Axis"
         }
         else if (field == "field2"){
-          spaceField = "Left / Right"
+          spaceField = "Y-Axis"
 
         }
         break;
@@ -178,7 +200,7 @@ export default function HalfSpace({props, change}:settingFieldProps) {
     if(!e?.target.value){
       newValue = ''
     }else{
-      newValue = parseInt(e.target.value)
+      newValue = e.target.value
     }
 
     
@@ -210,7 +232,7 @@ export default function HalfSpace({props, change}:settingFieldProps) {
     const fullSpace = `${updatedSpaceValues.tb}${unit} ${updatedSpaceValues.rl}${unit}`;
 
 
-    seFullValue(fullSpace)
+    setFullValue(fullSpace)
     
 
 
@@ -221,21 +243,35 @@ export default function HalfSpace({props, change}:settingFieldProps) {
   }, [linkStatus, unit, spaceValues])
 
 
-
-  const valueChange = ()=>{
-    const val = fullValue ;
-    // console.log(val)
-    const newValue = {
-      status : props?.currentStatus,
-      responsive : props?.responsive || 'on',
-      value : val
-    }
-    
-    
-
-    change?.(JSON.stringify(newValue))
+  const handleUnitChange =(value: any)=>{
+    setUnit(value)
+    setSpaceValues({t:0 , r: 0, b: 0 , l: 0 })
+    setFullValue('')
+    setValueSent(prev => prev + 1)
 
   }
+
+  const valueChange = ()=>{
+    setValueSent(pre=> pre + 1)
+    
+
+  }
+
+
+  useEffect(()=>{
+      if(valueSent > 0){
+      const val = fullValue ;
+      // console.log(val)
+      const newValue = {
+        status : props?.currentStatus,
+        responsive : props?.responsive || 'on',
+        value : val
+      }
+  
+  
+      change?.(JSON.stringify(newValue))
+      }
+    }, [ valueSent  ])
 
 
   return (
@@ -297,7 +333,7 @@ export default function HalfSpace({props, change}:settingFieldProps) {
               <ul className={`absolute top-[103%] left-0 w-full flex flex-col items-center bg-white border border-gray-300 `}>
               {
                 props?.unitOption?.map((item:any, index:number)=>(
-                  <li key={index} onClick={()=>setUnit(item.value)} className={`hover:bg-gray-200 w-full text-sm p-1 ${item.value==unit && 'bg-gray-200' }`}>{item.value}</li>
+                  <li key={index} onClick={()=>handleUnitChange(item.value)} className={`hover:bg-gray-200 w-full text-sm p-1 ${item.value==unit && 'bg-gray-200' }`}>{item.value}</li>
                 ))
               }
               </ul>
