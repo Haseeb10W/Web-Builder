@@ -1,5 +1,5 @@
 import { Block } from "@/types/blocksSchema"
-import { styleAppliedToBackground, styleAppliedToCommonElements, styleAppliedToPosition } from "./applyStyleFunctions"
+import { styleAppliedToBackground, styleAppliedToCommonElements, styleAppliedToCustom } from "./applyStyleFunctions"
 
 
 
@@ -20,8 +20,9 @@ export const appliedSettings = (applied:string | undefined, foundBlock:Block | n
             settingField.props.value = fieldValue
       }
   }else if(styleFields.includes(applied as string)){
-    
+
     styleAppliedToCommonElements(screenType, settingField,  foundBlock, fieldValue, applied as string)
+
   }else if(applied == "fontFamilyChange"){
     if(isTextBlockType(foundBlock)) {
         foundBlock.classTracking = {
@@ -31,12 +32,15 @@ export const appliedSettings = (applied:string | undefined, foundBlock:Block | n
       }
 
   }else if( applied == "backgroundChange"){
-    // console.log(fieldValue)
+    
     styleAppliedToBackground(screenType, settingField, foundBlock, fieldValue)
 
   }else if(applied == "positionChange"){
-    console.log('position', fieldValue)
-    styleAppliedToPosition(screenType, settingField, foundBlock, fieldValue)
+    
+    styleAppliedToCustom(screenType, settingField, foundBlock, fieldValue, ['position', 'top', 'left', 'bottom', 'right'])
+
+  }else if(applied == "transitionChange"){
+    styleAppliedToCustom(screenType, settingField, foundBlock, fieldValue, ['transition-property', 'transition-delay', 'transition-duration', 'transition-timing-function'])
   }
 
 
@@ -57,19 +61,3 @@ const settingStyleApply = (condition:any, block:any, fieldValue:any,  property:s
 
 
 
-const backgroundSettingHandle = (foundBlock:Block, fieldValue: string )=>{
-  const backgroundData = JSON.parse(fieldValue);
-  // console.log(backgroundData)
-
-  switch (backgroundData.type){
-    case 'color': 
-      foundBlock.styles = foundBlock.styles || {};
-      foundBlock.styles['backgroundColor'] =  backgroundData?.colorValue;
-      break;
-    default:
-      break
-  }
-
-
-
-}

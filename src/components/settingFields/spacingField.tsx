@@ -130,7 +130,7 @@ export default function SpacingField({props, change}:settingFieldProps) {
 
   const showValues = (index: number, field:string)=>{
 
-    let fieldValue; 
+    let fieldValue = ''; 
     
     switch (linkStatus.value){
       case 'all':

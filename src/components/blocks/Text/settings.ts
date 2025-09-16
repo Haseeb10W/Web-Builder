@@ -1,7 +1,7 @@
 import { settingTypes } from "@/contexts/settingsType"
 import { findBlock, findBlockOverall} from "@/lib/builder/blockHandlers"
 import { handleSettingChange } from "@/lib/builder/settingHandlers"
-import { backgroundSettingsSetter, getValueForFields, positionSettingsSetter } from "@/lib/builder/settingsSetter"
+import { backgroundSettingsSetter, customSettingSetter, getValueForFields } from "@/lib/builder/settingsSetter"
 import { setSettingField } from "@/lib/fieldSettings/fields"
 
 import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
@@ -596,25 +596,26 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
     setSettingField('transform', {
         label: "Transform Effect",
         labelId: "transform-effect",
-        value:'off',
+        
         defaultNot : true,
         options: [
           {label: 'Off', value: 'off'},
           {label: 'On', value: 'on'},
         ],
-        for : 'tansformStyleChange',
+        for : 'transform',
         tab : 'positioning',
       
         
   }),
 
-    //12 :: Scrolling
+    //14 ::
+    /* +++++++++++++++++  OverFlow +++++++++++++++++++++++*/
     setSettingField('heading',{label: "OverFlow", for : 'overflow', tabAllow: true }),
     
-    //13
+    //15 : overflow-x
       setSettingField('select', {
         label: "Overflow-X",
-        labelId: "overflow-x",
+        labelId: "overflow-x-text",
         options: [
           {label: 'Hidden', value: 'hidden'},
           {label: 'Scroll', value: 'scroll'},
@@ -625,10 +626,10 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         tab : 'overflow',
       }),
 
-    //14
+    //16 :overflow-y
       setSettingField('select', {
         label: "Overflow-Y",
-        labelId: "overflow-y",
+        labelId: "overflow-y-text",
         options: [
           {label: 'Hidden', value: 'hidden'},
           {label: 'Scroll', value: 'scroll'},
@@ -639,10 +640,10 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         tab : 'overflow',
       }),
 
-      //15 :: Other
+      //17 :: Other
        setSettingField('heading',{label: "Other", for : 'other', tabAllow: true }),
 
-      //16
+      //18
       setSettingField('number', {
         label: "Zindex", 
         labelId: "z-index-text",
@@ -652,9 +653,9 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
        }),
 
 
-      //17
+      //19
       setSettingField('iconSelect', {
-        label: "Cursor Pointer",
+        label: "Cursor ",
         labelId: "cursor-pointer-style",
         options: [
           {label: 'Default', value: 'default', icon:"default"},
@@ -686,7 +687,6 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
           {label: 'Se Resize', value: 'se-resize',icon:"MoveDiag"},
           {label: 'Sw Resize', value: 'sw-resize',icon:"neresize"},
           {label: 'Text', value: 'text',icon:"auto"},
-          {label: 'Url(myBall.cur),auto', value: 'url(myBall.cur),auto',icon:""},
           {label: 'W Resize', value: 'w-resize',icon:"eresize"},
           {label: 'Wait', value: 'wait',icon:"progress"},
           {label: 'Zoom in', value: 'zoom-in',icon:"zoomin"},
@@ -697,7 +697,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         
   }),
 
-  // 18
+  // 20 : Transition
   setSettingField('transition', {
         label: "Apply Transition",
         labelId: "apply-transition",
@@ -711,9 +711,9 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
           {label: 'Width', value: 'width'},
           {label: 'Height', value: 'height'},
           {label: 'Opacity', value: 'opacity'},
-          {label: 'Custum', value: 'custom'}
+          {label: 'Custom', value: 'custom'}
         ],
-        for : 'other',
+        for : 'transitionChange',
         tab : 'other',        
   }),
       
@@ -797,8 +797,25 @@ export const textSettingsSet:settingsSetArgs = (settingType, data, screenType)=>
       settings.settings[9].props.value = getValueForFields(findBlock, screenType, settings.settings[9].props.currentStatus || 'normal', "max-height");
     
       // Position
-      settings.settings[12].props.value = positionSettingsSetter(findBlock, screenType, settings.settings[12].props.currentStatus || 'normal')
       
+      settings.settings[12].props.value = customSettingSetter(findBlock, screenType, settings.settings[12].props.currentStatus || 'normal', ['position', 'top', 'left', 'bottom', 'right'])
+      // Transform
+      settings.settings[13].props.value = getValueForFields(findBlock, screenType, settings.settings[13].props.currentStatus || 'normal', "transform");
+
+      //Overflow
+      settings.settings[15].props.value = getValueForFields(findBlock, screenType, settings.settings[15].props.currentStatus || 'normal', "overflow-x");
+
+      settings.settings[16].props.value = getValueForFields(findBlock, screenType, settings.settings[15].props.currentStatus || 'normal', "overflow-y");
+
+      // Other
+      // Z-Index
+      settings.settings[18].props.value = getValueForFields(findBlock, screenType, settings.settings[18].props.currentStatus || 'normal', "z-index");
+      // Cursor
+      settings.settings[19].props.value = getValueForFields(findBlock, screenType, settings.settings[19].props.currentStatus || 'normal', "cursor");
+
+      // Transition
+      settings.settings[20].props.value = customSettingSetter(findBlock, screenType, settings.settings[20].props.currentStatus || 'normal', ['transition-property', 'transition-delay', 'transition-duration', 'transition-timing-function'])
+
     }
 
     

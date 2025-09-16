@@ -19,6 +19,7 @@ export default function HalfSpace({props, change}:settingFieldProps) {
   useEffect(()=>{
     // console.log('good')
     if(props?.value && props?.value !=='' && props?.showUnit){
+      
       setFullValue(props?.value)
       const values = props.value.split(' ');
       // console.log(values)
@@ -47,7 +48,8 @@ export default function HalfSpace({props, change}:settingFieldProps) {
         setLinkStatus({value: 'none', fields: 4, width: "w-[23%]"})
         setSpaceValues({tb: top, rl: right})
       }
-    }else if(props?.value && props?.value !=='' && props?.showUnit){
+    }else if(props?.value && props?.value !=='' && !props?.showUnit){
+      setFullValue(props?.value)
       setUnit(props?.unitValue)
       const values = props.value.split(' ');
       const top = values[0];
@@ -171,7 +173,7 @@ export default function HalfSpace({props, change}:settingFieldProps) {
 
   const showValues = (index: number, field:string)=>{
 
-    let fieldValue; 
+    let fieldValue = ''; 
     
     switch (linkStatus.value){
       case 'all':

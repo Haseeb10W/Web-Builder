@@ -129,29 +129,65 @@ const deleteOrSetProperty = (obj: Record<string, any>, style: string, value: str
 
 
 
-export const styleAppliedToPosition = (screen: 'desktop' | 'tablet' | 'mobile', settingField: any, block:Block | null, 
-  fieldValue : string) =>{
+// export const styleAppliedToPosition = (screen: 'desktop' | 'tablet' | 'mobile', settingField: any, block:Block | null, 
+//   fieldValue : string) =>{
+//     if(!block) return ;
+    
+//     const allPositionProperties = JSON.parse(fieldValue);
+
+//     const status = allPositionProperties.status;
+//     const positionValues = allPositionProperties.value;
+//     // console.log(positionValues, "posValues")
+//     const responsive = allPositionProperties.responsive;
+
+//     const setValues = {
+//           position : positionValues['position'],
+//           top : positionValues['top'],
+//           bottom : positionValues['bottom'],
+//           left : positionValues['left'],
+//           right: positionValues['right'],
+          
+//     }
+//     settingField.props.value = JSON.stringify(setValues)
+    
+
+//     Object.entries(positionValues).forEach( ([style, value]: [string, any]) =>{
+//       styleApplyToElements(screen, block, value, style, responsive, status)
+
+//     })
+
+// }
+
+
+
+
+
+
+export const styleAppliedToCustom = (screen: 'desktop' | 'tablet' | 'mobile', settingField: any, block:Block | null, 
+  fieldValue : string, allFields: string[]) =>{
     if(!block) return ;
     
-    const allPositionProperties = JSON.parse(fieldValue);
+    const allProperties = JSON.parse(fieldValue);
 
-    const status = allPositionProperties.status;
-    const positionValues = allPositionProperties.value;
-    console.log(positionValues, "posValues")
-    const responsive = allPositionProperties.responsive;
+    const status = allProperties.status;
+    const fullValues = allProperties.value;
+    // console.log(positionValues, "posValues")
+    const responsive = allProperties.responsive;
 
-    const setValues = {
-          position : positionValues['position'],
-          top : positionValues['top'],
-          bottom : positionValues['bottom'],
-          left : positionValues['left'],
-          right: positionValues['right'],
+    let setValues: {[key:string]: any}  = {
           
+
     }
+
+    allFields.forEach((item:string)=>{
+      setValues[item] = fullValues[item]
+    })
+
+    
     settingField.props.value = JSON.stringify(setValues)
     
 
-    Object.entries(positionValues).forEach( ([style, value]: [string, any]) =>{
+    Object.entries(fullValues).forEach( ([style, value]: [string, any]) =>{
       styleApplyToElements(screen, block, value, style, responsive, status)
 
     })

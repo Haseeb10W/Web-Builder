@@ -29,19 +29,37 @@ export const backgroundSettingsSetter = (findBlock:Block, screenType: "desktop" 
 
 
 
-export const positionSettingsSetter = (findBlock:Block, screenType: "desktop" | "tablet" | "mobile", status:string )=>{
+// export const positionSettingsSetter = (findBlock:Block, screenType: "desktop" | "tablet" | "mobile", status:string )=>{
 
-  // console.log(screenType, status)
-  const allValues = {
+//   // console.log(screenType, status)
+//   const allValues = {
     
-    position: getValueForFields(findBlock, screenType, status, 'position'),
-    top : getValueForFields(findBlock, screenType, status, 'top'),
-    bottom : getValueForFields(findBlock, screenType, status, 'bottom'),
-    left : getValueForFields(findBlock, screenType, status, 'left'),
-    right: getValueForFields(findBlock, screenType, status, 'right'),
+//     position: getValueForFields(findBlock, screenType, status, 'position'),
+//     top : getValueForFields(findBlock, screenType, status, 'top'),
+//     bottom : getValueForFields(findBlock, screenType, status, 'bottom'),
+//     left : getValueForFields(findBlock, screenType, status, 'left'),
+//     right: getValueForFields(findBlock, screenType, status, 'right'),
     
     
-  }
+//   }
+
+//   // console.log(allValues)
+
+//   const fullValue = JSON.stringify(allValues) 
+//   return fullValue;
+
+
+// }
+
+export const customSettingSetter = (findBlock:Block, screenType: "desktop" | "tablet" | "mobile", status:string, customValues: string[] )=>{
+
+  let allValues: {[key:string]: any} = {}
+
+
+  customValues.forEach((item:string)=>{
+    allValues[item] = getValueForFields(findBlock, screenType, status, item)
+  })
+
 
   // console.log(allValues)
 
@@ -50,8 +68,6 @@ export const positionSettingsSetter = (findBlock:Block, screenType: "desktop" | 
 
 
 }
-
-
 
 
 

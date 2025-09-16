@@ -10,6 +10,7 @@ const translat = {
       label: "Translate",
       for : '',
       tab: '',
+      value: '',
       unitOption:[
        {name: "pixels", value: "px"},
        {name: "percet", value: "%"},
@@ -31,6 +32,7 @@ const rotat = {
 
 const scal = {
      label: "Scale",
+     value: '',
       unitValue:'',
       showUnit:false,
       selectUnit:false,
@@ -61,9 +63,53 @@ export default function Transform({props, change}: settingFieldProps) {
         
 
         if(props?.value){
-            setTransform({...props, value: props?.value})
+
+            const applyValue = props?.value;
+
+            if(applyValue.includes('rotate') || applyValue.includes('translate') || applyValue.includes('scale') ){
+                setTransform({...props, value: "on"})
+                setTransformValue(prev=> ({...prev, transformVal : "on"}))
+
+                if(applyValue.includes('rotate')){
+                    const rotValue = applyValue.split('rotate(')[1].split('deg)')[0]
+                    setTransformValue(prev=> ({...prev, rotateVal : rotValue}))
+                    setRotate({...rotat, value: rotValue})
+                }
+
+                if(applyValue.includes('translate')){
+                    const transValue = applyValue.split('translate(')[1].split(')')[0]
+                    const simpleVal = convertCommaToStrVal(transValue)
+                    setTransformValue(prev=> ({...prev, translateVal : transValue}))
+                    setTranslate({...translat, value: simpleVal})
+                }
+                
+                if(applyValue.includes('scale')){
+                    const scaleValue = applyValue.split('scale(')[1].split(')')[0]
+                    
+                    setTransformValue(prev=> ({...prev, scaleVal : scaleValue}))
+                    const simpleVal = convertCommaToStrVal(scaleValue)
+                    // console.log(simpleVal)
+                    setScale({...scal, value: simpleVal})
+               
+                }
+
+            }else{
+                setTransform({...props, value: "off"})
+                setTransformValue({rotateVal: '',translateVal: '',scaleVal: '', transformVal: 'off'})
+                setRotate(rotat)
+                setTranslate(translat)
+                setScale(scal)
+               
+
+            }
+            
+            
         }else{
-            setTransform({...props, value: ''})
+            setTransform({...props, value: 'off'})
+            setTransformValue({rotateVal: '',translateVal: '',scaleVal: '', transformVal: 'off'})
+            setRotate(rotat)
+            setTranslate(translat)
+            setScale(scal)
         }
 
         
@@ -82,20 +128,31 @@ export default function Transform({props, change}: settingFieldProps) {
 
                 if( transformValue.rotateVal && transformValue.rotateVal !== ''){
                     transformValueNow +=  `rotate(${transformValue.rotateVal}deg)`
+                }
+                if( transformValue.translateVal && transformValue.translateVal !== ''){
+                    const transVal = convertCommaToStrVal(transformValue.translateVal)
+                    transformValueNow +=  `translate(${transformValue.translateVal})`
+                }
 
+                if( transformValue.scaleVal && transformValue.scaleVal !== ''){
+                    
+                    transformValueNow +=  `scale(${transformValue.scaleVal})`
                 }
 
                 // if(transformValue.translateVal && t)
                 
             }
+
+
+            const fullSentValue = {
+                status : props?.currentStatus,
+                responsive : props?.responsive || 'on',
+                value : transformValueNow
+            }
+
+
+            change?.(JSON.stringify(fullSentValue))
             
-
-
-
-
-
-
-
 
 
 
@@ -108,9 +165,13 @@ export default function Transform({props, change}: settingFieldProps) {
         
 
         setTransformValue(prev=> ({...prev, transformVal : JSON.parse(value).value}))
-        setSentTransform(prev=> prev + 1)
         
-        // setTransform(prev=> ({...prev, value: JSON.parse(value).value}))
+        
+        setTransform(prev=> ({...prev, value: JSON.parse(value).value}))
+
+        if(JSON.parse(value).value == 'off'){
+            setSentTransform(prev=> prev + 1)
+        }
     }
 
     const handleTranslateChange = (value:any) =>{

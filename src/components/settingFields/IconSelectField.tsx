@@ -26,7 +26,7 @@ export default function IconSelectField({props, change}: settingFieldProps) {
 
     }
   
-    if(props?.value !== selectedOption.value && props?.value !== ''){
+    if(props?.value  && props?.value !== ''){
     
       
       if(props?.options){
@@ -38,7 +38,7 @@ export default function IconSelectField({props, change}: settingFieldProps) {
         setSelectedOption({
           label : selectedOne?.label,
           value: selectedOne?.value,
-          icon : selectedOne?.icons
+          icon : selectedOne?.icon
         })
 
 
@@ -53,7 +53,7 @@ export default function IconSelectField({props, change}: settingFieldProps) {
 
 
   const handleSelectOption = (value:any, label:any,icon:any)=>{
-    setSelectedOption({label:label, value:value,icon:icon});
+    // setSelectedOption({label:label, value:value,icon:icon});
     setIsOpen(false)
 
     const fullValue = {
@@ -62,7 +62,7 @@ export default function IconSelectField({props, change}: settingFieldProps) {
       value : value
     }
 
-    change?.(fullValue)
+    change?.(JSON.stringify(fullValue))
 
   }
 
@@ -115,7 +115,7 @@ export default function IconSelectField({props, change}: settingFieldProps) {
             {
               props?.options?.map((option :any, index:number) => (
               <li key={index}
-              className={`!text-[12px] py-0.5 pl-2 text-center w-full cursor-pointer flex items-center   hover:bg-gray-200 ${selectedOption.value== option?.value && 'bg-gray-200' }`}
+              className={`!text-[12px] py-0.5 pl-2 text-center w-full  flex items-center   hover:bg-gray-200 ${selectedOption.value== option?.value && 'bg-gray-200' }`  }  style={  {cursor: props?.for == 'cursor' ? `${option.value}`: 'pointer'}}
               onClick={()=>handleSelectOption(option?.value, option?.label,option?.icon)}>
                 <span className='mr-2'>
                   <DynamicIcons name={option?.icon || "rabbit"} classes='w-3 h-3'/>
