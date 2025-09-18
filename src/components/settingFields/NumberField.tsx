@@ -17,7 +17,7 @@ export default function NumberField({props, change}:settingFieldProps) {
     const value = target.value; 
     
     const fullValue = {
-      status : props?.currentStatus,
+      status : props?.currentStatus || 'normal',
       responsive : props?.responsive || 'on',
       value : value
     }

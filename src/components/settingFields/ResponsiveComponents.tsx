@@ -16,13 +16,13 @@ export default function ResponsiveComponents() {
   const icons = [
 
     {
-      label:"desktop" ,  value:"desktop"
+      label:"desktop" ,  value:"desktop" ,icon:"laptop"
     },
     {
-       label:"tablet" , value:"tablet"
+       label:"tablet" , value:"tablet", icon:"tablet"
     },
     {
-       label:"mobile" , value:"mobile"
+       label:"mobile" , value:"mobile" , icon:"smartphone"
     }
 
   ];
@@ -35,7 +35,7 @@ export default function ResponsiveComponents() {
         onClick={() => setOpen(!open)}
         className="py-0.5 px-1 bg-gray-200/90 hover:bg-gray-300/70 cursor-pointer shadow"
       >
-        <DynamicIcons classes="w-[12px] h-[12px]" name={icons.find((icon) => icon.label === screenType)?.value}/>
+        <DynamicIcons classes="w-[12px] h-[12px]" name={icons.find((icon) => icon.label === screenType)?.icon}/>
       </span>
 
       {/* Popover */}
@@ -50,7 +50,7 @@ export default function ResponsiveComponents() {
               }}
               className={`py-1 px-1 hover:bg-gray-200/90 ${device.value === screenType && "bg-gray-200/90"}`}
             >
-              <DynamicIcons classes="w-[14px] h-[14px]" name={device.value}/>
+              <DynamicIcons classes="w-[14px] h-[14px]" name={device.icon}/>
             </span>
           ))}
         </div>

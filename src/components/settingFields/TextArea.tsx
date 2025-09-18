@@ -21,8 +21,10 @@ export default function TextArea({props, change}: settingFieldProps ) {
 
 
   return (
-    
-    <div className={`flex flex-col gap-2 mt-2`}>
+
+    props?.tabOpen &&  (
+        <>
+      <div className={`flex flex-col gap-2 mt-2`}>
       <div className='flex items-center gap-x-1.5'>
       {
         props?.label != '' && (
@@ -33,7 +35,7 @@ export default function TextArea({props, change}: settingFieldProps ) {
       </div>
       <textarea 
       id={props?.labelId} 
-      rows={4}  
+      rows={props?.row}  
       placeholder={props?.placeholder} 
       value={props?.value}
       onChange={changeValue}
@@ -46,7 +48,11 @@ export default function TextArea({props, change}: settingFieldProps ) {
       
       
 
-    </div>
+       </div>
+        </>
+      )
+    
+    
     
   )
 }

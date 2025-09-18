@@ -1,8 +1,14 @@
 
+import { ButtonBlock } from "@/components/blocks/button/blockSchema";
+
+import { HeadingBlock } from "@/components/blocks/heading/blockSchema";
+import { IconListBlock } from "@/components/blocks/iconlist/blockSchema";
+import { IconBlock } from "@/components/blocks/icons/blockSchems";
+import { ImageBlock } from "@/components/blocks/Image/blockSchema";
 import { TextBlock } from "@/components/blocks/Text/blockSchema";
 import React from "react";
 
-export type BlockType = 'text' | 'image' | 'button' | 'heading' | 'icon';
+export type BlockType = 'text' | 'image' | 'button' | 'heading' | 'icon' | 'iconlist';
 export type ContainerType = 'flex' | 'grid';
 export type TextBlockType = 'text' | 'heading'
 
@@ -17,6 +23,8 @@ export type TextBlockType = 'text' | 'heading'
   },
   
   styles?  : React.CSSProperties;
+  customCSSCode?: string;
+  customCSSID?:string;
   tailWindClasses?: string;
   customClasses?: string;
   classTracking?: {[key:string]: any};
@@ -29,44 +37,44 @@ export type TextBlockType = 'text' | 'heading'
 
 
 
- export interface HeadingBlock extends BaseBlock {
-  type: 'heading';
-  props : {
-    text: string;
-    level: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
-  }
-}
+//  export interface HeadingBlock extends BaseBlock {
+//   type: 'heading';
+//   props : {
+//     text: string;
+//     level: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+//   }
+// }
 
 
 
- export interface ImageBlock extends BaseBlock {
-  type: 'image';
-  props : {
-    src: string;
-    alt?: string;
-    link?: string;
-    width?: string;
-    height?: string;
-  }
-}
+//  export interface ImageBlock extends BaseBlock {
+//   type: 'image';
+//   props : {
+//     src: string;
+//     alt?: string;
+//     link?: string;
+//     width?: string;
+//     height?: string;
+//   }
+// }
 
- export interface ButtonBlock extends BaseBlock {
-  type: 'button';
-  props : {
-    text: string;
-    link: string;
-    target : '_self' | '_blank';
-    icon : string | null
-  }
-}
+//  export interface ButtonBlock extends BaseBlock {
+//   type: 'button';
+//   props : {
+//     text: string;
+//     link: string;
+//     target : '_self' | '_blank';
+//     icon : string | null
+//   }
+// }
 
- export interface IconBlock extends BaseBlock {
-  type: 'icon';
-  props : {
-    link: string;
-    icon : string | null
-  }
-}
+//  export interface IconBlock extends BaseBlock {
+//   type: 'icon';
+//   props : {
+//     link: string;
+//     icon : string | null
+//   }
+// }
 
 export interface  ContainerBlock extends BaseBlock{
   type: 'flex' | 'grid' ;
@@ -74,12 +82,10 @@ export interface  ContainerBlock extends BaseBlock{
   props: {
     [key:string] : any
     
-  }
-  
-  
+  }  
 }
 
-export type Block = TextBlock | ImageBlock | ButtonBlock | HeadingBlock | ContainerBlock | IconBlock;
+export type Block = TextBlock | ImageBlock | ButtonBlock | HeadingBlock | ContainerBlock | IconBlock | IconListBlock;
 
 export type Container = ContainerBlock;
 

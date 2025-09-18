@@ -147,4 +147,11 @@ li, ul {
   }
 
 
-  
+.cm-editor {
+  outline: none !important;
+}
+
+
+.cm-editor:focus-within {
+  outline: none;
+}

@@ -5,6 +5,7 @@ import { backgroundSettingsSetter, customSettingSetter, getValueForFields } from
 import { setSettingField } from "@/lib/fieldSettings/fields"
 
 import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
+import { placeholder } from "jodit/esm/plugins/placeholder/placeholder"
 
 
  const TextSettings:settingsSetupSchema = {
@@ -59,6 +60,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
     // 0 :: Alignment
     /* +++++++++++++++++  Alignment  +++++++++++++++++++++++*/
     setSettingField('heading',{label: "Alignment", for : 'alignment', tabOpen: true, tabAllow: true}),
+    
     // 1 : Pseudo Status 
     setSettingField('status', { 
       for : 'alignment',
@@ -341,6 +343,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
           {label: 'Inset', value: 'Inset'},
           {label: 'Outset', value: 'outset'},
         ],
+        // defaultNot:true,
         for : 'border-style',
         tab : 'border',
         
@@ -608,11 +611,13 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         
   }),
 
+
     //14 ::
     /* +++++++++++++++++  OverFlow +++++++++++++++++++++++*/
     setSettingField('heading',{label: "OverFlow", for : 'overflow', tabAllow: true }),
     
     //15 : overflow-x
+
       setSettingField('select', {
         label: "Overflow-X",
         labelId: "overflow-x-text",
@@ -626,7 +631,9 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         tab : 'overflow',
       }),
 
+
     //16 :overflow-y
+
       setSettingField('select', {
         label: "Overflow-Y",
         labelId: "overflow-y-text",
@@ -642,8 +649,32 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
 
       //17 :: Other
        setSettingField('heading',{label: "Other", for : 'other', tabAllow: true }),
+      
+      //18 :: CSS Classes
+      setSettingField('textClasses', {
+        label: "CSS Classes", 
+        labelId: "class-text-cssClass",
+        placeholder: "Enter the CSS classes",
+        value:'',
+        for : 'customClasses',
+        tab: 'other',
+        responsive:"off"
+       }),
+      
+       //19 :: CSS ID
+        setSettingField('textClasses', {
+        label: "CSS ID", 
+        labelId: "class-text-cssId",
+        placeholder: "Enter the CSS ID",
+        value:'',
+        for : 'customCSSID',
+        tab: 'other',
+        responsive:"off"
+       }),
 
-      //18
+
+      //20 : Z-index
+
       setSettingField('number', {
         label: "Zindex", 
         labelId: "z-index-text",
@@ -653,42 +684,46 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
        }),
 
 
-      //19
+
+      //21 :: Cursor
+
       setSettingField('iconSelect', {
         label: "Cursor ",
         labelId: "cursor-pointer-style",
         options: [
-          {label: 'Default', value: 'default', icon:"default"},
-          {label: 'Alias', value: 'alias',icon:"alias"},
+          {label: 'Default', value: 'default', icon:"mousePointer"},
+          {label: 'Alias', value: 'alias',icon:"navigationQuestion"},
           {label: 'All Scroll', value: 'all-scroll',icon:"allScroll"},
-          {label: 'Auto', value: 'auto',icon:"auto"},
-          {label: 'Cell', value: 'cell',icon:"cell"},
-          {label: 'Context Menu', value: 'context-menu',icon:"default"},
+          {label: 'Auto', value: 'auto',icon:"textCursor"},
+          {label: 'Cell', value: 'cell',icon:"cross"},
+          {label: 'Context Menu', value: 'context-menu',icon:"mousePointer"},
           {label: 'Col Resize', value: 'col-resize',icon:""},
           {label: 'Copy', value: 'copy',icon:"plus"},
-          {label: 'Grab', value: 'grab',icon:"grap"},
-          {label: 'E Resize', value: 'e-resize',icon:"eresize"},
-          {label: 'Ew Resize', value: 'ew-resize',icon:"eresize"},
-          {label: 'Grabbing', value: 'grabbing',icon:"grap"},
+          {label: 'Grab', value: 'grab',icon:"hand"},
+          {label: 'E Resize', value: 'e-resize',icon:"moveHorizontal"},
+          {label: 'Ew Resize', value: 'ew-resize',icon:"moveHorizontal"},
+          {label: 'Grabbing', value: 'grabbing',icon:"hand"},
           {label: 'Help', value: 'help',icon:""},
-          {label: 'Move', value: 'move',icon:"allScroll"},
-          {label: 'N Resize', value: 'n-resize',icon:"nresize"},
-          {label: 'Ne Resize', value: 'ne-resize',icon:"neresize"},
-          {label: 'Nesw Resize', value: 'nesw-resize',icon:"neresize"},
-          {label: 'Ns Resize', value: 'ns-resize',icon:"nresize"},
+          {label: 'Move', value: 'move',icon:"move"},
+          {label: 'N Resize', value: 'n-resize',icon:"moveVertical"},
+          {label: 'Ne Resize', value: 'ne-resize',icon:"moveDiagonal"},
+          {label: 'Nesw Resize', value: 'nesw-resize',icon:"moveDiagonal"},
+          {label: 'Ns Resize', value: 'ns-resize',icon:"moveVertical"},
           {label: 'Nw Resize', value: 'nw-resize',icon:"MoveDiag"},
           {label: 'Nwse Resize', value: 'nwse-resize',icon:"MoveDiag"},
-          {label: 'No Drop', value: 'no-drop',icon:"nodrop"},
+          {label: 'No Drop', value: 'no-drop',icon:"ban"},
           {label: 'None', value: 'none',icon:""},
-          {label: 'Not Allowed', value: 'not-allowed',icon:"nodrop"},
+          {label: 'Not Allowed', value: 'not-allowed',icon:"ban"},
           {label: 'Pointer', value: 'pointer',icon:"point"},
-          {label: 'Progress', value: 'progress',icon:"progress"},
-          {label: 'S Resize', value: 's-resize',icon:"nresize"},
+          {label: 'Progress', value: 'progress',icon:"loader"},
+          {label: 'S Resize', value: 's-resize',icon:"moveVertical"},
           {label: 'Se Resize', value: 'se-resize',icon:"MoveDiag"},
+
           {label: 'Sw Resize', value: 'sw-resize',icon:"neresize"},
           {label: 'Text', value: 'text',icon:"auto"},
           {label: 'W Resize', value: 'w-resize',icon:"eresize"},
           {label: 'Wait', value: 'wait',icon:"progress"},
+
           {label: 'Zoom in', value: 'zoom-in',icon:"zoomin"},
           {label: 'Zoom Out', value: 'zoom-out',icon:"zoomout"},
         ],
@@ -697,7 +732,9 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         
   }),
 
-  // 20 : Transition
+
+  // 22  : Transition
+
   setSettingField('transition', {
         label: "Apply Transition",
         labelId: "apply-transition",
@@ -716,6 +753,37 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         for : 'transitionChange',
         tab : 'other',        
   }),
+
+  //23 :: 
+  /* ++++++++++++++++++++++ Custom +++++++++++++++++++++++++++++= */
+  setSettingField('heading',{label: "Custom", for : 'custom', tabAllow: true }),
+
+  //24 : Tailwind Classes
+      setSettingField('textarea', {
+      label: "Tailwind Classes", 
+      labelId: "tailwind-classes-text",
+      placeholder: 'Add your tailwind classes here',
+      row: 1,
+      for : 'tailWindClasses',
+      tab: 'custom',
+      responsive:'off'
+    }
+    ),
+
+  //25 : CSS 
+
+      setSettingField('cssEditor', {
+      label: "CSS Styles", 
+      labelId: "css-styles-text",
+      placeholder: 'Add your CSS styles here',
+      row: 6,
+      for : 'customCSSCode',
+      tab: 'custom',
+      
+      responsive:'off'
+    }
+    ),
+
       
 
   ]
@@ -808,14 +876,22 @@ export const textSettingsSet:settingsSetArgs = (settingType, data, screenType)=>
       settings.settings[16].props.value = getValueForFields(findBlock, screenType, settings.settings[15].props.currentStatus || 'normal', "overflow-y");
 
       // Other
+
+      // CSS classes and Id
+      settings.settings[18].props.value = findBlock?.customClasses
+      settings.settings[19].props.value = findBlock?.customCSSID
+
       // Z-Index
-      settings.settings[18].props.value = getValueForFields(findBlock, screenType, settings.settings[18].props.currentStatus || 'normal', "z-index");
+      settings.settings[20].props.value = getValueForFields(findBlock, screenType, settings.settings[20].props.currentStatus || 'normal', "z-index");
       // Cursor
-      settings.settings[19].props.value = getValueForFields(findBlock, screenType, settings.settings[19].props.currentStatus || 'normal', "cursor");
+      settings.settings[21].props.value = getValueForFields(findBlock, screenType, settings.settings[21].props.currentStatus || 'normal', "cursor");
 
       // Transition
-      settings.settings[20].props.value = customSettingSetter(findBlock, screenType, settings.settings[20].props.currentStatus || 'normal', ['transition-property', 'transition-delay', 'transition-duration', 'transition-timing-function'])
+      settings.settings[22].props.value = customSettingSetter(findBlock, screenType, settings.settings[22].props.currentStatus || 'normal', ['transition-property', 'transition-delay', 'transition-duration', 'transition-timing-function'])
 
+      // Custom 
+      settings.settings[24].props.value = findBlock?.tailWindClasses
+      settings.settings[25].props.value = findBlock?.customCSSCode
     }
 
     

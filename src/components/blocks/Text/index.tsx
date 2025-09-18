@@ -17,7 +17,6 @@ interface TextProps {
 export default function Text({block, index, onDelete, onCopy}: TextProps) {
 
   const trackingClass = useClassTracking(block)
-  // console.log(block)
 
   if(block.type !== 'text'){
     return null;
@@ -31,7 +30,7 @@ export default function Text({block, index, onDelete, onCopy}: TextProps) {
   
   if(!textBlock?.editable && !textBlock?.draggable){
     return (
-      <p key={textBlock?.id} style= {{
+      <p key={textBlock?.id} id={textBlock?.customCSSID} style= {{
         ...textBlock?.styles
 
       }}
@@ -49,8 +48,8 @@ export default function Text({block, index, onDelete, onCopy}: TextProps) {
       ...textBlock?.styles
 
     },
-
-    classes : ` block-editor-${textBlock?.id} ${textBlock?.tailWindClasses} ${textBlock?.customClasses} cursor-default selected-child ${trackingClass} `
+    cssId: textBlock?.customCSSID,
+    classes : ` block-editor-${textBlock?.id} cursor-default selected-child ${textBlock?.tailWindClasses} ${textBlock?.customClasses}  ${trackingClass} `
 
   }
 

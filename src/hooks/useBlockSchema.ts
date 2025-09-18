@@ -1,14 +1,20 @@
 
 
+import { buttonBlockSchema } from '@/components/blocks/button/blockSchema';
+import { flexBlockSchema } from '@/components/blocks/flexbox/blockSchema';
+import { headingBlockSchema } from '@/components/blocks/heading/blockSchema';
+import { iconListSchema } from '@/components/blocks/iconlist/blockSchema';
+import { iconBlockSchema } from '@/components/blocks/icons/blockSchems';
+import { imageBlockSchema } from '@/components/blocks/Image/blockSchema';
 import { textBlockSchema } from '@/components/blocks/Text/blockSchema';
-import { Block, BlockType, ButtonBlock, Container, ContainerBlock, ContainerType, HeadingBlock, IconBlock, ImageBlock } from '@/types/blocksSchema';
+
+import { Block, BlockType, ContainerBlock, ContainerType} from '@/types/blocksSchema';
 
 
 import { v4 as uuidv4 } from 'uuid';
 
 interface blockSchemaProps {
   type : BlockType | ContainerType,
-
 }
 
 
@@ -26,9 +32,11 @@ export default function useBlockSchema( { type } : blockSchemaProps)  {
       desktop : {},
       hoverStyles: {},
     },
-    
+
+    customCSSCode : '',
     tailWindClasses : '',
     customClasses : '',
+    customCSSID : '', 
     classTracking: {
       fontFamilyClass: ''
 
@@ -47,66 +55,23 @@ export default function useBlockSchema( { type } : blockSchemaProps)  {
         return  textBlockSchema(blockAdd)
 
       case 'heading' :
-        return {
-          ...blockAdd,
-          type : 'heading',
-          props : {
-          text : 'Sample Heading',
-          level : 'h1'
-          },
-          styles: {
-            ...blockAdd.styles,
-            fontWeight: '700',
 
-          }
+        return headingBlockSchema(blockAdd)
 
-        } as HeadingBlock
       
       case 'button' : 
-        return  {
-          ...blockAdd,
-          type : 'button',
-          props : {
-            text : 'Click Me',
-            link : '',
-            target : '_self',
-             icon: null
-          }
-          
-        } as ButtonBlock
+        return buttonBlockSchema(blockAdd)
       case 'icon' : 
-      return  {
-          ...blockAdd,
-          type : 'icon',
-          props : {
-          link : '',
-          icon: null
-          }
+      return iconBlockSchema(blockAdd)
 
-      } as IconBlock
+     case 'iconlist':
+     return  iconListSchema(blockAdd)
+
       case 'image' : 
-      return  {
-        ...blockAdd,
-        type : 'image',
-        props : {
-          src: '',
-          alt: '',
-          width:'',
-          height:''
-
-        }
-        
-      } as ImageBlock
+      return imageBlockSchema(blockAdd)
+      
       case 'flex' : 
-        return {
-          ...blockAdd,
-          type : 'flex',
-          children : [],
-          props : {
-            direction : 'row',
-            gap : '10px',
-          }
-        } as ContainerBlock
+        return flexBlockSchema(blockAdd)
       
       case 'grid' : 
         return {

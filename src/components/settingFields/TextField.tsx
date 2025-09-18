@@ -7,6 +7,7 @@ import ResponsiveComponents from './ResponsiveComponents';
 export default function TextField({props,change}:settingFieldProps) {
 
   const [changeInput,setChangeInput] = useState("")
+  
 
   useEffect(()=>{
     setChangeInput(props?.value)
@@ -14,14 +15,24 @@ export default function TextField({props,change}:settingFieldProps) {
   
   const handleInputChange = (value:string) =>{
 
+    setChangeInput(value)
+
+    
+  }
+
+ 
+  const sendTextInput = ()=>{
     const fullValue = {
-      status : props?.currentStatus,
+      status : props?.currentStatus || 'normal',
       responsive : props?.responsive || 'on',
-      value : value
+      value : changeInput
     }
 
     change?.(JSON.stringify(fullValue))
+
   }
+
+ 
 
   return (
     <>
@@ -31,8 +42,8 @@ export default function TextField({props,change}:settingFieldProps) {
       </div>
       <div className='border w-[100%] border-gray-200 flex justify-between rounded-lg overflow-hidden mt-2'>
       <input type="url" placeholder={props?.placeholder}
-       pattern="https://.*" value={changeInput} required  className='!w-[80%] text-[12px] outline-none pl-1.5 placeholder:text-[12px]' onChange={(e)=>handleInputChange(e.target.value)}/>
-      <button className='bg-gray-200 text-[12px] w-12 h-6 ' onClick={()=>handleInputChange('')}>Clear</button>   
+       pattern="https://.*" value={changeInput} required  className='!w-[80%] text-[12px] outline-none pl-1.5 placeholder:text-[12px]' onChange={(e)=>handleInputChange(e.target.value)}  onBlur={()=>sendTextInput()}/>
+      <button className='bg-gray-200 text-[12px] w-12 h-6 cursor-pointer ' onClick={()=>handleInputChange('')}>Clear</button>   
       </div>
     </>
   )

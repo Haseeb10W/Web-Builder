@@ -1,7 +1,7 @@
 import { settingTypes } from "@/contexts/settingsType"
 import { findBlock, findBlockOverall, findBlocksInContainer } from "@/lib/builder/blockHandlers"
 import { handleSettingChange } from "@/lib/builder/settingHandlers"
-import { backgroundSettingsSetter } from "@/lib/builder/settingsSetter"
+import { backgroundSettingsSetter, getValueForFields } from "@/lib/builder/settingsSetter"
 import { setSettingField } from "@/lib/fieldSettings/fields"
 import { Block } from "@/types/blocksSchema"
 import { editSchema } from "@/types/editSchema"
@@ -12,9 +12,9 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
 
   // Content
   content : [
-
-    // 0 
-    setSettingField('heading',{label: "Image Settings", for : 'imagesettings', tabOpen: true, tabAllow: false}),
+  /* +++++++++++++++++  Content Text +++++++++++++++++++++++*/
+   // 0  
+    setSettingField('heading',{label: "Icon Settings", for : 'imagesettings', tabOpen: true, tabAllow: false}),
 
     // 1
     setSettingField('imageSection', {
@@ -31,7 +31,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
 
   // 3
   setSettingField('linkField', {
-        label: "Button Link",
+        label: "Icon Link",
         labelId: "text-link",
         for : 'advanced',
         tab : 'advanced',
@@ -52,10 +52,25 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
   
   styles : [
 
-    // 0 :: Alignment
+      // 0 :: Alignment
+    /* +++++++++++++++++  Alignment  +++++++++++++++++++++++*/
     setSettingField('heading',{label: "Alignment", for : 'alignment', tabOpen: true, tabAllow: true}),
 
-    // 1
+    // 1 : Pseudo Status 
+    setSettingField('status', { 
+      for : 'alignment',
+      tab: 'alignment',
+      tabOpen: true,
+      statusOptions : [
+        {name: 'Normal', value: 'normal' },
+        {name: 'Hover', value: 'hover' },
+        // {name: 'Active', value: 'active' },
+      ],
+      
+
+    }),
+
+    // 2
         setSettingField('iconField', {
         label: "Horizontal Align", 
         labelId: "text-alignment",
@@ -71,7 +86,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
 
   }),
 
-  // 2
+  // 3
   setSettingField('iconField', {
         label: "Vertical Align", 
         labelId: "text-alignment-vertical",
@@ -89,10 +104,11 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
   }),
   
 
-  // 3: TypoGraphy
+    // 4: TypoGraphy
+  /* +++++++++++++++++  TypoGraphy  +++++++++++++++++++++++*/
   setSettingField('heading',{label: "Typography", for : 'typography', tabAllow: true}),
 
-  // 4 : Pseudo Status 
+  // 5 : Pseudo Status 
   setSettingField('status', { 
     for : 'typography',
     tab: 'typography',
@@ -106,7 +122,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
 
   }),
   
-  // 5
+  // 6
   setSettingField('colors', {
         label: "Text Color", 
         labelId: "text-color-font",
@@ -115,7 +131,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
   }),
 
 
-  // 6
+  // 7
   setSettingField('fontFamily', {
         label: "Font Family", 
         labelId: "text-family-font",
@@ -124,7 +140,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         statuses : ['normal']
   }),
   
-  // 7
+  // 8
   setSettingField('size', {
     label: "Font Size", 
         labelId: "text-size-font",
@@ -143,7 +159,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
 
   }),
 
-  // 8
+  // 9
   setSettingField('size', {
     label: "Line Height", 
         labelId: "text-line-height",
@@ -157,7 +173,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         statuses : ['normal']
   }),
 
-  // 9
+  // 10
   setSettingField('select', {
          label: "Font Weight", 
         labelId: "text-font-weight",
@@ -181,7 +197,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
   }),
 
 
-  // 10
+  // 11
 
   setSettingField('select', {
     label: "Text Transform",
@@ -197,7 +213,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         statuses : ['normal']
   }),
   
-  //11
+  //12
 
   setSettingField('select', {
       label: "Font Style",
@@ -214,7 +230,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
 
   }),
 
-  // 12
+  // 13
   setSettingField('select', {
       label: "Text Decoration",
         labelId: "text-decoration",
@@ -230,7 +246,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         statuses : ['normal']
   }),
 
-  // 13
+  // 14
   setSettingField('size', {
     label: "Letter Spacing", 
         labelId: "text-letter-spacing",
@@ -620,52 +636,79 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
 
 
 
-export const iconSettingsSet:settingsSetArgs = (settingType, data)=> {
+export const iconSettingsSet:settingsSetArgs = (settingType, data ,screenType)=> {
 
   // console.log(settingType)
   const blockId = settingType?.id;
 
-  const findBlock = findBlockOverall(data, blockId)
+  const findBlock = findBlockOverall(data, blockId )
 
   if(findBlock){
     const settings = {...IconSettings}
     // console.log(findBlock)
     
-    if(findBlock.type === 'button' ){
+    if(findBlock.type === 'icon' ){
       /*+++++++++++++++++++++++ Content +++++++++++++++++++++ */
-      settings.content[1].props.value =  findBlock?.props?.text;
+      // settings.content[1].props.value =  findBlock?.props?.Icon;
 
 
-      /*+++++++++++++++++++++++ Styles +++++++++++++++++++++ */
-
-            /* Alignment */
-      settings.styles[1].props.value = findBlock?.styles?.textAlign;
-      settings.styles[2].props.value = findBlock?.styles?.alignContent;
-            /* Font Styles */
-      settings.styles[5].props.value = findBlock?.styles?.color;
-      settings.styles[6].props.value = findBlock?.classTracking?.fontFamilyClass;
-      settings.styles[7].props.value = findBlock?.styles?.fontSize;
-      settings.styles[8].props.value = findBlock?.styles?.lineHeight;
-      settings.styles[9].props.value = findBlock?.styles?.fontWeight;
-      settings.styles[10].props.value = findBlock?.styles?.textTransform;
-      settings.styles[11].props.value = findBlock?.styles?.fontStyle;
-      settings.styles[12].props.value = findBlock?.styles?.textDecoration;
-      settings.styles[13].props.value = findBlock?.styles?.letterSpacing;
-      settings.styles[14].props.value = findBlock?.styles?.wordSpacing;
-
-      
-           /* Background */
-      
-      // settings.styles[16].props.value = backgroundSettingsSetter(findBlock);
-      
-
-      // Settings
-      settings.settings[2].props.value = findBlock?.styles?.margin; 
-      settings.settings[3].props.value = findBlock?.styles?.padding;
-      settings.settings[4].props.value = findBlock?.styles?.width;
-      settings.settings[5].props.value = findBlock?.styles?.maxWidth;
-      settings.settings[6].props.value = findBlock?.styles?.height;
-      settings.settings[7].props.value = findBlock?.styles?.maxHeight;
+      // /*+++++++++++++++++++++++ Styles +++++++++++++++++++++ */
+     
+      //            /* Alignment */
+      //      settings.styles[2].props.value = getValueForFields(findBlock, screenType, settings.styles[2].props.currentStatus || 'normal', "text-align" ) 
+      //      settings.styles[3].props.value =  getValueForFields(findBlock, screenType, settings.styles[3].props.currentStatus || 'normal', "align-content") 
+           
+       
+      //            /* Font Styles */
+      //      settings.styles[6].props.value = getValueForFields(findBlock, screenType, settings.styles[6].props.currentStatus || 'normal', "color");
+           
+      //      settings.styles[7].props.value = findBlock?.classTracking?.fontFamilyClass;
+      //      settings.styles[8].props.value = getValueForFields(findBlock, screenType, settings.styles[8].props.currentStatus || 'normal', "font-size");
+      //      settings.styles[9].props.value = getValueForFields(findBlock, screenType, settings.styles[9].props.currentStatus || 'normal', "line-height");
+           
+      //      settings.styles[10].props.value = getValueForFields(findBlock, screenType, settings.styles[10].props.currentStatus || 'normal', "font-weight");
+     
+      //      settings.styles[11].props.value = getValueForFields(findBlock, screenType, settings.styles[11].props.currentStatus || 'normal', "text-transform");
+     
+      //      settings.styles[12].props.value = getValueForFields(findBlock, screenType, settings.styles[12].props.currentStatus || 'normal', "font-style");
+     
+      //      settings.styles[13].props.value = getValueForFields(findBlock, screenType, settings.styles[13].props.currentStatus || 'normal', "text-decoration");
+     
+      //      settings.styles[14].props.value = getValueForFields(findBlock, screenType, settings.styles[14].props.currentStatus || 'normal', "letter-spacing");
+     
+      //      settings.styles[15].props.value = getValueForFields(findBlock, screenType, settings.styles[15].props.currentStatus || 'normal', "word-spacing");
+           
+      //      // settings.styles[14].props.value = findBlock?.styles?.wordSpacing;
+     
+           
+      //           /* Background */
+           
+      //      settings.styles[18].props.value = backgroundSettingsSetter(findBlock, screenType, settings.styles[18].props.currentStatus || 'normal');
+     
+      //          /* Border */
+      //      settings.styles[21].props.value = getValueForFields(findBlock, screenType, settings.styles[21].props.currentStatus || 'normal', "border-style");
+      //      settings.styles[22].props.value = getValueForFields(findBlock, screenType, settings.styles[22].props.currentStatus || 'normal', "border-color");
+      //      settings.styles[23].props.value = getValueForFields(findBlock, screenType, settings.styles[23].props.currentStatus || 'normal', "border-width");
+      //      settings.styles[24].props.value = getValueForFields(findBlock, screenType, settings.styles[24].props.currentStatus || 'normal', "border-radius");
+     
+      //      /* Box Shadow */
+      //      settings.styles[27].props.value = getValueForFields(findBlock, screenType, settings.styles[27].props.currentStatus || 'normal', "box-shadow");
+           
+           
+           
+      //      /*+++++++++++++++++++++++ Settings +++++++++++++++++++++ */
+           
+      //      settings.settings[2].props.value = getValueForFields(findBlock, screenType, settings.settings[2].props.currentStatus || 'normal', "margin");
+      //      settings.settings[3].props.value = getValueForFields(findBlock, screenType, settings.settings[3].props.currentStatus || 'normal', "padding");
+      //      settings.settings[4].props.value = getValueForFields(findBlock, screenType, settings.settings[4].props.currentStatus || 'normal', "width");
+      //      settings.settings[5].props.value = getValueForFields(findBlock, screenType, settings.settings[5].props.currentStatus || 'normal', "min-width");
+      //      settings.settings[6].props.value = getValueForFields(findBlock, screenType, settings.settings[6].props.currentStatus || 'normal', "max-width");
+      //      settings.settings[7].props.value = getValueForFields(findBlock, screenType, settings.settings[7].props.currentStatus || 'normal', "height");
+      //      settings.settings[8].props.value = getValueForFields(findBlock, screenType, settings.settings[8].props.currentStatus || 'normal', "min-height");
+      //      settings.settings[9].props.value = getValueForFields(findBlock, screenType, settings.settings[9].props.currentStatus || 'normal', "max-height");
+         
+           // Position
+          //  settings.settings[12].props.value = positionSettingsSetter(findBlock, screenType, settings.settings[12].props.currentStatus || 'normal')
       
     }
 

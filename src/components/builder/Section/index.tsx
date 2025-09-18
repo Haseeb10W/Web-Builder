@@ -48,7 +48,7 @@ export default function Section({children, id, index, onDelete, onCopy, allStyle
 
   }, [ isDragging , setJustDroppedId ])
 
-    const style = {
+    const styles = {
       transform: CSS.Transform.toString(transform),
       transition : isDragging ? 'none' : transition,
       opacity: isDragging ? 0.5 : 1,
@@ -68,7 +68,7 @@ export default function Section({children, id, index, onDelete, onCopy, allStyle
   return (
     <>
 
-    <div  ref={setNodeRef} style={style} className={` flex-child group relative    ${isJustDropped && ''}  section-editor ${allStyles?.classes}  `   } >
+    <div  ref={setNodeRef} id={allStyles?.cssId} style={{...styles, ...allStyles?.styling}} className={` flex-child group relative    ${isJustDropped && ''}  section-editor ${allStyles?.classes}  `   }  >
       
 
       {children}

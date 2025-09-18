@@ -22,6 +22,7 @@ export const loadAllStyles = (stylePrefix:string  , pageContent:Block[])=>{
      let tabletCSS = '';
      let desktopCSS = '';
      let hoverCSS = '';
+     let customCSS = '';
 
      if(pageContent){
       allBlocks = findAllBlocks(pageContent)
@@ -31,7 +32,7 @@ export const loadAllStyles = (stylePrefix:string  , pageContent:Block[])=>{
       
     allBlocks.forEach((block)=>{
       const newStyles = {...block?.responsiveStyles}
-
+      customCSS += ` ${block.customCSSCode}\n `
       allBlockStyles[block?.id] = newStyles;
       
       
@@ -143,6 +144,7 @@ export const loadAllStyles = (stylePrefix:string  , pageContent:Block[])=>{
      let allCSS = '';
      let styleCSS = '';
      let hoverCSS = ''
+     let customCSS = '';
      
 
      if(pageData?.editData?.content){
@@ -154,6 +156,7 @@ export const loadAllStyles = (stylePrefix:string  , pageContent:Block[])=>{
       
     allBlocks.forEach((block)=>{
       const newStyles = {...block?.responsiveStyles}
+      customCSS  += ` ${block.customCSSCode}\n `
 
       allBlockStyles[block?.id] = newStyles;
       
@@ -170,6 +173,7 @@ export const loadAllStyles = (stylePrefix:string  , pageContent:Block[])=>{
       const desktopStyle = allBlockStyles[blockId].desktop;
       const hoverStyle = allBlockStyles[blockId].hoverStyles;
       const uniqueClass = `.block-editor-${blockId}` 
+
 
       let styleApply = {};
 
@@ -221,6 +225,7 @@ export const loadAllStyles = (stylePrefix:string  , pageContent:Block[])=>{
     allCSS += `${styleCSS} 
     ${hoverCSS}
     
+    ${customCSS}
     
     
     `

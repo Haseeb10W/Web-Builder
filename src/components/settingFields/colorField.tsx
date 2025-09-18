@@ -68,7 +68,7 @@ export default function ColorField({props, change}:settingFieldProps) {
 
   }
 
-  const swatches = ['red', 'blue', 'yellow', 'transparent', 'none']
+  const swatches = ['red', 'blue', 'yellow', 'transparent', 'white' ]
 
   useEffect(()=>{
     dragDrop && setPickerOpen(false)

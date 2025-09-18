@@ -5,6 +5,7 @@ import SelectField from "./selectField";
 import { settingFieldProps } from "@/types/settingsSchema";
 import TextField from "./TextField";
 import NumberField from "@/components/settingFields/numberField";
+import { removeStirngFromNumber } from "@/lib/stringFunctions";
 
 
 
@@ -71,27 +72,47 @@ export default function Transition({ props, change }: settingFieldProps) {
     
 
     if(props?.value){
-      console.log('hello')
+      // console.log('hello')
       const parseValue = JSON.parse(props?.value);
 
       if(parseValue['transition-property'] == ''){
-        setTransitionFullVal(prev=> ({...prev, 'transition-property': '' }))
+        setTransitionFullVal(prev=> ({...prev, 'transition-property': '', 'transition-delay': '', 'transition-duration': '', 'transition-timing-function' : '' }))
         setTransition({...props, value: ''})
+        setTransitionDelay({...TDely, value: ''})
+        setTransitionDuration({...TDuration, value: ''})
+        setTimmingEffect({...TEffects, value: ''})
+         setCustom({...customField, value: ''})
+        
       }else if(findTransition(parseValue['transition-property']) ){
-        setTransitionFullVal(prev=> ({...prev, 'transition-property': parseValue['transition-property'] }))
+        setTransitionFullVal(prev=> ({...prev, 'transition-property': parseValue['transition-property'] , 'transition-delay': parseValue['transition-delay'], 'transition-duration': parseValue['transition-duration'], 'transition-timing-function' : parseValue['transition-timing-function']  }))
         setTransition({...props, value: parseValue['transition-property']})
+        setCustom({...customField, value: ''})
+        setTransitionDelay({...TDely, value: removeStirngFromNumber(parseValue['transition-delay'], 's')})
+        setTransitionDuration({...TDuration, value: removeStirngFromNumber(parseValue['transition-duration'], 's')})
+        setTimmingEffect({...TEffects, value: parseValue['transition-timing-function']})
+
       }else{
-        setTransitionFullVal(prev=> ({...prev, 'transition-property': parseValue['transition-property'] }))
+        setTransitionFullVal(prev=> ({...prev, 'transition-property': parseValue['transition-property'], 'transition-delay': parseValue['transition-delay'], 'transition-duration': parseValue['transition-duration'], 'transition-timing-function' : parseValue['transition-timing-function']  }))
         setTransition({...props, value: 'custom'})
-        setCustom(prev=> ({...prev, value: parseValue['transition-property']}))
+        setCustom({...customField, value: parseValue['transition-property']})
+        setTransitionDelay({...TDely, value: removeStirngFromNumber(parseValue['transition-delay'], 's')})
+        setTransitionDuration({...TDuration, value: removeStirngFromNumber(parseValue['transition-duration'], 's')})
+        setTimmingEffect({...TEffects, value: parseValue['transition-timing-function']})
+
       }
+
 
 
 
       // setTransition({...props, val})
 
     }else{
+      setTransitionFullVal(prev=> ({...prev, 'transition-property': '', 'transition-delay': '', 'transition-duration': '', 'transition-timing-function' : '' }))
       setTransition({...props, value: ''})
+      setTransitionDelay({...TDely, value: ''})
+      setTransitionDuration({...TDuration, value: ''})
+      setTimmingEffect({...TEffects, value: ''})
+      setCustom({...customField, value: ''})
     }
     
 
@@ -122,7 +143,7 @@ export default function Transition({ props, change }: settingFieldProps) {
     // console.log(value);
 
     const transVal = JSON.parse(value).value
-    setTransition((prev: any) => ({ ...prev, value: transVal }));
+    setTransition(prev => ({ ...prev, value: transVal }));
     if(transVal !== 'custom'){
       setTransitionFullVal(prev=> ({...prev, 'transition-property': transVal }))
       setSendTransition(prev=> prev + 1)
@@ -135,22 +156,29 @@ export default function Transition({ props, change }: settingFieldProps) {
   const handleTransitionDelay = (value: any) => {
     // console.log(value)
     setTransitionFullVal(prev=> ({...prev, 'transition-delay': JSON.parse(value).value + 's' }))
-    setTransitionDelay((prev: any) => ({ ...prev, value: JSON.parse(value).value }));
+    // setTransitionDelay((prev: any) => ({ ...prev, value: JSON.parse(value).value }));
+    setSendTransition(prev=> prev + 1)
   };
 
   const handleTransitionDuration = (value: any) => {
     setTransitionFullVal(prev=> ({...prev, 'transition-duration': JSON.parse(value).value + 's' }))
-    setTransitionDuration((prev: any) => ({ ...prev, value: JSON.parse(value).value })); 
+    // setTransitionDuration((prev: any) => ({ ...prev, value: JSON.parse(value).value })); 
+    setSendTransition(prev=> prev + 1)
   };
 
   const handleTimmingEffects = (value: any) => {
     setTransitionFullVal(prev=> ({...prev, 'transition-timing-function': JSON.parse(value).value }))
     
-    setTimmingEffect((prev: any) => ({ ...prev, value: JSON.parse(value).value }));
+    // setTimmingEffect((prev: any) => ({ ...prev, value: JSON.parse(value).value }));
+    setSendTransition(prev=> prev + 1)
   };
 
   const handleCustumValue = (value: any) => {
-    setCustom((prev: any) => ({ ...prev, value: value }));
+    // console.log(value)
+    setTransitionFullVal(prev=> ({...prev, 'transition-property': JSON.parse(value).value }))
+    // setCustom((prev: any) => ({ ...prev, value: JSON.parse(value).value }));
+    setSendTransition(prev=> prev + 1)
+
   };
 
   return (

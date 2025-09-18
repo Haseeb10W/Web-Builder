@@ -30,7 +30,8 @@ const linkTargets = {
 export default function LinkField({props, change}:settingFieldProps) {
 
     const [linkType,setLinkType] = useState({...props,
-        options: [
+         value: props?.value || 'off', 
+         options: [
           {label: 'Off', value: 'off'},
           {label: 'On', value: 'on'},
         ],
@@ -51,7 +52,7 @@ export default function LinkField({props, change}:settingFieldProps) {
     <>
       {props?.tabOpen && (<> 
        <SelectField props={linkType} change={(value:any)=>handlelink(value)}/>
-              {/* { linkType.value == 'on' && ( <TextField props={linkTarget} change={(value:any)=>handleLinkTarget(value)} /> ) } */}
+               { linkType?.value == 'on' && ( <TextField props={linkTarget} change={(value:any)=>handleLinkTarget(value)} /> ) }
       </>)}     
   
     </>

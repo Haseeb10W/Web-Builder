@@ -193,3 +193,4 @@ export const styleAppliedToCustom = (screen: 'desktop' | 'tablet' | 'mobile', se
     })
 
 }
+

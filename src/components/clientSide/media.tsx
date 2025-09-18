@@ -6,7 +6,7 @@ import { useSettingType } from "@/contexts/settingsType";
 import MediaUploads from "./mediaUploads";
 import { API } from "../../../config/apiConfig";
 import ShowMedia from "./showMedia";
-import { iconMap } from "@/lib/maps/iconMap";
+import MediaIcon from "./MediaIcon";
 
 
 export default function Media() {
@@ -15,9 +15,7 @@ export default function Media() {
 
   const [mediaFiles, setMediaFiles] = useState<any[]>([]);
   const { mediaFilesApply, setMediaFilesApply, setFileApplyOn}  = useSettingType()
-  
-  const icon = iconMap;
-  // console.log("icon", icon)
+
   
   const {setOpenMedia} = useSettingType()
 
@@ -232,13 +230,8 @@ export default function Media() {
 
         {  tabOpen == 'icons' && (
           <>
-        <div className="grid grid-cols-15 px-5">
-         {Object.keys(icon).map((key) => {
-           return (
-             <DynamicIcons key={key} name={key} classes="w-6 h-6 m-2 hover:text-gray-500 cursor-pointer " />
-           );
-         })}
-          </div>
+            <MediaIcon />
+
           </>
         )}
         

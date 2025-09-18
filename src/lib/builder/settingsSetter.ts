@@ -1,4 +1,4 @@
-import { Block, BlockType } from "@/types/blocksSchema";
+import { BaseBlock, Block, BlockType } from "@/types/blocksSchema";
 import { editSchema } from "@/types/editSchema";
 import { settingContiner, settingsSetupSchema } from "@/types/settingsSchema";
 import { findBlockOverall } from "./blockHandlers";
@@ -74,6 +74,7 @@ export const customSettingSetter = (findBlock:Block, screenType: "desktop" | "ta
 
 
 
+
 export const getValueOnStatusChange = (styleFields: string[], settingId:string, data: editSchema | undefined, statusValue:string, screenType: "desktop" | "tablet" | "mobile", field: string)=>{
 
    
@@ -91,6 +92,10 @@ export const getValueOnStatusChange = (styleFields: string[], settingId:string, 
       findValue = findBlock?.classTracking?.fontFamilyClass;
     }else if(field == "backgroundChange"){
       findValue = backgroundSettingsSetter(findBlock, screenType, statusValue)
+    }else if(field == "positionChange"){
+      findValue = customSettingSetter(findBlock, screenType, statusValue, ['position', 'top', 'left', 'bottom', 'right'])
+    }else if(field == "transitionChange"){
+      findValue = customSettingSetter(findBlock, screenType, statusValue, ['transition-property', 'transition-delay', 'transition-duration', 'transition-timing-function'])
     }
 
 
@@ -158,6 +163,8 @@ export const styleApplyToFields = (settings:settingsSetupSchema, block:Block, sc
 
 
 } 
+
+
 
 
 

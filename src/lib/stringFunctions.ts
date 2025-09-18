@@ -73,3 +73,10 @@ export const convertCommaToStrVal = (str:string)=>{
   commaVal = commaVal.replace(/,/g, ' ');
   return commaVal;
 }
+
+
+export const removeStirngFromNumber = (val:string, rem:string)=>{
+  let remValue = val.trim();
+  remValue = remValue.split(rem)[0]
+  return remValue;
+}

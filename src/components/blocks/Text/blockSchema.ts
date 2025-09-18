@@ -1,9 +1,6 @@
 import { BaseBlock } from "@/types/blocksSchema";
 
 
-
-
-
  export interface  TextBlock extends BaseBlock {
   type: 'text';
   props : {
@@ -18,6 +15,7 @@ export const textBlockSchema = (blockAdd: any)=>{
               text : `Your Text `
   
             },
+            
             responsiveStyles : {
                ...blockAdd.responsiveStyles,
                baseStyle : {

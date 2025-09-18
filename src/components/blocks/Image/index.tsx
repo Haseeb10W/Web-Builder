@@ -1,9 +1,10 @@
 'use client'
 import Section from '@/components/builder/Section';
 import DynamicIcons from '@/components/DynamicIcons';
-import { Block, ImageBlock } from '@/types/blocksSchema';
+import { Block } from '@/types/blocksSchema';
 import Link from 'next/link';
 import React from 'react'
+import { ImageBlock } from './blockSchema';
 
 interface ImageProps{
   block: Block;

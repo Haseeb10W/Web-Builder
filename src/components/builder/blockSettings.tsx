@@ -72,7 +72,8 @@ function BlockSettings({data, updateData}:BlockSettingProps) {
     
 
     
-    const customTextType = ['texteditor', 'textAlign', 'spacing', 'colors', 'size', 'iconField', 'fontFamily', 'select', 'textarea' , 'texts', 'background', 'increase', 'number', 'boxShadow', 'position', 'transform', 'iconSelect', 'transition']
+    const customTextType = ['texteditor', 'textAlign', 'spacing', 'colors', 'size', 'iconField', 'fontFamily', 'select', 'textarea' , 'texts', 'background', 'increase', 'number', 'boxShadow', 'position', 'transform', 'iconSelect', 'transition', 'textClasses', 'cssEditor'
+    ]
 
     const isCustomTextType = customTextType.includes(type as string)
 

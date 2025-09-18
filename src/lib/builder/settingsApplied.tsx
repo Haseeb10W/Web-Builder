@@ -1,8 +1,9 @@
-import { Block } from "@/types/blocksSchema"
+import { BaseBlock, Block } from "@/types/blocksSchema"
 import { styleAppliedToBackground, styleAppliedToCommonElements, styleAppliedToCustom } from "./applyStyleFunctions"
 
 
 
+const BaseBlockKeys : any[] = ['customCSSID', 'customClasses', 'tailWindClasses', 'customCSSCode']
 
 export const appliedSettings = (applied:string | undefined, foundBlock:Block | null, fieldValue: string, screenType: 'desktop' | 'tablet' | 'mobile', settingField: any, styleFields: string[] )=>{
   
@@ -41,7 +42,15 @@ export const appliedSettings = (applied:string | undefined, foundBlock:Block | n
 
   }else if(applied == "transitionChange"){
     styleAppliedToCustom(screenType, settingField, foundBlock, fieldValue, ['transition-property', 'transition-delay', 'transition-duration', 'transition-timing-function'])
+  }else if(BaseBlockKeys.includes(applied as keyof BaseBlock)){
+    if(foundBlock && applied){
+      
+      (foundBlock as any)[applied] = fieldValue
+      // foundBlock.customClasses = fieldValue
+      settingField.props.value = fieldValue
+    }
   }
+  
 
 
 
