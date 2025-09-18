@@ -500,7 +500,7 @@ export const ImageSettingsSet:settingsSetArgs = (settingType, data ,screenType)=
            settings.styles[3].props.value =  getValueForFields(findBlock, screenType, settings.styles[3].props.currentStatus || 'normal', "align-content") 
            
        
-                 /* Font Styles */
+          /* Font Styles */
           //  settings.styles[6].props.value = getValueForFields(findBlock, screenType, settings.styles[6].props.currentStatus || 'normal', "color");
            
           //  settings.styles[7].props.value = findBlock?.classTracking?.fontFamilyClass;

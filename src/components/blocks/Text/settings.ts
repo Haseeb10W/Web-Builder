@@ -26,7 +26,8 @@ import { placeholder } from "jodit/esm/plugins/placeholder/placeholder"
       placeholder: 'Add your Text here',
       for : 'textChange',
       tab: '',
-      tabOpen: true
+      tabOpen: true,
+
     }
     ),
 

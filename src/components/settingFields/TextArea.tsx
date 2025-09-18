@@ -16,8 +16,6 @@ export default function TextArea({props, change}: settingFieldProps ) {
     
 
   } 
-  
-
 
 
   return (
@@ -44,15 +42,9 @@ export default function TextArea({props, change}: settingFieldProps ) {
 
       />
         
-
-      
-      
-
        </div>
         </>
-      )
-    
-    
+      )  
     
   )
 }

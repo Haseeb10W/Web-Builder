@@ -25,6 +25,7 @@ import ImageSection from "@/components/settingFields/ImageSection";
 import LinkField from "@/components/settingFields/LinkField";
 import BoxShadow from "@/components/settingFields/BoxShadow";
 import TextClasses from "@/components/settingFields/TextClasses";
+import iconsList from "@/components/settingFields/iconsList";
 
 const TextEditor = dynamic(() => import('@/components/settingFields/textEditor'), {
   ssr: false,
@@ -57,5 +58,6 @@ export const fieldMap : {[key:string]: React.ElementType} = {
   imageSection: ImageSection,
   linkField: LinkField,
   boxShadow: BoxShadow,
-  textClasses : TextClasses
+  textClasses : TextClasses,
+  listsIcon : iconsList
 }
