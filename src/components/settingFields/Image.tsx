@@ -110,7 +110,7 @@ export default function Image({props, change}:settingFieldProps) {
               <span onClick={handledelete}><DynamicIcons name="delete" classes="w-6 h-6 bg-gray-200 p-1" /></span>
             </div>  
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 hidden group-hover:block">
-              <span><DynamicIcons name="add" classes="w-30 h-30 !text-gray-200/30 " /></span>
+              <span><DynamicIcons name="plus" classes="w-30 h-30 !text-gray-200/30 " /></span>
             </div> 
           </div>
           ) : (

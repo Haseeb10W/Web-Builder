@@ -21,7 +21,8 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
       label: "Title", 
       labelId: "text-editor",
       placeholder: 'Add your Text here',
-      for : 'textChange',
+      for : 'text',
+      responsive: 'off',
       tab: '',
       tabOpen: true}
     ),
@@ -39,7 +40,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
    // 3
   setSettingField('select', {
     label: "Tags Levels", 
-    labelId: "tags-level",
+    labelId: "tags-level-heading",
     value:"h2",
     defaultNot:true,
         options: [
@@ -51,9 +52,10 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
           {label: 'h6', value: 'h6'},
         ],
         
-        for : 'levelChange',
-        tab: 'headsettings',
-        tabOpen: true
+    for : 'level',
+    tab: 'headsettings',
+    responsive : 'off', 
+    tabOpen: true
   }),
 
 

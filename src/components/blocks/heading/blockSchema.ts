@@ -12,22 +12,22 @@ export const headingBlockSchema = (blockAdd : any) => {
              ...blockAdd,
              type : 'heading',
              props : {
-             childStyleClasses : ['imageClass', 'liClass'],
-             childStyles : {
-               imageClass: {
-                 responsiveStyles : {
-                       baseStyle : {},
-                       tablet : {},
-                       desktop : {},
-                       hoverStyles: {},
-                  },
-               },
-               liClass : {
-                 responsiveStyles : {
+            //  childStyleClasses : ['imageClass', 'liClass'],
+            //  childStyles : {
+            //    imageClass: {
+            //      responsiveStyles : {
+            //            baseStyle : {},
+            //            tablet : {},
+            //            desktop : {},
+            //            hoverStyles: {},
+            //       },
+            //    },
+            //    liClass : {
+            //      responsiveStyles : {
                    
-                 }
-               }
-             },
+            //      }
+            //    }
+            //  },
              text : 'Sample Heading',
              level : 'h1'
              },

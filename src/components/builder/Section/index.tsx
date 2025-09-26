@@ -68,13 +68,13 @@ export default function Section({children, id, index, onDelete, onCopy, allStyle
   return (
     <>
 
-    <div  ref={setNodeRef} id={allStyles?.cssId} style={{...styles, ...allStyles?.styling}} className={` flex-child group relative    ${isJustDropped && ''}  section-editor ${allStyles?.classes}  `   }  >
+    <div  ref={setNodeRef} id={allStyles?.cssId} style={{...styles, ...allStyles?.styling}} className={` flex-child group relative  section-editor ${allStyles?.classes} ${isJustDropped && '!border !border-dashed  !border-blue-600/40'} hover:border hover:border-solid hover:border-blue-600/60 `   }  >
       
 
       {children}
 
     <span ref={setActivatorNodeRef}  
-    className={` group-hover:block  group-hover:border group-hover:border-solid group-hover:border-blue-600/60 absolute top-0 w-full h-full  cursor-grab  ${isJustDropped ? ' border border-dashed  border-blue-600/40 hover:border-solid': 'hidden'} `} 
+    className={` group-hover:block hovered-child  absolute top-0 w-full h-full  cursor-grab  ${isJustDropped ? '  ': 'hidden'} `} 
      {...attributes} {...listeners} >
           {/* <span className="bg-blue-500 text-white px-2 py-1 rounded text-xs pointer-events-none">
           ⋮⋮ 

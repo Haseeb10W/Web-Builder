@@ -150,9 +150,10 @@ const handleSidebarDrop = useCallback((newBlock: Block, insertIndex?: number) =>
     setMediaFilesApply(undefined)
   }
 
-  useEffect(()=>{
-  // console.log(pageData)
-  },[pageData])
+  // useEffect(()=>{
+  //  console.log(pageData)
+
+  // },[pageData])
   
 
 

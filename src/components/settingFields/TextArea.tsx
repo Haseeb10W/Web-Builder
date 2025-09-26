@@ -10,14 +10,17 @@ export default function TextArea({props, change}: settingFieldProps ) {
   const changeValue = (e:any)=>{
 
     const value = e.target.value;
+    let fullValue = {
+        status: props?.currentStatus || 'normal',
+        responsive: props?.responsive || 'on',
+        value: value
+      };
 
-    change?.(value)
+    change?.(JSON.stringify(fullValue))
     
     
 
   } 
-  
-
 
 
   return (
@@ -44,15 +47,9 @@ export default function TextArea({props, change}: settingFieldProps ) {
 
       />
         
-
-      
-      
-
        </div>
         </>
-      )
-    
-    
+      )  
     
   )
 }

@@ -4,6 +4,7 @@ import { styleAppliedToBackground, styleAppliedToCommonElements, styleAppliedToC
 
 
 const BaseBlockKeys : any[] = ['customCSSID', 'customClasses', 'tailWindClasses', 'customCSSCode']
+const propsKeys : string[] = ['text', 'level']
 
 export const appliedSettings = (applied:string | undefined, foundBlock:Block | null, fieldValue: string, screenType: 'desktop' | 'tablet' | 'mobile', settingField: any, styleFields: string[] )=>{
   
@@ -13,13 +14,23 @@ export const appliedSettings = (applied:string | undefined, foundBlock:Block | n
   }
 
   
-  // console.log(applied)
+  // console.log(applied, fieldValue)
 
-  if(applied == "textChange"){
-    if(isTextBlockType(foundBlock)) {
-            foundBlock.props.text = fieldValue
-            settingField.props.value = fieldValue
-      }
+  if(propsKeys.includes(applied as string) && foundBlock?.props && applied &&  applied in foundBlock.props ){
+
+    console.log('applied to props run');
+            // amazonq-ignore-next-line
+            const fieldVal = JSON.parse(fieldValue).value
+            const responsive = JSON.parse(fieldValue).responsive
+
+            if(responsive == 'off'){
+              (foundBlock.props as any)[applied] = fieldVal
+            settingField.props.value = fieldVal
+
+            }
+
+        
+            
   }else if(styleFields.includes(applied as string)){
 
     styleAppliedToCommonElements(screenType, settingField,  foundBlock, fieldValue, applied as string)

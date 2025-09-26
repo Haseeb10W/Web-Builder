@@ -41,7 +41,13 @@ export default function TextEditor({props, change}: settingFieldProps ) {
     }
     
     timeoutRef.current = setTimeout(() => {
-      change?.(content);
+      let fullValue = {
+        status: props?.currentStatus || 'normal',
+        responsive: props?.responsive || 'on',
+        value: content
+      };
+      
+      change?.(JSON.stringify(fullValue));
     }, 1000);
   };
 

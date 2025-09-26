@@ -36,7 +36,7 @@ export default function BuilderSideBar() {
         {type: 'image', label: 'Image' , icon: 'image'},
         {type: 'button', label: 'Button' , icon: 'mouseClick'},
         {type: 'icon', label: 'Icon' , icon: 'star'},
-        {type: 'list', label: 'Icon List' , icon: 'list'},
+        {type: 'iconlist', label: 'Icon List' , icon: 'list'},
       ]
     }
 

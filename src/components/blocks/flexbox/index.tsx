@@ -5,7 +5,9 @@ import DropZone from '@/components/builder/DropZone';
 import Section from '@/components/builder/Section';
 import { Block, ContainerBlock } from '@/types/blocksSchema';
 import { horizontalListSortingStrategy, rectSortingStrategy, SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
+import '@/components/blocks/flexbox/stylee.css';
 import React from 'react'
+import useClassTracking from '@/hooks/useClassTrack';
 
 interface FlexProps{
   block: Block;
@@ -17,12 +19,12 @@ interface FlexProps{
 export default function FlexBox({block, index, onDelete, onCopy}:FlexProps) {
 
   
-
+   const trackingClass = useClassTracking(block)
   if(block.type !== 'flex') return null;
   const flexBlock = block as ContainerBlock;
-  const {children = [], props} = flexBlock;
+  const {children = [], props, responsiveStyles} = flexBlock;
 
-  const flexDirection =  props?.direction || 'row';
+  const flexDirection =  responsiveStyles?.baseStyle?.['flex-direction'] || 'row';
   const gap = props?.gap || '10px';
   const strategy = flexDirection === 'row' ? horizontalListSortingStrategy : verticalListSortingStrategy;
 
@@ -32,14 +34,10 @@ export default function FlexBox({block, index, onDelete, onCopy}:FlexProps) {
   
   if(!flexBlock?.editable && !flexBlock?.draggable){
     return (
-      <div style={{
-        display: 'flex',
-        flexDirection,
-        gap,
-        flexWrap : "wrap",
+      <div id={flexBlock?.customCSSID} style={{
         ...flexBlock?.styles
       }}
-      className={`block-${flexBlock?.id} ${flexBlock?.tailWindClasses} relative ${flexBlock?.customClasses}`}>
+      className={`block-${flexBlock?.id} ${flexBlock?.tailWindClasses} relative ${flexBlock?.customClasses} ${trackingClass}`}>
         {children.map((child, idx) => (
           <BlockReader key={child.id} props={child} index={idx} />
         ))}
@@ -52,17 +50,12 @@ export default function FlexBox({block, index, onDelete, onCopy}:FlexProps) {
   const flexStyles = {
     styling : {
       ...flexBlock?.styles,
-        display: 'flex',
-        flexDirection,
-        gap : '0px',
-        flexWrap : 'wrap',
-        justifyContent : 'flex-start',
-        minHeight: children.length === 0 ? '100px' : '150px',
-        border: children.length === 0 ? '2px dashed #ccc' : 'none',
-
+        // minHeight: children.length === 0 ? '100px' : '150px',
+        // border: children.length === 0 ? '2px dashed #ccc' : 'none',
+        cssId: flexBlock?.customCSSID,
     },
 
-    classes : `flex-initial relative   block-editor-${flexBlock?.id} ${flexBlock?.tailWindClasses} ${flexBlock?.customClasses} `
+    classes : `${children.length === 0 ? 'flex-wout-child' : 'flex-with-child'}   relative   block-editor-${flexBlock?.id} ${flexBlock?.tailWindClasses} ${flexBlock?.customClasses} ${trackingClass}`
 
   }
 
@@ -102,9 +95,10 @@ export default function FlexBox({block, index, onDelete, onCopy}:FlexProps) {
               </div>
             ) :(
           <>
-          <DropZone id={`flex-dropzone-${flexBlock.id}-0`} index={0} containerType='flex' isInline={isHorizontalFlex}/>
+          
           {children.map((child, idx) => (
             <React.Fragment key={child.id}>
+              { idx >=1  && (<DropZone id={`flex-dropzone-${flexBlock.id}-0`} index={0} containerType='flex' isInline={isHorizontalFlex}/>)}
               <BlockReader props={child} index={idx} onDelete={(id)=>onDelete?.(id)} onCopy={(id)=>onCopy?.(id)}/>
               <DropZone id={`flex-dropzone-${flexBlock.id}-${idx + 1}`} index={idx + 1} containerType='flex' isInline={isHorizontalFlex} />
             </React.Fragment>

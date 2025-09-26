@@ -17,7 +17,7 @@ export default function HalfSpace({props, change}:settingFieldProps) {
   
 
   useEffect(()=>{
-    // console.log('good')
+    // console.log(props?.value)
     if(props?.value && props?.value !=='' && props?.showUnit){
       
       setFullValue(props?.value)
@@ -138,31 +138,27 @@ export default function HalfSpace({props, change}:settingFieldProps) {
     switch(chain){
       case 'all':
         if(field == "field1"){
-          spaceField = 'All (X-Axis / Y-Axis) '
+          spaceField = `All ( ${props?.firstField || 'X-Axis'} / ${props?.secondField || 'Y-Axis'}) `
         }
         break
       case 'half':
         if(field == "field1"){
-          spaceField = "X-Axis"
+          spaceField = `${props?.firstField || 'X-Axis'} `
         }
         else if (field == "field2"){
-          spaceField = "Y-Axis"
+          spaceField = `${props?.secondField || 'Y-Axis'}`
 
         }
         break;
       case 'none':
         switch (field){
           case 'field1':
-            spaceField = "Top"
+            spaceField = "X-Axis"
             break;
           case 'field2':
-            spaceField = "Right"
+            spaceField = "Y-Axis"
             break;
-          case 'field3':
-            spaceField = "Bottom"
-            break;
-          case 'field4':
-            spaceField = "Left"
+         
         }
         break;
     }

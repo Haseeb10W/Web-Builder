@@ -53,7 +53,7 @@ export const DragEndHandler: dragEndArgs = (event, pageData, updateData, handleB
 
             const parentContiner = findBlockOverall(pageData, containerId);
             
-             if(parentContiner?.type === 'flex'  &&  (parentContiner?.props.direction === 'row' || parentContiner?.props.direction === 'row-reverse' ) ){
+             if(parentContiner?.type === 'flex'  &&  (parentContiner?.responsiveStyles?.baseStyle?.['flex-direction'] === 'row' || parentContiner?.responsiveStyles?.baseStyle?.['flex-direction'] === 'row-reverse' ) ){
                 childWidth  = `30%`
 
                }

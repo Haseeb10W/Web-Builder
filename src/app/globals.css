@@ -155,3 +155,8 @@ li, ul {
 .cm-editor:focus-within {
   outline: none;
 }
+
+.flex-child:has(.hovered-child:hover){
+  border: 1px solid rgba(54, 54, 243, 0.712);
+
+}

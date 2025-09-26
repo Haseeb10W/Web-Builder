@@ -149,7 +149,7 @@ export const iconMap : {[key:string]: React.ElementType} ={
   textCursor : TextCursor,
   cross : Cross,
   colresize : UnfoldHorizontal,
-  plus: Plus,
+  
   hand:Hand,
   moveHorizontal:MoveHorizontal,
   help:BsQuestion,

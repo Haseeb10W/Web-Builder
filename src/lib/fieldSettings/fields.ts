@@ -36,6 +36,7 @@ export const setSettingField:fieldSetArgs = (field, props)=>{
     tab: '',
     statuses: ['normal', 'hover'],
     currentStatus : 'normal',
+    styleApply : 'main'
   }
 
   const fieldSet:setFieldScheama = {
@@ -55,6 +56,7 @@ export const setSettingField:fieldSetArgs = (field, props)=>{
         value: props?.value || '',
         for : props?.for,
         type: 'settingField',
+        styleApply: props?.styleApply || commonProps.styleApply,
         responsive: props?.responsive || 'on',
         tab: props?.tab || commonProps.tab,
         tabOpen: props?.tabOpen ? props?.tabOpen : false,
@@ -269,6 +271,28 @@ export const setSettingField:fieldSetArgs = (field, props)=>{
         }
       }
 
+      case 'listsIcon':
+      return {
+        field: field,
+        props: {
+          label: props?.label,
+          labelId: props?.labelId,
+          items: props?.items || [
+            { id: 1, text: "List Item #1", icon: "check" },
+            { id: 2, text: "List Item #2", icon: "x" },
+            { id: 3, text: "List Item #3", icon: "circle" }
+          ],
+          defaultNot: props?.defaultNot,
+          for: props?.for,
+          type: 'settingField',
+          responsive: props?.responsive ? props?.responsive : 'on',
+          tab: props?.tab || commonProps.tab,
+          tabOpen: props?.tabOpen ? props?.tabOpen : false,
+          statuses: props?.statuses || commonProps.statuses,
+          currentStatus: props?.currentStatus || commonProps.currentStatus,
+        }
+      }
+
 
       case 'transition':
       return {
@@ -421,6 +445,8 @@ export const setSettingField:fieldSetArgs = (field, props)=>{
         responsive: props?.responsive || 'on',
         for : props?.for,
         type: 'settingField',
+        firstField: props?.firstField || 'X-Axis',
+        secondField: props?.secondField || 'Y-Axis',
         tab: props?.tab || commonProps.tab,
         tabOpen: props?.tabOpen ? props?.tabOpen : false,
         statuses: props?.statuses || commonProps.statuses,

@@ -24,9 +24,11 @@ import { placeholder } from "jodit/esm/plugins/placeholder/placeholder"
       label: "Text Editor", 
       labelId: "text-editor",
       placeholder: 'Add your Text here',
-      for : 'textChange',
+      for : 'text',
+      responsive: 'off',
       tab: '',
-      tabOpen: true
+      tabOpen: true,
+
     }
     ),
 
@@ -672,8 +674,17 @@ import { placeholder } from "jodit/esm/plugins/placeholder/placeholder"
         responsive:"off"
        }),
 
+       //20 : Order
 
-      //20 : Z-index
+       setSettingField('number', {
+        label: "Order", 
+        labelId: "order-text",
+        value:'',
+        for : 'order',
+        tab: 'other',
+       }),
+
+      //21 : Z-index
 
       setSettingField('number', {
         label: "Zindex", 
@@ -685,7 +696,7 @@ import { placeholder } from "jodit/esm/plugins/placeholder/placeholder"
 
 
 
-      //21 :: Cursor
+      //22 :: Cursor
 
       setSettingField('iconSelect', {
         label: "Cursor ",
@@ -733,7 +744,7 @@ import { placeholder } from "jodit/esm/plugins/placeholder/placeholder"
   }),
 
 
-  // 22  : Transition
+  // 23  : Transition
 
   setSettingField('transition', {
         label: "Apply Transition",
@@ -754,11 +765,11 @@ import { placeholder } from "jodit/esm/plugins/placeholder/placeholder"
         tab : 'other',        
   }),
 
-  //23 :: 
+  //24 :: 
   /* ++++++++++++++++++++++ Custom +++++++++++++++++++++++++++++= */
   setSettingField('heading',{label: "Custom", for : 'custom', tabAllow: true }),
 
-  //24 : Tailwind Classes
+  //25 : Tailwind Classes
       setSettingField('textarea', {
       label: "Tailwind Classes", 
       labelId: "tailwind-classes-text",
@@ -770,7 +781,7 @@ import { placeholder } from "jodit/esm/plugins/placeholder/placeholder"
     }
     ),
 
-  //25 : CSS 
+  //26 : CSS 
 
       setSettingField('cssEditor', {
       label: "CSS Styles", 
@@ -838,11 +849,11 @@ export const textSettingsSet:settingsSetArgs = (settingType, data, screenType)=>
       // settings.styles[14].props.value = findBlock?.styles?.wordSpacing;
 
       
-           /* Background */
+      /* Background */
       
       settings.styles[18].props.value = backgroundSettingsSetter(findBlock, screenType, settings.styles[18].props.currentStatus || 'normal');
 
-          /* Border */
+      /* Border */
       settings.styles[21].props.value = getValueForFields(findBlock, screenType, settings.styles[21].props.currentStatus || 'normal', "border-style");
       settings.styles[22].props.value = getValueForFields(findBlock, screenType, settings.styles[22].props.currentStatus || 'normal', "border-color");
       settings.styles[23].props.value = getValueForFields(findBlock, screenType, settings.styles[23].props.currentStatus || 'normal', "border-width");
@@ -881,17 +892,19 @@ export const textSettingsSet:settingsSetArgs = (settingType, data, screenType)=>
       settings.settings[18].props.value = findBlock?.customClasses
       settings.settings[19].props.value = findBlock?.customCSSID
 
+      // Order
+      settings.settings[20].props.value = getValueForFields(findBlock, screenType, settings.settings[20].props.currentStatus || 'normal', "order");
       // Z-Index
-      settings.settings[20].props.value = getValueForFields(findBlock, screenType, settings.settings[20].props.currentStatus || 'normal', "z-index");
+      settings.settings[21].props.value = getValueForFields(findBlock, screenType, settings.settings[21].props.currentStatus || 'normal', "z-index");
       // Cursor
-      settings.settings[21].props.value = getValueForFields(findBlock, screenType, settings.settings[21].props.currentStatus || 'normal', "cursor");
+      settings.settings[22].props.value = getValueForFields(findBlock, screenType, settings.settings[22].props.currentStatus || 'normal', "cursor");
 
       // Transition
-      settings.settings[22].props.value = customSettingSetter(findBlock, screenType, settings.settings[22].props.currentStatus || 'normal', ['transition-property', 'transition-delay', 'transition-duration', 'transition-timing-function'])
+      settings.settings[23].props.value = customSettingSetter(findBlock, screenType, settings.settings[23].props.currentStatus || 'normal', ['transition-property', 'transition-delay', 'transition-duration', 'transition-timing-function'])
 
       // Custom 
-      settings.settings[24].props.value = findBlock?.tailWindClasses
-      settings.settings[25].props.value = findBlock?.customCSSCode
+      settings.settings[25].props.value = findBlock?.tailWindClasses
+      settings.settings[26].props.value = findBlock?.customCSSCode
     }
 
     

@@ -131,7 +131,10 @@ export const demoData :pageSchema  = {
         { id: 'flex-6bndsiugr2398u',
           type: 'flex',
           responsiveStyles: {
-            baseStyle:{},
+            baseStyle:{
+               'flex-direction': 'row',
+                gap:'0px'
+            },
             tablet: {},
             desktop: {},
             hoverStyles: {},
@@ -152,7 +155,9 @@ export const demoData :pageSchema  = {
          { id: 'flex-7hbdhsuhyr32',
           type: 'flex',
           responsiveStyles: {
-            baseStyle:{},
+            baseStyle:{
+              'flex-direction':'column'
+            },
             tablet: {},
             desktop: {},
             hoverStyles: {},
@@ -275,7 +280,7 @@ export const demoData :pageSchema  = {
           { id: 'flex-8y398y9hohq98w',
           type: 'flex',
           responsiveStyles: {
-            baseStyle:{},
+            baseStyle:{'flex-direction':'column'},
             tablet: {},
             desktop: {},
             hoverStyles: {},

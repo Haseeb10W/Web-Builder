@@ -62,13 +62,13 @@ export default function useBlockSchema( { type } : blockSchemaProps)  {
       case 'button' : 
         return buttonBlockSchema(blockAdd)
       case 'icon' : 
-      return iconBlockSchema(blockAdd)
+        return iconBlockSchema(blockAdd)
 
-     case 'iconlist':
-     return  iconListSchema(blockAdd)
+      case 'iconlist':
+        return  iconListSchema(blockAdd)
 
       case 'image' : 
-      return imageBlockSchema(blockAdd)
+        return imageBlockSchema(blockAdd)
       
       case 'flex' : 
         return flexBlockSchema(blockAdd)
