@@ -1,22 +1,16 @@
 
-'useclient'
+'use client';
 
 import DynamicIcons from '@/components/DynamicIcons';
-import { Block } from '@/types/blocksSchema';
+import { Block, blockProps } from '@/types/blocksSchema';
 import Link from 'next/link';
 import React from 'react'
 import { IconListBlock } from './blockSchema';
 import useClassTracking from '@/hooks/useClassTrack';
 import Section from '@/components/builder/Section';
 
-interface IconListProps {
-  block : Block,
-  index : number,
-  onDelete?: (id:string) => void;
-  onCopy?:(id:string)=>void;
-  
-}
-export default function IconsList({block, index, onDelete, onCopy}: IconListProps) {
+
+export default function IconsList({block, index, onDelete, onCopy}: blockProps) {
 
 if(block.type !== 'iconlist'){
     return null;

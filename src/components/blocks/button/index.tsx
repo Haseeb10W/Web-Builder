@@ -1,19 +1,14 @@
 'use client'
 import Section from '@/components/builder/Section';
 import DynamicIcons from '@/components/DynamicIcons';
-import { Block } from '@/types/blocksSchema';
+import { Block, blockProps } from '@/types/blocksSchema';
 import Link from 'next/link';
 import React from 'react'
 import { ButtonBlock } from './blockSchema';
 
 
-interface ButtonProps{
-  block: Block;
-  index : number;
-  onDelete?: (id:string) => void;
-  onCopy?:(id:string)=>void;
-}
-export default function Button({block, index, onDelete, onCopy}:ButtonProps) {
+
+export default function Button({block, index, onDelete, onCopy}:blockProps) {
     if(block.type !== 'button') return null;
     const ButtonBlock = block as ButtonBlock;
   //  console.log(ButtonBlock)

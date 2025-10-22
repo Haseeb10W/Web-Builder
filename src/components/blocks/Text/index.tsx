@@ -1,20 +1,14 @@
 'use client';
 
 import React, { useEffect, useState } from 'react'
-import { Block} from '@/types/blocksSchema';
+import { Block, blockProps} from '@/types/blocksSchema';
 import Section from '@/components/builder/Section';
 import useClassTracking from '@/hooks/useClassTrack';
 import { TextBlock } from './blockSchema';
 
-interface TextProps {
-  block : Block,
-  index : number,
-  onDelete?: (id:string) => void;
-  onCopy?:(id:string)=>void;
-  
-}
 
-export default function Text({block, index, onDelete, onCopy}: TextProps) {
+
+export default function Text({block, index, onDelete, onCopy}: blockProps) {
 
   const trackingClass = useClassTracking(block)
 

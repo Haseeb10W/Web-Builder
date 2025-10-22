@@ -419,6 +419,7 @@ export const headData :headerSchema = {
       styling: {
         
       },
+      description: "hello",
       active : false,
       editable : true,
   

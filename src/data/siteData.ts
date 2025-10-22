@@ -21,5 +21,23 @@ export const siteData :SiteData = {
       },
       editable : true,
     }, 
+  ],
+   headers : [
+    {
+      kind: "header",
+      id: "3412t346sfd",
+      slug: "home",
+      title: "Header",
+      description: "Welcome to our homepage",
+      content: [
+        
+      ],
+      styling : {
+        backgroundColor: "#ffffff",
+        
+      },
+      active: true,
+      editable : true,
+    }, 
   ]
 }
