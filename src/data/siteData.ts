@@ -20,6 +20,8 @@ export const siteData :SiteData = {
         
       },
       editable : true,
+      active: true,
+      pageStatus: "main",
     }, 
   ],
    headers : [
