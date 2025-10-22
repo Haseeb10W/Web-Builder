@@ -48,6 +48,7 @@ export interface pageSchema {
   active?: boolean,
   status?:   'draft' | 'published';
   editable : boolean;
+  pageStatus : 'main' | 'landing';
   
 }
 
@@ -69,7 +70,7 @@ export interface pageSchema {
   customCSSID?:string;
   customClasses?: string;
   tailWindClasses?: string,
-  description: string;
+  description?: string;
   active : boolean;
   status?:   'draft' | 'published';
   editable : boolean;
@@ -93,7 +94,7 @@ export interface footerSchema {
   customCSSID?:string;
   customClasses?: string;
   tailWindClasses?: string,
-  description: string;
+  description?: string;
   active : boolean;
   status?:   'draft' | 'published';
   editable : boolean;

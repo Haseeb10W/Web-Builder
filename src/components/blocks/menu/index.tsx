@@ -5,6 +5,7 @@ import React from 'react'
 import { menuBlock } from './menuBlockSchema';
 import Link from 'next/link';
 import Section from '@/components/builder/Section';
+import MenuSubNavs from './menuSubNavs';
 
 
 function Menu({block, index, onDelete, onCopy}: blockProps) {
@@ -27,7 +28,8 @@ function Menu({block, index, onDelete, onCopy}: blockProps) {
             <React.Fragment key={index}>
             <li className='menuItems group relative' key={index}>
               <Link href={items.link || '#'} className='menuLink'>{items.text}</Link>
-              {
+              <MenuSubNavs items={items} status='first'/>
+              {/* {
               items?.subNav && items?.subNav?.length > 0 && (
                 <ul className='subMenuList hidden group-hover:block absolute top-full left-0 bg-gray-200'>
                   {
@@ -39,7 +41,7 @@ function Menu({block, index, onDelete, onCopy}: blockProps) {
                   }
                 </ul>
               )
-            }
+            } */}
             </li>
 
             
@@ -80,7 +82,8 @@ function Menu({block, index, onDelete, onCopy}: blockProps) {
             <React.Fragment key={index}>
             <li className='menuItems group relative' key={index}>
               <Link href={items.link || '#'} className='menuLink'>{items.text}</Link>
-              {
+              <MenuSubNavs items={items} status='first' />
+              {/* {
               items?.subNav && items?.subNav?.length > 0 && (
                 <ul className='subMenuList hidden group-hover:block absolute top-full left-0 bg-gray-200'>
                   {
@@ -92,7 +95,7 @@ function Menu({block, index, onDelete, onCopy}: blockProps) {
                   }
                 </ul>
               )
-            }
+            } */}
             </li>
 
             

@@ -1,38 +1,79 @@
+'use client';
+
+import BlockReader from "@/components/BlockReader";
+import { themeOne } from "@/data/themeOne";
+import { Block } from "@/types/blocksSchema";
+import { SiteData, themeData } from "@/types/editSchema";
 import Image from "next/image";
 import Link from "next/link";
+import React, { useEffect, useState } from "react";
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <Link
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="/builder/page/home"
-            // target="_blank"
-            
-          >
-           
-            Website Builder
-          </Link>
-          
+  const [renderData, setRenderData] = useState<Block[]>([]);
+  const [data, setData] = useState<SiteData | themeData | null>(null);
+
+  useEffect(()=>{
+    const fetchData = themeOne as themeData | SiteData;
+
+    setData(fetchData)
+
+  },[])
+
+
+  useEffect(()=>{
+
+    let fullContent = [];
+
+    if(data && 'headers' in data){
+      const activeHeader = data.headers?.find((header)=> header.active);
+      if(activeHeader){
+        fullContent.push(...activeHeader.content)
+      }
+    }
+
+    if(data && 'pages' in data){
+      const mainPage = data.pages?.find((pag)=> pag.pageStatus === 'main' && pag.active);
+      if(mainPage){
+        fullContent.push(...mainPage.content)
+      }
+    }
+
+
+    if(data && 'footers' in data){
+      const activeFooter = data.footers?.find((footer)=> footer.active);
+      if(activeFooter){
+        fullContent.push(...activeFooter.content)
+      }
+    }
+
+
+    setRenderData(fullContent)
+
+
+
+  },[data])
+  
+
+
+
+  return (
+     <>
+        <div>
+          {
+            renderData.map((block, index)=> (
+              <React.Fragment key={index}>
+              <BlockReader  index={index}  props={block}   />
+              </React.Fragment>
+            ))
+          }
+    
+    
+    
+    
         </div>
-      </main>
-      
-    </div>
+        
+        
+    </>
   );
 }

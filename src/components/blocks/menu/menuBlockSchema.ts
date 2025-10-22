@@ -49,7 +49,10 @@ export const menuBlockSchema = (blockAdd: any)=>{
                 { text : 'Menu Item', link : '' },
                 { text : 'second Item', link : '', subNav : [
                   { text : 'Sub Item 1', link : '' },
-                  { text : 'Sub Item 2', link : '' },
+                  { text : 'Sub Item 2', link : '', subNav: [
+                    { text : 'Sub Sub Item 1', link : '' },
+                    { text : 'Sub Sub Item 2', link : '' },
+                  ]},
                 ] }
 
               ]
