@@ -3,17 +3,12 @@
 import Section from '@/components/builder/Section';
 import DynamicIcons from '@/components/DynamicIcons';
 import useClassTracking from '@/hooks/useClassTrack';
-import { Block} from '@/types/blocksSchema';
+import { Block, blockProps} from '@/types/blocksSchema';
 import React from 'react'
 import { IconBlock } from './blockSchems';
 
-interface IconProps{
-  block: Block;
-  index : number;
-  onDelete?: (id:string) => void;
-  onCopy?:(id:string)=>void;
-}
-export default function Icon({block, index, onDelete, onCopy}:IconProps) {
+
+export default function Icon({block, index, onDelete, onCopy}:blockProps) {
 
     const trackingClass = useClassTracking(block)
     if(block.type !== 'icon') return null;

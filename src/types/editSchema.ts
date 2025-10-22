@@ -10,7 +10,16 @@ export interface SiteData {
   headers?: headerSchema[]; 
   footers?: footerSchema[];
   posts?: postSchema[];
-  
+}
+
+export interface themeData {
+  title: string;
+  description: string;
+  pages: pageSchema[];
+  headers?: headerSchema[]; 
+  footers?: footerSchema[];
+  active?:boolean;
+  themeEditMode?: 'on' | 'off';
 }
 
 export interface pageSchema {
@@ -24,20 +33,42 @@ export interface pageSchema {
   styling: {
     [key: string]: string;
   },
+  responsiveStyles ?: {
+    baseStyle?:{[key:string]: string};
+    tablet?: {[key:string]: string};
+    desktop?: {[key:string]: string};
+  },
+  customCSSCode?: string;
+  customCSSID?:string;
+  customClasses?: string;
+  tailWindClasses?: string,
+  active?: boolean,
+  status?:   'draft' | 'published';
   editable : boolean;
   
 }
 
- export interface headerSchema {
+export interface headerSchema {
   kind: 'header';
   title : string;
   slug : string;
   id : string;
   content: Block[];
-  styling: {
+  styling?: {
     [key: string]: string;
+  };
+  responsiveStyles ?: {
+    baseStyle?:{[key:string]: string};
+    tablet?: {[key:string]: string};
+    desktop?: {[key:string]: string};
   },
+  customCSSCode?: string;
+  customCSSID?:string;
+  customClasses?: string;
+  tailWindClasses?: string,
+  description: string;
   active : boolean;
+  status?:   'draft' | 'published';
   editable : boolean;
 }
 
@@ -47,10 +78,21 @@ export interface footerSchema {
   slug : string;
   id : string;
   content: Block[];
-  styling: {
+  styling?: {
     [key: string]: string;
+  };
+  responsiveStyles ?: {
+    baseStyle?:{[key:string]: string};
+    tablet?: {[key:string]: string};
+    desktop?: {[key:string]: string};
   },
+  customCSSCode?: string;
+  customCSSID?:string;
+  customClasses?: string;
+  tailWindClasses?: string,
+  description: string;
   active : boolean;
+  status?:   'draft' | 'published';
   editable : boolean;
 }
 
@@ -61,9 +103,21 @@ export interface footerSchema {
   slug : string;
   id : string;
   content: Block[];
-  styling: {
+  styling?: {
     [key: string]: string;
+  };
+  responsiveStyles ?: {
+    baseStyle?:{[key:string]: string};
+    tablet?: {[key:string]: string};
+    desktop?: {[key:string]: string};
   },
+  customCSSCode?: string;
+  customCSSID?:string;
+  customClasses?: string;
+  tailWindClasses?: string,
+  description: string;
+  active : boolean;
+  status?:   'draft' | 'published';
   editable : boolean;
 }
 

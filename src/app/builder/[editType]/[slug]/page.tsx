@@ -44,7 +44,7 @@ export default function Builder() {
   
 
   useEffect(()=>{
-    // Fetch Page Data
+    
     const slug = router.slug;
     const postType = router.editType;
     

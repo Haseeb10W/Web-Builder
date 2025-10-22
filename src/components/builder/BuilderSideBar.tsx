@@ -37,6 +37,17 @@ export default function BuilderSideBar() {
         {type: 'button', label: 'Button' , icon: 'mouseClick'},
         {type: 'icon', label: 'Icon' , icon: 'star'},
         {type: 'iconlist', label: 'Icon List' , icon: 'list'},
+        
+
+      ]
+    },
+    {
+      value : 'advance-elements',
+      label : 'Advance Elements',
+      elements : [
+        {type: 'menu', label: 'Menu' , icon: 'menu'},
+        
+        
       ]
     }
 
@@ -49,6 +60,7 @@ export default function BuilderSideBar() {
   const toogleElementsData = [
     {value: 'layout', toogle: true},
     {value: 'basic-elements', toogle: true},
+    {value: 'advance-elements', toogle: true},
   ]
   const [toggleElements, setToggleElements] = useState(toogleElementsData);
 

@@ -18,7 +18,7 @@ export const appliedSettings = (applied:string | undefined, foundBlock:Block | n
 
   if(propsKeys.includes(applied as string) && foundBlock?.props && applied &&  applied in foundBlock.props ){
 
-    console.log('applied to props run');
+    // console.log('applied to props run');
             // amazonq-ignore-next-line
             const fieldVal = JSON.parse(fieldValue).value
             const responsive = JSON.parse(fieldValue).responsive

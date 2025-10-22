@@ -71,6 +71,8 @@ import {
   PanelBottomClose,
   Star,
   List,
+  Logs,
+  Menu,
   
 
 
@@ -168,7 +170,9 @@ export const iconMap : {[key:string]: React.ElementType} ={
   panelbottomClose: PanelBottomClose,
   star: Star,
   template: ImInsertTemplate,
-  list : List
+  list : List,
+  logs : Logs,
+  menu : Menu
 
 
 

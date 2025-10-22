@@ -3,20 +3,15 @@
 import BlockReader from '@/components/BlockReader';
 import DropZone from '@/components/builder/DropZone';
 import Section from '@/components/builder/Section';
-import { Block, ContainerBlock } from '@/types/blocksSchema';
+import { Block, blockProps, ContainerBlock } from '@/types/blocksSchema';
 import { horizontalListSortingStrategy, rectSortingStrategy, SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import '@/components/blocks/flexbox/stylee.css';
 import React from 'react'
 import useClassTracking from '@/hooks/useClassTrack';
 
-interface FlexProps{
-  block: Block;
-  index : number;
-  onDelete?: (id:string) => void;
-  onCopy?:(id:string)=>void;
-}
 
-export default function FlexBox({block, index, onDelete, onCopy}:FlexProps) {
+
+export default function FlexBox({block, index, onDelete, onCopy}:blockProps) {
 
   
    const trackingClass = useClassTracking(block)

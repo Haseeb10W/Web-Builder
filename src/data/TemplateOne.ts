@@ -1,5 +1,4 @@
-import { ContentSchema, headerSchema, pageSchema, SiteData } from "@/types/editSchema";
-import { Radius } from "lucide-react";
+import { pageSchema } from "@/types/editSchema";
 
 export const demoData :pageSchema  = {
 
@@ -9,7 +8,7 @@ export const demoData :pageSchema  = {
       title: "Home",
       description: "Welcome to our homepage",
       content: [
-         { id: 'text-145j9u923',
+        { id: 'text-145j9u923',
           type: 'text',
           title:"text",
           responsiveStyles: {
@@ -30,7 +29,7 @@ export const demoData :pageSchema  = {
           link: "",
           props : {
           text: "Blogging Website",
-           }},
+        }},
 
         { id: 'image-2nohqwy28',
           type: 'image',
@@ -52,7 +51,7 @@ export const demoData :pageSchema  = {
           editable: false,
           link: "/home",
           props : {
-          src: "/public/",
+          src: "http://localhost:6200/media/coffee2.jpg",
           alt: "img",
           link: "",
           width: "",
@@ -425,21 +424,3 @@ export const demoData :pageSchema  = {
   },
   editable : false,
 }
-
-export const headData :headerSchema = {
-      kind: 'header',
-      title : 'Home',
-      slug : 'home',
-      id : '12',
-      content: [],
-      styling: {
-        
-      },
-      description: "hello",
-      active : false,
-      editable : true,
-  
-}
-
-
-
