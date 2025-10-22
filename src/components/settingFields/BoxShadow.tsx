@@ -119,18 +119,18 @@ export default function BoxShadow({props, change}:settingFieldProps) {
       
       setBoxShadowAll({
         shadowType: valueShadow.includes('inset') ? 'inset' : 'offset', 
-        offsetX: pixelValuesFind[0].trim(),
-        offsetY: pixelValuesFind[1].trim(),
-        blurRadius: pixelValuesFind[2].replace(/[px]/g, '').trim(),
-        spreadRadius: pixelValuesFind[3].replace(/[px]/g, '').trim(),
-        color: rgbaFind ? rgbaFind[0] : ''
+        offsetX: pixelValuesFind[0]?.trim(),
+        offsetY: pixelValuesFind[1]?.trim(),
+        blurRadius: pixelValuesFind[2]?.replace(/[px]/g, '')?.trim(),
+        spreadRadius: pixelValuesFind[3]?.replace(/[px]/g, '')?.trim(),
+        color: rgbaFind ? rgbaFind[0] : '',
       })
 
       setBoxShadowValue(prev=> ({...prev, value: valueShadow.includes('inset')? 'inset': 'offset'}))
-      setOffsetXValue(prev=> ({...prev, value: pixelValuesFind[0].trim()}))
-      setOffsetYValue(prev=> ({...prev, value: pixelValuesFind[1].trim()}))
-      setBlurValue(prev=> ({...prev, value: pixelValuesFind[2].replace(/[px]/g, '').trim()}))
-      setSpreadValue(prev=> ({...prev, value: pixelValuesFind[3].replace(/[px]/g, '').trim()}))
+      setOffsetXValue(prev=> ({...prev, value: pixelValuesFind[0]?.trim()}))
+      setOffsetYValue(prev=> ({...prev, value: pixelValuesFind[1]?.trim()}))
+      setBlurValue(prev=> ({...prev, value: pixelValuesFind[2]?.replace(/[px]/g, '')?.trim()}))
+      setSpreadValue(prev=> ({...prev, value: pixelValuesFind[3]?.replace(/[px]/g, '')?.trim()}))
       setColorValueState(prev=> ({...prev, value: rgbaFind ? rgbaFind[0] : ''}))
 
 

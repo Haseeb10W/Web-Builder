@@ -527,7 +527,7 @@ import { placeholder } from "jodit/esm/plugins/placeholder/placeholder"
          tabOpen: true
   }),
   
-// 8: Height
+// 8: Min Height
   setSettingField('size', {
           label: "Min Height", 
           labelId: "text-max-height",
