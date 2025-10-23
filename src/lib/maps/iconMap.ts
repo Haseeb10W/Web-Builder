@@ -73,7 +73,11 @@ import {
   List,
   Logs,
   Menu,
-  Search
+  Search,
+  Facebook,
+  Twitter,
+  Linkedin,
+  Instagram
   
 
 
@@ -174,7 +178,12 @@ export const iconMap : {[key:string]: React.ElementType} ={
   list : List,
   logs : Logs,
   menu : Menu,
-  search:Search
+  search:Search,
+  facebook:Facebook,
+  twitter:Twitter,
+  linkedin:Linkedin,
+  insta:Instagram 
+
 
 
 
