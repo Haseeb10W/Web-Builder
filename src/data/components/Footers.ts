@@ -42,6 +42,7 @@ export const Footer: footerSchema = {
                     draggable: false,
                     resizable: false,
                     editable: false,
+                    props:{},
                     link: "",
                     children: [
                         // Logo/Brand
@@ -58,6 +59,7 @@ export const Footer: footerSchema = {
                             resizable: false,
                             editable: false,
                             link: "/",
+                            props:{},
                             children: [
                                 {
                                     id: 'footer-logo-image',
@@ -102,7 +104,7 @@ export const Footer: footerSchema = {
                         },
                         // Social Media Icons
                         {
-                            id: 'footer-social-icons',
+                            id: 'flex-social-icons',
                             type: 'flex',
                             title: 'Social Media Icons',
                             responsiveStyles: { baseStyle: {}, tablet: {}, desktop: {}, hoverStyles: {} },
@@ -113,6 +115,7 @@ export const Footer: footerSchema = {
                             draggable: false,
                             resizable: false,
                             editable: false,
+                            props:{},
                             link: "",
                             children: [
                                 // Google Icon
@@ -201,7 +204,7 @@ export const Footer: footerSchema = {
 
                 // Column 2: Product Links
                 {
-                    id: 'footer-col-prottduct',
+                    id: 'flex-col-prottduct',
                     type: 'flex',
                     title: 'Product Column',
                     responsiveStyles: { baseStyle: {}, tablet: {}, desktop: {}, hoverStyles: {} },
@@ -213,6 +216,7 @@ export const Footer: footerSchema = {
                     resizable: false,
                     editable: false,
                     link: "",
+                    props:{},
                     children: [
                         {
                             id: 'heading-product',
@@ -239,7 +243,7 @@ export const Footer: footerSchema = {
 
                 // Column 3: Services Links
                 {
-                    id: 'footer-col-services',
+                    id: 'flex-col-services',
                     type: 'flex',
                     title: 'Services Column',
                     responsiveStyles: { baseStyle: {}, tablet: {}, desktop: {}, hoverStyles: {} },
@@ -273,11 +277,12 @@ export const Footer: footerSchema = {
                         { id: 'link-lorem4-s', type: 'text', title: 'Lorem Ipsum Link 4', responsiveStyles: { baseStyle: { "color": "#6B7280" } }, styles: {}, tailWindClasses: "text-base mb-2 hover:text-blue-600 cursor-pointer", customClasses: "", classTracking: {}, draggable: false, resizable: false, editable: false, link: "#", props: { text: "Lorem Ipsum" } },
                         { id: 'link-lorem5-s', type: 'text', title: 'Lorem Ipsum Link 5', responsiveStyles: { baseStyle: { "color": "#6B7280" } }, styles: {}, tailWindClasses: "text-base mb-2 hover:text-blue-600 cursor-pointer", customClasses: "", classTracking: {}, draggable: false, resizable: false, editable: false, link: "#", props: { text: "Lorem Ipsum" } },
                     ],
+                    props:{}
                 },
 
                 // Column 4: Company Links
                 {
-                    id: 'footer-col-company',
+                    id: 'flex-col-company',
                     type: 'flex',
                     title: 'Company Column',
                     responsiveStyles: { baseStyle: {}, tablet: {}, desktop: {}, hoverStyles: {} },
@@ -310,11 +315,12 @@ export const Footer: footerSchema = {
                         { id: 'link-privacy-policy', type: 'text', title: 'Privacy Policy Link', responsiveStyles: { baseStyle: { "color": "#6B7280" } }, styles: {}, tailWindClasses: "text-base mb-2 hover:text-blue-600 cursor-pointer", customClasses: "", classTracking: {}, draggable: false, resizable: false, editable: false, link: "/privacy-policy", props: { text: "Privacy Policy" } },
                         { id: 'link-careers', type: 'text', title: 'Careers Link', responsiveStyles: { baseStyle: { "color": "#6B7280" } }, styles: {}, tailWindClasses: "text-base mb-2 hover:text-blue-600 cursor-pointer", customClasses: "", classTracking: {}, draggable: false, resizable: false, editable: false, link: "/careers", props: { text: "Careers" } },
                     ],
+                    props:{}
                 },
 
                 // Column 5: More Links
                 {
-                    id: 'footer-col-more',
+                    id: 'flex-col-more',
                     type: 'flex',
                     title: 'More Column',
                     responsiveStyles: { baseStyle: {}, tablet: {}, desktop: {}, hoverStyles: {} },
@@ -346,6 +352,7 @@ export const Footer: footerSchema = {
                         { id: 'link-lorem2-m', type: 'text', title: 'Lorem Ipsum Link 2', responsiveStyles: { baseStyle: { "color": "#6B7280" } }, styles: {}, tailWindClasses: "text-base mb-2 hover:text-blue-600 cursor-pointer", customClasses: "", classTracking: {}, draggable: false, resizable: false, editable: false, link: "#", props: { text: "Lorem Ipsum" } },
                         { id: 'link-lorem3-m', type: 'text', title: 'Lorem Ipsum Link 3', responsiveStyles: { baseStyle: { "color": "#6B7280" } }, styles: {}, tailWindClasses: "text-base mb-2 hover:text-blue-600 cursor-pointer", customClasses: "", classTracking: {}, draggable: false, resizable: false, editable: false, link: "#", props: { text: "Lorem Ipsum" } },
                     ],
+                    props:{}
                 },
             ],
             props: {},
