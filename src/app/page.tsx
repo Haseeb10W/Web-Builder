@@ -2,6 +2,7 @@
 
 import BlockReader from "@/components/BlockReader";
 import { themeOne } from "@/data/themeOne";
+import { loadAllStyles } from "@/lib/builder/renderHandling";
 import { Block } from "@/types/blocksSchema";
 import { SiteData, themeData } from "@/types/editSchema";
 import Image from "next/image";
@@ -47,6 +48,7 @@ export default function Home() {
       }
     }
 
+loadAllStyles('all', fullContent)
 
     setRenderData(fullContent)
 

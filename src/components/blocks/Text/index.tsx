@@ -20,8 +20,6 @@ export default function Text({block, index, onDelete, onCopy}: blockProps) {
 
  
   
-
-  
   if(!textBlock?.editable && !textBlock?.draggable){
     return (
       <p key={textBlock?.id} id={textBlock?.customCSSID} style= {{

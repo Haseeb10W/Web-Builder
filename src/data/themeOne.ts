@@ -1,6 +1,7 @@
 import { themeData } from "@/types/editSchema";
 import { HeaderOne } from "./components/Headers";
 import { BannerOne } from "./components/HeroSections";
+import { ChooseUs } from "./components/ChosseUs";
 
 
 export const themeOne : themeData ={
@@ -14,6 +15,7 @@ export const themeOne : themeData ={
       id: 'page-home-34454',
       content: [
            BannerOne,
+           ChooseUs
       
       ],
         styling: {
@@ -28,6 +30,7 @@ export const themeOne : themeData ={
 
     headers: [
       HeaderOne,
+     
 
     ],
     footers: [

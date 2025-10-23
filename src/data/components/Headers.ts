@@ -1,4 +1,5 @@
 import { headerSchema } from "@/types/editSchema";
+import React from "react";
 
 
 
@@ -23,7 +24,7 @@ export const HeaderOne:headerSchema = {
           styles  : {
 
           },
-          tailWindClasses: "p-2 flex justify-between items-center w-[100%] bg-gray-300",
+          tailWindClasses: "px-2 py-4 flex justify-between items-center w-[100%] ",
           customClasses: "my-custom-class",
           classTracking: {},
           draggable: false,
@@ -47,7 +48,7 @@ export const HeaderOne:headerSchema = {
           styles  : {
 
           },
-          tailWindClasses: "p-2 flex items-center",
+          tailWindClasses: " items-center justify-between ",
           customClasses: "my-custom-class",
           classTracking: {},
           draggable: false,
@@ -92,6 +93,7 @@ export const HeaderOne:headerSchema = {
           responsiveStyles: {
             baseStyle:{
               // 'flex-direction':'column'
+              "display":"none"
             },
             tablet: {},
             desktop: {},
@@ -100,7 +102,7 @@ export const HeaderOne:headerSchema = {
           styles  : {
 
           },
-          tailWindClasses: "p-2 flex !gap-3",
+          tailWindClasses: "flex !gap-5",
           customClasses: "my-custom-class",
           classTracking: {},
           draggable: false,

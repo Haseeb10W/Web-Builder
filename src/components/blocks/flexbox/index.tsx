@@ -32,7 +32,7 @@ export default function FlexBox({block, index, onDelete, onCopy}:blockProps) {
       <div id={flexBlock?.customCSSID} style={{
         ...flexBlock?.styles
       }}
-      className={`block-${flexBlock?.id} ${flexBlock?.tailWindClasses} relative ${flexBlock?.customClasses} ${trackingClass}`}>
+      className={`block-${flexBlock?.id} flex ${flexBlock?.tailWindClasses} relative ${flexBlock?.customClasses} ${trackingClass}`}>
         {children.map((child, idx) => (
           <BlockReader key={child.id} props={child} index={idx} />
         ))}
@@ -50,7 +50,7 @@ export default function FlexBox({block, index, onDelete, onCopy}:blockProps) {
         cssId: flexBlock?.customCSSID,
     },
 
-    classes : `${children.length === 0 ? 'flex-wout-child' : 'flex-with-child'}   relative   block-editor-${flexBlock?.id} ${flexBlock?.tailWindClasses} ${flexBlock?.customClasses} ${trackingClass}`
+    classes : `${children.length === 0 ? 'flex-wout-child' : 'flex-with-child'}   relative   block-editor-${flexBlock?.id} flex ${flexBlock?.tailWindClasses} ${flexBlock?.customClasses} ${trackingClass}`
 
   }
 
