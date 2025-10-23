@@ -4,6 +4,7 @@ import { Radius } from "lucide-react";
 export const demoData :pageSchema  = {
 
       kind: "page",
+      pageStatus: "main",
       id: "34127ft346sfd",
       slug: "home",
       title: "Home",
@@ -11,6 +12,7 @@ export const demoData :pageSchema  = {
       content: [
          { id: 'text-145j9u923',
           type: 'text',
+          title: 'Text Block',
           responsiveStyles: {
             baseStyle:{"color": "black"},
             tablet: {"tablet": "768px"},
@@ -32,6 +34,7 @@ export const demoData :pageSchema  = {
            }},
 
            { id: 'image-2nohqwy28',
+          title: 'Image Block',
           type: 'image',
           responsiveStyles: {
             baseStyle:{"border-radius":"10px"},
@@ -58,6 +61,7 @@ export const demoData :pageSchema  = {
          }},
 
           { id: 'heading-3dnh3q9y98',
+            title: 'Heading Block',
           type: 'heading',
           responsiveStyles: {
             baseStyle:{"": ""},
@@ -81,6 +85,7 @@ export const demoData :pageSchema  = {
           }},
 
         { id: 'text-1hewh9y8322y0',
+          title: 'Text Block',
           type: 'text',
           responsiveStyles: {
             baseStyle:{"color": "black"},
@@ -103,6 +108,7 @@ export const demoData :pageSchema  = {
            }},
 
         { id: 'button-5nsdfjuhw998',
+          title: 'Button Block',
           type: 'button',
           responsiveStyles: {
             baseStyle:{},
@@ -130,6 +136,7 @@ export const demoData :pageSchema  = {
 
         { id: 'flex-6bndsiugr2398u',
           type: 'flex',
+          title: 'Flex Container',
           responsiveStyles: {
             baseStyle:{
                'flex-direction': 'row',
@@ -153,6 +160,7 @@ export const demoData :pageSchema  = {
 
         // flex one
          { id: 'flex-7hbdhsuhyr32',
+          title: 'Flex Container',
           type: 'flex',
           responsiveStyles: {
             baseStyle:{
@@ -175,6 +183,7 @@ export const demoData :pageSchema  = {
            children:[
         
         { id: 'image-1fuhr98yq43u',
+          
           type: 'image',
           responsiveStyles: {
             baseStyle:{"color": "red"},
@@ -191,7 +200,7 @@ export const demoData :pageSchema  = {
           draggable: false,
           resizable: false,
           editable: false,
-          link: "/home",
+          title: 'Image Block',
           props : {
           src: "http://localhost:6200/media/dress3.jpg",
           alt: "img",
@@ -202,6 +211,7 @@ export const demoData :pageSchema  = {
 
         { id: 'heading-2fniuhr2g9t2ndsoi',
           type: 'heading',
+          title: 'Heading Block',
           responsiveStyles: {
             baseStyle:{"color": "red"},
             tablet: {"tablet": "768px"},
@@ -224,6 +234,7 @@ export const demoData :pageSchema  = {
         }},
               
         { id: 'text-3hrh398y9hir',
+          title: 'Text Block',  
           type: 'text',
           responsiveStyles: {
             baseStyle:{},
@@ -247,6 +258,7 @@ export const demoData :pageSchema  = {
 
         { id: 'button-4nwreoh9324y9',
           type: 'button',
+          title: 'Button Block',  
           responsiveStyles: {
             baseStyle:{},
             tablet: {},
@@ -298,6 +310,7 @@ export const demoData :pageSchema  = {
            children:[
         { id: 'image-1hi3h498yerhih9',
           type: 'image',
+          title: 'Image Block',
           responsiveStyles: {
             baseStyle:{"color": "red"},
             tablet: {"tablet": "768px"},
@@ -324,6 +337,7 @@ export const demoData :pageSchema  = {
 
         { id: 'heading-2y398yndfshnf',
           type: 'heading',
+          title: 'Heading Block',
           responsiveStyles: {
             baseStyle:{"color": "red"},
             tablet: {"tablet": "768px"},
@@ -346,6 +360,7 @@ export const demoData :pageSchema  = {
         }},
               
         { id: 'text-3hu9833y982u',
+          title: 'Text Block',
           type: 'text',
           responsiveStyles: {
             baseStyle:{},
@@ -367,7 +382,8 @@ export const demoData :pageSchema  = {
           text: "It’s no secret that the digital industry is booming. From exciting startups to global brands, companies are reaching out to digital agencies, responding to the new possibilities available. However, the industry is fast becoming overcrowded, heaving with agencies offering similar services — on the surface, at least. Producing creative, fresh projects is the key to standing out. Unique side projects are the best place to innovate, but balancing commercially and creatively lucrative work is tricky. So, this article looks at …",
         }},
 
-        { id: 'button-4hwopi87237',
+        { 
+          id: 'button-4hweopi87237',
           type: 'button',
           responsiveStyles: {
             baseStyle:{},
@@ -384,7 +400,7 @@ export const demoData :pageSchema  = {
           draggable: false,
           resizable: false,
           editable: false,
-          link: "/home",
+          
            props : {
            text: "continue Now",
            link: "",

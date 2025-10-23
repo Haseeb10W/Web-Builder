@@ -18,10 +18,10 @@ function MenuSubNavs({items, status}:subNavProps) {
     <React.Fragment>
     {
                items?.subNav && items?.subNav?.length > 0 && (
-                <ul className={`subMenuList hidden min-w-[100px]   absolute ${status == 'first'? 'top-full left-0 group-hover:block': 'top-0 left-[110%]'}  bg-gray-200`}>
+                <ul className={`subMenuList hidden min-w-[100px]  absolute ${status == 'first'? '  top-full left-0 group-hover:block': 'top-0 left-[110%] nfst-sub'}  bg-gray-200`}>
                   {
                     items?.subNav?.map((subItems, subIndex) => (
-                      <li className='subMenuItems subnav' key={subIndex}>
+                      <li className='subMenuItems subnav relative' key={subIndex}>
                         <Link href={subItems?.link || '#'} className='subMenuLink'>{subItems?.text}</Link>
                         {
                           

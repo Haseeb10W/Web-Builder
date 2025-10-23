@@ -19,7 +19,7 @@ export type TextBlockType = 'text' | 'heading'
 
  export interface BaseBlock { 
   id: string;
-  title: string;
+  title?: string;
   type: string; 
   responsiveStyles ?: {
     baseStyle?:{[key:string]: string};
@@ -38,7 +38,7 @@ export type TextBlockType = 'text' | 'heading'
   props?: {[key: string]: any}
   resizable?: boolean;
   editable?: boolean;
-  link: string;
+  link?: string;
 }
 
 
