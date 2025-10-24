@@ -1,7 +1,7 @@
 import { settingTypes } from "@/contexts/settingsType"
 import { findBlock, findBlockOverall, findBlocksInContainer } from "@/lib/builder/blockHandlers"
 import { handleSettingChange } from "@/lib/builder/settingHandlers"
-import { getValueForFields } from "@/lib/builder/settingsSetter"
+import { customSettingSetter, getValueForFields } from "@/lib/builder/settingsSetter"
 import { setSettingField } from "@/lib/fieldSettings/fields"
 import { Block } from "@/types/blocksSchema"
 import { editSchema } from "@/types/editSchema"
@@ -12,7 +12,9 @@ import { validate } from "uuid"
 
  const ImageSettings:settingsSetupSchema = {
 
-  // Content
+   /*+++++++++++++++++++++++++++++++++++++++  
+                  Content
+  ++++++++++++++++++++++++++++++++++++++++*/
   content : [
 
     // 0 
@@ -392,8 +394,40 @@ import { validate } from "uuid"
   
       //14 :: Other
          setSettingField('heading',{label: "Other", for : 'other', tabAllow: true }),
+
+      //15 :: CSS Classes
+            setSettingField('textClasses', {
+              label: "CSS Classes", 
+              labelId: "class-text-cssClass",
+              placeholder: "Enter the CSS classes",
+              value:'',
+              for : 'customClasses',
+              tab: 'other',
+              responsive:"off"
+             }),
+            
+       //16 :: CSS ID
+              setSettingField('textClasses', {
+              label: "CSS ID", 
+              labelId: "class-text-cssId",
+              placeholder: "Enter the CSS ID",
+              value:'',
+              for : 'customCSSID',
+              tab: 'other',
+              responsive:"off"
+             }),
+      
+       //17 : Order
+      
+             setSettingField('number', {
+              label: "Order", 
+              labelId: "order-text",
+              value:'',
+              for : 'order',
+              tab: 'other',
+             }),
   
-      //15
+      //18
         setSettingField('number', {
           label: "Zindex", 
           labelId: "z-index-text",
@@ -403,7 +437,7 @@ import { validate } from "uuid"
          }),
   
   
-      //16
+      //19
         setSettingField('iconSelect', {
           label: "Cursor Pointer",
           labelId: "cursor-pointer-style",
@@ -448,7 +482,7 @@ import { validate } from "uuid"
           
     }),
   
-    // 17
+    // 20
     setSettingField('transition', {
           label: "Apply Transition",
           labelId: "apply-transition",
@@ -468,6 +502,36 @@ import { validate } from "uuid"
           tab : 'other',        
     }),
   
+      //21 :: 
+  /* ++++++++++++++++++++++ Custom +++++++++++++++++++++++++++++= */
+  setSettingField('heading',{label: "Custom", for : 'custom', tabAllow: true }),
+
+  //22 : Tailwind Classes
+      setSettingField('textarea', {
+      label: "Tailwind Classes", 
+      labelId: "tailwind-classes-text",
+      placeholder: 'Add your tailwind classes here',
+      row: 1,
+      for : 'tailWindClasses',
+      tab: 'custom',
+      responsive:'off'
+    }
+    ),
+
+  //23 : CSS 
+
+      setSettingField('cssEditor', {
+      label: "CSS Styles", 
+      labelId: "css-styles-text",
+      placeholder: 'Add your CSS styles here',
+      row: 6,
+      for : 'customCSSCode',
+      tab: 'custom',
+      
+      responsive:'off'
+    }
+    ),
+
 
 
   ]
@@ -547,16 +611,43 @@ export const ImageSettingsSet:settingsSetArgs = (settingType, data ,screenType)=
            settings.settings[6].props.value = getValueForFields(findBlock, screenType, settings.settings[6].props.currentStatus || 'normal', "height");
            settings.settings[7].props.value = getValueForFields(findBlock, screenType, settings.settings[7].props.currentStatus || 'normal', "min-height");
            settings.settings[8].props.value = getValueForFields(findBlock, screenType, settings.settings[8].props.currentStatus || 'normal', "max-height");
-   
-      
-    }
 
+           // Position
+                 
+                 settings.settings[10].props.value = customSettingSetter(findBlock, screenType, settings.settings[10].props.currentStatus || 'normal', ['position', 'top', 'left', 'bottom', 'right'])
+                 // Transform
+                //  settings.settings[13].props.value = getValueForFields(findBlock, screenType, settings.settings[13].props.currentStatus || 'normal', "transform");
+           
+                 //Overflow
+                 settings.settings[12].props.value = getValueForFields(findBlock, screenType, settings.settings[12].props.currentStatus || 'normal', "overflow-x");
+           
+                 settings.settings[13].props.value = getValueForFields(findBlock, screenType, settings.settings[13].props.currentStatus || 'normal', "overflow-y");
+           
+                 // Other
+           
+                 // CSS classes and Id
+                 settings.settings[15].props.value = findBlock?.customClasses
+                 settings.settings[16].props.value = findBlock?.customCSSID
+           
+                 // Order
+                 settings.settings[17].props.value = getValueForFields(findBlock, screenType, settings.settings[17].props.currentStatus || 'normal', "order");
+                 // Z-Index
+                 settings.settings[18].props.value = getValueForFields(findBlock, screenType, settings.settings[18].props.currentStatus || 'normal', "z-index");
+                 // Cursor
+                 settings.settings[19].props.value = getValueForFields(findBlock, screenType, settings.settings[19].props.currentStatus || 'normal', "cursor");
+           
+                 // Transition
+                 settings.settings[20].props.value = customSettingSetter(findBlock, screenType, settings.settings[20].props.currentStatus || 'normal', ['transition-property', 'transition-delay', 'transition-duration', 'transition-timing-function'])
+           
+                 // Custom 
+                 settings.settings[22].props.value = findBlock?.tailWindClasses
+                 settings.settings[23].props.value = findBlock?.customCSSCode
+               }
+   
     
 
     // console.log(settings);
     return settings
     
   }
-
-
 }

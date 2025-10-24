@@ -1,4 +1,7 @@
 import { themeData } from "@/types/editSchema";
+import { HeaderOne } from "./components/Headers";
+import { BannerOne } from "./components/HeroSections";
+import { ChooseUs } from "./components/ChosseUs";
 
 
 export const themeOne : themeData ={
@@ -7,69 +10,16 @@ export const themeOne : themeData ={
     pages: [
       {
       kind : 'page',
-        title: 'Home Page',
-        slug : 'home',
-        id: 'page-home-34454',
-        content: [
-
-          { id: 'flex-7hbdhsuhyr32',
-          type: 'flex',
-          title: 'Flex Container',
-          responsiveStyles: {
-            baseStyle:{
-              'flex-direction':'column'
-            },
-            tablet: {},
-            desktop: {},
-            hoverStyles: {},
-          },
-          styles  : {
-
-          },
-          tailWindClasses: "p-2 flex w-[49.5%] ",
-          customClasses: "my-custom-class",
-          classTracking: {},
-          draggable: false,
-          resizable: false,
-          editable: false,
-          link: "/home",
-           children:[
-        
-            // All Blocks inside this flex container
-        
-
-        { id: 'heading-2fnijoig9t2ndsoi',
-          type: 'heading',
-          title: 'Heading Block',
-          responsiveStyles: {
-            baseStyle:{"color": "red"},
-            tablet: {"tablet": "768px"},
-            desktop: {"desktop": "1024px"},
-            hoverStyles: {"color": "yellow"},
-          },
-          styles  : {
-
-          },
-          tailWindClasses: "text-xl font-bold",
-          customClasses: "my-custom-class",
-          classTracking: {},
-          draggable: false,
-          resizable: false,
-          editable: false,
-          link: "/home",
-           props : {
-           text: " page ",
-          level: 'h1',
-        }},
-        
-          
-        ],
-        props: {},
-      },
+      title: 'Home Page',
+      slug : 'home',
+      id: 'page-home-34454',
+      content: [
+           BannerOne,
+           ChooseUs
       
       ],
         styling: {
-          },
+        },
         
         active: true,
         editable : false,
@@ -77,78 +27,10 @@ export const themeOne : themeData ={
 
     },
   ],
+
     headers: [
-      {
-      kind : 'header',
-        title: 'header Page',
-        slug : 'header1',
-        id: 'p-header-34454',
-        content: [
-
-          { id: 'flex-7hbddhehhr32',
-          type: 'flex',
-          title: 'Flex Container',
-          responsiveStyles: {
-            baseStyle:{
-              'flex-direction':'column'
-            },
-            tablet: {},
-            desktop: {},
-            hoverStyles: {},
-          },
-          styles  : {
-
-          },
-          tailWindClasses: "p-2 flex w-[49.5%] ",
-          customClasses: "my-custom-class",
-          classTracking: {},
-          draggable: false,
-          resizable: false,
-          editable: false,
-          link: "/home",
-           children:[
-        
-            // All Blocks inside this flex container
-        
-
-        { id: 'heading-2fniuhr2g9t2ndsoi',
-          type: 'heading',
-          title: 'Heading Block',
-          responsiveStyles: {
-            baseStyle:{"color": "red"},
-            tablet: {"tablet": "768px"},
-            desktop: {"desktop": "1024px"},
-            hoverStyles: {"color": "yellow"},
-          },
-          styles  : {
-
-          },
-          tailWindClasses: "text-xl font-bold",
-          customClasses: "my-custom-class",
-          classTracking: {},
-          draggable: false,
-          resizable: false,
-          editable: false,
-          link: "/home",
-           props : {
-           text: "This is the header heading",
-          level: 'h1',
-        }},
-        
-          
-        ],
-        props: {},
-      },
-      
-      ],
-        styling: {
-          },
-        
-        active: true,
-        editable : false,
-        
-
-    },
+      HeaderOne,
+     
 
     ],
     footers: [

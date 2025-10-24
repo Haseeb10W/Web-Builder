@@ -57,7 +57,7 @@ export const appliedSettings = (applied:string | undefined, foundBlock:Block | n
     if(foundBlock && applied){
       
       (foundBlock as any)[applied] = fieldValue
-      // foundBlock.customClasses = fieldValue
+        // foundBlock.customClasses = fieldValue
       settingField.props.value = fieldValue
     }
   }

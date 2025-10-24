@@ -16,7 +16,7 @@ export default function Icon({block, index, onDelete, onCopy}:blockProps) {
     if(!IconBlock?.editable && !IconBlock?.draggable){
     return (
     <div>
-        <DynamicIcons name={IconBlock?.props?.icon || ''} classes={`h-5 w-5`} styles= {{
+        <DynamicIcons name={IconBlock?.props?.icon || ''} classes={`h-5 w-5 ${trackingClass} ${IconBlock?.tailWindClasses} ${IconBlock?.customClasses}`} styles= {{
         ...IconBlock?.styles}}  />
     </div>                 
        )
@@ -37,7 +37,7 @@ export default function Icon({block, index, onDelete, onCopy}:blockProps) {
     <>
     <Section id={IconBlock?.id} onDelete={(id)=>onDelete?.(id)} onCopy={(id)=>onCopy?.(id)} index={index}allStyles={IconStyles}>   
       <div>
-        <DynamicIcons key={IconBlock?.id} name={IconBlock?.props?.icon || ''}  classes={`  ${trackingClass}`}/>
+        <DynamicIcons key={IconBlock?.id} name={IconBlock?.props?.icon || ''}  classes={` `}/>
       </div>                
   </Section>
     </>

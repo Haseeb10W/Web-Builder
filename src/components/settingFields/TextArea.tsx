@@ -16,7 +16,7 @@ export default function TextArea({props, change}: settingFieldProps ) {
         value: value
       };
 
-    change?.(JSON.stringify(fullValue))
+    change?.(value)
     
     
 

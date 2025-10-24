@@ -73,6 +73,7 @@ import {
   List,
   Logs,
   Menu,
+  Search
   
 
 
@@ -172,7 +173,8 @@ export const iconMap : {[key:string]: React.ElementType} ={
   template: ImInsertTemplate,
   list : List,
   logs : Logs,
-  menu : Menu
+  menu : Menu,
+  search:Search
 
 
 

@@ -1,16 +1,14 @@
-import { ContentSchema, headerSchema, pageSchema, SiteData } from "@/types/editSchema";
-import { Radius } from "lucide-react";
+import { pageSchema } from "@/types/editSchema";
 
 export const demoData :pageSchema  = {
 
       kind: "page",
-      pageStatus: "main",
       id: "34127ft346sfd",
       slug: "home",
       title: "Home",
       description: "Welcome to our homepage",
       content: [
-         { id: 'text-145j9u923',
+        { id: 'text-145j9u923',
           type: 'text',
           title:"text",
           responsiveStyles: {
@@ -31,7 +29,7 @@ export const demoData :pageSchema  = {
           link: "",
           props : {
           text: "Blogging Website",
-           }},
+        }},
 
         { id: 'image-2nohqwy28',
           type: 'image',
@@ -53,7 +51,7 @@ export const demoData :pageSchema  = {
           editable: false,
           link: "/home",
           props : {
-          src: "/public/",
+          src: "http://localhost:6200/media/coffee2.jpg",
           alt: "img",
           link: "",
           width: "",
@@ -61,9 +59,8 @@ export const demoData :pageSchema  = {
          }},
 
           { id: 'heading-3dnh3q9y98',
-            title: 'Heading Block',
           type: 'heading',
-          
+          title:"heading",
           responsiveStyles: {
             baseStyle:{"": ""},
             tablet: {"tablet": "768px"},
@@ -86,9 +83,8 @@ export const demoData :pageSchema  = {
           }},
 
         { id: 'text-1hewh9y8322y0',
-          title: 'Text Block',
           type: 'text',
-          
+          title:"text",
           responsiveStyles: {
             baseStyle:{"color": "black"},
             tablet: {"tablet": "768px"},
@@ -110,9 +106,8 @@ export const demoData :pageSchema  = {
            }},
 
         { id: 'button-5nsdfjuhw998',
-          title: 'Button Block',
           type: 'button',
-          
+          title:"button",
           responsiveStyles: {
             baseStyle:{},
             tablet: {},
@@ -163,9 +158,8 @@ export const demoData :pageSchema  = {
 
         // flex one
          { id: 'flex-7hbdhsuhyr32',
-          title: 'Flex Container',
           type: 'flex',
-         
+          title:'flex',
           responsiveStyles: {
             baseStyle:{
               'flex-direction':'column'
@@ -187,7 +181,6 @@ export const demoData :pageSchema  = {
            children:[
         
         { id: 'image-1fuhr98yq43u',
-          
           type: 'image',
           title:"image",
           responsiveStyles: {
@@ -205,7 +198,7 @@ export const demoData :pageSchema  = {
           draggable: false,
           resizable: false,
           editable: false,
-          
+          link: "/home",
           props : {
           src: "http://localhost:6200/media/dress3.jpg",
           alt: "img",
@@ -239,9 +232,8 @@ export const demoData :pageSchema  = {
         }},
               
         { id: 'text-3hrh398y9hir',
-          title: 'Text Block',  
           type: 'text',
-          
+          title:"text",
           responsiveStyles: {
             baseStyle:{},
             tablet: {},
@@ -367,9 +359,8 @@ export const demoData :pageSchema  = {
         }},
               
         { id: 'text-3hu9833y982u',
-          title: 'Text Block',
           type: 'text',
-          
+          title:'text',
           responsiveStyles: {
             baseStyle:{},
             tablet: {},
@@ -390,8 +381,7 @@ export const demoData :pageSchema  = {
           text: "It’s no secret that the digital industry is booming. From exciting startups to global brands, companies are reaching out to digital agencies, responding to the new possibilities available. However, the industry is fast becoming overcrowded, heaving with agencies offering similar services — on the surface, at least. Producing creative, fresh projects is the key to standing out. Unique side projects are the best place to innovate, but balancing commercially and creatively lucrative work is tricky. So, this article looks at …",
         }},
 
-        { 
-          id: 'button-4hweopi87237',
+        { id: 'button-4hwopi87237',
           type: 'button',
           title:'button',
           responsiveStyles: {
@@ -409,7 +399,7 @@ export const demoData :pageSchema  = {
           draggable: false,
           resizable: false,
           editable: false,
-          
+          link: "/home",
            props : {
            text: "continue Now",
            link: "",
@@ -434,21 +424,3 @@ export const demoData :pageSchema  = {
   },
   editable : false,
 }
-
-export const headData :headerSchema = {
-      kind: 'header',
-      title : 'Home',
-      slug : 'home',
-      id : '12',
-      content: [],
-      styling: {
-        
-      },
-      description: "hello",
-      active : false,
-      editable : true,
-  
-}
-
-
-

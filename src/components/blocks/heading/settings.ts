@@ -1,7 +1,7 @@
 import { settingTypes } from "@/contexts/settingsType"
 import { findBlock, findBlockOverall, findBlocksInContainer } from "@/lib/builder/blockHandlers"
 import { handleSettingChange } from "@/lib/builder/settingHandlers"
-import { backgroundSettingsSetter, getValueForFields } from "@/lib/builder/settingsSetter"
+import { backgroundSettingsSetter, customSettingSetter, getValueForFields } from "@/lib/builder/settingsSetter"
 import { setSettingField } from "@/lib/fieldSettings/fields"
 import { Block } from "@/types/blocksSchema"
 import { editSchema } from "@/types/editSchema"
@@ -284,11 +284,39 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         for : 'word-spacing',
         tab: 'typography',
   }),
-
-  // 16
-  setSettingField('heading', {label: "Background", for : 'background', tabAllow: true}),
+  
+  //16
+    /* +++++++++++++++++  text Shadow +++++++++++++++++++++++*/
+  setSettingField('heading', {label: "text Shadow", for : 'textshadow', tabAllow: true}),
 
   // 17 : Pseudo Status 
+    setSettingField('status', { 
+      for : 'textshadow',
+      tab: 'textshadow',
+      statusOptions : [
+        {name: 'Normal', value: 'normal' },
+        {name: 'Hover', value: 'hover' }, 
+      ],
+    }),
+
+
+  // 18 
+  setSettingField('boxShadow', {
+        label: "BoxShadow",
+        labelId: "box-shadow-head",
+        for : 'textshadow',
+        tab : 'textshadow',
+        value:'',  
+        responsive: 'off',
+        defaultNot:true  
+      
+  }), 
+
+   // 19  :
+   /* +++++++++++++++++ background  +++++++++++++++++++++++*/
+  setSettingField('heading', {label: "Background", for : 'background', tabAllow: true}),
+
+  // 20 : Pseudo Status 
     setSettingField('status', { 
       for : 'background',
       tab: 'background',
@@ -301,7 +329,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
 
     }),
 
-  // 18
+  // 21
   setSettingField('background', {
         label: "Background Type",
         labelId: "head-background",
@@ -318,11 +346,11 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
     
 
   
-  // 19 : Border
+  // 22 : Border
   /* +++++++++++++++++  Border  +++++++++++++++++++++++*/
   setSettingField('heading', {label: "Border", for : 'border', tabAllow: true}),
 
-   // 20 : Pseudo Status 
+   // 23 : Pseudo Status 
   setSettingField('status', { 
     for : 'border',
     tab: 'border',
@@ -336,7 +364,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
 
   }),
 
-  // 21
+  // 24
   setSettingField('select', {
         label: "Border Style",
         labelId: "head-border-style",
@@ -357,7 +385,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
   }),
 
   
-  //22
+  //25
   setSettingField('colors', {
     label: "Border Color", 
     labelId: "head-border-color",
@@ -365,7 +393,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
     tab: 'border',
   }),
   
-  //23
+  //26
         setSettingField('spacing', {
         label: "Border Width",
         labelId: "head-border-width",
@@ -373,7 +401,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         tab: 'border',
     }
       ),
-  //24
+  //27
   setSettingField('spacing', {
       label: "Border Radius",
       labelId: "head-border-radius",
@@ -383,12 +411,12 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
   }
     ),
 
-  // 25
+  // 28
 
   /* +++++++++++++++++  Box Shadow +++++++++++++++++++++++*/
   setSettingField('heading', {label: "Box Shadow", for : 'boxshadow', tabAllow: true}),
 
-  // 26 : Pseudo Status 
+  // 29 : Pseudo Status 
     setSettingField('status', { 
       for : 'boxshadow',
       tab: 'boxshadow',
@@ -399,7 +427,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
     }),
 
 
-  // 27 
+  // 30
   setSettingField('boxShadow', {
         label: "BoxShadow",
         labelId: "box-shadow-head",
@@ -529,9 +557,9 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
          tabOpen: true
   }),
   
- // 8: Height
+ // 8: Max Height
   setSettingField('size', {
-        label: "Max Height", 
+        label: "Min Height", 
         labelId: "head-max-height",
         unitOptions: [
           {name: "pixels", value: "px"},
@@ -563,7 +591,8 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
          tabOpen: true
   }),
 
-  //10 :: positioning
+   //10 :: positioning
+  /* +++++++++++++++++  Positioning +++++++++++++++++++++++*/
     setSettingField('heading',{label: "Positioning", for : 'positioning', tabAllow: true }),
 
   // 11 : Pseudo Status 
@@ -579,7 +608,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
 
   }),
 
-  //12
+   //12 : position
     setSettingField('position', {
         label: "Position",
         labelId: "position",
@@ -594,7 +623,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         tab : 'positioning',
   }),
 
-    //13
+    //13 : Transform 
     setSettingField('transform', {
         label: "Transform Effect",
         labelId: "transform-effect",
@@ -610,10 +639,11 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         
   }),
 
-  //14 :: Scrolling
+      //14 ::
+    /* +++++++++++++++++  OverFlow +++++++++++++++++++++++*/
     setSettingField('heading',{label: "OverFlow", for : 'overflow', tabAllow: true }),
     
-  //15
+     //15 : overflow-x
         setSettingField('select', {
         label: "Overflow-X",
         labelId: "overflow-x",
@@ -627,7 +657,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         tab : 'overflow',
       }),
 
-  //16
+  //16 :overflow-y
         setSettingField('select', {
         label: "Overflow-Y",
         labelId: "overflow-y",
@@ -644,7 +674,39 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
     //17 :: Other
        setSettingField('heading',{label: "Other", for : 'other', tabAllow: true }),
 
-    //18
+    //18 :: CSS Classes
+      setSettingField('textClasses', {
+        label: "CSS Classes", 
+        labelId: "class-text-cssClass",
+        placeholder: "Enter the CSS classes",
+        value:'',
+        for : 'customClasses',
+        tab: 'other',
+        responsive:"off"
+       }),
+
+    //19 :: CSS ID
+        setSettingField('textClasses', {
+        label: "CSS ID", 
+        labelId: "class-text-cssId",
+        placeholder: "Enter the CSS ID",
+        value:'',
+        for : 'customCSSID',
+        tab: 'other',
+        responsive:"off"
+       }),
+
+    //20 : Order
+
+       setSettingField('number', {
+        label: "Order", 
+        labelId: "order-text",
+        value:'',
+        for : 'order',
+        tab: 'other',
+       }),
+
+       //21 : Z-index
       setSettingField('number', {
         label: "Zindex", 
         labelId: "z-index-text",
@@ -654,7 +716,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
        }),
 
 
-    //19
+      //22 :: Cursor
       setSettingField('iconSelect', {
         label: "Cursor Pointer",
         labelId: "cursor-pointer-style",
@@ -699,7 +761,7 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         
   }),
 
-  // 20
+  // 23  : Transition
   setSettingField('transition', {
         label: "Apply Transition",
         labelId: "apply-transition",
@@ -718,6 +780,38 @@ import { settingsSetArgs, settingsSetupSchema } from "@/types/settingsSchema"
         for : 'other',
         tab : 'other',        
   }),
+
+    //24 :: 
+  /* ++++++++++++++++++++++ Custom +++++++++++++++++++++++++++++= */
+  setSettingField('heading',{label: "Custom", for : 'custom', tabAllow: true }),
+
+  //25 : Tailwind Classes
+      setSettingField('textarea', {
+      label: "Tailwind Classes", 
+      labelId: "tailwind-classes-text",
+      placeholder: 'Add your tailwind classes here',
+      row: 1,
+      for : 'tailWindClasses',
+      tab: 'custom',
+      responsive:'off'
+    }
+    ),
+
+  //26 : CSS 
+
+      setSettingField('cssEditor', {
+      label: "CSS Styles", 
+      labelId: "css-styles-text",
+      placeholder: 'Add your CSS styles here',
+      row: 6,
+      for : 'customCSSCode',
+      tab: 'custom',
+      
+      responsive:'off'
+    }
+    ),
+
+
   ]
   
 }
@@ -768,20 +862,25 @@ export const HeadSettingsSet:settingsSetArgs = (settingType, data , screenType)=
            settings.styles[15].props.value = getValueForFields(findBlock, screenType, settings.styles[15].props.currentStatus || 'normal', "word-spacing");
            
            // settings.styles[14].props.value = findBlock?.styles?.wordSpacing;
+
+          //  text shadow
+          
+            settings.styles[18].props.value = getValueForFields(findBlock, screenType, settings.styles[27].props.currentStatus || 'normal', "box-shadow");
+
      
            
                 /* Background */
            
-           settings.styles[18].props.value = backgroundSettingsSetter(findBlock, screenType, settings.styles[18].props.currentStatus || 'normal');
+           settings.styles[21].props.value = backgroundSettingsSetter(findBlock, screenType, settings.styles[21].props.currentStatus || 'normal');
      
                /* Border */
-           settings.styles[21].props.value = getValueForFields(findBlock, screenType, settings.styles[21].props.currentStatus || 'normal', "border-style");
-           settings.styles[22].props.value = getValueForFields(findBlock, screenType, settings.styles[22].props.currentStatus || 'normal', "border-color");
-           settings.styles[23].props.value = getValueForFields(findBlock, screenType, settings.styles[23].props.currentStatus || 'normal', "border-width");
-           settings.styles[24].props.value = getValueForFields(findBlock, screenType, settings.styles[24].props.currentStatus || 'normal', "border-radius");
+           settings.styles[24].props.value = getValueForFields(findBlock, screenType, settings.styles[21].props.currentStatus || 'normal', "border-style");
+           settings.styles[25].props.value = getValueForFields(findBlock, screenType, settings.styles[22].props.currentStatus || 'normal', "border-color");
+           settings.styles[26].props.value = getValueForFields(findBlock, screenType, settings.styles[23].props.currentStatus || 'normal', "border-width");
+           settings.styles[27].props.value = getValueForFields(findBlock, screenType, settings.styles[24].props.currentStatus || 'normal', "border-radius");
      
            /* Box Shadow */
-           settings.styles[27].props.value = getValueForFields(findBlock, screenType, settings.styles[27].props.currentStatus || 'normal', "box-shadow");
+           settings.styles[30].props.value = getValueForFields(findBlock, screenType, settings.styles[27].props.currentStatus || 'normal', "box-shadow");
            
            
            
@@ -795,6 +894,37 @@ export const HeadSettingsSet:settingsSetArgs = (settingType, data , screenType)=
            settings.settings[7].props.value = getValueForFields(findBlock, screenType, settings.settings[7].props.currentStatus || 'normal', "height");
            settings.settings[8].props.value = getValueForFields(findBlock, screenType, settings.settings[8].props.currentStatus || 'normal', "min-height");
            settings.settings[9].props.value = getValueForFields(findBlock, screenType, settings.settings[9].props.currentStatus || 'normal', "max-height");
+
+                 // Position
+                 
+                 settings.settings[12].props.value = customSettingSetter(findBlock, screenType, settings.settings[12].props.currentStatus || 'normal', ['position', 'top', 'left', 'bottom', 'right'])
+                 // Transform
+                 settings.settings[13].props.value = getValueForFields(findBlock, screenType, settings.settings[13].props.currentStatus || 'normal', "transform");
+           
+                 //Overflow
+                 settings.settings[15].props.value = getValueForFields(findBlock, screenType, settings.settings[15].props.currentStatus || 'normal', "overflow-x");
+           
+                 settings.settings[16].props.value = getValueForFields(findBlock, screenType, settings.settings[15].props.currentStatus || 'normal', "overflow-y");
+           
+                 // Other
+           
+                 // CSS classes and Id
+                 settings.settings[18].props.value = findBlock?.customClasses
+                 settings.settings[19].props.value = findBlock?.customCSSID
+           
+                 // Order
+                 settings.settings[20].props.value = getValueForFields(findBlock, screenType, settings.settings[20].props.currentStatus || 'normal', "order");
+                 // Z-Index
+                 settings.settings[21].props.value = getValueForFields(findBlock, screenType, settings.settings[21].props.currentStatus || 'normal', "z-index");
+                 // Cursor
+                 settings.settings[22].props.value = getValueForFields(findBlock, screenType, settings.settings[22].props.currentStatus || 'normal', "cursor");
+           
+                 // Transition
+                 settings.settings[23].props.value = customSettingSetter(findBlock, screenType, settings.settings[23].props.currentStatus || 'normal', ['transition-property', 'transition-delay', 'transition-duration', 'transition-timing-function'])
+           
+                 // Custom 
+                 settings.settings[25].props.value = findBlock?.tailWindClasses
+                 settings.settings[26].props.value = findBlock?.customCSSCode
       
     }
 

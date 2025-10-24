@@ -6,9 +6,11 @@ import { menuBlock } from './menuBlockSchema';
 import Link from 'next/link';
 import Section from '@/components/builder/Section';
 import MenuSubNavs from './menuSubNavs';
+import useClassTracking from '@/hooks/useClassTrack';
 
 
 function Menu({block, index, onDelete, onCopy}: blockProps) {
+  const trackingClass = useClassTracking(block)
 
   const menuBlock = block as menuBlock;
 
@@ -21,27 +23,15 @@ function Menu({block, index, onDelete, onCopy}: blockProps) {
       className = {`flex-child block-${menuBlock?.id} ${menuBlock?.tailWindClasses} ${menuBlock?.customClasses} `}
       
     >
-      <ul className={`menuList  flex gap-2`} key={menuBlock?.id}>
+      <ul className={`menuList  flex gap-2 ${menuBlock?.props.childStyles?.menuList?.tailwindClasses}`} key={menuBlock?.id}>
         {
         menuBlock?.props?.items?.map((items,index)=>{
            return(
             <React.Fragment key={index}>
-            <li className='menuItems group relative' key={index}>
+            <li className={`menuItems group relative ${trackingClass}`} key={index}>
               <Link href={items.link || '#'} className='menuLink'>{items.text}</Link>
               <MenuSubNavs items={items} status='first'/>
-              {/* {
-              items?.subNav && items?.subNav?.length > 0 && (
-                <ul className='subMenuList hidden group-hover:block absolute top-full left-0 bg-gray-200'>
-                  {
-                    items?.subNav?.map((subItems, subIndex) => (
-                      <li className='subMenuItems' key={subIndex}>
-                        <Link href={subItems?.link || '#'} className='subMenuLink'>{subItems?.text}</Link>
-                      </li>
-                    ))
-                  }
-                </ul>
-              )
-            } */}
+              
             </li>
 
             

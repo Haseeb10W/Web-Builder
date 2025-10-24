@@ -10,7 +10,6 @@ export interface SiteData {
   headers?: headerSchema[]; 
   footers?: footerSchema[];
   posts?: postSchema[];
-  
 }
 
 export interface themeData {
@@ -21,8 +20,6 @@ export interface themeData {
   footers?: footerSchema[];
   active?:boolean;
   themeEditMode?: 'on' | 'off';
-
-  
 }
 
 export interface pageSchema {
@@ -52,7 +49,7 @@ export interface pageSchema {
   
 }
 
- export interface headerSchema {
+export interface headerSchema {
   kind: 'header';
   title : string;
   slug : string;

@@ -48,8 +48,9 @@ export default function Home() {
       }
     }
 
+
     loadAllStyles('all', fullContent)
-    
+
 
     setRenderData(fullContent)
 

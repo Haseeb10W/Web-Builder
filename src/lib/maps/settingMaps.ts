@@ -6,6 +6,7 @@ import { ImageSettingsSet } from "@/components/blocks/Image/setting";
 import { buttonSettingsSet } from "@/components/blocks/button/setting";
 import { iconSettingsSet } from "@/components/blocks/icons/setting";
 import { iconListSettindsSet } from "@/components/blocks/iconlist/setting";
+import { menuSettingsSet } from "@/components/blocks/menu/settings";
 
 
 
@@ -21,6 +22,7 @@ export const settingFunctionMap : {[key:string]: any}= {
   image : ImageSettingsSet,
   button : buttonSettingsSet,
   icon : iconSettingsSet,
-  iconlist : iconListSettindsSet
+  iconlist : iconListSettindsSet,
+  menu : menuSettingsSet
 
 }

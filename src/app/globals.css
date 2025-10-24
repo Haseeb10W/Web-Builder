@@ -162,7 +162,7 @@ li, ul {
 }
 
 
-.subnav:hover  .nfst-sub{
+.subnav:hover > .nfst-sub{
   display: block !important;
 
 }
