@@ -1,0 +1,364 @@
+import { footerSchema } from "@/types/editSchema";
+
+export const Footer: footerSchema = {
+    kind: 'footer',
+    title: 'footer Page',
+    slug: 'footer1',
+    id: 'p-footer-34e454',
+    content: [
+        {
+            id: 'flex-7hbddhehhr32',
+            type: 'flex',
+            title: 'Flex Container',
+            responsiveStyles: {
+                baseStyle: {
+                    // 'flex-direction':'column'
+                },
+                tablet: {},
+                desktop: {},
+                hoverStyles: {},
+            },
+            styles: {},
+            // Updated Tailwind classes for the main footer look
+            tailWindClasses: "p-16 w-full bg-white border-t border-gray-200 flex flex-wrap justify-between items-start",
+            customClasses: "my-custom-class",
+            classTracking: {},
+            draggable: false,
+            resizable: false,
+            editable: false,
+            link: "/home",
+            children: [
+                // Column 1: Company Info
+                {
+                    id: 'footer-col-company-info',
+                    type: 'flex',
+                    title: 'Company Info Column',
+                    responsiveStyles: { baseStyle: {}, tablet: {}, desktop: {}, hoverStyles: {} },
+                    styles: {},
+                    // Adjusted width for mobile/tablet to be full width, then wider on desktop
+                    tailWindClasses: "flex-col items-start w-full md:w-1/4 min-w-[250px] mb-8 md:mb-0",
+                    customClasses: "",
+                    classTracking: {},
+                    draggable: false,
+                    resizable: false,
+                    editable: false,
+                    props:{},
+                    link: "",
+                    children: [
+                        // Logo/Brand
+                        {
+                            id: 'footer-logo-brand',
+                            type: 'flex',
+                            title: 'Logo and Brand',
+                            responsiveStyles: { baseStyle: {}, tablet: {}, desktop: {}, hoverStyles: {} },
+                            styles: {},
+                            tailWindClasses: "flex items-center mb-4",
+                            customClasses: "",
+                            classTracking: {},
+                            draggable: false,
+                            resizable: false,
+                            editable: false,
+                            link: "/",
+                            props:{},
+                            children: [
+                                {
+                                    id: 'footer-logo-image',
+                                    type: 'image',
+                                    title: "Logo Image",
+                                    responsiveStyles: { baseStyle: {}, tablet: {}, desktop: {}, hoverStyles: {} },
+                                    styles: {},
+                                    tailWindClasses: "w-[100%] mr-2",
+                                    customClasses: "",
+                                    classTracking: {},
+                                    draggable: false,
+                                    resizable: false,
+                                    editable: false,
+                                    link: "",
+                                    props: {
+                                        src: "/media/images/website_logo.svg", 
+                                        alt: "Webtem Logo",
+                                        link: "",
+                                        width: "",
+                                        height: "",
+                                    }
+                                },
+                            ]
+                        },
+                        // Description Text
+                        {
+                            id: 'footer-description',
+                            type: 'text',
+                            title: 'Description Text',
+                            responsiveStyles: { baseStyle: { "color": "#6B7280" } },
+                            styles: {},
+                            tailWindClasses: "text-base text-gray-600 mb-6 leading-relaxed",
+                            customClasses: "",
+                            classTracking: {},
+                            draggable: false,
+                            resizable: false,
+                            editable: false,
+                            link: "",
+                            props: {
+                                text: "Build a modern and creative website with crealand",
+                            },
+                        },
+                        // Social Media Icons
+                        {
+                            id: 'flex-social-icons',
+                            type: 'flex',
+                            title: 'Social Media Icons',
+                            responsiveStyles: { baseStyle: {}, tablet: {}, desktop: {}, hoverStyles: {} },
+                            styles: {},
+                            tailWindClasses: "flex gap-2",
+                            customClasses: "",
+                            classTracking: {},
+                            draggable: false,
+                            resizable: false,
+                            editable: false,
+                            props:{},
+                            link: "",
+                            children: [
+                                // Google Icon
+                                {
+                                    id: 'icon-google',
+                                    type: 'icon',
+                                    title: "Google Icon",
+                                    responsiveStyles: {
+                                        baseStyle: { "background-color": "#F3F4F6", "border-radius": "9999px" },
+                                        hoverStyles: { "background-color": "#E5E7EB" },
+                                    },
+                                    styles: {},
+                                    tailWindClasses: "text-lg p-2 flex justify-center items-center w-8 h-8 text-gray-500 bg-gray-300 rounded-full cursor-pointer",
+                                    customClasses: "",
+                                    classTracking: {},
+                                    draggable: false,
+                                    resizable: false,
+                                    editable: false,
+                                    link: "https://www.google.com",
+                                    props: { icon: "facebook", link:"" }
+                                },
+                                // Twitter Icon
+                                {
+                                    id: 'icon-twitter',
+                                    type: 'icon',
+                                    title: "Twitter Icon",
+                                    responsiveStyles: {
+                                        baseStyle: { "background-color": "#F3F4F6", "border-radius": "9999px" },
+                                        hoverStyles: { "background-color": "#E5E7EB" },
+                                    },
+                                    styles: {},
+                                    tailWindClasses: "text-lg p-2 flex justify-center items-center w-8 h-8 text-gray-500 bg-gray-300 rounded-full cursor-pointer",
+                                    customClasses: "",
+                                    classTracking: {},
+                                    draggable: false,
+                                    resizable: false,
+                                    editable: false,
+                                    link: "https://www.twitter.com",
+                                    props: { icon: "twitter", link:"" }
+                                },
+                                // Instagram Icon
+                                {
+                                    id: 'icon-instagram',
+                                    type: 'icon',
+                                    title: "Instagram Icon",
+                                    responsiveStyles: {
+                                        baseStyle: { "background-color": "#F3F4F6", "border-radius": "9999px" },
+                                        hoverStyles: { "background-color": "#E5E7EB" },
+                                    },
+                                    styles: {},
+                                    tailWindClasses: "text-lg p-2 flex justify-center items-center w-8 h-8 text-gray-500 bg-gray-300 rounded-full cursor-pointer",
+                                    customClasses: "",
+                                    classTracking: {},
+                                    draggable: false,
+                                    resizable: false,
+                                    editable: false,
+                                    link: "https://www.instagram.com",
+                                    props: { 
+                                        icon: "insta",
+                                        link:"" 
+                                    }
+                                },
+                                // LinkedIn Icon
+                                {
+                                    id: 'icon-linkedin',
+                                    type: 'icon',
+                                    title: "LinkedIn Icon",
+                                    responsiveStyles: {
+                                        baseStyle: { "background-color": "#F3F4F6", "border-radius": "9999px" },
+                                        hoverStyles: { "background-color": "#E5E7EB" },
+                                    },
+                                    styles: {},
+                                    tailWindClasses: "text-lg p-2 flex justify-center items-center w-8 h-8 text-gray-500 bg-gray-300 rounded-full cursor-pointer",
+                                    customClasses: "",
+                                    classTracking: {},
+                                    draggable: false,
+                                    resizable: false,
+                                    editable: false,
+                                    link: "https://www.linkedin.com",
+                                    props: { icon: "linkedin", link:"" }
+                                },
+                            ],
+                        },
+                    ],
+                },
+
+                // Column 2: Product Links
+                {
+                    id: 'flex-col-prottduct',
+                    type: 'flex',
+                    title: 'Product Column',
+                    responsiveStyles: { baseStyle: {}, tablet: {}, desktop: {}, hoverStyles: {} },
+                    styles: {},
+                    tailWindClasses: "flex-col items-start w-1/2 md:w-1/6 mb-8 md:mb-0",
+                    customClasses: "",
+                    classTracking: {},
+                    draggable: false,
+                    resizable: false,
+                    editable: false,
+                    link: "",
+                    props:{},
+                    children: [
+                        {
+                            id: 'heading-product',
+                            type: 'heading',
+                            title: 'Product Heading',
+                            responsiveStyles: { baseStyle: { "color": "#1F2937" } },
+                            styles: {},
+                            tailWindClasses: "text-lg font-semibold mb-4",
+                            customClasses: "",
+                            classTracking: {},
+                            draggable: false,
+                            resizable: false,
+                            editable: false,
+                            link: "",
+                            props: { text: "Product", level: 'h4' }
+                        },
+                        { id: 'link-home', type: 'text', title: 'Home Link', responsiveStyles: { baseStyle: { "color": "#6B7280" } }, styles: {}, tailWindClasses: "text-base mb-2 hover:text-blue-600 cursor-pointer", customClasses: "", classTracking: {}, draggable: false, resizable: false, editable: false, link: "/home", props: { text: "Home" } },
+                        { id: 'link-services', type: 'text', title: 'Services Link', responsiveStyles: { baseStyle: { "color": "#6B7280" } }, styles: {}, tailWindClasses: "text-base mb-2 hover:text-blue-600 cursor-pointer", customClasses: "", classTracking: {}, draggable: false, resizable: false, editable: false, link: "/services", props: { text: "Services" } },
+                        { id: 'link-why-choose-us', type: 'text', title: 'Why Choose Us Link', responsiveStyles: { baseStyle: { "color": "#6B7280" } }, styles: {}, tailWindClasses: "text-base mb-2 hover:text-blue-600 cursor-pointer", customClasses: "", classTracking: {}, draggable: false, resizable: false, editable: false, link: "/why-choose-us", props: { text: "Why choose us" } },
+                        { id: 'link-how-we-work', type: 'text', title: 'How We Work Link', responsiveStyles: { baseStyle: { "color": "#6B7280" } }, styles: {}, tailWindClasses: "text-base mb-2 hover:text-blue-600 cursor-pointer", customClasses: "", classTracking: {}, draggable: false, resizable: false, editable: false, link: "/how-we-work", props: { text: "How we work" } },
+                        { id: 'link-testimonials', type: 'text', title: 'Testimonials Link', responsiveStyles: { baseStyle: { "color": "#6B7280" } }, styles: {}, tailWindClasses: "text-base mb-2 hover:text-blue-600 cursor-pointer", customClasses: "", classTracking: {}, draggable: false, resizable: false, editable: false, link: "/testimonials", props: { text: "Testimonials" } },
+                    ],
+                },
+
+                // Column 3: Services Links
+                {
+                    id: 'flex-col-services',
+                    type: 'flex',
+                    title: 'Services Column',
+                    responsiveStyles: { baseStyle: {}, tablet: {}, desktop: {}, hoverStyles: {} },
+                    styles: {},
+                    tailWindClasses: "flex-col items-start w-1/2 md:w-1/6 mb-8 md:mb-0",
+                    customClasses: "",
+                    classTracking: {},
+                    draggable: false,
+                    resizable: false,
+                    editable: false,
+                    link: "",
+                    children: [
+                        {
+                            id: 'heading-services',
+                            type: 'heading',
+                            title: 'Services Heading',
+                            responsiveStyles: { baseStyle: { "color": "#1F2937" } },
+                            styles: {},
+                            tailWindClasses: "text-lg font-semibold mb-4",
+                            customClasses: "",
+                            classTracking: {},
+                            draggable: false,
+                            resizable: false,
+                            editable: false,
+                            link: "",
+                            props: { text: "Services", level: 'h4' }
+                        },
+                        { id: 'link-lorem1-s', type: 'text', title: 'Lorem Ipsum Link 1', responsiveStyles: { baseStyle: { "color": "#6B7280" } }, styles: {}, tailWindClasses: "text-base mb-2 hover:text-blue-600 cursor-pointer", customClasses: "", classTracking: {}, draggable: false, resizable: false, editable: false, link: "#", props: { text: "Lorem Ipsum" } },
+                        { id: 'link-lorem2-s', type: 'text', title: 'Lorem Ipsum Link 2', responsiveStyles: { baseStyle: { "color": "#6B7280" } }, styles: {}, tailWindClasses: "text-base mb-2 hover:text-blue-600 cursor-pointer", customClasses: "", classTracking: {}, draggable: false, resizable: false, editable: false, link: "#", props: { text: "Lorem Ipsum" } },
+                        { id: 'link-lorem3-s', type: 'text', title: 'Lorem Ipsum Link 3', responsiveStyles: { baseStyle: { "color": "#6B7280" } }, styles: {}, tailWindClasses: "text-base mb-2 hover:text-blue-600 cursor-pointer", customClasses: "", classTracking: {}, draggable: false, resizable: false, editable: false, link: "#", props: { text: "Lorem Ipsum" } },
+                        { id: 'link-lorem4-s', type: 'text', title: 'Lorem Ipsum Link 4', responsiveStyles: { baseStyle: { "color": "#6B7280" } }, styles: {}, tailWindClasses: "text-base mb-2 hover:text-blue-600 cursor-pointer", customClasses: "", classTracking: {}, draggable: false, resizable: false, editable: false, link: "#", props: { text: "Lorem Ipsum" } },
+                        { id: 'link-lorem5-s', type: 'text', title: 'Lorem Ipsum Link 5', responsiveStyles: { baseStyle: { "color": "#6B7280" } }, styles: {}, tailWindClasses: "text-base mb-2 hover:text-blue-600 cursor-pointer", customClasses: "", classTracking: {}, draggable: false, resizable: false, editable: false, link: "#", props: { text: "Lorem Ipsum" } },
+                    ],
+                    props:{}
+                },
+
+                // Column 4: Company Links
+                {
+                    id: 'flex-col-company',
+                    type: 'flex',
+                    title: 'Company Column',
+                    responsiveStyles: { baseStyle: {}, tablet: {}, desktop: {}, hoverStyles: {} },
+                    styles: {},
+                    tailWindClasses: "flex-col items-start w-1/2 md:w-1/6 mb-8 md:mb-0",
+                    customClasses: "",
+                    classTracking: {},
+                    draggable: false,
+                    resizable: false,
+                    editable: false,
+                    link: "",
+                    children: [
+                        {
+                            id: 'heading-company',
+                            type: 'heading',
+                            title: 'Company Heading',
+                            responsiveStyles: { baseStyle: { "color": "#1F2937" } },
+                            styles: {},
+                            tailWindClasses: "text-lg font-semibold mb-4",
+                            customClasses: "",
+                            classTracking: {},
+                            draggable: false,
+                            resizable: false,
+                            editable: false,
+                            link: "",
+                            props: { text: "Company", level: 'h4' }
+                        },
+                        { id: 'link-about', type: 'text', title: 'About Link', responsiveStyles: { baseStyle: { "color": "#6B7280" } }, styles: {}, tailWindClasses: "text-base mb-2 hover:text-blue-600 cursor-pointer", customClasses: "", classTracking: {}, draggable: false, resizable: false, editable: false, link: "/about", props: { text: "About" } },
+                        { id: 'link-terms', type: 'text', title: 'Terms Link', responsiveStyles: { baseStyle: { "color": "#6B7280" } }, styles: {}, tailWindClasses: "text-base mb-2 hover:text-blue-600 cursor-pointer", customClasses: "", classTracking: {}, draggable: false, resizable: false, editable: false, link: "/terms", props: { text: "Terms" } },
+                        { id: 'link-privacy-policy', type: 'text', title: 'Privacy Policy Link', responsiveStyles: { baseStyle: { "color": "#6B7280" } }, styles: {}, tailWindClasses: "text-base mb-2 hover:text-blue-600 cursor-pointer", customClasses: "", classTracking: {}, draggable: false, resizable: false, editable: false, link: "/privacy-policy", props: { text: "Privacy Policy" } },
+                        { id: 'link-careers', type: 'text', title: 'Careers Link', responsiveStyles: { baseStyle: { "color": "#6B7280" } }, styles: {}, tailWindClasses: "text-base mb-2 hover:text-blue-600 cursor-pointer", customClasses: "", classTracking: {}, draggable: false, resizable: false, editable: false, link: "/careers", props: { text: "Careers" } },
+                    ],
+                    props:{}
+                },
+
+                // Column 5: More Links
+                {
+                    id: 'flex-col-more',
+                    type: 'flex',
+                    title: 'More Column',
+                    responsiveStyles: { baseStyle: {}, tablet: {}, desktop: {}, hoverStyles: {} },
+                    styles: {},
+                    tailWindClasses: "flex-col items-start w-1/2 md:w-1/6",
+                    customClasses: "",
+                    classTracking: {},
+                    draggable: false,
+                    resizable: false,
+                    editable: false,
+                    link: "",
+                    children: [
+                        {
+                            id: 'heading-more',
+                            type: 'heading',
+                            title: 'More Heading',
+                            responsiveStyles: { baseStyle: { "color": "#1F2937" } },
+                            styles: {},
+                            tailWindClasses: "text-lg font-semibold mb-4",
+                            customClasses: "",
+                            classTracking: {},
+                            draggable: false,
+                            resizable: false,
+                            editable: false,
+                            link: "",
+                            props: { text: "More", level: 'h4' }
+                        },
+                        { id: 'link-lorem1-m', type: 'text', title: 'Lorem Ipsum Link 1', responsiveStyles: { baseStyle: { "color": "#6B7280" } }, styles: {}, tailWindClasses: "text-base mb-2 hover:text-blue-600 cursor-pointer", customClasses: "", classTracking: {}, draggable: false, resizable: false, editable: false, link: "#", props: { text: "Lorem Ipsum" } },
+                        { id: 'link-lorem2-m', type: 'text', title: 'Lorem Ipsum Link 2', responsiveStyles: { baseStyle: { "color": "#6B7280" } }, styles: {}, tailWindClasses: "text-base mb-2 hover:text-blue-600 cursor-pointer", customClasses: "", classTracking: {}, draggable: false, resizable: false, editable: false, link: "#", props: { text: "Lorem Ipsum" } },
+                        { id: 'link-lorem3-m', type: 'text', title: 'Lorem Ipsum Link 3', responsiveStyles: { baseStyle: { "color": "#6B7280" } }, styles: {}, tailWindClasses: "text-base mb-2 hover:text-blue-600 cursor-pointer", customClasses: "", classTracking: {}, draggable: false, resizable: false, editable: false, link: "#", props: { text: "Lorem Ipsum" } },
+                    ],
+                    props:{}
+                },
+            ],
+            props: {},
+        },
+    ],
+    styling: {},
+    active: true,
+    editable: false,
+};
