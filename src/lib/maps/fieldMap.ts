@@ -28,7 +28,7 @@ import TextClasses from "@/components/settingFields/TextClasses";
 
 import CssEditor from "@/components/settingFields/CSSEditor";
 
-import iconsList from "@/components/settingFields/iconsList";
+// import iconsList from "@/components/settingFields/iconsList";
 
 
 const TextEditor = dynamic(() => import('@/components/settingFields/textEditor'), {
@@ -64,6 +64,6 @@ export const fieldMap : {[key:string]: React.ElementType} = {
   boxShadow: BoxShadow,
   textClasses : TextClasses,
   cssEditor: CssEditor,
-  listsIcon : iconsList,
+  // listsIcon : iconsList,
 
 }

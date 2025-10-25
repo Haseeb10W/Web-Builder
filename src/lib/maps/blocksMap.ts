@@ -7,7 +7,8 @@ import Image from "@/components/blocks/Image";
 import Text from "@/components/blocks/Text";
 import { ElementType } from "react";
 import Menu from "@/components/blocks/menu";
-import IconsList from "@/components/blocks/iconlist/Index";
+import Slider from "@/components/blocks/slider";
+import IconsList from "@/components/blocks/iconlist";
 
 
 export const blockMap :{[key:string]: ElementType}= {
@@ -18,5 +19,6 @@ export const blockMap :{[key:string]: ElementType}= {
   button:Button,
   icon:Icon,
   iconlist : IconsList,
-  menu: Menu
+  menu: Menu,
+  slider: Slider
 }

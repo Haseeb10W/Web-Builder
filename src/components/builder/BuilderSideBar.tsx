@@ -46,7 +46,7 @@ export default function BuilderSideBar() {
       label : 'Advance Elements',
       elements : [
         {type: 'menu', label: 'Menu' , icon: 'menu'},
-        
+        {type: 'slider', label: 'Slider' , icon: 'slider'},
         
       ]
     }

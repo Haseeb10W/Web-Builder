@@ -10,7 +10,7 @@ import useClassTracking from '@/hooks/useClassTrack';
 import Section from '@/components/builder/Section';
 
 
-export default function IconsList({block, index, onDelete, onCopy}: blockProps) {
+ function IconsList({block, index, onDelete, onCopy}: blockProps) {
 
 if(block.type !== 'iconlist'){
     return null;
@@ -74,3 +74,6 @@ if(block.type !== 'iconlist'){
     </>
   )
 }
+
+
+export default React.memo(IconsList)

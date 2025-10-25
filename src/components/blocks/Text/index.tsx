@@ -7,8 +7,7 @@ import useClassTracking from '@/hooks/useClassTrack';
 import { TextBlock } from './blockSchema';
 
 
-
-export default function Text({block, index, onDelete, onCopy}: blockProps) {
+ function Text({block, index, onDelete, onCopy}: blockProps) {
 
   const trackingClass = useClassTracking(block)
 
@@ -57,3 +56,6 @@ export default function Text({block, index, onDelete, onCopy}: blockProps) {
     </Section>
   )
 }
+
+
+export default React.memo(Text)

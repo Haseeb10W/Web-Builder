@@ -77,7 +77,8 @@ import {
   Facebook,
   Twitter,
   Linkedin,
-  Instagram
+  Instagram,
+  GalleryHorizontal
   
 
 
@@ -90,6 +91,9 @@ import { TbDiabolo } from 'react-icons/tb';
 import { TbNavigationQuestion } from "react-icons/tb";
 import { BsQuestion } from "react-icons/bs";
 import { ImInsertTemplate } from 'react-icons/im';
+import { LuFacebook, LuInstagram, LuLinkedin } from "react-icons/lu";
+import { RiTwitterXLine } from "react-icons/ri";
+
 
 
 export const iconMap : {[key:string]: React.ElementType} ={
@@ -178,11 +182,12 @@ export const iconMap : {[key:string]: React.ElementType} ={
   list : List,
   logs : Logs,
   menu : Menu,
-  search:Search,
-  facebook:Facebook,
-  twitter:Twitter,
-  linkedin:Linkedin,
-  insta:Instagram 
+  search: Search,
+  facebook: LuFacebook,
+  twitter: RiTwitterXLine,
+  linkedin: LuLinkedin,
+  insta: LuInstagram,
+  slider: GalleryHorizontal
 
 
 
